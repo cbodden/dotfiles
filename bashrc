@@ -1,25 +1,15 @@
 # /etc/skel/.bashrc
 #
-# This file is sourced by all *interactive* bash shells on startup,
-# including some apparently interactive shells such as scp and rcp
-# that can't tolerate any output.  So make sure this doesn't display
-# anything or bad things will happen !
-
-
-# Test for an interactive shell.  There is no need to set anything
-# past this point for scp and rcp, and it's important to refrain from
-# outputting anything in those cases.
 if [[ $- != *i* ]] ; then
 	# Shell is non-interactive.  Be done now!
 	return
 fi
 
-
-# Put your fun stuff here.
-# exports
+##### exports ####
 export LANG=en_US.UTF-8
+#### end exports ####
 
-# aliases
+#### aliases ####
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -30,7 +20,9 @@ alias dud100='du -a --max-depth=1 / | sort -n | awk '\''{if($1 > 102400) print $
 alias p='pushd'
 alias o='popd'
 alias lsd='ls -F | grep /'
+#### end aliases ####
 
+#### tmux shell init ####
 tmux_count=`tmux ls | wc -l`
 if [[ "$tmux_count" == "0" ]]; then
     tmux -2
@@ -41,12 +33,13 @@ else
         else
             session_id=`echo $tmux_count`
         fi
-    tmux new-session -d -s $session_id
-    tmux attach-session -t $session_id
+    tmux -2 new-session -d -s $session_id
+    tmux -2 attach-session -t $session_id
     fi
 fi
+#### tmux init end ####
 
-## prompt crap below this line
+#### prompt stuff ####
 function prompt_command {
 let prompt_line=${LINES}
 newPWD="${PWD}"
@@ -100,6 +93,9 @@ function load_color() {
 
 #PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
 PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\[\e[32;1m\]\h\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
+#### end prompt stuff ####
 
+#### motd and fortune ####
 cat /etc/ssh/banner.txt
 fortune futurama
+#### end motd and fortune ####
