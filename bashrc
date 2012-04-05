@@ -1,40 +1,52 @@
 # /etc/skel/.bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
 
+
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
 if [[ $- != *i* ]] ; then
 	# Shell is non-interactive.  Be done now!
 	return
 fi
 
-# Put your fun stuff here.
-tmux_count=`tmux ls | wc -l`
-if [[ "$$tmux_count" == "0" ]]; then
-	tmux -2
-else
-	if [[ -z "$TMUX" ]]; then
-		if [[ "$tmux_count" == "1" ]]; then
-			session_id=1
-		else
-			session_id=`echo $tmux_count`
-		fi
-	tmux new-session -d -s $session_id
-	tmux attach-session -t $session_id
-	fi
-fi
 
-alias x="exit"
+# Put your fun stuff here.
+# exports
+export LANG=en_US.UTF-8
+
+# aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias x='exit'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
-export TERM='xterm-256color'
-alias lsd="ls -aF | egrep /"
-export LC_ALL=C
-alias svndown="svn co"
-export EDITOR=/usr/bin/vim
+alias dud='du --max-depth=1 -h'
+alias dud100='du -a --max-depth=1 / | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias p='pushd'
 alias o='popd'
+alias lsd='ls -F | grep /'
 
+tmux_count=`tmux ls | wc -l`
+if [[ "$tmux_count" == "0" ]]; then
+    tmux -2
+else
+    if [[ -z "$TMUX" ]]; then
+        if [[ "$tmux_count" == "1" ]]; then
+            session_id=1
+        else
+            session_id=`echo $tmux_count`
+        fi
+    tmux new-session -d -s $session_id
+    tmux attach-session -t $session_id
+    fi
+fi
 
-
-
-#### prompt ####
+## prompt crap below this line
 function prompt_command {
 let prompt_line=${LINES}
 newPWD="${PWD}"
@@ -56,9 +68,15 @@ function load_color() {
   cyan=6
   white=7
 
+  # Colour progression is important ...
+  #   bold gray -> bold green -> bold yellow -> bold red ->-
+  #   black on red -> bold white on red
+  #
+  # Then we have to choose the values at which the colours switch, with
+  # anything past yellow being pretty important.
+
   tmp=$(echo $(load_out)*100 | bc)
   let load100=${tmp%.*}
-
   if [ ${load100} -lt 70 ]
   then
     tput bold ; tput setaf ${gray}
@@ -73,13 +91,15 @@ function load_color() {
     tput bold ; tput setaf ${red}
   elif [ ${load100} -ge 300 ] && [ ${load100} -lt 500 ]
   then
-    tput setaf ${gray} ; tput setab ${red}
+    #tput setaf ${gray} ; tput setab ${red}
+    tput setaf ${blue} ; tput setab ${red}
   else
     tput bold ; tput setaf ${white} ; tput setab ${red}
   fi
 }
 
-PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\h\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
+#PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
+PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\[\e[32;1m\]\h\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
 
 cat /etc/ssh/banner.txt
 fortune futurama
