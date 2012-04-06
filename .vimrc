@@ -28,6 +28,7 @@
 " General {
     " colorscheme relaxedgreen
     colorscheme wombat
+    set t_Co=256 " 256 color test
     filetype plugin indent on " load filetype plugins/indent settings
     set autochdir " always switch to the current file directory 
     set backspace=indent,eol,start " make backspace a more flexible
@@ -157,6 +158,7 @@
         au Syntax * RainbowParenthesesLoadSquare
         au Syntax * RainbowParenthesesLoadBraces
         au Syntax * RainbowParenthesesLoadChevrons
+        au Syntax * RainbowParenthesesLoadRound
     " end rainbow parenthesis
 
     " TagList Settings {
