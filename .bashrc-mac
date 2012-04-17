@@ -1,5 +1,5 @@
 # /etc/skel/.bashrc
-#
+
 if [[ $- != *i* ]] ; then
 	# Shell is non-interactive.  Be done now!
 	return
@@ -21,6 +21,7 @@ alias p='pushd'
 alias o='popd'
 alias lsd='ls -F | grep /'
 alias push='git push -u origin master'
+alias jump='ssh -A -p 2022 01.jump.nym1.appnexus.net'
 #### end aliases ####
 
 #### mac fix ####
@@ -49,6 +50,5 @@ fi
 #### tmux init end ####
 
 #### motd and fortune ####
-#cat /etc/ssh/banner.txt
 fortune 
 #### end motd and fortune ####
