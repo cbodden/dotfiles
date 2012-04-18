@@ -1,3 +1,4 @@
+#### gmail configs ####
 set imap_user = "USER@gmail.com"
 set imap_pass = "PASSWORD"
 
@@ -9,6 +10,27 @@ set realname = "PASSWORD"
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set postponed="+[Gmail]/Drafts"
+#### end gmail configs ####
+
+#### exchange configs ####
+set imap_passive=no
+set mail_check=15
+set smtp_authenticators="login"
+set ssl_use_sslv3=yes
+set timeout=15
+
+set imap_user=USER
+set imap_pass=PASSWORD
+set smtp_url="smtp://USER@EXCHANGE-SERVER:587/"
+set smtp_pass=PASSWORD
+
+set folder=imap://EXCHANGE-SERVER/
+set mbox=imap://EXCHANGE-SERVER/INBOX
+set postponed=imap://EXCHANGE-SERVER/Drafts
+set record="imap://EXCHANGE-SERVER/Sent Items"
+set spoolfile=imap://EXCHANGE-SERVER/INBOX
+set trash="imap://EXCHANGE-SERVER/Deleted Items"
+#### end exchange configs ####
 
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
