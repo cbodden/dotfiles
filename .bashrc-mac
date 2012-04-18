@@ -9,6 +9,19 @@ fi
 export LANG=en_US.UTF-8
 #### end exports ####
 
+#### mutt aliases ####
+# pissedoffadmins
+alias poamail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-poa'
+# iliketoshoot
+alias iltsmail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-ilts'
+# ebay
+alias ebaymail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-ebay'
+# gmail
+alias lgmail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-lg'
+# gangsofphotogs
+alias gopmail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-gop'
+#### end mutt aliases ####
+
 #### aliases ####
 alias ll='ls -alF'
 alias la='ls -A'
@@ -27,7 +40,7 @@ alias jump='ssh -A -p 2022 01.jump.nym1.appnexus.net'
 #### mac fix ####
 CLICOLOR=1
 LSCOLORS=gxfxcxdxbxegedabagacad
-export TERM=xterm-color
+export TERM=xterm-256color
 alias ls='ls -G'
 alias vi='mvim -v'
 #### end mac fix ####
@@ -50,5 +63,5 @@ fi
 #### tmux init end ####
 
 #### motd and fortune ####
-fortune 
+fortune
 #### end motd and fortune ####
