@@ -9,6 +9,19 @@ fi
 export LANG=en_US.UTF-8
 #### end exports ####
 
+#### mutt aliases ####
+# pissedoffadmins
+alias poamail='mutt -F .muttrc-poa'
+# iliketoshoot
+alias iltsmail='mutt -F .muttrc-ilts'
+# ebay
+alias ebaymail='mutt -F .muttrc-ebay'
+# gmail
+alias lgmail='mutt -F .muttrc-lg'
+# gangsofphotogs
+alias gopmail='mutt -F .muttrc-gop'
+#### end mutt aliases ####
+
 #### aliases ####
 alias ll='ls -alF'
 alias la='ls -A'
