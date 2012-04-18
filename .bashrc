@@ -105,7 +105,6 @@ function load_color() {
   fi
 }
 
-#PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
 PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[0m\]\[\e[30;1m\])-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\[\e[32;1m\]\h\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\e[30;1m\])-> \[\e[0m\]"
 #### end prompt stuff ####
 
