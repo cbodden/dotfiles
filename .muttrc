@@ -51,6 +51,45 @@ ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
 
+
+#### test hacks ####
+# source : www.cmdln.org/2008/11/07/how-i-tamed-my-mutt/
+set certificate_file=~/.mutt/mutt.crt       # Certificate Cache
+
+# Header settings
+ignore *                # Don't display all headers
+unignore From To Cc Subject Date Organization X-Mailer User-Agent
+hdr_order From: Date: To: Cc: Subject:
+
+# Set vim as the editor and use autoformat script to strip out nested replies
+# set editor="$HOME/.mutt/bin/autotrim %s; /usr/bin/vim -c 'set tw=70 et' %s"
+
+# Other Settings
+set markers=no                  # Fix multiline url wrapping to not break in gnome terminal
+set smart_wrap                  # dont wrap mid word
+set pager_context=5             # Retain 5 lines of previous page when scrolling.
+set delete=yes                  # Automatically delete messages marked for deletion on exit
+set ssl_starttls=yes                # Start TLS if available on server
+auto_view text/html             # autoview html
+set sort=threads                # Sort messages as threads
+set sort_aux=last-date-received         # Then sort by date
+set strict_threads                  # Don't thread messages by subject
+set fast_reply=yes              # Skip prompt for subject and recipients when replying
+set beep_new=yes                # Beep when new messages arrive in mailbox
+set beep=no                 # Don't beep on errors
+
+# Prefer Plain text to html, html to word etc ...
+alternative_order text/plain text/html application/vnd.msword application/msword
+
+# Simple modification to index format to display year in date column
+set index_format="%4C %Z %[!%b %d %Y] %-17.17F (%3l) %s"
+
+# Printing
+set print=yes                   # Don't ask before printing
+set print_command="muttprint"           # Use muttprint for pretty printing
+set print_split                 # Split each msg selected for printing
+#### end test hacks ####
+
 # Color definitions
 # white black green magenta blue cyan yellow red default colorx
 # intended for a dark bg
