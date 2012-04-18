@@ -1,10 +1,10 @@
 set imap_user = "USER@gmail.com"
-set imap_pass = "password"
+set imap_pass = "PASSWORD"
 
 set smtp_url = "smtp://USER@smtp.gmail.com:587/"
-set smtp_pass = "password"
+set smtp_pass = "PASSWORD"
 set from = "USER@gmail.com"
-set realname = "cesar"
+set realname = "PASSWORD"
 
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
@@ -16,9 +16,11 @@ set certificate_file=~/.mutt/certificates
 
 set move = no
 
-set sort = 'threads'
-set sort_aux = 'last-date-received'
 set imap_check_subscribed
+
+set sort=threads
+set sort_browser=reverse-date
+set sort_aux=reverse-last-date-received
 
 ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
