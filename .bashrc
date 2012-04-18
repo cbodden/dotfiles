@@ -11,15 +11,17 @@ export LANG=en_US.UTF-8
 
 #### mutt aliases ####
 # pissedoffadmins
-alias poamail='mutt -F .muttrc-poa'
+alias poamail='tmux rename-window "poa emails" && mutt -F .muttrc-poa'
 # iliketoshoot
-alias iltsmail='mutt -F .muttrc-ilts'
+alias iltsmail='tmux rename-window "ilts emails" && mutt -F .muttrc-ilts'
 # ebay
-alias ebaymail='mutt -F .muttrc-ebay'
+alias ebaymail='tmux rename-window "ebay emails" && mutt -F .muttrc-ebay'
 # gmail
-alias lgmail='mutt -F .muttrc-lg'
+alias lgmail='tmux rename-window "gmail" && mutt -F .muttrc-lg'
 # gangsofphotogs
-alias gopmail='mutt -F .muttrc-gop'
+alias gopmail='tmux rename-window "gop emails" && mutt -F .muttrc-gop'
+# work
+alias gopmail='tmux rename-window "work emails" && mutt -F .muttrc-work' 
 #### end mutt aliases ####
 
 #### aliases ####
