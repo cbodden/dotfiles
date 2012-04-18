@@ -20,6 +20,8 @@ alias ebaymail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-ebay'
 alias lgmail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-lg'
 # gangsofphotogs
 alias gopmail='mutt -F /Users/cbodden/dotfiles-mac/.muttrc-gop'
+# work
+alias workmail='tmux rename-window "work mail" && mutt -F /Users/cbodden/dotfiles-mac/.muttrc-work'
 #### end mutt aliases ####
 
 #### aliases ####
