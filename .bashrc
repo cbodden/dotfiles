@@ -9,6 +9,11 @@ fi
 export LANG=en_US.UTF-8
 #### end exports ####
 
+#### bash_history timestamps ####
+HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT
+#### end bash_history timestamp ####
+
 #### mutt aliases ####
 # pissedoffadmins
 alias poamail='tmux rename-window "poa emails" && mutt -F .mutt-cfg/.muttrc-poa'
