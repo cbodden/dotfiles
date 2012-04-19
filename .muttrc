@@ -3,12 +3,12 @@
 #### gmail configs ####
 # set imap_user = "USER@gmail.com"
 # set imap_pass = "PASSWORD"
-# 
+#
 # set smtp_url = "smtp://USER@smtp.gmail.com:587/"
 # set smtp_pass = "PASSWORD"
 # set from = "USER@gmail.com"
 # set realname = "PASSWORD"
-# 
+#
 # set folder = "imaps://imap.gmail.com:993"
 # set spoolfile = "+INBOX"
 # set postponed="+[Gmail]/Drafts"
@@ -51,7 +51,6 @@ ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
 
-
 #### test hacks ####
 # source : www.cmdln.org/2008/11/07/how-i-tamed-my-mutt/
 set certificate_file=~/.mutt/mutt.crt       # Certificate Cache
@@ -71,8 +70,8 @@ set pager_context=5             # Retain 5 lines of previous page when scrolling
 set delete=yes                  # Automatically delete messages marked for deletion on exit
 set ssl_starttls=yes                # Start TLS if available on server
 auto_view text/html             # autoview html
-set sort=threads                # Sort messages as threads
-set sort_aux=last-date-received         # Then sort by date
+# set sort=threads                # Sort messages as threads
+# set sort_aux=last-date-received         # Then sort by date
 set strict_threads                  # Don't thread messages by subject
 set fast_reply=yes              # Skip prompt for subject and recipients when replying
 set beep_new=yes                # Beep when new messages arrive in mailbox
@@ -82,7 +81,7 @@ set beep=no                 # Don't beep on errors
 alternative_order text/plain text/html application/vnd.msword application/msword
 
 # Simple modification to index format to display year in date column
-set index_format="%4C %Z %[!%b %d %Y] %-17.17F (%3l) %s"
+set index_format="%4C %Z %[!%b %d %Y %H:%M] %-17.17F (%3l) %s"
 
 # Printing
 set print=yes                   # Don't ask before printing
