@@ -26,9 +26,6 @@
 " }
 
 " General {
-    " colorscheme relaxedgreen
-    colorscheme wombat
-    set t_Co=256 " 256 color test
     filetype plugin indent on " load filetype plugins/indent settings
     set autochdir " always switch to the current file directory 
     set backspace=indent,eol,start " make backspace a more flexible
@@ -62,6 +59,8 @@
 " }
 
 " Vim UI {
+    set t_Co=256 " enables 256 colors
+    colorscheme calmar256-dark
     set cursorcolumn " highlight the current column
     set cursorline " highlight current line
     set colorcolumn=80,120 " highlight maximum line length
@@ -120,12 +119,6 @@
     set showtabline=2 " shows the tab bar at all times
 " }
 
-" Tabs {
-    " tab stuffs : http://www.linux.com/archive/feed/59533
-    set tabpagemax=10 " maximum amount of tabs to open on startup
-    set showtabline=2 " shows the tab bar at all times
-" }
-
 " Folding {
     set foldenable " Turn on folding
     set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
@@ -143,23 +136,6 @@
 " Plugin Settings {
     let b:match_ignorecase = 1 " case is stupid
     let perl_extended_vars=1 " highlight advanced perl vars inside strings
-    " nerdtree -- https://github.com/scrooloose/nerdtree
-        function OpenNERDTree()
-              execute ":NERDTree"
-          endfunction
-          command -nargs=0 OpenNERDTree :call OpenNERDTree()
-
-          nmap <ESC>t :OpenNERDTree<CR>
-    " end nerdtree
-
-    " rainbow parenthesis -  https://github.com/kien/rainbow_parentheses.vim
-        au VimEnter * RainbowParenthesesToggle
-        au Syntax * RainbowParenthesesLoadRound
-        au Syntax * RainbowParenthesesLoadSquare
-        au Syntax * RainbowParenthesesLoadBraces
-        au Syntax * RainbowParenthesesLoadChevrons
-        au Syntax * RainbowParenthesesLoadRound
-    " end rainbow parenthesis
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
