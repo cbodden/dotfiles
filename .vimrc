@@ -61,6 +61,7 @@
 " Vim UI {
     set t_Co=256 " enables 256 colors
     colorscheme calmar256-dark
+    set background=dark " always keep background dark regardless of color theme
     set cursorcolumn " highlight the current column
     set cursorline " highlight current line
     set colorcolumn=80,120 " highlight maximum line length
