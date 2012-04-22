@@ -16,17 +16,17 @@ export HISTTIMEFORMAT
 
 #### mutt aliases ####
 # pissedoffadmins
-alias poamail='tmux rename-window "poa emails" && mutt -F .mutt-cfg/.muttrc-poa'
+alias poamail='tmux rename-window "poa emails" && mutt -F ~/.mutt-cfg/.muttrc-poa'
 # iliketoshoot
-alias iltsmail='tmux rename-window "ilts emails" && mutt -F .mutt-cfg/.muttrc-ilts'
+alias iltsmail='tmux rename-window "ilts emails" && mutt -F ~/.mutt-cfg/.muttrc-ilts'
 # ebay
-alias ebaymail='tmux rename-window "ebay emails" && mutt -F .mutt-cfg/.muttrc-ebay'
+alias ebaymail='tmux rename-window "ebay emails" && mutt -F ~/.mutt-cfg/.muttrc-ebay'
 # gmail
-alias lgmail='tmux rename-window "gmail" && mutt -F .mutt-cfg/.muttrc-lg'
+alias lgmail='tmux rename-window "gmail" && mutt -F ~/.mutt-cfg/.muttrc-lg'
 # gangsofphotogs
-alias gopmail='tmux rename-window "gop emails" && mutt -F .mutt-cfg/.muttrc-gop'
+alias gopmail='tmux rename-window "gop emails" && mutt -F ~/.mutt-cfg/.muttrc-gop'
 # work
-alias workmail='tmux rename-window "work emails" && mutt -F .mutt-cfg/.muttrc-work' 
+alias workmail='tmux rename-window "work emails" && mutt -F ~/.mutt-cfg/.muttrc-work' 
 #### end mutt aliases ####
 
 #### aliases ####
