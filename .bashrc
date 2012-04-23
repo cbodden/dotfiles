@@ -7,6 +7,8 @@ fi
 
 ##### exports ####
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM=xterm-256color
 #### end exports ####
 
 #### bash_history timestamps ####
@@ -41,6 +43,7 @@ alias p='pushd'
 alias o='popd'
 alias lsd='ls -F | grep /'
 alias push='git push -u origin master'
+alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 #### end aliases ####
 
 #### tmux shell init ####
