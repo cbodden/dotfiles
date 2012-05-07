@@ -8,8 +8,6 @@ fi
 ##### exports ####
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-# export TERM=xterm-256color
-# export TERM=rxvt-unicode-256color
 export TERM=screen-256color
 #### end exports ####
 
@@ -64,6 +62,20 @@ else
     fi
 fi
 #### tmux init end ####
+
+#### cgroup shell group create ####
+if [ "$PS1" ] ; then
+        if [ -d /sys/fs/cgroup ] ; then
+                cdir=/sys/fs/cgroup
+        else
+                cdir=/dev/cgroup
+        fi
+        mkdir -p -m 0700 $cdir/user/$$ > /dev/null 2>&1
+        /bin/echo $$ > $cdir/user/$$/tasks
+        /bin/echo '1' > $cdir/user/$$/notify_on_release
+        unset -v cdir
+fi
+#### end cgroup shell group create ####
 
 #### prompt stuff ####
 function prompt_command {
