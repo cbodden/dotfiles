@@ -1,4 +1,7 @@
-# urxvt*termName: rxvt
+########
+# rxvt #
+########
+
 urxvt*termName: rxvt-256color
 urxvt*loginShell: true
 ## borderless and no scrollbar
@@ -42,6 +45,10 @@ urxvt.urlLauncher: chrome
 urxvt.matcher.button: 2
 urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
+
+################
+# xscreensaver #
+################
 
 xscreensaver.splash: false
 
