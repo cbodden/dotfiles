@@ -63,19 +63,19 @@ else
 fi
 #### tmux init end ####
 
-#### cgroup shell group create ####
-if [ "$PS1" ] ; then
-        if [ -d /sys/fs/cgroup ] ; then
-                cdir=/sys/fs/cgroup
-        else
-                cdir=/dev/cgroup
-        fi
-        mkdir -p -m 0700 $cdir/user/$$ > /dev/null 2>&1
-        /bin/echo $$ > $cdir/user/$$/tasks
-        /bin/echo '1' > $cdir/user/$$/notify_on_release
-        unset -v cdir
-fi
-#### end cgroup shell group create ####
+# #### cgroup shell group create ####
+# if [ "$PS1" ] ; then
+#         if [ -d /sys/fs/cgroup ] ; then
+#                 cdir=/sys/fs/cgroup
+#         else
+#                 cdir=/dev/cgroup
+#         fi
+#         mkdir -p -m 0700 $cdir/user/$$ > /dev/null 2>&1
+#         /bin/echo $$ > $cdir/user/$$/tasks
+#         /bin/echo '1' > $cdir/user/$$/notify_on_release
+#         unset -v cdir
+# fi
+# #### end cgroup shell group create ####
 
 #### prompt stuff ####
 function prompt_command {
@@ -133,6 +133,6 @@ PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[
 #### end prompt stuff ####
 
 #### motd and fortune ####
-cat /etc/ssh/banner.txt
+# cat /etc/ssh/banner.txt
 fortune futurama
 #### end motd and fortune ####
