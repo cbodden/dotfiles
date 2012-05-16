@@ -11,9 +11,11 @@ export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
 #### end exports ####
 
-#### bash_history timestamps ####
+#### bash_history timestamps and size ####
 HISTTIMEFORMAT='%F %T '
 export HISTTIMEFORMAT
+export HISTSIZE=9999
+export HISTFILESIZE=999999
 #### end bash_history timestamp ####
 
 #### mutt aliases ####
