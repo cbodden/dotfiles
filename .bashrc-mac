@@ -9,9 +9,11 @@ fi
 export LANG=en_US.UTF-8
 #### end exports ####
 
-#### bash_history timestamps ####
+#### bash_history timestamps and sizes ####
 HISTTIMEFORMAT='%F %T '
 export HISTTIMEFORMAT
+export HISTSIZE=9999
+export HISTFILESIZE=999999
 #### end bash_history timestamp ####
 
 #### mutt aliases ####
@@ -42,6 +44,7 @@ alias o='popd'
 alias lsd='ls -F | grep /'
 alias push='git push -u origin master'
 alias jump='ssh -A -p 2022 01.jump.nym1.appnexus.net'
+alias jumpad='ssh -A jump.adnxs.net'
 #### end aliases ####
 
 #### mac fix ####
