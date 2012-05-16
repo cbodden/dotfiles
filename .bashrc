@@ -38,7 +38,7 @@ alias l='ls -CF'
 alias x='exit'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias dud='du --max-depth=1 -h'
-alias dud100='du -a --max-depth=1 / | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
+alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias p='pushd'
 alias o='popd'
 alias lsd='ls -F | grep /'
@@ -62,20 +62,6 @@ else
     fi
 fi
 #### tmux init end ####
-
-# #### cgroup shell group create ####
-# if [ "$PS1" ] ; then
-#         if [ -d /sys/fs/cgroup ] ; then
-#                 cdir=/sys/fs/cgroup
-#         else
-#                 cdir=/dev/cgroup
-#         fi
-#         mkdir -p -m 0700 $cdir/user/$$ > /dev/null 2>&1
-#         /bin/echo $$ > $cdir/user/$$/tasks
-#         /bin/echo '1' > $cdir/user/$$/notify_on_release
-#         unset -v cdir
-# fi
-# #### end cgroup shell group create ####
 
 #### prompt stuff ####
 function prompt_command {
