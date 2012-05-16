@@ -7,6 +7,8 @@ fi
 
 ##### exports ####
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM=screen-256color
 #### end exports ####
 
 #### bash_history timestamps ####
@@ -16,17 +18,17 @@ export HISTTIMEFORMAT
 
 #### mutt aliases ####
 # pissedoffadmins
-alias poamail='tmux rename-window "poa emails" && mutt -F .mutt-cfg/.muttrc-poa'
+alias poamail='tmux rename-window "poa emails" && mutt -F ~/.mutt-cfg/.muttrc-poa'
 # iliketoshoot
-alias iltsmail='tmux rename-window "ilts emails" && mutt -F .mutt-cfg/.muttrc-ilts'
+alias iltsmail='tmux rename-window "ilts emails" && mutt -F ~/.mutt-cfg/.muttrc-ilts'
 # ebay
-alias ebaymail='tmux rename-window "ebay emails" && mutt -F .mutt-cfg/.muttrc-ebay'
+alias ebaymail='tmux rename-window "ebay emails" && mutt -F ~/.mutt-cfg/.muttrc-ebay'
 # gmail
-alias lgmail='tmux rename-window "gmail" && mutt -F .mutt-cfg/.muttrc-lg'
+alias lgmail='tmux rename-window "gmail" && mutt -F ~/.mutt-cfg/.muttrc-lg'
 # gangsofphotogs
-alias gopmail='tmux rename-window "gop emails" && mutt -F .mutt-cfg/.muttrc-gop'
+alias gopmail='tmux rename-window "gop emails" && mutt -F ~/.mutt-cfg/.muttrc-gop'
 # work
-alias workmail='tmux rename-window "work emails" && mutt -F .mutt-cfg/.muttrc-work' 
+alias workmail='tmux rename-window "work emails" && mutt -F ~/.mutt-cfg/.muttrc-work' 
 #### end mutt aliases ####
 
 #### aliases ####
@@ -36,11 +38,12 @@ alias l='ls -CF'
 alias x='exit'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias dud='du --max-depth=1 -h'
-alias dud100='du -a --max-depth=1 / | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
+alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias p='pushd'
 alias o='popd'
 alias lsd='ls -F | grep /'
 alias push='git push -u origin master'
+alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 #### end aliases ####
 
 #### tmux shell init ####
@@ -116,6 +119,6 @@ PS1="\[\033[\${prompt_line};0H\]\[\e[30;1m\](\[\$(load_color)\]\$(load_out)\[\e[
 #### end prompt stuff ####
 
 #### motd and fortune ####
-cat /etc/ssh/banner.txt
+# cat /etc/ssh/banner.txt
 fortune futurama
 #### end motd and fortune ####

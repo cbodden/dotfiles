@@ -1,41 +1,85 @@
-URxvt*termName: rxvt
+########
+# rxvt #
+########
 
+urxvt*termName: rxvt-256color
+urxvt*loginShell: true
 ## borderless and no scrollbar
-URxvt*scrollBar_right: false
-URxvt*scrollBar: false
-URxvt*borderLess: false
+urxvt*scrollBar_right: false
+urxvt*scrollBar: false
+urxvt*borderLess: false
 
 ## teh transparency stuff
-URxvt*inheritPixmap: true
-URxvt*tintColor: white
-URxvt*shading: 40
+urxvt*inheritPixmap: true
+urxvt*tintColor: white
+urxvt*shading: 40
 
 ## geometry and font
-#  URxvt*geometry: 84×24
-#  URxvt*font: xft:terminus:pixelsize=12
+#  urxvt*geometry: 84×24
+#  urxvt*font: xft:terminus:pixelsize=12
 
 ## change default colors
-URxvt*background: #000000
-URxvt*foreground: #A8A8A8
-URxvt*color0: #000000
-URxvt*color1: #A80000
-URxvt*color2: #00A800
-URxvt*color3: #A85400
-URxvt*color4: #0000A8
-URxvt*color5: #A800A8
-URxvt*color6: #00A8A8
-URxvt*color7: #A8A8A8
-URxvt*color8: #545054
-URxvt*color9: #F85450
-URxvt*color10: #50FC50
-URxvt*color11: #F2FC50
-URxvt*color12: #5054F8
-URxvt*color13: #F854F8
-URxvt*color14: #50FCF8
-# URxvt*color15: #F8FCF8
-URxvt*color15: pink
+urxvt*background: #000000
+urxvt*foreground: #A8A8A8
+urxvt*color0: #000000
+urxvt*color1: #A80000
+urxvt*color2: #00A800
+urxvt*color3: #A85400
+urxvt*color4: #0000A8
+urxvt*color5: #A800A8
+urxvt*color6: #00A8A8
+urxvt*color7: #A8A8A8
+urxvt*color8: #545054
+urxvt*color9: #F85450
+urxvt*color10: #50FC50
+urxvt*color11: #F2FC50
+urxvt*color12: #5054F8
+urxvt*color13: #F854F8
+urxvt*color14: #50FCF8
+# urxvt*color15: #F8FCF8
+urxvt*color15: pink
 
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: chrome
-URxvt.matcher.button: 2
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt*perl-lib: /usr/lib/urxvt/perl/
+urxvt.perl-ext-common: default,matcher,searchable-scrollback
+urxvt.urlLauncher: chrome
+urxvt.matcher.button: 2
+urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+
+
+################
+# xscreensaver #
+################
+
+xscreensaver.splash: false
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-georgia-bold-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-georgia-bold-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-georgia-bold-r-*-*-18-*-*-*-*-*-*-*
+
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #00efef
+xscreensaver.Dialog.background:         #111111
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+xscreensaver.Dialog.Button.foreground:  #111111
+xscreensaver.Dialog.Button.background:  #2040e0
+
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #2040e0
+xscreensaver.Dialog.text.background:    #efefef
+xscreensaver.Dialog.internalBorderWidth:36
+xscreensaver.Dialog.borderWidth:        0
+xscreensaver.Dialog.shadowThickness:    2
+
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #2040e0
+xscreensaver.passwd.thermometer.background:  #2040e0
+xscreensaver.passwd.thermometer.width:       0
+
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%p - %a %b %d, %Y
