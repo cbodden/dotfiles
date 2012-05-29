@@ -1,95 +1,36 @@
-#### uncomment sections as needed
-
-#### gmail configs ####
-# set imap_user = "USER@gmail.com"
-# set imap_pass = "PASSWORD"
-#
-# set smtp_url = "smtp://USER@gmail.com@smtp.gmail.com:587/"
-# set smtp_pass = "PASSWORD"
-# set from = "USER@gmail.com"
-# set realname = "USER"
-#
-# set folder = "imaps://imap.gmail.com:993"
-# set spoolfile = "+INBOX"
-# set postponed="+[Gmail]/Drafts"
-#### end gmail configs ####
-
-#### exchange configs ####
-# set imap_passive=no
-# set mail_check=15
-# set smtp_authenticators="login"
-# set ssl_use_sslv3=yes
-# set timeout=15
-# 
-# set imap_user=USER
-# set imap_pass=PASSWORD
-# set smtp_url="smtp://USER@EXCHANGE-SERVER:587/"
-# set smtp_pass=PASSWORD
-# 
-# set folder=imap://EXCHANGE-SERVER/
-# set mbox=imap://EXCHANGE-SERVER/INBOX
-# set postponed=imap://EXCHANGE-SERVER/Drafts
-# set record="imap://EXCHANGE-SERVER/Sent Items"
-# set spoolfile=imap://EXCHANGE-SERVER/INBOX
-# set trash="imap://EXCHANGE-SERVER/Deleted Items"
-#### end exchange configs ####
-
-set header_cache=~/.mutt/cache/headers
-set message_cachedir=~/.mutt/cache/bodies
-set certificate_file=~/.mutt/certificates
-
-set move = no
-
-set imap_check_subscribed
-
-set sort=threads
-set sort_browser=reverse-date
-set sort_aux=reverse-last-date-received
-
-ignore "Authentication-Results:"
-ignore "DomainKey-Signature:"
-ignore "DKIM-Signature:"
-hdr_order Date From To Cc
-
-#### test hacks ####
-# source : www.cmdln.org/2008/11/07/how-i-tamed-my-mutt/
-set certificate_file=~/.mutt/mutt.crt       # Certificate Cache
+set header_cache=~/.mutt/cache/headers                  # path for cached headers for single download
+set message_cachedir=~/.mutt/cache/bodies               # path for cached messages for single download
+set certificate_file=~/.mutt/mutt.crt                   # path for stored server certs
+set move = no                                           # this tells mutt not to move messages off the mail server
+set imap_check_subscribed                               # When set, mutt will fetch the set of subscribed folders from your server on connection, and add them to the set of mailboxes it polls for new mail
+set sort=threads                                        # sort messages by thread
+set sort_browser=reverse-date                           # sort by newest first
+set sort_aux=reverse-last-date-received                 # show threads with youngest message list
 
 # Header settings
-ignore *                # Don't display all headers
-unignore From To Cc Subject Date Organization X-Mailer User-Agent
-hdr_order From: Date: To: Cc: Subject:
+ignore *                                                # Don't display all headers
+unignore From To Cc Subject Date Organization X-Mailer User-Agent                   # header unignores
+hdr_order From: Date: To: Cc: Subject:                  # header order
 
-# Set vim as the editor and use autoformat script to strip out nested replies
-# set editor="$HOME/.mutt/bin/autotrim %s; /usr/bin/vim -c 'set tw=70 et' %s"
-
-# Other Settings
-set markers=no                  # Fix multiline url wrapping to not break in gnome terminal
-set smart_wrap                  # dont wrap mid word
-set pager_context=5             # Retain 5 lines of previous page when scrolling.
-set delete=yes                  # Automatically delete messages marked for deletion on exit
-set ssl_starttls=yes                # Start TLS if available on server
-auto_view text/html             # autoview html
-# set sort=threads                # Sort messages as threads
-# set sort_aux=last-date-received         # Then sort by date
-set strict_threads                  # Don't thread messages by subject
-set fast_reply=yes              # Skip prompt for subject and recipients when replying
-set beep_new=yes                # Beep when new messages arrive in mailbox
-set beep=no                 # Don't beep on errors
-
-set pager_index_lines=15
-
-# Prefer Plain text to html, html to word etc ...
-alternative_order text/plain text/html application/vnd.msword application/msword
-
-# Simple modification to index format to display year in date column
-set index_format="%4C %Z %[!%b %d %Y %H:%M] %-17.17F (%3l) %s"
+set editor="vim -c 'set syntax=mail ft=mail enc=utf-8'" # setting editor defaults
+set markers=no                                          # Fix multiline url wrapping to not break in gnome terminal
+set smart_wrap                                          # dont wrap mid word
+set pager_context=5                                     # Retain 5 lines of previous page when scrolling.
+set delete=yes                                          # Automatically delete messages marked for deletion on exit
+set ssl_starttls=yes                                    # Start TLS if available on server
+auto_view text/html                                     # autoview html
+set strict_threads                                      # Don't thread messages by subject
+set fast_reply=yes                                      # Skip prompt for subject and recipients when replying
+set beep_new=yes                                        # Beep when new messages arrive in mailbox
+set beep=no                                             # Don't beep on errors
+set pager_index_lines=15                                # lines to leave in pager view
+alternative_order text/plain text/html application/vnd.msword application/msword    # Prefer Plain text to html, html to word etc ...
+set index_format="%4C %Z %[!%b %d %Y %H:%M] %-17.17F (%3l) %s"                      # Simple modification to index format to display year in date column
 
 # Printing
-set print=yes                   # Don't ask before printing
-set print_command="muttprint"           # Use muttprint for pretty printing
-set print_split                 # Split each msg selected for printing
-#### end test hacks ####
+set print=yes                                           # Don't ask before printing
+set print_command="muttprint"                           # Use muttprint for pretty printing
+set print_split                                         # Split each msg selected for printing
 
 # Color definitions
 # colors: white black green magenta blue cyan yellow red default colorx
@@ -120,7 +61,6 @@ color index             color250        color233        "~A!~N!~T!~p!~Q!~F!~D!~P
 color index             color220        color233        "~A~N!~T!~p!~Q!~F!~D"           # the rest
 color index             color232        color124        ~=              # duplicate messages
 
-
 color header            color74         color233        "^From"
 color header            color88         color233        "^Date"
 color header            color166        color233        "^(Subject)"
@@ -150,9 +90,66 @@ color body              color178        color233        "[ ][*][^*]*[*][ ]?"
 color body              color178        color233        "[ ]?[*][^*]*[*][ ]"
 color body              brightred       color233        "(BAD signature)"
 color body              green           color233        "(Good signature)"
-color body              color208        color233        "(cesar|cbodden|lgarion)"
+color body              color208        color233        "(REAL NAME)"
 
 color hdrdefault        color238        color233
 color body              color128        color233        '[-.+\w]+@[-.\w]+[^.]' # e-mail addresses
 color underline         brightgreen     color233
+
+#########################
+#### account configs ####
+#########################
+
+account-hook . 'unset preconnect imap_user imap_authenticators'
+
+#### gmail ####
+account-hook 'imaps://USER@imap.gmail.com:993/' \
+set imap_user = "USER@gmail.com" \
+imap_pass = "PASSWORD"
+
+folder-hook 'imaps://USER@imap.gmail.com:993/INBOX' \
+' set imap_user = "USER@gmail.com" \
+imap_pass = "PASSWORD" \
+smtp_url = "smtp://USER@smtp.gmail.com:587/" \
+smtp_pass = "PASSWORD" \
+from = "USER@gmail.com" \
+realname = "REAL NAME" \
+folder = "imaps://imap.gmail.com:993" \
+spoolfile = "+INBOX" \
+postponed="+[Gmail]/Drafts" \
+mail_check=60 \
+imap_keepalive=300 \
+pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f" \
+pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f" \
+pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f" \
+pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f" \
+pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f" \
+pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xXXXXXXXX -- -r %r -- %f" \
+pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xXXXXXXXX -- -r %r -- %f" \
+pgp_import_command="gpg --no-verbose --import -v %f" \
+pgp_export_command="gpg --no-verbose --export --armor %r" \
+pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r" \
+pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" \
+pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" \
+pgp_autosign=yes \
+pgp_sign_as=0x45B7FB4D \
+pgp_replyencrypt=yes \
+pgp_timeout=1800 \
+pgp_good_sign="^gpg: Good signature from" '
+#### end gmail ####
+
+#### mailbox names ####
+mailboxes 'imaps://USER@imap.gmail.com:993/INBOX' \
+'imaps://USER@imap.gmail.com:993/INBOX' \
+'imaps://USER@imap.gmail.com:993/INBOX' \
+'imaps://USER@imap.gmail.com:993/INBOX' \
+'imaps://USER@imap.gmail.com:993/INBOX'
+
+#### f key macros for direct mailbox access
+macro index <f1> "c imaps://USER@imap.gmail.com:993/INBOX/\n"
+macro index <f2> "c imaps://USER@imap.gmail.com:993/INBOX/\n"
+macro index <f3> "c imaps://USER@imap.gmail.com:993/INBOX/\n"
+macro index <f4> "c imaps://USER@imap.gmail.com:993/INBOX/\n"
+macro index <f5> "c imaps://USER@imap.gmail.com:993/INBOX/\n"
+
 # vim: filetype=muttrc
