@@ -18,20 +18,9 @@ export HISTSIZE=9999
 export HISTFILESIZE=999999
 #### end bash_history timestamp ####
 
-#### mutt aliases ####
-# pissedoffadmins
-alias poamail='tmux rename-window "poa emails" && mutt -F ~/.mutt-cfg/.muttrc-poa'
-# iliketoshoot
-alias iltsmail='tmux rename-window "ilts emails" && mutt -F ~/.mutt-cfg/.muttrc-ilts'
-# ebay
-alias ebaymail='tmux rename-window "ebay emails" && mutt -F ~/.mutt-cfg/.muttrc-ebay'
-# gmail
-alias lgmail='tmux rename-window "gmail" && mutt -F ~/.mutt-cfg/.muttrc-lg'
-# gangsofphotogs
-alias gopmail='tmux rename-window "gop emails" && mutt -F ~/.mutt-cfg/.muttrc-gop'
-# work
-alias workmail='tmux rename-window "work emails" && mutt -F ~/.mutt-cfg/.muttrc-work' 
-#### end mutt aliases ####
+#### mutt aliase ####
+alias mail='tmux rename-window "emails" && mutt'
+#### end mutt aliase ####
 
 #### aliases ####
 alias ll='ls -alF'
