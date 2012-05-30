@@ -56,6 +56,7 @@
     set ml
     set undofile " persistent undo regardless of buffer unload
     set undodir=~/.vim/undo " persistent undo dir
+    set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
 " }
 
 " Vim UI {
