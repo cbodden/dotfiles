@@ -65,7 +65,7 @@
     set background=dark " always keep background dark regardless of color theme
     set cursorcolumn " highlight the current column
     set cursorline " highlight current line
-    set colorcolumn=80,120 " highlight maximum line length
+    set colorcolumn=120 " highlight maximum line length
     set incsearch " BUT do highlight as you type your search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
