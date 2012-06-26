@@ -23,19 +23,19 @@ alias mail='tmux rename-window "emails" && mutt'
 #### end mutt aliase ####
 
 #### aliases ####
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias x='exit'
-alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
-alias dud='du --max-depth=1 -h'
 alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
+alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
-alias p='pushd'
-alias o='popd'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
 alias lsd='ls -F | grep /'
+alias o='popd'
+alias p='pushd'
 alias push='git push -u origin master'
+alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
+alias x='exit'
 #### end aliases ####
 
 #### tmux shell init ####
