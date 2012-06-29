@@ -73,7 +73,8 @@
     set list " we do what to show tabs, to ensure we get them out of my files
     set listchars=tab:>-,trail:- " show tabs and trailing 
     set matchtime=5 " how many tenths of a second to blink matching brackets for
-    set nohlsearch " do not highlight searched for phrases
+    " set nohlsearch " do not highlight searched for phrases
+    set hlsearch " highlight searched for phrases
     set nostartofline " leave my cursor where it was
     set novisualbell " don't blink
     set number " turn on line numbers
