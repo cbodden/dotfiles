@@ -1,0 +1,105 @@
+# Color definitions
+# colors: white black green magenta blue cyan yellow red default colorx
+# vim: filetype=muttrc
+
+color attachment        color221        black
+color error             color124        black
+color indicator         color220        color88
+color markers           yellow          black
+color message           yellow          black
+color normal            color245        black
+color search            color48         color240                                 # how to hilite search patterns in the pager
+color status            color42         color237
+color tilde             color245        black
+
+###############
+#### Index ####
+###############
+
+color tree              color124        black                                    # arrow in threads
+color index             color250        black        "~A!~N!~T!~p!~Q!~F!~D!~P"   # the rest
+color index             color220        black        "~A~N!~T!~p!~Q!~F!~D"       # the rest
+color index             color232        color124     ~=                          # duplicate messages
+color index             color91         black        "~T"                        # tagged
+color index             color160        black        "~A"                        # all messages
+color index             color166        black        "~E"                        # expired messages
+color index             color33         black        "~N"                        # new messages
+color index             color33         black        "~O"                        # old messages
+color index             color61         black        "~Q"                        # messages that have been replied to
+# color index             color240        black        "~R"                        # read messages
+color index             color18         black        "~R"                        # read messages
+color index             color33         black        "~U"                        # unread messages
+color index             color33         black        "~U~$"                      # unread, unreferenced messages
+color index             color241        black        "~v"                        # messages part of a collapsed thread
+color index             color241        black        "~P"                        # messages from me
+color index             color37         black        "~p!~F"                     # messages to me
+color index             color37         black        "~N~p!~F"                   # new messages to me
+color index             color37         black        "~U~p!~F"                   # unread messages to me
+# color index             color240        black        "~R~p!~F"                   # messages to me
+color index             color18         black        "~R~p!~F"                   # read messages to me
+color index             color160        black        "~F"                        # flagged messages
+color index             color160        black        "~F~p"                      # flagged messages to me
+color index             color160        black        "~N~F"                      # new flagged messages
+color index             color160        black        "~N~F~p"                    # new flagged messages to me
+color index             color160        black        "~U~F~p"                    # new flagged messages to me
+color index             color235        color160     "~D"                        # deleted messages
+color index             color235        color160     "~D(!~p|~p)"                # deleted messages
+color index             color245        black        "~v~(!~N)"                  # collapsed thread with no unread
+color index             color136        black        "~v~(~N)"                   # collapsed thread with some unread
+color index             color64         black        "~N~v~(~N)"                 # collapsed thread with unread parent
+color index             color160        color235     "~v~(~F)!~N"                # collapsed thread with flagged, no unread
+color index             color136        color235     "~v~(~F~N)"                 # collapsed thread with some unread & flagged
+color index             color64         color235     "~N~v~(~F~N)"               # collapsed thread with unread parent & flagged
+color index             color64         color235     "~N~v~(~F)"                 # collapsed thread with unread parent, no unread inside, but some flagged
+color index             color37         color235     "~v~(~p)"                   # collapsed thread with unread parent, no unread inside, some to me directly
+color index             color136        color160     "~v~(~D)"                   # thread with deleted (doesn't differentiate between all or partial)
+
+#################
+#### headers ####
+#################
+
+color hdrdefault        color238        black
+color header            color74         black        "^From"
+color header            color74         black        "^(From)"
+color header            color88         black        "^Date"
+color header            color166        black        "^(Subject)"
+color header            color244        black        "^(To|Reply-To|Cc|Bcc):"
+color header            color245        black        "^(X-Original-To):"
+color header            color96         black        "^(User-Agent|X-Editor|X-Mailer):"
+color header            cyan            black        "^Organization:"
+
+##############
+#### Body ####
+##############
+
+color body              brightred       black        "(BAD signature)"
+color body              brightred       black        "mailto: *[^ ]+\(\\?subject=[^ ]+\)?"
+color body              color128        black        '[-.+\w]+@[-.\w]+[^.]'      # e-mail addresses
+color body              color160        black        "(BAD signature)"
+color body              color178        black        "[ ]?[*][^*]*[*][ ]"        # emoticons
+color body              color178        black        "[ ][*][^*]*[*][ ]?"        # emoticons
+color body              color178        black        "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
+color body              color178        black        "[;:][)(|]"                 # emoticons
+color body              color178        black        "[;:][-o][)/(|]"            # emoticons
+color body              color208        black        "(cesar|cbodden|lgarion|cesar bodden|root|cb)"
+color body              color241        black        "^gpg: "
+color body              color241        black        "^gpg: Good signature .*"
+color body              color241        color160     "^gpg: BAD signature from.*"
+color body              color37         black        "(Good signature)"
+color body              color39         black        "(finger|ftp|http|news|telnet|ssh)://[^ >]*"
+color body              color39         black        "<URL:[^ ]*>"
+color body              cyan            black        "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body              green           black        "(Good signature)"
+color body              green           black        "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]"
+color bold              green           black
+color normal            color250        black
+color quoted            color24         black
+color quoted1           color28         black
+color quoted2           color94         black
+color quoted3           color88         black
+color quoted4           color166        black
+color signature         color238        black
+color underline         brightgreen     black
+color underline         color208        black
+mono  body              bold                         "^gpg: BAD signature from.*"
+mono  body              bold                         "^gpg: Good signature"
