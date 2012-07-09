@@ -1,232 +1,73 @@
+# vim: filetype=muttrc
+
+set certificate_file=~/.mutt/mutt.crt                   # path for stored server certs
 set header_cache=~/.mutt/cache/headers                  # path for cached headers for single download
 set message_cachedir=~/.mutt/cache/bodies               # path for cached messages for single download
-set certificate_file=~/.mutt/mutt.crt                   # path for stored server certs
-set move = no                                           # this tells mutt not to move messages off the mail server
-set imap_check_subscribed                               # When set, mutt will fetch the set of subscribed folders from your server on connection, and add them to the set of mailboxes it polls for new mail
-set sort=threads                                        # sort messages by thread
-set sort_browser=reverse-date                           # sort by newest first
-set sort_aux=reverse-last-date-received                 # show threads with youngest message list
-alternative_order text/plain text/html application/vnd.msword application/msword    # Prefer Plain text to html, html to word etc ...
-set index_format="%4C %Z %[!%b %d %Y %H:%M] %-17.17F (%3l) %s"                      # Simple modification to index format to display year in date column
 
-# Header settings
+#### Header settings
 ignore *                                                # Don't display all headers
 unignore From To Cc Subject Date Organization X-Mailer User-Agent                   # header unignores
 hdr_order From: Date: To: Cc: Subject:                  # header order
 
-set editor="vim -c 'set syntax=mail ft=mail enc=utf-8'" # setting editor defaults
-set markers=no                                          # Fix multiline url wrapping to not break in gnome terminal
-set smart_wrap                                          # dont wrap mid word
-set pager_context=5                                     # Retain 5 lines of previous page when scrolling.
-set delete=yes                                          # Automatically delete messages marked for deletion on exit
-set ssl_starttls=yes                                    # Start TLS if available on server
+#### general
+# set alias_file=~/.mutt/aliases                        # Keep aliases in this file.
+alternative_order text/plain text/html application/vnd.msword application/msword    # Prefer Plain text to html, html to word etc ...
 auto_view text/html                                     # autoview html
-set strict_threads                                      # Don't thread messages by subject
-set fast_reply=yes                                      # Skip prompt for subject and recipients when replying
-set beep_new=yes                                        # Beep when new messages arrive in mailbox
 set beep=no                                             # Don't beep on errors
+set beep_new=yes                                        # Beep when new messages arrive in mailbox
+set charset=iso-8859-1                                  # One of those days in England...
+set copy                                                # Keep copies of outgoing mail...
+set delete=yes                                          # Automatically delete messages marked for deletion on exit
+set editor="vim -c 'set syntax=mail ft=mail enc=utf-8'" # setting editor defaults
+set fast_reply=yes                                      # Skip prompt for subject and recipients when replying
+set fcc_clear                                           # Keep fcc's clear of signatues and encryption.
+set hidden_host                                         # Hide host details.
+set hostname=ono-sendai.pissedoffadmins.com             # Name of our local host.
+set imap_check_subscribed                               # When set, mutt will fetch the set of subscribed folders from your server on connection, and add them to the set of mailboxes it polls for new mail
+set include                                             # Include the message in replies.
+set index_format="%4C %Z %[!%b %d %Y %H:%M] %-17.17F (%3l) %s"                      # Simple modification to index format to display year in date column
+set markers=no                                          # Fix multiline url wrapping to not break in gnome terminal
+set move = no                                           # this tells mutt not to move messages off the mail server
+set noallow_8bit                                        # 8bit isn't safe via Demon.
+set noconfirmappend                                     # Just append, don't hassle me.
+set nomark_old                                          # Don't mark unread new msgs as old.
+set nomove                                              # Hold messages in $MAIL.
+set nopipe_decode                                       # Don't decode messages when piping.
+set pager_context=5                                     # Retain 5 lines of previous page when scrolling.
 set pager_index_lines=15                                # lines to leave in pager view
 set pager_stop=yes                                      # while in pager prevent going to next message
+set postpone=ask-no                                     # Ask about postponing.
+set postponed=+postponed                                # Where postponed messages live.
+set quote_regexp="^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"                           # What we consider to be a quote
+set read_inc=100                                        # Read counter ticks every 100 msgs.
+set record=+outbox                                      # ... and it gets saved in =outbox.
+set smart_wrap                                          # dont wrap mid word
+set sort=threads                                        # sort messages by thread
+set sort_aux=reverse-last-date-received                 # show threads with youngest message list
+set sort_browser=reverse-date                           # sort by newest first
+set ssl_starttls=yes                                    # Start TLS if available on server
+set strict_threads                                      # Don't thread messages by subject
+set tilde                                               # Fill out messages with '~'.
+set write_inc=100                                       # Write counter ticks every 100 msgs.
 
-# Printing
-set print=yes                                           # Don't ask before printing
+#### Printing
+set print=ask-yes                                       # Ask before printing
 set print_command="muttprint"                           # Use muttprint for pretty printing
 set print_split                                         # Split each msg selected for printing
 
-# Color definitions
-# colors: white black green magenta blue cyan yellow red default colorx
+#### testing tts with emails using espeak
+# macro pager + "|espeak --stdin\r"                       # testing piping emails to espeak
+# macro pager + "|festival --tts\r"                       # testing piping emails to festival
 
-color normal            color245        color233
-color error             color124        color233
-color tilde             color245        color233
-color message           yellow          color233
-color markers           yellow          color233
-color attachment        color221        color233
-color search            color48         color240        # how to hilite search patterns in the pager
-color status            color42         color237
-color indicator         color220        color88
+#### lists
+subscribe list@
+subscribe port-sparc64@
 
-# Index
-color tree              color124        color233                        # arrow in threads
-color index             color184        color233        "~N~p"          # message to myself (new)
-color index             color130        color233        "~p"            # message to myself
-color index             color137        color233        "~Q"            # messages replied to
-color index             color70         color233        "~P"            # message from myself
-color index             color220        color233        ~N              # new
-color index             color208        color233        ~U              # unread
-color index             color142        color233        ~O              # old
-color index             color91         color233        ~T              # tagged
-color index             color238        color233        "~D(!~p|~p)"    # deleted
-color index             color196        color233        ~F              # flagged
-color index             color250        color233        "~A!~N!~T!~p!~Q!~F!~D!~P"       # the rest
-color index             color220        color233        "~A~N!~T!~p!~Q!~F!~D"           # the rest
-color index             color232        color124        ~=              # duplicate messages
+#### custom headers
+unmy_hdr *
+my_hdr X-Useless-Header-Fortune: `fortune`
+# my_hdr X-Operating-System: `uname -a`
 
-color header            color74         color233        "^From"
-color header            color88         color233        "^Date"
-color header            color166        color233        "^(Subject)"
-color header            color244        color233        "^(To|Reply-To|Cc|Bcc):"
-color header            color245        color233        "^(X-Original-To):"
-color header            color96         color233        "^(User-Agent|X-Editor|X-Mailer):"
-color header            cyan            color233        "^Organization:"
-
-# Body
-color quoted            color24         color233
-color quoted1           color28         color233
-color quoted2           color94         color233
-color quoted3           color88         color233
-color signature         color238        color233
-color bold              green           color233
-color underline         color208        color233
-color normal            color250        color233
-color body              color39         color233        "(finger|ftp|http|news|telnet)://[^ >]*"
-color body              color39         color233        "<URL:[^ ]*>"
-color body              cyan            color233        "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
-color body              green           color233        "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]"
-color body              brightred       color233        "mailto: *[^ ]+\(\\?subject=[^ ]+\)?"
-color body              color178        color233        "[;:][-o][)/(|]"
-color body              color178        color233        "[;:][)(|]"
-color body              color178        color233        "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
-color body              color178        color233        "[ ][*][^*]*[*][ ]?"
-color body              color178        color233        "[ ]?[*][^*]*[*][ ]"
-color body              brightred       color233        "(BAD signature)"
-color body              green           color233        "(Good signature)"
-color body              color208        color233        "(USER|root)"
-
-color hdrdefault        color238        color233
-color body              color128        color233        '[-.+\w]+@[-.\w]+[^.]' # e-mail addresses
-color underline         brightgreen     color233
-
-#########################
-#### account configs ####
-#########################
-
-account-hook . 'unset preconnect imap_user imap_authenticators'
-
-#### DOMAIN_ONE ####
-account-hook 'imaps://USER@DOMAIN_ONE.COM@imap.gmail.com:993/' \
-' set imap_user = "USER@DOMAIN_ONE.COM" \
-imap_pass = "PASSWORD" '
-
-folder-hook 'imaps://USER@DOMAIN_ONE.COM@imap.gmail.com:993/INBOX' \
-' set imap_user = "USER@DOMAIN_ONE.COM" \
-imap_pass = "PASSWORD" \
-smtp_url = "smtp://USER@DOMAIN_ONE.COM@smtp.gmail.com:587/" \
-smtp_pass = "PASSWORD" \
-from = "USER@DOMAIN_ONE.COM" \
-realname = "USER" \
-folder = "imaps://imap.gmail.com:993" \
-spoolfile = "+INBOX" \
-postponed="+[Gmail]/Drafts" \
-mail_check=60 \
-imap_keepalive=300 \
-pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f" \
-pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f" \
-pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f" \
-pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f" \
-pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f" \
-pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xXXXXXXXX -- -r %r -- %f" \
-pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xXXXXXXXX -- -r %r -- %f" \
-pgp_import_command="gpg --no-verbose --import -v %f" \
-pgp_export_command="gpg --no-verbose --export --armor %r" \
-pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r" \
-pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" \
-pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" \
-pgp_autosign=yes \
-pgp_sign_as=0xXXXXXXXX \
-pgp_replyencrypt=yes \
-pgp_timeout=1800 \
-pgp_good_sign="^gpg: Good signature from" '
-#### end DOMAIN_ONE ####
-
-#### DOMAIN_TWO ####
-account-hook 'imaps://USER@DOMAIN_TWO.COM@imap.gmail.com:993/' \
-' set imap_user = "USER@DOMAIN_TWO.COM" \
-imap_pass = "PASSWORD" '
-
-folder-hook 'imaps://USER@DOMAIN_TWO.COM@imap.gmail.com:993/INBOX' \
-' set imap_user = "USER@DOMAIN_TWO.COM" \
-imap_pass = "PASSWORD" \
-smtp_url = "smtp://USER@DOMAIN_TWO.COM@smtp.gmail.com:587/" \
-smtp_pass = "PASSWORD" \
-from = "USER@DOMAIN_TWO.COM" \
-realname = "USER" \
-folder = "imaps://imap.gmail.com:993" \
-spoolfile = "+INBOX" \
-postponed="+[Gmail]/Drafts" \
-mail_check=60 \
-imap_keepalive=300 '
-#### end DOMAIN_TWO ####
-
-#### DOMAIN_THREE ####
-account-hook 'imaps://USER@DOMAIN_THREE.COM@imap.gmail.com:993/' \
-' set imap_user = "USER@DOMAIN_THREE.COM" \
-imap_pass = "\PASSWORD" '
-
-folder-hook 'imaps://USER@DOMAIN_THREE.COM@imap.gmail.com:993/INBOX' \
-' set imap_user = "USER@DOMAIN_THREE.COM" \
-imap_pass = "\PASSWORD" \
-smtp_url = "smtp://USER@DOMAIN_THREE.COM@smtp.gmail.com:587/" \
-smtp_pass = "\PASSWORD" \
-from = "USER@DOMAIN_THREE.COM" \
-realname = "ebay" \
-folder = "imaps://imap.gmail.com:993" \
-spoolfile = "+INBOX" \
-postponed="+[Gmail]/Drafts" \
-mail_check=60 \
-imap_keepalive=300 '
-#### end DOMAIN_THREE ####
-
-#### GMAIL ####
-account-hook 'imaps://USER@imap.gmail.com:993/' \
-' set imap_user = "USER@GMAIL.COM" \
-imap_pass = "PASSWORD" '
-
-folder-hook 'imaps://USER@imap.gmail.com:993/INBOX' \
-' set imap_user = "USER@GMAIL.COM" \
-imap_pass = "PASSWORD" \
-smtp_url = "smtp://USER@smtp.gmail.com:587/" \
-smtp_pass = "PASSWORD" \
-from = "USER@GMAIL.COM" \
-realname = "USER" \
-folder = "imaps://imap.gmail.com:993" \
-spoolfile = "+INBOX" \
-postponed="+[Gmail]/Drafts" \
-mail_check=60 \
-imap_keepalive=300 '
-#### end GMAIL ####
-
-#### DOMAIN_FOUR ####
-account-hook 'imaps://USER@DOMAIN_FOUR.COM@imap.gmail.com:993/' \
-' set imap_user = "USER@DOMAIN_FOUR.COM" \
-imap_pass = "PASSWORD" '
-
-folder-hook 'imaps://USER@DOMAIN_FOUR.COM@imap.gmail.com:993/INBOX' \
-' set imap_user = "USER@DOMAIN_FOUR.COM" \
-imap_pass = "PASSWORD" \
-smtp_url = "smtp://USER@DOMAIN_FOUR.COM@smtp.gmail.com:587/" \
-smtp_pass = "PASSWORD" \
-from = "USER@DOMAIN_FOUR.COM" \
-realname = "USER" \
-folder = "imaps://imap.gmail.com:993" \
-spoolfile = "+INBOX" \
-postponed="+[Gmail]/Drafts" \
-mail_check=60 \
-imap_keepalive=300 '
-#### end DOMAIN_FOUR ####
-
-#### mailbox names ####
-mailboxes 'imaps://USER@DOMAIN_ONE.COM@imap.gmail.com:993/INBOX' \
-'imaps://USER@DOMAIN_TWO.COM@imap.gmail.com:993/INBOX' \
-'imaps://USER@DOMAIN_THREE.COM@imap.gmail.com:993/INBOX' \
-'imaps://USER@imap.gmail.com:993/INBOX' \
-'imaps://USER@DOMAIN_FOUR.COM@imap.gmail.com:993/INBOX'
-
-#### f key macros for direct mailbox access
-macro generic,index,pager <F5> "c imaps://USER@DOMAIN_ONE.COM@imap.gmail.com:993/INBOX/\n"
-macro generic,index,pager <F6> "c imaps://USER@DOMAIN_TWO.COM@imap.gmail.com:993/INBOX/\n"
-macro generic,index,pager <F7> "c imaps://USER@DOMAIN_THREE.COM@imap.gmail.com:993/INBOX/\n"
-macro generic,index,pager <F8> "c imaps://USER@imap.gmail.com:993/INBOX/\n"
-macro generic,index,pager <F9> "c imaps://USER@DOMAIN_FOUR.COM@imap.gmail.com:993/INBOX/\n"
-
-# vim: filetype=muttrc
+#### some settings are contained in other files 
+source "~/.muttrc-accounts"                             # import account info
+source "~/.muttrc-colors"                               # import color info
