@@ -1,7 +1,3 @@
-########
-# rxvt #
-########
-
 urxvt*termName: rxvt-256color
 urxvt*loginShell: true
 ## borderless and no scrollbar
@@ -9,14 +5,16 @@ urxvt*scrollBar_right: false
 urxvt*scrollBar: false
 urxvt*borderLess: false
 
+## test fonts stuffs
+URxvt.font:             xft:Terminus:pixelsize=10:antialias=false
+URxvt.boldFont:         xft:Terminus:bold:pixelsize=10:antialias=false
+
 ## teh transparency stuff
 urxvt*inheritPixmap: true
 urxvt*tintColor: white
 urxvt*shading: 40
 
 ## geometry and font
-#  urxvt*geometry: 84×24
-#  urxvt*font: xft:terminus:pixelsize=12
 
 ## change default colors
 urxvt*background: #000000
@@ -36,19 +34,13 @@ urxvt*color11: #F2FC50
 urxvt*color12: #5054F8
 urxvt*color13: #F854F8
 urxvt*color14: #50FCF8
-# urxvt*color15: #F8FCF8
 urxvt*color15: pink
 
 urxvt*perl-lib: /usr/lib/urxvt/perl/
 urxvt.perl-ext-common: default,matcher,searchable-scrollback
-urxvt.urlLauncher: chrome
+urxvt.urlLauncher: chromium
 urxvt.matcher.button: 2
 urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-
-
-################
-# xscreensaver #
-################
 
 xscreensaver.splash: false
 
