@@ -1,0 +1,143 @@
+#########################
+
+replaces = { "[]=" = "%B$0-%w"; };
+
+abstracts = {
+
+  ## generic
+
+  channel = "%_$*%_";
+  comment = "[$0-]";
+  error = "%R$0*%w";
+  hilight = "%_$0-%_";
+  line_start = "%coOo%n ";
+  mode = "{comment $*}";
+  nick = "%_$*%_";
+  nickhost = "[$0*]";
+  reason = "{comment $*}";
+  server = "%_$*%_";
+  timestamp = "%c$0-%w";
+
+  ## channel specific messages
+
+  ban = "%c$*%n";
+  chanhost = "{nickhost $*}";
+  chanhost_hilight = "{nickhost %c$*%n}";
+  channelhilight = "%g$0-%w";
+  channick = "%c$*%n";
+  channick_hilight = "%C$*%n";
+
+  ## messages
+
+  menick = "%N$*%n";
+  msgchannel = "%K:%c$*%n";
+  msgnick = "%K%n$0$1-%K%n: %|";
+  ownmsgnick = "{msgnick $0 $1-}%w";
+  ownnick = "%r$* %b<<%n";
+  ownprivmsg = "[%r$0%K(%R$1-%K)%n] ";
+  ownprivmsgnick = "{msgnick $*}";
+  ownprivnick = "%W$*%n";
+  privmsg = "[%R$0%K(%r$1-%K)%n] ";
+  privmsgnick = "{msgnick %R$*%n}";
+  pubmsghinick = "{msgnick $1 $0$2-%n}";
+  pubmsgmenick = "{msgnick $0 $1-}";
+  pubmsgnick = "{msgnick $0 $1-}";
+  pubnick = "%N$*%n";
+
+  ## actions (/me)
+
+  action = "{action_core $0-} ";
+  action_core = "%R > %R$0-%n";
+  ownaction = "{action $0-}";
+  ownaction_target = "{action_core $0}%K:%c$1%n ";
+  pubaction = "{action $0-}";
+  pvtaction = " (%B>%B>%B>%n) %R$0-%n ";
+  pvtaction_query = "{action $0-}";
+
+  ## other IRC events
+
+  # notices
+  notice = "%B[%R$0-%B]%w ";
+  ownnotice = "[%G$0%g(%Y$1-%g)]%w ";
+  pubnotice_channel = "%W:%m$0-";
+  pvtnotice_host = "%g(%Y$0-%g)";
+  servernotice = "%g!$0-%w ";
+
+  # CTCPs
+  ctcp = "%g$0-%n";
+  ownctcp = "[%c$0%K(%C$1-%K)] ";
+
+  # wallops
+  wallop = "%W$0-%n: ";
+  wallop_action = "%W * $0-%n ";
+  wallop_nick = "%n$0-";
+
+  # netsplits
+  netjoin = "%G$0-%w";
+  netsplit = "%R$0-%w";
+
+  # /names list
+  names_channel = "%G$0-%c";
+  names_nick = "[%_$0%_%g$1-%b] ";
+  names_users = "[%c$0-%g]";
+
+  # DCC
+  dcc = "[%w$0-%w]";
+  dccfile = "%_$0-%_";
+
+  # DCC chat, own msg/action
+  dccaction = " %R>%Y>%G>%n %C$0-%n %|";
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+  dccownmsg = "[%r$0%K($1-%K)%n] ";
+  dccownnick = "<%R$0-%n>";
+  dccquerynick = "%B[-%g$0- %B>%w";
+
+  ## statusbar
+
+  prompt = "%r[%n$*%r] %G>>%b ";
+  sb = " %b(%n$*%b)%n";
+  sb_act_hilight = "%M$*";
+  sb_act_hilight_color = "$0$1-%n";
+  sb_act_msg = "%W$*";
+  sb_act_sep = "%g$*";
+  sb_act_text = "%r$*";
+  sb_background = "%n%0";
+  sb_info_bg = "%8";
+  sb_topic_bg = "%n";
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = "Act: $0-";
+  sbact_det = " Det: $0-";
+  sbaway = "[%9away%n]";
+  sbend = " ";
+  sblag = "{sb Lag: $0-}";
+  sbmail = "{sb Mail: $0-}";
+  sbmode = "[%p+%b$*%n]";
+  sbmore = "%_-- more --%_";
+  sbservertag = ":$0";
+  sbstart = "%W>>%n";
+  topicsbend = "";
+  topicsbstart = "{sbstart}";
+};
+
+formats = {
+  "fe-common/core" = {
+    msg_private_query = "{privmsgnick $[-4]0}$2";
+    own_msg = "{ownmsgnick {ownnick $[-4]0$2}}$1";
+    own_msg_channel = "{ownmsgnick {ownnick $[-4]0$3}{msgchannel $1}}$2";
+    own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-4]2}}$1";
+    pubmsg = "{pubmsgnick {pubnick %w$[-4]0}$2}$1";
+    pubmsg_channel = "{pubmsgnick {pubnick %w$[-4]0}$2}$1";
+    pubmsg_hilight = "{pubmsghinick $0 $0 $[-4]1$3%n}$2";
+    pubmsg_hilight_channel = "{pubmsghinick $0 $[-4]1$4{msgchannel $2}}$3";
+    pubmsg_me = "{pubmsgmenick {menick $[-4]0}$2}$1";
+    pubmsg_me_channel = "{pubmsgmenick {menick $[-4]0$3}{msgchannel $1}}$2";
+  };
+  "fe-common/irc" = {
+    action_private = "{pvtaction $[-4]0}$1";
+    action_private_query = "{pvtaction_query $[-4]0} $2";
+    action_public = "{pubaction $[-4]0}$1";
+    own_action = "{ownaction $[-4]0} $1";
+  };
+};
