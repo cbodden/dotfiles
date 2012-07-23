@@ -38,8 +38,8 @@ chatnets = {
 };
 
 channels = (
-  { name = "#ROOM"; chatnet = "0x00"; autojoin = "yes"; },
-  { name = "#ROOM"; chatnet = "efnet"; autojoin = "yes"; }
+  { name = "#poa"; chatnet = "0x00"; autojoin = "yes"; },
+  { name = "#poa"; chatnet = "efnet"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -211,9 +211,9 @@ statusbar = {
 };
 settings = {
   core = {
-    real_name = "NAME";
-    user_name = "NAME";
-    nick = "NAME";
+    real_name = "USER";
+    user_name = "USER";
+    nick = "USER";
     rawlog_lines = "1000";
   };
   "fe-text" = { actlist_sort = "refnum"; };
@@ -233,7 +233,7 @@ settings = {
   };
 };
 logs = { };
-hilights = ( { text = "NAME"; nick = "no"; word = "no"; } );
+hilights = ( { text = "USER"; nick = "no"; word = "no"; } );
 windows = {
   1 = { 
     immortal = "yes";
@@ -253,5 +253,29 @@ windows = {
     sticky = "yes";
     parent = "1";
   };
+  3 = {
+    items = (
+      {
+        type = "QUERY";
+        chat_type = "IRC";
+        name = "nickserv";
+        tag = "0x00";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#poa";
+        tag = "EFNet";
+      }
+    );
+  };
+  5 = { name = "hilight"; sticky = "yes"; };
 };
-mainwindows = { 1 = { first_line = "1"; lines = "76"; }; };
+mainwindows = {
+  1 = { first_line = "8"; lines = "69"; };
+  5 = { first_line = "1"; lines = "7"; };
+};
