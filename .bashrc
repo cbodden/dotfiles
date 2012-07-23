@@ -18,18 +18,18 @@ export HISTSIZE=9999
 export HISTFILESIZE=999999
 #### end bash_history timestamp ####
 
-#### mutt aliase ####
-alias mail='tmux rename-window "emails" && mutt'
-#### end mutt aliase ####
-
 #### aliases ####
+# alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
+# alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
 alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
+alias irc='tmux rename-window "irc" && irssi'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias lsd='ls -F | grep /'
+alias mail='tmux rename-window "emails" && mutt'
 alias o='popd'
 alias p='pushd'
 alias push='git push -u origin master'
@@ -76,13 +76,6 @@ function load_color() {
   magenta=5
   cyan=6
   white=7
-
-  # Colour progression is important ...
-  #   bold gray -> bold green -> bold yellow -> bold red ->-
-  #   black on red -> bold white on red
-  #
-  # Then we have to choose the values at which the colours switch, with
-  # anything past yellow being pretty important.
 
   tmp=$(echo $(load_out)*100 | bc)
   let load100=${tmp%.*}
