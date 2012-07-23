@@ -233,7 +233,7 @@ settings = {
   };
 };
 logs = { };
-hilights = ( { text = "lga"; nick = "no"; word = "no"; } );
+hilights = ( { text = "NAME"; nick = "no"; word = "no"; } );
 windows = {
   1 = { 
     immortal = "yes";
