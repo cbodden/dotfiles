@@ -60,7 +60,7 @@ alias lsd='ls -F | grep /'
 alias mail='tmux rename-window "emails" && mutt'
 alias o='popd'
 alias p='pushd'
-alias push='git push u origin master'
+alias push='git push origin master'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias x='exit'
