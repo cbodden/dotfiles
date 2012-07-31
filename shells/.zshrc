@@ -15,6 +15,8 @@ export TERM=screen-256color
 bindkey -e
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
 #### end zsh key bindings ####
 
 #### zsh history ####
@@ -29,7 +31,7 @@ setopt HIST_REDUCE_BLANKS       # leave blanks out
 setopt SHARE_HISTORY            # share history between sessions
 #### end zsh history ####
 
-#### ls colors ####
+#### ls colors zsh ####
 if [[ -x "`whence -p dircolors`" ]]; then
       eval `dircolors`
         alias ls='ls -F --color=auto'
