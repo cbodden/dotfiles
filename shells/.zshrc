@@ -90,4 +90,5 @@ fortune futurama
 
 #### prompt begin ####
 PS1='%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k'
+# root prompt : PS1='%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k'
 #### end prompt ####
