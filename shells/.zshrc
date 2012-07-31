@@ -48,6 +48,7 @@ unsetopt caseglob
 #### aliases ####
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
+alias add='git add .'
 alias commit='git commit .'
 alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias dud='du --max-depth=1 -h'
