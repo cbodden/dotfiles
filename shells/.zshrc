@@ -49,17 +49,17 @@ unsetopt caseglob
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
 alias add='git add .'
-alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias commit='git commit .'
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
-alias irc='if [[ $USER != root ]] ; then tmux rename-window "irc" && irssi ; else irssi ; fi'
+alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else ; tmux rename-window "irc" && irssi ; fi'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias lsd='ls -F | grep /'
-alias mail='if [[ $USER != root ]] ; then tmux rename-window "emails" && mutt ; else mutt ; fi'
+alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
 alias push='git push origin master'
@@ -69,7 +69,7 @@ alias x='exit'
 #### end aliases ####
 
 #### tmux shell init ####
-if [[ $USER != root ]]; then 
+if [[ $USER != root ]]; then
     tmux_count=`tmux ls | wc -l`
     if [[ "$tmux_count" == "0" ]]; then
         tmux -2
