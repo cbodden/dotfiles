@@ -3,9 +3,9 @@
 " }
 
 " Basics {
+    set background=dark " we plan to use a dark background
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc " don't use local version of .(g)vimrc, .exrc
-    set background=dark " we plan to use a dark background
     set cpoptions=aABceFsmq
     "             |||||||||
     "             ||||||||+-- When joining lines, leave the cursor 
@@ -35,10 +35,16 @@
     set directory=~/.vim/tmp " directory to place swap files in
     set fileformats=unix,dos,mac " support all three, in this order
     set hidden " you can change buffers without saving
-    " (XXX: #VIM/tpope warns the line below could break things)
     set iskeyword+=_,$,@,%,# " none of these are word dividers 
+    set ml
     set mouse=a " use mouse everywhere
     set noerrorbells " don't make noise
+    set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
+    set undodir=~/.vim/undo " persistent undo dir
+    set undofile " persistent undo regardless of buffer unload
+    set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png " ignore these list file extensions
+    set wildmenu " turn on command line completion wild style
+    set wildmode=list:longest " turn on wild mode huge list
     set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -50,22 +56,14 @@
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
-    set wildmenu " turn on command line completion wild style
-    set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png " ignore these list file extensions
-    set wildmode=list:longest " turn on wild mode huge list
-    set ml
-    set undofile " persistent undo regardless of buffer unload
-    set undodir=~/.vim/undo " persistent undo dir
-    set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
 " }
 
 " Vim UI {
-    set t_Co=256 " enables 256 colors
     colorscheme calmar256-dark
     set background=dark " always keep background dark regardless of color theme
-    set cursorcolumn " highlight the current column
-    set cursorline " highlight current line
     set colorcolumn=120 " highlight maximum line length
+    set cursorline " highlight current line
+    set hlsearch " highlight searched for phrases
     set incsearch " BUT do highlight as you type your search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
@@ -73,8 +71,7 @@
     set list " we do what to show tabs, to ensure we get them out of my files
     set listchars=tab:>-,trail:- " show tabs and trailing 
     set matchtime=5 " how many tenths of a second to blink matching brackets for
-    " set nohlsearch " do not highlight searched for phrases
-    set hlsearch " highlight searched for phrases
+    set nocursorcolumn " don't highlight the current column
     set nostartofline " leave my cursor where it was
     set novisualbell " don't blink
     set number " turn on line numbers
@@ -86,6 +83,7 @@
     set showcmd " show the command being typed
     set showmatch " show matching brackets
     set sidescrolloff=10 " Keep 5 lines at the size
+    set t_Co=256 " enables 256 colors
     set statusline=%F%m%r%h%w\ [Lines:%L]\ [Type:%{&ff}]\ %y\ [%p%%]\ [%04l,%04v]\ [FoldLevel:%{foldlevel('.')}]
     "              | | | | |          |          |        |    |       |    |                 |    
     "              | | | | |          |          |        |    |       |    |                 + current foldlevel
@@ -110,16 +108,16 @@
     set infercase " case inferred by default
     set nowrap " do not wrap line
     set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
-    set smartcase " if there are caps, go case-sensitive
     set shiftwidth=4 " auto-indent amount when using cindent, >>, << and stuff like that
+    set smartcase " if there are caps, go case-sensitive
     set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
     set tabstop=8 " real tabs should be 8, and they will show with set list on
 " }
 
 " Tabs {
     " tab stuffs : http://www.linux.com/archive/feed/59533
-    set tabpagemax=10 " maximum amount of tabs to open on startup
     set showtabline=2 " shows the tab bar at all times
+    set tabpagemax=10 " maximum amount of tabs to open on startup
 " }
 
 " Folding {
