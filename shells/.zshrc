@@ -28,6 +28,7 @@ setopt APPEND_HISTORY          # append rather than overwrite history file.
 setopt EXTENDED_HISTORY        # save timestamp and runtime information
 setopt HIST_EXPIRE_DUPS_FIRST  # allow dups, but expire old ones when I hit HISTSIZE
 setopt HIST_REDUCE_BLANKS       # leave blanks out
+setopt INC_APPEND_HISTORY       # write after each command
 setopt SHARE_HISTORY            # share history between sessions
 #### end zsh history ####
 
@@ -49,16 +50,17 @@ unsetopt caseglob
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
 alias add='git add .'
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias commit='git commit .'
 alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
 alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
-alias irc='tmux rename-window "irc" && irssi'
+alias irc='if [[ $USER != root ]] ; then tmux rename-window "irc" && irssi ; else irssi ; fi'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias lsd='ls -F | grep /'
-alias mail='tmux rename-window "emails" && mutt'
+alias mail='if [[ $USER != root ]] ; then tmux rename-window "emails" && mutt ; else mutt ; fi'
 alias o='popd'
 alias p='pushd'
 alias push='git push origin master'
@@ -68,19 +70,22 @@ alias x='exit'
 #### end aliases ####
 
 #### tmux shell init ####
-tmux_count=`tmux ls | wc -l`
-if [[ "$tmux_count" == "0" ]]; then
-    tmux -2
-else
-    if [[ -z "$TMUX" ]]; then
-        if [[ "$tmux_count" == "1" ]]; then
-            session_id=1
-        else
-            session_id=`echo $tmux_count`
+if [[ $USER != root ]]; then 
+    tmux_count=`tmux ls | wc -l`
+    if [[ "$tmux_count" == "0" ]]; then
+        tmux -2
+    else
+        if [[ -z "$TMUX" ]]; then
+            if [[ "$tmux_count" == "1" ]]; then
+                session_id=1
+            else
+                session_id=`echo $tmux_count`
+            fi
+        tmux -2 new-session -d -s $session_id
+        tmux -2 attach-session -t $session_id
         fi
-    tmux -2 new-session -d -s $session_id
-    tmux -2 attach-session -t $session_id
     fi
+else
 fi
 #### tmux init end ####
 
@@ -89,6 +94,5 @@ fortune futurama
 #### end motd and fortune ####
 
 #### prompt begin ####
-PS1='%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k'
-# root prompt : PS1='%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k'
+PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 #### end prompt ####
