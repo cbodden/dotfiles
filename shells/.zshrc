@@ -20,7 +20,6 @@ bindkey "^[3;5~" delete-char
 #### end zsh key bindings ####
 
 #### zsh history ####
-# http://www.lowlevelmanager.com/2012/04/zsh-history-extend-and-persist.html
 HISTFILE=$HOME/.zsh_history    # enable history saving on shell exit
 HISTSIZE=10000                 # lines of history to maintain memory
 SAVEHIST=10000                 # lines of history to maintain in history file.
