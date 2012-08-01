@@ -1,11 +1,10 @@
-# /etc/skel/.bashrc
-#
+#### interactive shell check ####
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
 	return
 fi
+#### end interactive check ####
 
-##### exports ####
+#### exports ####
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
