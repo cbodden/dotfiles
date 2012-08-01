@@ -88,9 +88,9 @@ else
 fi
 #### tmux init end ####
 
-#### motd and fortune ####
+#### motd / fortune ####
 fortune futurama
-#### end motd and fortune ####
+#### end motd / fortune ####
 
 #### prompt begin ####
 PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
