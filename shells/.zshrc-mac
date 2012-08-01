@@ -51,7 +51,7 @@ setopt extendedglob
 unsetopt caseglob
 #### end super globs ####
 
-#### aliases ####
+#### aliases and functions ####
 alias add='git add .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
@@ -69,7 +69,8 @@ alias push='git push origin master'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias x='exit'
-#### end aliases ####
+function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
+#### end aliases and functions ####
 
 #### tmux shell init ####
 if [[ $USER != root ]]; then
