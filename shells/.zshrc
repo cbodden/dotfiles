@@ -1,6 +1,6 @@
 #### interactive shell check ####
 if [[ $- != *i* ]] ; then
-	return
+    return
 fi
 #### end interactive check ####
 
