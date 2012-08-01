@@ -57,7 +57,6 @@ alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l`
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
-alias lsd='ls -F | grep /'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
