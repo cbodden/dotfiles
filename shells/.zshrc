@@ -19,6 +19,7 @@ export TERM=screen-256color
 #### zsh key bindings #### {
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
 bindkey '^E' end-of-line                # ctrl-e end of line binding
+bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
 bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
 bindkey '^[[3~' delete-char             # delete key fix
 bindkey '^[[7~' beginning-of-line       # home key
