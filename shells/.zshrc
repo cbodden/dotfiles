@@ -17,14 +17,13 @@ export TERM=screen-256color
 #### end exports #### }
 
 #### zsh key bindings #### {
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
-bindkey "^[3;5~" delete-char
-bindkey "^[[3~" delete-char
-bindkey '\e[1~' beginning-of-line       # home key
-bindkey '\e[4~' end-of-line             # end key
-bindkey -e
-bindkey '\e[2~' overwrite-mode          # insert key to overwrite mode
+bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
+bindkey '^E' end-of-line                # ctrl-e end of line binding
+bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
+bindkey '^[[3~' delete-char             # delete key fix
+bindkey '^[[7~' beginning-of-line       # home key
+bindkey '^[[8~' end-of-line             # end key
+bindkey -v
 #### end zsh key bindings #### }
 
 #### zsh history #### {
