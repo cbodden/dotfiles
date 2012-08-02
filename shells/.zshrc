@@ -60,6 +60,7 @@ unsetopt caseglob
 #### end super globs #### }
 
 #### misc zsh options #### {
+setopt CORRECT                  # spell checking
 setopt NO_BEEP                  # no more beeps
 #### end misc zsh options #### }
 
