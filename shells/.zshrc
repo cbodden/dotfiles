@@ -19,6 +19,7 @@ export TERM=screen-256color
 #### zsh key bindings #### {
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
 bindkey '^E' end-of-line                # ctrl-e end of line binding
+bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
 bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
 bindkey '^[[3~' delete-char             # delete key fix
 bindkey '^[[7~' beginning-of-line       # home key
@@ -80,7 +81,7 @@ alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias x='exit'
 function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
-function goog; { /usr/bin/links -g 'http://www.google.com/search?q='${(j:+:)*} }
+function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
 #### end aliases and functions #### }
