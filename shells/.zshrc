@@ -73,9 +73,6 @@ alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/
 alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
 alias irc='if [[ $USER == root || `ps -ef | egrep@ tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else  tmux rename-window "irc" && irssi ; fi'
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alF'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
@@ -113,7 +110,7 @@ fi
 fortune futurama
 #### end motd / fortune #### }
 
-#### prompt begin #### {
+#### prompt #### {
 PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 #### end prompt #### }
 
