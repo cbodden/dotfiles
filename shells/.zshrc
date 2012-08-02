@@ -54,7 +54,7 @@ if [[ -x "`whence -p dircolors`" ]]; then
 
 #### zsh super globs #### {
 setopt NO_CASE_GLOB             # case insensitive globbing
-setopt NUMBERIC_GLOB_SORT       # numeric glob sort
+setopt NUMERIC_GLOB_SORT        # numeric glob sort
 setopt extendedglob
 unsetopt caseglob
 #### end super globs #### }
