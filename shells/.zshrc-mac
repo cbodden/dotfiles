@@ -1,8 +1,8 @@
-#####################################################
-## .zshrc file                                      #
-##                                                  #
-## in the titles, the brackets are for vim folding. #
-#####################################################
+####################################################
+# .zshrc file                                      #
+#                                                  #
+# in the titles, the brackets are for vim folding. #
+####################################################
 
 #### interactive shell check #### {
 if [[ $- != *i* ]] ; then
