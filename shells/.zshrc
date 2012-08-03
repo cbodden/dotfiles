@@ -78,7 +78,7 @@ alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l`
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
-alias pull='git pull --rebase && _facts'
+alias pull='git pull --rebase && facts'
 alias push='git push origin master'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
