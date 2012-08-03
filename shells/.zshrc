@@ -67,6 +67,7 @@ setopt NO_BEEP                  # no more beeps
 #### aliases and functions #### {
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
+alias _facts='elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|'
 alias add='git add .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
@@ -77,6 +78,7 @@ alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l`
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
+alias pull='git pull --rebase && _facts'
 alias push='git push origin master'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
