@@ -59,7 +59,8 @@
 " }
 
 " Vim UI {
-    colorscheme calmar256-dark
+    " colorscheme calmar256-dark
+    colorscheme oceandeep
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=120 " highlight maximum line length
     set cursorline " highlight current line
@@ -71,7 +72,7 @@
     set list " we do what to show tabs, to ensure we get them out of my files
     set listchars=tab:>-,trail:- " show tabs and trailing 
     set matchtime=5 " how many tenths of a second to blink matching brackets for
-    set nocursorcolumn " don't highlight the current column
+    set cursorcolumn " don't highlight the current column
     set nostartofline " leave my cursor where it was
     set novisualbell " don't blink
     set number " turn on line numbers
