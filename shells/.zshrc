@@ -136,6 +136,20 @@ fortune futurama
 PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 #### end prompt #### }
 
+#### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
+ssh-reagent () {
+        for agent in /tmp/ssh-*/agent.*; do
+                export SSH_AUTH_SOCK=$agent
+                if ssh-add -l 2>&1 > /dev/null; then
+                        echo Found working SSH Agent:
+                        ssh-add -l
+                        return
+                fi
+        done
+echo Cannot find ssh agent - maybe you should reconnect and forward it?
+}
+#### end ssh-reagent }
+
 #### testing area #### {
 # from http://stackoverflow.com/questions/171563/whats-in-your-zshrc
 function most_useless_use_of_zsh {
