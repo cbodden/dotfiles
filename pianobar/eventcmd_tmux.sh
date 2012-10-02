@@ -5,9 +5,9 @@
 
 # create variables
 while read L; do
-        k="`echo "$L" | cut -d '=' -f 1`"
-        v="`echo "$L" | cut -d '=' -f 2`"
-        export "$k=$v"
+    k="`echo "$L" | cut -d '=' -f 1`"
+    v="`echo "$L" | cut -d '=' -f 2`"
+    export "$k=$v"
 done < <(grep -e '^\(artist\|title\|album\|coverArt\|stationName\|songStationName\|pRet\|pRetStr\|wRet\|wRetStr\|songDuration\|songPlayed\|rating\|detailUrl\|stationCount\|station[0-9]*\)=' /dev/stdin) # don't overwrite $1..
 
 # artist - Current song's artist
@@ -28,26 +28,26 @@ done < <(grep -e '^\(artist\|title\|album\|coverArt\|stationName\|songStationNam
 # station0..stationN (N == stationCount) - Each of the user's stations, by name
 
 case "$1" in
-        songstart)
-                if [[ -n "$DISPLAY" ]]; then
-                        notify-send "Pandora Radio" "Now playing: $title by $artist"
-                fi
+    songstart)
+        if [[ -n "$DISPLAY" ]]; then
+            notify-send "Pandora Radio" "Now playing: $title by $artist"
+        fi
 
-                if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -gt 0 ]]; then
-                        tmux rename-session " $title by $artist "
-                fi
+        if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -gt 0 ]]; then
+            tmux rename-session " $title by $artist "
+        fi
 
-                echo "$stationName : $title by $artist " >> /tmp/pianobar_played
-                echo "$title by $artist" > $HOME/.config/pianobar/now_playing
-                ;;
+        echo "$stationName : $title by $artist " >> /tmp/pianobar_played
+        echo "$title by $artist" > $HOME/.config/pianobar/now_playing
+    ;;
 
-        *)
-                if [[ -n "$DISPLAY" ]]; then
-                        if [[ "$pRet" -ne 1 ]]; then
-                                notify-send "Pandora Radio" "$1 failed: $pRetStr"
-                        elif [[ "$wRet" -ne 1 ]]; then
-                                notify-send "Pandora Radio" "$1 failed: Network error: $wRetStr"
-                        fi
-                fi
-                ;;
+    *)
+        if [[ -n "$DISPLAY" ]]; then
+            if [[ "$pRet" -ne 1 ]]; then
+                notify-send "Pandora Radio" "$1 failed: $pRetStr"
+            elif [[ "$wRet" -ne 1 ]]; then
+                notify-send "Pandora Radio" "$1 failed: Network error: $wRetStr"
+            fi
+        fi
+    ;;
 esac
