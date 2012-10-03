@@ -56,17 +56,17 @@ case $1 in
     p|--pause|pause         ) printf "p" > ${PIPE} ;;
     q|--quit|quit           ) printf "q" > ${PIPE} ;;
     u|--upcoming|upcoming   ) printf "u" > ${PIPE} ;;
-    vu|--volup|volup        ) printf ")" > ${PIPE}
-        count=1
-        while [[ $count -lt $2 ]]; do
-            printf ")" > ${PIPE}
-            count=`expr $count + 1`
-        done
-        ;;
     vd|--voldown|voldown    ) printf "(" > ${PIPE}
         count=1
         while [[ $count -lt $2 ]]; do
             printf "(" > ${PIPE}
+            count=`expr $count + 1`
+        done
+        ;;
+    vu|--volup|volup        ) printf ")" > ${PIPE}
+        count=1
+        while [[ $count -lt $2 ]]; do
+            printf ")" > ${PIPE}
             count=`expr $count + 1`
         done
         ;;
