@@ -2,22 +2,30 @@
 
 #### pandorabar fifo control script
 
-# lets check if fifo file exists
+# lets check if fifo file exists, if not create it
 PIPE=`cat /home/cbodden/.config/pianobar/config | grep fifo | tr -d "\ " | cut -d"=" -f2`
 if [[ ! -p ${PIPE} ]]; then
-    printf "\npianobar fifo does not exist\nexiting\n"
-    exit 1
+    printf "\npianobar fifo does not exist\n"
+    read -p "should i create it ? (y/n): " YN
+    case $YN in
+        [Yy]* ) mkfifo ${PIPE} ; printf -- "\npianobar fifo created\n" ;;
+        [Nn]* ) exit 1 ;;
+    esac
 fi
 
-# lets make sure pianobar is running
+# lets make sure pianobar is running, if not ask to run
 if [[ ! `pgrep -u $(id -u) pianobar$` ]]; then
-    printf "\npianobar is not running\nexiting\n"
-    exit 1
+    printf "\npianobar is not running\n"
+    read -p "should i start pianobar ? (y/n): " YN
+    case $YN in
+        [Yy]* ) pianobar && exit ;;
+        [Nn]* ) exit 1 ;;
+    esac
 fi
 
 # help stuffs
 help_section() {
-    printf "$(basename $0)\n"
+    printf "\n$(basename $0)\n"
     printf -- "Usage: $0 [OPTION]\n\n"
     printf -- "Options:\n"
     printf -- "+,  --love,     love        --  Love\n"
@@ -32,9 +40,10 @@ help_section() {
     printf -- "vd, --voldown,  voldown     --  Volume Down\n\n"
     printf "pianobar pid (euid=$(id -u)): "
     pgrep -u $(id -u) pianobar$
+    printf -- "\n"
 }
 
-# lets begin menu stuffs
+# menu stuffs
 case $1 in
     +|--love|love           ) printf "+" > ${PIPE} ;;
     -|--ban|ban             ) printf "-" > ${PIPE} ;;
