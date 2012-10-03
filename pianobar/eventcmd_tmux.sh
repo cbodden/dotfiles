@@ -30,15 +30,15 @@ done < <(grep -e '^\(artist\|title\|album\|coverArt\|stationName\|songStationNam
 case "$1" in
     songstart)
         if [[ -n "$DISPLAY" ]]; then
-            notify-send "Pandora Radio" "Now playing: $title by $artist"
+            notify-send "$artist" "$title"
         fi
 
         if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -gt 0 ]]; then
             tmux rename-session " $title by $artist "
         fi
 
-        echo "$stationName : $title by $artist " >> /tmp/pianobar_played
-        echo "$title by $artist" > $HOME/.config/pianobar/now_playing
+        echo "$stationName : $title by $artist " >> ${HOME}/.config/pianobar/pianobar_played
+        echo "$title by $artist" > ${HOME}/.config/pianobar/now_playing
     ;;
 
     *)
