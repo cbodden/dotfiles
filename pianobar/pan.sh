@@ -5,7 +5,10 @@
 # lets check if fifo file exists, if not create it
 PIPE=`cat /home/cbodden/.config/pianobar/config | grep -v "#" | grep fifo | tr -d "\ " | cut -d"=" -f2`
 if [[ ! -p ${PIPE} ]]; then
-    if [[ -z ${PIPE} ]]; then printf "\npianobar fifo not specified in config\nexiting\n" ; exit 1 ; fi
+    if [[ -z ${PIPE} ]]; then 
+        printf "\npianobar fifo not specified in config\nexiting\n" 
+        exit 1 
+    fi
     printf "\npianobar fifo does not exist\n"
     read -p "should i create it ? (y/n): " YN
     case $YN in
