@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#### pandorabar fifo control script
+#### pianobar fifo control script
 
 # lets check if fifo file exists, if not create it
 PIPE=`cat /home/cbodden/.config/pianobar/config | grep -v "#" | grep fifo | tr -d "\ " | cut -d"=" -f2`
