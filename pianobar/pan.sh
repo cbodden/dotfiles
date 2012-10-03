@@ -36,15 +36,15 @@ help_section() {
 
 # lets begin menu stuffs
 case $1 in
-    +|--love|love ) printf "+" > ${PIPE} ;;
-    -|--ban|ban ) printf "-" > ${PIPE} ;;
-    e|--explain|explain ) printf "e" > ${PIPE} ;;
-    i|--info|info ) printf "i" > ${PIPE} ;;
-    n|--next|next ) printf "n" > ${PIPE} ;;
-    p|--pause|pause ) printf "p" > ${PIPE} ;;
-    q|--quit|quit ) printf "q" > ${PIPE} ;;
-    u|--upcoming|upcoming ) printf "u" > ${PIPE} ;;
-    vu|--volup|volup ) printf ")" > ${PIPE} ;;
-    vd|--voldown|voldown ) printf "(" > ${PIPE} ;;
-    * ) help_section ;;
+    +|--love|love           ) printf "+" > ${PIPE} ;;
+    -|--ban|ban             ) printf "-" > ${PIPE} ;;
+    e|--explain|explain     ) printf "e" > ${PIPE} ;;
+    i|--info|info           ) printf "i" > ${PIPE} ;;
+    n|--next|next           ) printf "n" > ${PIPE} ;;
+    p|--pause|pause         ) printf "p" > ${PIPE} ;;
+    q|--quit|quit           ) printf "q" > ${PIPE} ;;
+    u|--upcoming|upcoming   ) printf "u" > ${PIPE} ;;
+    vu|--volup|volup        ) printf ")" > ${PIPE} ;;
+    vd|--voldown|voldown    ) printf "(" > ${PIPE} ;;
+    *                       ) help_section ;;
 esac
