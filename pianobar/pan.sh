@@ -37,7 +37,9 @@ help_section() {
     printf -- "q,  --quit,     quit        --  Quit\n"
     printf -- "u,  --upcoming, upcoming    --  Upcoming\n"
     printf -- "vu, --volup,    volup       --  Volume Up\n"
-    printf -- "vd, --voldown,  voldown     --  Volume Down\n\n"
+    printf -- "vd, --voldown,  voldown     --  Volume Down\n"
+    printf -- "\nvolume up and down can also have a value added:\n"
+    printf -- "\n$0 [volume option] [1-25]\n\n\n"
     printf "pianobar pid (euid=$(id -u)): "
     pgrep -u $(id -u) pianobar$
     printf -- "\n"
@@ -53,7 +55,19 @@ case $1 in
     p|--pause|pause         ) printf "p" > ${PIPE} ;;
     q|--quit|quit           ) printf "q" > ${PIPE} ;;
     u|--upcoming|upcoming   ) printf "u" > ${PIPE} ;;
-    vu|--volup|volup        ) printf ")" > ${PIPE} ;;
-    vd|--voldown|voldown    ) printf "(" > ${PIPE} ;;
+    vu|--volup|volup        ) printf ")" > ${PIPE}
+        count=1
+        while [[ $count -lt $2 ]]; do
+            printf ")" > ${PIPE}
+            count=`expr $count + 1`
+        done
+        ;;
+    vd|--voldown|voldown    ) printf "(" > ${PIPE}
+        count=1
+        while [[ $count -lt $2 ]]; do
+            printf "(" > ${PIPE}
+            count=`expr $count + 1`
+        done
+        ;;
     *                       ) help_section ;;
 esac
