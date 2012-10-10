@@ -43,7 +43,8 @@ bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
 bindkey '^[[3~' delete-char             # delete key fix
 bindkey '^[[7~' beginning-of-line       # home key
 bindkey '^[[8~' end-of-line             # end key
-bindkey -v
+# bindkey -v
+bindkey -e
 #### end zsh key bindings #### }
 
 #### zsh history #### {
