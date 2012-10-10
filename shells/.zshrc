@@ -37,6 +37,8 @@ export TERM=screen-256color
 
 #### zsh key bindings #### {
 # bindkey -v                            # vi mode for vi style keybindings
+bindkey ';3C' emacs-forward-word        # <alt><right arrow> forward word
+bindkey ';3D' emacs-backward-word       # <alt><left arrow> backword word
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
 bindkey '^E' end-of-line                # ctrl-e end of line binding
 bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
