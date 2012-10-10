@@ -36,15 +36,17 @@ export TERM=screen-256color
 #### end exports #### }
 
 #### zsh key bindings #### {
+# bindkey -v                            # vi mode for vi style keybindings
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
 bindkey '^E' end-of-line                # ctrl-e end of line binding
 bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
 bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
 bindkey '^[[3~' delete-char             # delete key fix
+bindkey '^[[5C' emacs-forward-word      # <ctrl><right arrow> forward word
+bindkey '^[[5D' emacs-backward-word     # <ctrl><left arrow> backword word
 bindkey '^[[7~' beginning-of-line       # home key
 bindkey '^[[8~' end-of-line             # end key
-# bindkey -v
-bindkey -e
+bindkey -e                              # emacs mode for emacs style keybindings
 #### end zsh key bindings #### }
 
 #### zsh history #### {
