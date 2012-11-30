@@ -14,6 +14,7 @@ fi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 #### end exports #### }
 
 #### zsh key bindings #### {
@@ -89,6 +90,22 @@ function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
 #### end aliases and functions #### }
+
+#### zsh perl find and replace #### {
+## from : http://superuser.com/questions/428493/how-can-i-do-a-recursive-find-and-replace-from-the-command-line
+## USAGE : change foo bar **/*.java
+change () {
+        from=$1
+        shift
+        to=$1
+        shift
+        for file in $*
+        do
+                perl -i.bak -p -e "s{$from}{$to}g;" $file
+                echo "Changing $from to $to in $file"
+        done
+}
+#### end find replace #### }
 
 #### tmux shell init #### {
 if [[ $USER != root ]]; then
