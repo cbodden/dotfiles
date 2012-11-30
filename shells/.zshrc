@@ -36,14 +36,19 @@ export TERM=screen-256color
 #### end exports #### }
 
 #### zsh key bindings #### {
+# bindkey -v                            # vi mode for vi style keybindings
+bindkey ';3C' emacs-forward-word        # <alt><right arrow> forward word
+bindkey ';3D' emacs-backward-word       # <alt><left arrow> backword word
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
 bindkey '^E' end-of-line                # ctrl-e end of line binding
 bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
 bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
 bindkey '^[[3~' delete-char             # delete key fix
+bindkey '^[[5C' emacs-forward-word      # <ctrl><right arrow> forward word
+bindkey '^[[5D' emacs-backward-word     # <ctrl><left arrow> backword word
 bindkey '^[[7~' beginning-of-line       # home key
 bindkey '^[[8~' end-of-line             # end key
-bindkey -v
+bindkey -e                              # emacs mode for emacs style keybindings
 #### end zsh key bindings #### }
 
 #### zsh history #### {
@@ -135,6 +140,20 @@ fortune futurama
 #### prompt #### {
 PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 #### end prompt #### }
+
+#### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
+ssh-reagent () {
+        for agent in /tmp/ssh-*/agent.*; do
+                export SSH_AUTH_SOCK=$agent
+                if ssh-add -l 2>&1 > /dev/null; then
+                        echo Found working SSH Agent:
+                        ssh-add -l
+                        return
+                fi
+        done
+echo Cannot find ssh agent - maybe you should reconnect and forward it?
+}
+#### end ssh-reagent }
 
 #### testing area #### {
 # from http://stackoverflow.com/questions/171563/whats-in-your-zshrc
