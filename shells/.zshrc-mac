@@ -93,7 +93,7 @@ function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; 
 
 #### zsh perl find and replace #### {
 ## from : http://superuser.com/questions/428493/how-can-i-do-a-recursive-find-and-replace-from-the-command-line
-## USAGE : change foo bar **/*.java
+# USAGE : change foo bar **/*.java
 change () {
         from=$1
         shift
@@ -162,4 +162,3 @@ function most_useless_use_of_zsh {
     done
 }
 #### end testing area #### }
-
