@@ -40,6 +40,7 @@
     set mouse=a " use mouse everywhere
     set noerrorbells " don't make noise
     set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
+    set tags=~/.vim/tags/ " tag usage
     set undodir=~/.vim/undo " persistent undo dir
     set undofile " persistent undo regardless of buffer unload
     set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png " ignore these list file extensions
@@ -61,6 +62,7 @@
 " Vim UI {
     " colorscheme calmar256-dark
     colorscheme oceandeep
+    colorscheme buttercream
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=120 " highlight maximum line length
     set cursorline " highlight current line
