@@ -98,7 +98,7 @@ alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/
 alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
-alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else  tmux rename-window "irc" && irssi ; fi'
+alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
@@ -108,6 +108,7 @@ alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias x='exit'
 function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
+function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
 function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
@@ -143,14 +144,14 @@ PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %
 
 #### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
 ssh-reagent () {
-        for agent in /tmp/ssh-*/agent.*; do
-                export SSH_AUTH_SOCK=$agent
-                if ssh-add -l 2>&1 > /dev/null; then
-                        echo Found working SSH Agent:
-                        ssh-add -l
-                        return
-                fi
-        done
+    for agent in /tmp/ssh-*/agent.*; do
+        export SSH_AUTH_SOCK=$agent
+        if ssh-add -l 2>&1 > /dev/null; then
+            echo Found working SSH Agent:
+            ssh-add -l
+            return
+        fi
+    done
 echo Cannot find ssh agent - maybe you should reconnect and forward it?
 }
 #### end ssh-reagent }
