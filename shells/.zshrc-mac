@@ -14,7 +14,10 @@ fi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH=/opt/chef/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+## work exports
+export KEEP_RACKSPACE_API_USERNAME="USERNAME"
+export KEEP_RACKSPACE_API_KEY="SECRET_API_KEY"
 #### end exports #### }
 
 #### zsh key bindings #### {
@@ -69,6 +72,7 @@ unsetopt caseglob
 #### end super globs #### }
 
 #### aliases and functions #### {
+alias -s sh=vi
 alias add='git add .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
@@ -76,6 +80,7 @@ alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/
 alias dud='du --max-depth=1 -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
+alias fchat='if [[ $USER == root || `ps -ef | egrep finch | egrep -v egrep | wc -l` -eq 1  ]] ; then finch ; else ; tmux rename-window "chat" && finch ; fi'
 alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else ; tmux rename-window "irc" && irssi ; fi'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt -F ~/.mutt-cfg/.muttrc ; else tmux rename-window "emails" && mutt -F ~/.mutt-cfg/.muttrc ; fi'
 alias o='popd'
@@ -84,12 +89,42 @@ alias pull='git pull --rebase && facts'
 alias push='git push origin master'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
+alias vi='/usr/local/bin/vim'
 alias x='exit'
 function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
-function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
+function goog; { /usr/local/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
 #### end aliases and functions #### }
+
+
+#### work vagrant functions {
+function ol() {
+    DIR_PREFIX="$HOME/Projects/outland"
+    if [ "$1" = "" ]; then cd "$DIR_PREFIX/outland" ;
+    elif [ "$1" = "ssh" ]; then cd "$DIR_PREFIX" ; $(which vagrant) ssh ;
+    elif [ "$1" = "j2" ]; then cd "$DIR_PREFIX/outland/web/site/jinja_templates" ;
+    elif [ "$1" = "img" ]; then cd "$DIR_PREFIX/outland/web/site/static/img" ;
+    elif [ "$1" = "js" ]; then cd "$DIR_PREFIX/outland/web/site/static/js-src" ;
+    elif [ "$1" = "less" ]; then cd "$DIR_PREFIX/outland/web/src/less" ;
+    elif [ "$1" = "standup" ]; then cd "$DIR_PREFIX/outland" && clear && hg log --no-merges --user=cbodden -v -r: ;
+    elif [ "$1" = "pause" ]; then vpause ;
+    elif [ "$1" = "resume" ]; then vresume ;
+    else cd "$DIR_PREFIX/" && vagrant "$1" ;
+    fi
+}
+
+_ol() {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    ##fix for zsh## COMPREPLY=( $(compgen -W "j2 img js less ssh pause resume" -- $cur) )
+    ##attempted fix## COMPREPLY=( $(compinit -W "j2 img js less ssh pause resume" -- $cur) )
+}
+#complete -F _ol ol
+
+function vpause () { VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX pause }
+function vresume () { VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX resume }
+#### work end functions }
+
 
 #### zsh perl find and replace #### {
 ## from : http://superuser.com/questions/428493/how-can-i-do-a-recursive-find-and-replace-from-the-command-line

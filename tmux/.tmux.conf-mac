@@ -64,3 +64,6 @@ set-option -g mouse-select-pane off
 
 # setting default termtype to screen 256
 set -g default-terminal "screen-256color"
+
+# fixing copy / paste in osx & tmux as per : https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+set-option -g default-command "reattach-to-user-namespace -l zsh"
