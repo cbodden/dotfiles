@@ -88,12 +88,17 @@ unsetopt caseglob
 #### misc zsh options #### {
 setopt CORRECT                  # spell checking
 setopt NO_BEEP                  # no more beeps
+setopt autocd                   # no more pesky cd to change dirs
+setopt correctall               # autocorrection of commands typed
 #### end misc zsh options #### }
 
 #### aliases and functions #### {
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
+alias -g E='|egrep '
+alias -g G='|grep '
 alias -s erb=vi
+alias -s json=vi
 alias -s rb=vi
 alias -s sh=vi
 alias add='git add .'

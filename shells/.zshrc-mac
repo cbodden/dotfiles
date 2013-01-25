@@ -70,8 +70,16 @@ setopt globdots                 # lets files beginning with a "." match explicit
 unsetopt caseglob
 #### end super globs #### }
 
+#### zsh misc settings {
+setopt autocd                   # no more pesky cd to change dirs
+setopt correctall               # autocorrection of commands typed
+#### end zsh misc }
+
 #### aliases and functions #### {
+alias -g E='|egrep '
+alias -g G='|grep '
 alias -s erb=vi
+alias -s json=vi
 alias -s rb=vi
 alias -s sh=vi
 alias add='git add .'
