@@ -79,7 +79,9 @@ if [[ -x "`whence -p dircolors`" ]]; then
 #### zsh super globs #### {
 setopt NO_CASE_GLOB             # case insensitive globbing
 setopt NUMERIC_GLOB_SORT        # numeric glob sort
+setopt extended_glob
 setopt extendedglob
+setopt globdots                 # lets files beginning with a "." match explicitly without specifying
 unsetopt caseglob
 #### end super globs #### }
 
@@ -91,6 +93,9 @@ setopt NO_BEEP                  # no more beeps
 #### aliases and functions #### {
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
+alias -s erb=vi
+alias -s rb=vi
+alias -s sh=vi
 alias add='git add .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
@@ -98,6 +103,7 @@ alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/
 alias dud='du --max-depth=1 -h | sort -h'
 alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
+alias fchat='if [[ $USER == root || `ps -ef | egrep finch | egrep -v egrep | wc -l` -eq 1  ]] ; then finch ; else ; tmux rename-window "chat" && finch ; fi'
 alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'

@@ -15,9 +15,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
 export PATH=/opt/chef/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-## work exports
-export KEEP_RACKSPACE_API_USERNAME="USERNAME"
-export KEEP_RACKSPACE_API_KEY="SECRET_API_KEY"
 #### end exports #### }
 
 #### zsh key bindings #### {
@@ -67,11 +64,15 @@ zstyle ':completion:*' list-colors 'exfxcxdxbxegedabagacad'
 #### zsh super globs #### {
 setopt NO_CASE_GLOB             # case insensitive globbing
 setopt NUMERIC_GLOB_SORT        # numeric glob sort
+setopt extended_glob
 setopt extendedglob
+setopt globdots                 # lets files beginning with a "." match explicitly without specifying
 unsetopt caseglob
 #### end super globs #### }
 
 #### aliases and functions #### {
+alias -s erb=vi
+alias -s rb=vi
 alias -s sh=vi
 alias add='git add .'
 alias commit='git commit .'
@@ -96,7 +97,6 @@ function goog; { /usr/local/bin/links 'http://www.google.com/search?q='${(j:+:)*
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
 #### end aliases and functions #### }
-
 
 #### work vagrant functions {
 function ol() {
@@ -124,7 +124,6 @@ _ol() {
 function vpause () { VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX pause }
 function vresume () { VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX resume }
 #### work end functions }
-
 
 #### zsh perl find and replace #### {
 ## from : http://superuser.com/questions/428493/how-can-i-do-a-recursive-find-and-replace-from-the-command-line
@@ -196,4 +195,6 @@ function most_useless_use_of_zsh {
         echo
     done
 }
+
+
 #### end testing area #### }
