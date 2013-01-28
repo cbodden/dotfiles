@@ -19,7 +19,6 @@ if [[ -d /sys/fs/cgroup/cpu ]]; then
     unset -v cdir
 fi
 
-
 # . /etc/zsh/cgrouprc
 
 # if [ "$PS1" ] ; then

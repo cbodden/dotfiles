@@ -64,7 +64,7 @@
     colorscheme oceandeep
     colorscheme buttercream
     set background=dark " always keep background dark regardless of color theme
-    set colorcolumn=120 " highlight maximum line length
+    set colorcolumn=80,120 " highlight maximum line length
     set cursorline " highlight current line
     set hlsearch " highlight searched for phrases
     set incsearch " BUT do highlight as you type your search phrase
