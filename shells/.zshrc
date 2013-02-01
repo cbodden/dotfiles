@@ -99,7 +99,6 @@ alias -g G='|grep '
 alias -s erb=vi
 alias -s json=vi
 alias -s rb=vi
-alias -s sh=vi
 alias add='git add .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
