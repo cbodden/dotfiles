@@ -32,6 +32,7 @@ fi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
+export XDG_CONFIG_HOME="$HOME/.config"
 #### end exports #### }
 
 #### zsh key bindings #### {
