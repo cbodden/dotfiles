@@ -1,8 +1,8 @@
 # vim: filetype=muttrc
 
-set certificate_file=~/.mutt/mutt.crt                   # path for stored server certs
 set header_cache=~/.mutt/cache/headers                  # path for cached headers for single download
 set message_cachedir=~/.mutt/cache/bodies               # path for cached messages for single download
+set certificate_file=~/.mutt/mutt.crt                   # path for stored server certs
 
 #### Header settings
 ignore *                                                # Don't display all headers
@@ -57,7 +57,7 @@ set print_split                                         # Split each msg selecte
 
 #### testing tts with emails using espeak
 # macro pager + "|espeak --stdin\r"                       # testing piping emails to espeak
-# macro pager + "|festival --tts\r"                       # testing piping emails to festival
+macro pager + "|festival --tts\r"                       # testing piping emails to festival
 
 #### lists
 subscribe list@
@@ -65,9 +65,18 @@ subscribe port-sparc64@
 
 #### custom headers
 unmy_hdr *
-my_hdr X-Useless-Header-Fortune: `fortune`
-# my_hdr X-Operating-System: `uname -a`
+my_hdr X-Useless-Header-Fortune: `fortune futurama`
+my_hdr X-Operating-System: `uname -a`
 
 #### some settings are contained in other files 
 source "~/.muttrc-accounts"                             # import account info
 source "~/.muttrc-colors"                               # import color info
+source "~/.muttrc-sidebar"                              # import sidebar config
+# signature for tapad located in ~/.mutt-cfg/.signature-tapad
+
+#### references
+## from http://codesorcery.net/old/mutt/mutt-gnupg-howto
+## from http://www.cmdln.org/2008/11/07/how-i-tamed-my-mutt/
+## antiword : http://mig5.net/content/viewing-docx-attachments-mutt
+## --- change this for feh or xv : http://reluctanthacker.rollett.org/content/using-quicklook-image-viewer-mutt
+## from : http://www.spocom.com/users/gjohnson/mutt/
