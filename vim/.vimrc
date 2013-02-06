@@ -114,7 +114,7 @@
     set shiftwidth=4 " auto-indent amount when using cindent, >>, << and stuff like that
     set smartcase " if there are caps, go case-sensitive
     set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
-    set tabstop=8 " real tabs should be 8, and they will show with set list on
+    set tabstop=4 " real tabs should be 8, and they will show with set list on
 " }
 
 " Tabs {
