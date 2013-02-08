@@ -27,7 +27,6 @@
 
 " General {
     filetype plugin indent on " load filetype plugins/indent settings
-    autocmd BufRead,BufNewFile *.sh set colorcolumn=1
     set autochdir " always switch to the current file directory 
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
@@ -182,4 +181,22 @@
             let tlist_vb_settings = 'asp;f:function;c:class' 
         " }
     " }
+" }
 
+" Formatting {
+    " remove color columns in sh files
+    autocmd BufRead,BufNewFile *.sh set colorcolumn=1
+
+    " Python Stuff
+    let python_highlight_all=1
+    highlight BadWhitespace ctermbg=red guibg=red
+    " Display tabs at the beginning of a line in Python mode as bad.
+    au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+    " Make trailing whitespace be flagged as bad.
+    au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+    " End Python stuffs
+
+    " uglify chars past the 80 col limit
+    au BufWinEnter *.sh let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+" }
