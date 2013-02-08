@@ -155,7 +155,7 @@ fortune futurama
 # https://github.com/olivierverdier/zsh-git-prompt
 source ~/.zsh/git-prompt/zshrc.sh
 # PS1='%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
-PS1='$(git_super_status)%(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
+PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 #### end prompt #### }
 
 #### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
