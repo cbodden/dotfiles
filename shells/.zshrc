@@ -40,7 +40,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 bindkey ';3C' emacs-forward-word        # <alt><right arrow> forward word
 bindkey ';3D' emacs-backward-word       # <alt><left arrow> backword word
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
+bindkey '^B' backward-word              # ctrl-b backward words
 bindkey '^E' end-of-line                # ctrl-e end of line binding
+bindkey '^F' forward-word               # ctrl-f forward words
 bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
 bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
 bindkey '^[[3~' delete-char             # delete key fix
