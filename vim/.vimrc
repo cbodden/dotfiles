@@ -62,8 +62,8 @@
 
 " Vim UI {
     " colorscheme solarized
-    colorscheme oceandeep
-    " colorscheme buttercream
+    " colorscheme oceandeep
+    colorscheme buttercream
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=80,120 " highlight maximum line length
     set cursorline " highlight current line
