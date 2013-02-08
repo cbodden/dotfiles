@@ -27,6 +27,7 @@
 
 " General {
     filetype plugin indent on " load filetype plugins/indent settings
+    autocmd BufRead,BufNewFile *.sh set colorcolumn=1
     set autochdir " always switch to the current file directory 
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
@@ -39,6 +40,7 @@
     set ml
     set mouse=a " use mouse everywhere
     set noerrorbells " don't make noise
+    set pastetoggle=<F2> " when insert mode, press f2 for paste mode
     set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
     set tags=~/.vim/tags/ " tag usage
     set undodir=~/.vim/undo " persistent undo dir
@@ -148,6 +150,16 @@
     au Syntax * RainbowParenthesesLoadBraces
     au Syntax * RainbowParenthesesLoadChevrons
     au Syntax * RainbowParenthesesLoadRound
+
+    "vundle
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    Bundle 'gmarik/vundle'
+    Bundle 'Valloric/YouCompleteMe'
+
+    " key bindings
+    " incase you forget to sudo a file when saving - just type "w!!"
+    cmap w!! w !sudo tee % >/dev/null
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
