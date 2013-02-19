@@ -160,6 +160,9 @@
     " incase you forget to sudo a file when saving - just type "w!!"
     cmap w!! w !sudo tee % >/dev/null
 
+    " NERDTree
+    nmap \e :NERDTreeToggle<CR>
+
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
         let Tlist_Compact_Format = 1 " show small menu
