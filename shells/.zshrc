@@ -117,7 +117,7 @@ alias o='popd'
 alias p='pushd'
 alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
-alias push='git push origin master'
+alias push='git push origin master && facts'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias x='exit'
