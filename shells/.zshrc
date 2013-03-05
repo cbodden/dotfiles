@@ -88,10 +88,10 @@ unsetopt caseglob
 #### end super globs #### }
 
 #### misc zsh options #### {
-setopt CORRECT                  # spell checking
+#setopt CORRECT                  # spell checking
 setopt NO_BEEP                  # no more beeps
 setopt autocd                   # no more pesky cd to change dirs
-setopt correctall               # autocorrection of commands typed
+#setopt correctall               # autocorrection of commands typed
 #### end misc zsh options #### }
 
 #### aliases and functions #### {
@@ -102,6 +102,7 @@ alias -g G='|grep '
 alias -s erb=vi
 alias -s json=vi
 alias -s rb=vi
+alias 1g='openssl rand -base64 $(( 2**30 * 3/4 )) > test.img'
 alias add='git add .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
