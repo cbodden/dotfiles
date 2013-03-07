@@ -40,7 +40,7 @@
     set mouse=a " use mouse everywhere
     set noerrorbells " don't make noise
     set pastetoggle=<F2> " when insert mode, press f2 for paste mode
-    set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
+    " set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
     set tags=~/.vim/tags/ " tag usage
     set undodir=~/.vim/undo " persistent undo dir
     set undofile " persistent undo regardless of buffer unload
@@ -197,6 +197,8 @@
     au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
     " Make trailing whitespace be flagged as bad.
     au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+    " remove colorcolumn 
+    autocmd BufRead,BufNewFile *.py set colorcolumn=9999
     " End Python stuffs
 
     " uglify chars past the 80 col limit
