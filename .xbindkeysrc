@@ -1,26 +1,26 @@
-"xbindkeys_show" 
+"xbindkeys_show"
   control+shift + q
 
 "gmrun"
 Alt +F2
 
 # decrease backlight
-"sudo xbacklight -dec 10"
+"sudo xbacklight -dec 5"
   XF86MonBrightnessDown
   m:0x0 + c:232
 
 # increase backlight
-"sudo xbacklight -dec -10"
+"sudo xbacklight -dec -5"
   XF86MonBrightnessUp
   m:0x0 + c:233
 
 # decrease master volume
-"amixer set Master 5-"
+"amixer -c 0 set Master 3-"
   XF86AudioLowerVolume
   m:0x0 + c:122
 
 # increase master volume
-"amixer set Master 5+"
+"amixer -c 0 set Master 3+"
   XF86AudioRaiseVolume
   m:0x0 + c:123
 
@@ -28,3 +28,23 @@ Alt +F2
 "amixer set Master toggle"
   m:0x0 + c:121
   XF86AudioMute
+
+# chrome
+"chromium"
+  m:0x0 + c:180
+  XF86HomePage
+
+# f3 hibernate to ram
+"xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram"
+  m:0x0 + c:150
+  XF86Sleep
+
+# f4 lock screen - xscreensaver
+"xscreensaver-command -lock"
+  m:0x0 + c:235
+  XF86Display
+
+# powerbutton on tap hibernate
+"xscreensaver-command -lock && sudo /usr/sbin/hibernate"
+  m:0x0 + c:124
+  XF86PowerOff
