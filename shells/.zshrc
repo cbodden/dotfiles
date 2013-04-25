@@ -108,6 +108,7 @@ alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l
 alias o='popd'
 alias p='pushd'
 alias ps='ps --forest'
+alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
 alias push='git push origin master && facts'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
@@ -116,6 +117,7 @@ alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
 function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
 function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
+function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
 function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
@@ -183,5 +185,4 @@ function most_useless_use_of_zsh {
     done
 }
 
-alias ps='ps --forest'
 #### end testing area #### }
