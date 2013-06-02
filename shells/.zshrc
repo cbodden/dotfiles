@@ -185,3 +185,9 @@ function most_useless_use_of_zsh {
 }
 
 #### end testing area #### }
+
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/home/cbodden/perl5";
+export PERL_MB_OPT="--install_base /home/cbodden/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/home/cbodden/perl5";
+export PERL5LIB="/home/cbodden/perl5/lib/perl5:$PERL5LIB";
+export PATH="/home/cbodden/perl5/bin:$PATH";
