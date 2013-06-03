@@ -1,9 +1,5 @@
 URxvt.intensityStyles: false
 
-
-
-
-
 !!Source http://github.com/altercation/solarized
 
 *background: #002b36
@@ -45,9 +41,6 @@ URxvt.intensityStyles: false
 !! white dark/light
 *color7: #eee8d5
 *color15: #fdf6e3
-
-
-
 
 
 
