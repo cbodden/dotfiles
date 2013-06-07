@@ -104,6 +104,7 @@ alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P 
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
 alias fchat='if [[ $USER == root || `ps -ef | egrep finch | egrep -v egrep | wc -l` -eq 1  ]] ; then finch ; else ; tmux rename-window "chat" && finch ; fi'
 alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
+alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
