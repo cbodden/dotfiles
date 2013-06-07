@@ -23,8 +23,6 @@ export EDITOR=vi
 #### end exports #### }
 
 #### non-git'able stuff {
-export KEEP_RACKSPACE_API_USERNAME="treystout"
-export KEEP_RACKSPACE_API_KEY="3555b9dc83995d494347b03cbe9c2ff2"
 #### end non-git'able }
 
 #### zsh key bindings #### {
