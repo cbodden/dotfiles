@@ -149,11 +149,14 @@ fortune futurama
 #### end motd / fortune #### }
 
 #### prompt #### {
-# https://github.com/olivierverdier/zsh-git-prompt
-source ~/.zsh/git-prompt/zshrc.sh
-PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
-# https://github.com/nojhan/liquidprompt
-source ~/.zsh/liquidprompt/liquidprompt
+if [[ "$EUID" -ne "0" ]]; then
+  # https://github.com/nojhan/liquidprompt
+  source ~/.zsh/liquidprompt/liquidprompt
+else
+  # https://github.com/olivierverdier/zsh-git-prompt
+  source ~/.zsh/git-prompt/zshrc.sh
+  PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
+fi
 #### end prompt #### }
 
 #### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
