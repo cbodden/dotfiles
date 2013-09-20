@@ -1,8 +1,8 @@
 "xbindkeys_show"
   control+shift + q
 
-#"gmrun"
-#Alt +F2
+"gmrun"
+Alt +F2
 
 # decrease backlight
 "sudo xbacklight -dec 5"
