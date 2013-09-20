@@ -61,9 +61,11 @@
 " }
 
 " Vim UI {
-    " colorscheme solarized
+    colorscheme solarized
     " colorscheme oceandeep
-    colorscheme buttercream
+    " colorscheme buttercream
+    " colorscheme xoria256
+    " colorscheme calmar256-dark
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=80,120 " highlight maximum line length
     set cursorline " highlight current line
@@ -156,12 +158,24 @@
     Bundle 'gmarik/vundle'
     Bundle 'Valloric/YouCompleteMe'
 
+    "syntastic
+    "https://github.com/scrooloose/syntastic
+    execute pathogen#infect()
+
     " key bindings
     " incase you forget to sudo a file when saving - just type "w!!"
     cmap w!! w !sudo tee % >/dev/null
 
     " NERDTree
     nmap \e :NERDTreeToggle<CR>
+
+    "bash completer
+    "http://www.vim.org/scripts/script.php?script_id=365
+    "http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
+    filetype plugin on
+    let g:BASH_AuthorName   = 'CesarBodden'
+    let g:BASH_Email        = 'cesar@pissedoffadmins.com'
+    let g:BASH_Company      = 'Pissedoffadmins.com'
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
@@ -188,7 +202,7 @@
 
 " Formatting {
     " remove color columns in sh files
-    autocmd BufRead,BufNewFile *.sh set colorcolumn=1
+    autocmd BufRead,BufNewFile *.sh set colorcolumn=80
 
     " Python Stuff
     let python_highlight_all=1
