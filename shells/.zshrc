@@ -106,12 +106,14 @@ alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
 alias fchat='if [[ $USER == root || `ps -ef | egrep finch | egrep -v egrep | wc -l` -eq 1  ]] ; then finch ; else ; tmux rename-window "chat" && finch ; fi'
 alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
 alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias lockme='xscreensaver-command -lock && sudo /usr/sbin/hibernate'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
 alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
 alias push='git push origin master && facts'
+alias ramme='xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias wserver='python -m SimpleHTTPServer 8080'
@@ -161,7 +163,12 @@ else
 fi
 #### end prompt #### }
 
-#### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
+#### ssh agent && reagent #### {
+##  work ssh agent
+eval `ssh-agent -s`
+ssh-add ~/.ssh/work/id_rsa
+## end ssh agent
+## ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/
 ssh-reagent () {
     for agent in /tmp/ssh-*/agent.*; do
         export SSH_AUTH_SOCK=$agent
@@ -173,7 +180,8 @@ ssh-reagent () {
     done
 echo Cannot find ssh agent - maybe you should reconnect and forward it?
 }
-#### end ssh-reagent }
+## end ssh-reagent
+#### end ssh agent && re-agent #### }
 
 #### testing area #### {
 # from http://stackoverflow.com/questions/171563/whats-in-your-zshrc
@@ -192,10 +200,13 @@ function most_useless_use_of_zsh {
     done
 }
 
-#### end testing area #### }
+## perl stuffs
 
 export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/home/cbodden/perl5";
 export PERL_MB_OPT="--install_base /home/cbodden/perl5";
 export PERL_MM_OPT="INSTALL_BASE=/home/cbodden/perl5";
 export PERL5LIB="/home/cbodden/perl5/lib/perl5:$PERL5LIB";
 export PATH="/home/cbodden/perl5/bin:$PATH";
+
+
+#### end testing area #### }
