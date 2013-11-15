@@ -159,27 +159,27 @@ if [[ "$EUID" -ne "0" ]]; then
 else
   # https://github.com/olivierverdier/zsh-git-prompt
   source ~/.zsh/git-prompt/zshrc.sh
-  PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
+  PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 fi
 #### end prompt #### }
 
 #### ssh agent && reagent #### {
-##  work ssh agent
-eval `ssh-agent -s`
-ssh-add ~/.ssh/work/id_rsa
-## end ssh agent
-## ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/
-ssh-reagent () {
+if [[ "$EUID" -ne "0" ]]; then
+  eval `ssh-agent -s`
+  ssh-add ~/.ssh/work/id_rsa
+  ## ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/
+  ssh-reagent () {
     for agent in /tmp/ssh-*/agent.*; do
-        export SSH_AUTH_SOCK=$agent
-        if ssh-add -l 2>&1 > /dev/null; then
-            echo Found working SSH Agent:
-            ssh-add -l
-            return
-        fi
-    done
-echo Cannot find ssh agent - maybe you should reconnect and forward it?
-}
+    export SSH_AUTH_SOCK=$agent
+    if ssh-add -l 2>&1 > /dev/null; then
+      echo Found working SSH Agent:
+      ssh-add -l
+      return
+    fi
+  done
+  echo Cannot find ssh agent - maybe you should reconnect and forward it?
+  }
+fi
 ## end ssh-reagent
 #### end ssh agent && re-agent #### }
 

@@ -53,7 +53,7 @@ urxvt*borderLess: false
 
 ## test fonts stuffs
 URxvt.font:             xft:Terminus:pixelsize=10:antialias=false
-URxvt.boldFont:         xft:Terminus:bold:pixelsize=10:antialias=false
+# URxvt.boldFont:         xft:Terminus:bold:pixelsize=10:antialias=false
 
 ## teh transparency stuff
 # urxvt*inheritPixmap: true
