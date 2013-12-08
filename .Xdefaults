@@ -59,7 +59,7 @@ URxvt.font:             xft:Terminus:pixelsize=10:antialias=false
 # urxvt*inheritPixmap: true
 urxvt*inheritPixmap: false
 urxvt*tintColor: white
-urxvt*shading: 40
+urxvt*shading: 60
 
 ## geometry and font
 
