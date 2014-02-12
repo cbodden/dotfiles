@@ -6,7 +6,7 @@
 
 #### interactive shell check #### {
 if [[ $- != *i* ]] ; then
-    return
+  return
 fi
 #### end interactive check #### }
 
@@ -54,11 +54,11 @@ setopt SHARE_HISTORY            # share history between sessions
 
 #### ls colors zsh #### {
 if [[ -x "`whence -p dircolors`" ]]; then
-      eval `dircolors`
-        alias ls='ls -F --color=auto'
-    else
-          alias ls='ls -F'
-      fi
+  eval `dircolors`
+  alias ls='ls -F --color=auto'
+else
+  alias ls='ls -F'
+fi
 #### end ls colors #### }
 
 #### zsh super globs #### {
@@ -121,20 +121,20 @@ function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLoo
 
 #### tmux shell init #### {
 if [[ $USER != root ]]; then
-    tmux_count=`tmux ls | wc -l`
-    if [[ "$tmux_count" == "0" ]]; then
-        tmux -2
-    else
-        if [[ -z "$TMUX" ]]; then
-            if [[ "$tmux_count" == "1" ]]; then
-                session_id=1
-            else
-                session_id=`echo $tmux_count`
-            fi
-        tmux -2 new-session -d -s $session_id
-        tmux -2 attach-session -t $session_id
-        fi
+  tmux_count=`tmux ls | wc -l`
+  if [[ "$tmux_count" == "0" ]]; then
+    tmux -2
+  else
+    if [[ -z "$TMUX" ]]; then
+      if [[ "$tmux_count" == "1" ]]; then
+        session_id=1
+      else
+        session_id=`echo $tmux_count`
+      fi
+      tmux -2 new-session -d -s $session_id
+      tmux -2 attach-session -t $session_id
     fi
+  fi
 else
 fi
 #### tmux init end #### }
