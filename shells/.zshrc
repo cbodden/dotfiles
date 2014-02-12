@@ -10,16 +10,6 @@ if [[ $- != *i* ]] ; then
 fi
 #### end interactive check #### }
 
-#### cgroup shell init #### {
-# if [[ -d /sys/fs/cgroup/cpu ]]; then
-#     cdir=/sys/fs/cgroup/cpu
-#     mkdir -p -m 0700 "$cdir"/user/$$ >/dev/null 2>&1
-#     echo $$ >"$cdir"/user/$$/tasks
-#     echo 1 >"$cdir"/user/$$/notify_on_release
-#     unset -v cdir
-# fi
-#### cgroup shell init #### }
-
 #### exports #### {
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
