@@ -116,6 +116,7 @@ alias push='git push origin master && facts'
 alias ramme='xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
+alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
 alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
 function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
