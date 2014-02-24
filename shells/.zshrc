@@ -14,7 +14,7 @@ fi
 if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]; then
   [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
 fi
-#### end testing #### }
+#### end automata #### }
 
 #### exports #### {
 export EDITOR=/usr/bin/vi
