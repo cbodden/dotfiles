@@ -10,6 +10,12 @@ if [[ $- != *i* ]] ; then
 fi
 #### end interactive check #### }
 
+#### startx automata #### {
+if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]; then
+  [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
+fi
+#### end testing #### }
+
 #### exports #### {
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
