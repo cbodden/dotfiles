@@ -161,13 +161,21 @@
     "syntastic
     "https://github.com/scrooloose/syntastic
     execute pathogen#infect()
+    call pathogen#helptags()
 
     " key bindings
     " incase you forget to sudo a file when saving - just type "w!!"
     cmap w!! w !sudo tee % >/dev/null
 
     " NERDTree
-    nmap \e :NERDTreeToggle<CR>
+    " http://ryanolson.wordpress.com/2013/04/24/how-to-install-nerdtree-for-vim-using-pathogen/
+    autocmd vimenter * NERDTreeToggle
+    autocmd vimenter * if !argc() | NERDTree | endif
+    map <C-n> :NERDTreeToggle<CR>
+    map <C-m> :NERDTree<CR>
+    let NERDTreeShowHidden = 1
+    let g:NERDTreeWinSize = 35
+
 
     "bash completer
     "http://www.vim.org/scripts/script.php?script_id=365
