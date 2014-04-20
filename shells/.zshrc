@@ -92,7 +92,7 @@ alias -s erb=vi
 alias -s json=vi
 alias -s rb=vi
 alias 1g='openssl rand -base64 $(( 2**30 * 3/4 )) > test.img'
-alias add='git add .'
+alias add='git add -p .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
