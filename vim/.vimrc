@@ -153,19 +153,15 @@
     au Syntax * RainbowParenthesesLoadRound
 
     "vundle
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
-    Bundle 'Valloric/YouCompleteMe'
+    " set rtp+=~/.vim/bundle/vundle/
+    " call vundle#rc()
+    " Bundle 'gmarik/vundle'
+    " Bundle 'Valloric/YouCompleteMe'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
     execute pathogen#infect()
     call pathogen#helptags()
-
-    " key bindings
-    " incase you forget to sudo a file when saving - just type "w!!"
-    cmap w!! w !sudo tee % >/dev/null
 
     " NERDTree
     " http://ryanolson.wordpress.com/2013/04/24/how-to-install-nerdtree-for-vim-using-pathogen/
@@ -175,7 +171,8 @@
     map <C-m> :NERDTree<CR>
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
-
+    " auto quit nerdtree when buffers closed
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
     "bash completer
     "http://www.vim.org/scripts/script.php?script_id=365
@@ -184,6 +181,10 @@
     let g:BASH_AuthorName   = 'CBodden'
     let g:BASH_Email        = 'cesar@pissedoffadmins.com'
     let g:BASH_Company      = 'pissedoffadmins.com'
+
+    "YouCompleteMe
+    " remove initial load message
+    let g:ycm_confirm_extra_conf = 0
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
@@ -228,8 +229,12 @@
 
 " }
 
-" KeyMappings {
+" Key mappings / bindings {
     " mapping comma to leader key
     let mapleader=","
+
+    " key bindings
+    " incase you forget to sudo a file when saving - just type "w!!"
+    cmap w!! w !sudo tee % >/dev/null
 
 " }
