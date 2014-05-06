@@ -27,7 +27,8 @@
 
 " General {
     filetype plugin indent on " load filetype plugins/indent settings
-    set autochdir " always switch to the current file directory 
+    set autochdir " always switch to the current file directory
+    set autoread " auto read when a file is changed from the outside
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
     set backupdir=~/.vim/backup " where to put backup files
@@ -35,6 +36,7 @@
     set directory=~/.vim/tmp " directory to place swap files in
     set fileformats=unix,dos,mac " support all three, in this order
     set hidden " you can change buffers without saving
+    set history=1000 " how many lines of history VIM has to remember
     set iskeyword+=_,$,@,%,# " none of these are word dividers 
     set ml
     set mouse=a " use mouse everywhere
@@ -69,6 +71,7 @@
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=80,120 " highlight maximum line length
     set cursorline " highlight current line
+    set encoding=utf8 " Set utf8 as encoding and en_US as the language
     set hlsearch " highlight searched for phrases
     set incsearch " BUT do highlight as you type your search phrase
     set laststatus=2 " always show the status line
@@ -91,7 +94,7 @@
     set sidescrolloff=10 " Keep 5 lines at the size
     set t_Co=256 " enables 256 colors
     set statusline=%F%m%r%h%w\ [Lines:%L]\ [Type:%{&ff}]\ %y\ [%p%%]\ [%04l,%04v]\ [FoldLevel:%{foldlevel('.')}]
-    "              | | | | |          |          |        |    |       |    |                 |    
+    "              | | | | |          |          |        |    |       |    |                 |
     "              | | | | |          |          |        |    |       |    |                 + current foldlevel
     "              | | | | |          |          |        |    |       |    + current column
     "              | | | | |          |          |        |    |       +-- current line
@@ -153,10 +156,10 @@
     au Syntax * RainbowParenthesesLoadRound
 
     "vundle
-    " set rtp+=~/.vim/bundle/vundle/
-    " call vundle#rc()
-    " Bundle 'gmarik/vundle'
-    " Bundle 'Valloric/YouCompleteMe'
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    Bundle 'gmarik/vundle'
+    Bundle 'Valloric/YouCompleteMe'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
@@ -167,12 +170,17 @@
     " http://ryanolson.wordpress.com/2013/04/24/how-to-install-nerdtree-for-vim-using-pathogen/
     autocmd vimenter * NERDTreeToggle
     autocmd vimenter * if !argc() | NERDTree | endif
+    autocmd VimEnter * wincmd p
     map <C-n> :NERDTreeToggle<CR>
     map <C-m> :NERDTree<CR>
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
     " auto quit nerdtree when buffers closed
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    " Store the bookmarks file
+    let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+    " Show the bookmarks table on startup
+    " let NERDTreeShowBookmarks=1
 
     "bash completer
     "http://www.vim.org/scripts/script.php?script_id=365
@@ -226,6 +234,9 @@
 
     " uglify chars past the 80 col limit
     au BufWinEnter *.sh let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+    " Remove the Windows ^M - when the encodings gets messed up
+    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " }
 
