@@ -26,6 +26,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 #### zsh key bindings #### {
 # bindkey -v                            # vi mode for vi style keybindings
+bindkey "^[3;5~" delete-char            # delete key fix
+bindkey "^[[3~"  delete-char            # delete key fix
 bindkey ';3C' emacs-forward-word        # <alt><right arrow> forward word
 bindkey ';3D' emacs-backward-word       # <alt><left arrow> backword word
 bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
@@ -33,19 +35,18 @@ bindkey '^B' backward-word              # ctrl-b backward words
 bindkey '^E' end-of-line                # ctrl-e end of line binding
 bindkey '^F' forward-word               # ctrl-f forward words
 bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
-bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
-bindkey '^[[3~' delete-char             # delete key fix
-bindkey '^[[5C' emacs-forward-word      # <ctrl><right arrow> forward word
-bindkey '^[[5D' emacs-backward-word     # <ctrl><left arrow> backword word
-bindkey '^[[7~' beginning-of-line       # home key
-bindkey '^[[8~' end-of-line             # end key
+bindkey '^[[2~'  overwrite-mode         # insert key overwrite mode
+bindkey '^[[5C'  emacs-forward-word     # <ctrl><right arrow> forward word
+bindkey '^[[5D'  emacs-backward-word    # <ctrl><left arrow> backword word
+bindkey '^[[7~'  beginning-of-line      # home key
+bindkey '^[[8~'  end-of-line            # end key
 bindkey -e                              # emacs mode for emacs style keybindings
 #### end zsh key bindings #### }
 
 #### zsh history #### {
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt APPEND_HISTORY           # append rather than overwrite history file.
 setopt EXTENDED_HISTORY         # save timestamp and runtime information
 setopt HIST_EXPIRE_DUPS_FIRST   # allow dups, but expire old ones when I hit HISTSIZE
@@ -71,7 +72,6 @@ fi
 setopt NO_CASE_GLOB             # case insensitive globbing
 setopt NUMERIC_GLOB_SORT        # numeric glob sort
 setopt extended_glob
-setopt extendedglob
 setopt globdots                 # lets files beginning with a "." match explicitly without specifying
 unsetopt caseglob
 #### end super globs #### }
@@ -161,22 +161,22 @@ fi
 #### end prompt #### }
 
 #### ssh agent && reagent #### {
-if [[ "$EUID" -ne "0" ]]; then
-  eval `ssh-agent -s`
-  ssh-add ~/.ssh/work/id_rsa
-  ## ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/
-  ssh-reagent () {
-    for agent in /tmp/ssh-*/agent.*; do
-    export SSH_AUTH_SOCK=$agent
-    if ssh-add -l 2>&1 > /dev/null; then
-      echo Found working SSH Agent:
-      ssh-add -l
-      return
-    fi
-  done
-  echo Cannot find ssh agent - maybe you should reconnect and forward it?
-  }
-fi
+##if [[ "$EUID" -ne "0" ]]; then
+##  eval `ssh-agent -s`
+##  ssh-add ~/.ssh/work/id_rsa
+##  ## ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/
+##  ssh-reagent () {
+##    for agent in /tmp/ssh-*/agent.*; do
+##    export SSH_AUTH_SOCK=$agent
+##    if ssh-add -l 2>&1 > /dev/null; then
+##      echo Found working SSH Agent:
+##      ssh-add -l
+##      return
+##    fi
+##  done
+##  echo Cannot find ssh agent - maybe you should reconnect and forward it?
+##  }
+##fi
 ## end ssh-reagent
 #### end ssh agent && re-agent #### }
 
