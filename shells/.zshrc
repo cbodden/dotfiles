@@ -101,6 +101,7 @@ alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P 
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
 alias fchat='if [[ $USER == root || `ps -ef | egrep finch | egrep -v egrep | wc -l` -eq 1  ]] ; then finch ; else ; tmux rename-window "chat" && finch ; fi'
 alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
+alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
 alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias lockme='xscreensaver-command -lock && sudo /usr/sbin/hibernate'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
@@ -122,6 +123,7 @@ function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" 
 function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
+
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 #### end aliases and functions #### }
 
