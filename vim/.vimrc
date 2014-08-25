@@ -164,6 +164,7 @@
     Bundle 'fatih/vim-go'
     Bundle 'airblade/vim-gitgutter'
     " Bundle 'tpope/vim-fugitive'
+    Bundle 'troydm/easybuffer.vim'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
@@ -236,6 +237,10 @@
     nmap <silent> <F8> :TagbarToggle<CR>
     autocmd VimEnter * TagbarOpen
     autocmd BufEnter * TagbarOpen
+
+    " Easybuffer
+    " https://github.com/troydm/easybuffer.vim
+    nmap <silent> <F7> :EasyBuffer<CR>
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
