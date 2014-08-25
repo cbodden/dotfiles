@@ -64,10 +64,6 @@
 
 " Vim UI {
     colorscheme solarized
-    " colorscheme oceandeep
-    " colorscheme buttercream
-    " colorscheme xoria256
-    " colorscheme calmar256-dark
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=80,120 " highlight maximum line length
     set cursorline " highlight current line
@@ -131,16 +127,16 @@
 
 " Folding {
     set foldenable " Turn on folding
+    set foldlevel=100 " Don't autofold anything (but I can still fold manually)
     set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
     set foldmethod=marker " Fold on the marker
-    set foldlevel=100 " Don't autofold anything (but I can still fold manually)
-    set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds 
+    set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
+    set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
     function SimpleFoldText() " {
         return getline(v:foldstart).' '
     endfunction " }
-    set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
-    au BufWinLeave * mkview
     au BufWinEnter * silent loadview
+    au BufWinLeave * mkview
 " }
 
 " Plugin Settings {
@@ -158,12 +154,12 @@
     "vundle
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    Bundle 'gmarik/vundle'
-    Bundle 'Valloric/YouCompleteMe'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'fatih/vim-go'
-    Bundle 'airblade/vim-gitgutter'
     " Bundle 'tpope/vim-fugitive'
+    Bundle 'Valloric/YouCompleteMe'
+    Bundle 'airblade/vim-gitgutter'
+    Bundle 'fatih/vim-go'
+    Bundle 'gmarik/vundle'
+    Bundle 'majutsushi/tagbar'
     Bundle 'troydm/easybuffer.vim'
 
     "syntastic
@@ -176,8 +172,11 @@
     autocmd vimenter * NERDTreeToggle
     autocmd vimenter * if !argc() | NERDTree | endif
     autocmd VimEnter * wincmd p
+    autocmd BufEnter * NERDTreeMirror
+    " mapped toggle keys
     map <C-n> :NERDTreeToggle<CR>
     map <C-m> :NERDTree<CR>
+    nmap <silent> <F3> :NERDTreeToggle<CR>
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
     " auto quit nerdtree when buffers closed
@@ -186,11 +185,6 @@
     let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
     " Show the bookmarks table on startup
     " let NERDTreeShowBookmarks=1
-    " start in every tab
-    autocmd VimEnter * NERDTree
-    autocmd BufEnter * NERDTreeMirror
-    " f3 toggle
-    nmap <silent> <F3> :NERDTreeToggle<CR>
 
     "bash completer
     "http://www.vim.org/scripts/script.php?script_id=365
@@ -234,9 +228,9 @@
     \ }
 
     " Tagbar
-    nmap <silent> <F8> :TagbarToggle<CR>
     autocmd VimEnter * TagbarOpen
     autocmd BufEnter * TagbarOpen
+    nmap <silent> <F8> :TagbarToggle<CR>
 
     " Easybuffer
     " https://github.com/troydm/easybuffer.vim
