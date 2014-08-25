@@ -160,10 +160,10 @@
     call vundle#rc()
     Bundle 'gmarik/vundle'
     Bundle 'Valloric/YouCompleteMe'
-    " Bundle 'jnwhiteh/vim-golang'
-    " Plugin 'fatih/vim-go'
-    " Bundle 'fatih/vim-go'
     Bundle 'majutsushi/tagbar'
+    Bundle 'fatih/vim-go'
+    Bundle 'airblade/vim-gitgutter'
+    " Bundle 'tpope/vim-fugitive'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
@@ -185,6 +185,11 @@
     let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
     " Show the bookmarks table on startup
     " let NERDTreeShowBookmarks=1
+    " start in every tab
+    autocmd VimEnter * NERDTree
+    autocmd BufEnter * NERDTreeMirror
+    " f3 toggle
+    nmap <silent> <F3> :NERDTreeToggle<CR>
 
     "bash completer
     "http://www.vim.org/scripts/script.php?script_id=365
@@ -228,7 +233,9 @@
     \ }
 
     " Tagbar
-    nmap <F8> :TagbarToggle<CR>
+    nmap <silent> <F8> :TagbarToggle<CR>
+    autocmd VimEnter * TagbarOpen
+    autocmd BufEnter * TagbarOpen
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
