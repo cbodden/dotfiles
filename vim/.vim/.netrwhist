@@ -1,7 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/cbodden/tarballs/ipod/.rockbox/wps/UniCatcher'
-let g:netrw_dirhist_2='/home/cbodden/tarballs/nook/META-INF'
-let g:netrw_dirhist_3='/home/cbodden/tarballs/ipod/.rockbox/wps'
-let g:netrw_dirhist_4='/home/cbodden/dotfiles/.git'
-let g:netrw_dirhist_5='/home/cbodden/kernel_configs/.git'
+let g:netrw_dirhist_cnt =0
