@@ -24,6 +24,10 @@ export TERM=screen-256color
 export XDG_CONFIG_HOME="$HOME/.config"
 #### end exports #### }
 
+#### eix #### {
+export EIX_LIMIT=0
+#### end eix #### }
+
 #### zsh key bindings #### {
 # bindkey -v                            # vi mode for vi style keybindings
 bindkey "^[3;5~" delete-char            # delete key fix
@@ -123,7 +127,6 @@ function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" 
 function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
 function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
-
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 #### end aliases and functions #### }
 
@@ -207,5 +210,27 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB";
 export PATH="$HOME/perl5/bin:$PATH";
 
+## go stuffs
+#export GOROOT=$HOME/go
+#export GOBIN=$GOROOT/bin
+#export GOARCH=amd64
+#export GOOS=linux
+## export PATH=$GOBIN;$PATH
+#export GOPATH=$GOROOT
+export GOARCH="amd64"
+export GOCHAR="6"
+export GOEXE=""
+export GOHOSTARCH="amd64"
+export GOHOSTOS="linux"
+export GOOS="linux"
+export GORACE=""
+export GOROOT="/usr/lib/go"
+export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
+export CC="gcc"
+export GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0"
+export CXX="g++"
+export CGO_ENABLED="1"
+export GOBIN=$GOROOT/bin
+export GOPATH=~/go
 
 #### end testing area #### }
