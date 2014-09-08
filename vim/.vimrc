@@ -155,11 +155,11 @@
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
     " Bundle 'tpope/vim-fugitive'
-    Bundle 'Valloric/YouCompleteMe'
+    " Bundle 'Valloric/YouCompleteMe'
     Bundle 'airblade/vim-gitgutter'
-    Bundle 'fatih/vim-go'
+    " Bundle 'fatih/vim-go'
     Bundle 'gmarik/vundle'
-    Bundle 'majutsushi/tagbar'
+    " Bundle 'majutsushi/tagbar'
     Bundle 'troydm/easybuffer.vim'
 
     "syntastic
@@ -196,41 +196,41 @@
 
     "YouCompleteMe
     " remove initial load message
-    let g:ycm_confirm_extra_conf = 0
+    " let g:ycm_confirm_extra_conf = 0
 
     " https://github.com/jstemmer/gotags
-    let g:tagbar_type_go = {
-        \ 'ctagstype' : 'go',
-        \ 'kinds'     : [
-            \ 'p:package',
-            \ 'i:imports:1',
-            \ 'c:constants',
-            \ 'v:variables',
-            \ 't:types',
-            \ 'n:interfaces',
-            \ 'w:fields',
-            \ 'e:embedded',
-            \ 'm:methods',
-            \ 'r:constructor',
-            \ 'f:functions'
-        \ ],
-        \ 'sro' : '.',
-        \ 'kind2scope' : {
-            \ 't' : 'ctype',
-            \ 'n' : 'ntype'
-        \ },
-        \ 'scope2kind' : {
-            \ 'ctype' : 't',
-            \ 'ntype' : 'n'
-        \ },
-        \ 'ctagsbin'  : 'gotags',
-        \ 'ctagsargs' : '-sort -silent'
-    \ }
+    " let g:tagbar_type_go = {
+    "     \ 'ctagstype' : 'go',
+    "     \ 'kinds'     : [
+    "         \ 'p:package',
+    "         \ 'i:imports:1',
+    "         \ 'c:constants',
+    "         \ 'v:variables',
+    "         \ 't:types',
+    "         \ 'n:interfaces',
+    "         \ 'w:fields',
+    "         \ 'e:embedded',
+    "         \ 'm:methods',
+    "         \ 'r:constructor',
+    "         \ 'f:functions'
+    "     \ ],
+    "     \ 'sro' : '.',
+    "     \ 'kind2scope' : {
+    "         \ 't' : 'ctype',
+    "         \ 'n' : 'ntype'
+    "     \ },
+    "     \ 'scope2kind' : {
+    "         \ 'ctype' : 't',
+    "         \ 'ntype' : 'n'
+    "     \ },
+    "     \ 'ctagsbin'  : 'gotags',
+    "     \ 'ctagsargs' : '-sort -silent'
+    " \ }
 
-    " Tagbar
-    autocmd VimEnter * TagbarOpen
-    autocmd BufEnter * TagbarOpen
-    nmap <silent> <F8> :TagbarToggle<CR>
+    " " Tagbar
+    " autocmd VimEnter * TagbarOpen
+    " autocmd BufEnter * TagbarOpen
+    " nmap <silent> <F8> :TagbarToggle<CR>
 
     " Easybuffer
     " https://github.com/troydm/easybuffer.vim
