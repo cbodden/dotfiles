@@ -7,4 +7,5 @@ setxkbmap -option terminate:ctrl_alt_bksp
 xbindkeys &
 /usr/bin/xscreensaver -no-splash &
 #DISPLAY=:0.0 /bin/bash /home/cbodden/startup/random_images.sh &
+/usr/bin/xv -quit -root -rmode 5 /home/cbodden/wallpapers/tsoi.gif
 exec sleep infinity

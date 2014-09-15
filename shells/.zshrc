@@ -11,9 +11,9 @@ fi
 #### end interactive check #### }
 
 #### startx automata #### {
-## if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]; then
-##   [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
-## fi
+if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]; then
+  [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
+fi
 #### end automata #### }
 
 #### exports #### {
@@ -126,7 +126,7 @@ function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else 
 function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
 function goog; { /usr/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
 function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
-function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
+function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 #### end aliases and functions #### }
 
