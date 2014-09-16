@@ -49,7 +49,7 @@ urxvt*loginShell: true
 ## borderless and no scrollbar
 urxvt*scrollBar_right: false
 urxvt*scrollBar: false
-urxvt*borderLess: true
+urxvt*borderLess: false
 
 ## test fonts stuffs
 URxvt.font:             xft:Terminus:pixelsize=10:antialias=false
@@ -83,12 +83,9 @@ urxvt*shading: 60
 ## urxvt*color14: #50FCF8
 ## urxvt*color15: pink
 
-## urxvt*perl-lib: /usr/lib/urxvt/perl/
-## urxvt.perl-ext-common: default,matcher,searchable-scrollback
-urxvt*perl-lib:
-urxvt.perl-ext-common:
-# urxvt.urlLauncher: chromium
-urxvt.urlLauncher:
+urxvt*perl-lib: /usr/lib/urxvt/perl/
+urxvt.perl-ext-common: default,matcher,searchable-scrollback
+urxvt.urlLauncher: chromium
 urxvt.matcher.button: 2
 urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
