@@ -1,0 +1,84 @@
+###########
+# options #
+###########
+
+OPTIONS=!cmdassist
+OPTIONS=!quiver_fired
+OPTIONS=autodig
+# OPTIONS=autopickup
+OPTIONS=checkpoint
+OPTIONS=color
+OPTIONS=DECgraphics
+OPTIONS=disclose:+i +a +v +g +c
+OPTIONS=dogname:Teh Dawg
+OPTIONS=fruit:Apple
+OPTIONS=hilite_hidden_stairs
+OPTIONS=hilite_pet
+OPTIONS=hitpointbar
+OPTIONS=horsename:Teh Poniez
+OPTIONS=hp_notify
+OPTIONS=lit_corridor
+OPTIONS=menu_glyphs
+OPTIONS=menucolors
+OPTIONS=msg_wall_hits
+OPTIONS=msg_window:reversed
+OPTIONS=noautopickup
+OPTIONS=nohilite_obj_piles
+OPTIONS=paranoid_hit
+OPTIONS=paranoid_quit
+OPTIONS=paranoid_remove
+OPTIONS=pickup_burden:burdened
+OPTIONS=pickup_thrown
+# OPTIONS=pickup_types:-
+# OPTIONS=pilesize:1
+OPTIONS=showborn
+OPTIONS=showbuc
+OPTIONS=showexp
+OPTIONS=showrace
+OPTIONS=showscore
+OPTIONS=sparkle
+OPTIONS=standout
+OPTIONS=statuscolors
+OPTIONS=suppress_alert:3.4.3
+OPTIONS=time
+OPTIONS=toptenwin
+OPTIONS=use_darkgray
+
+#####################
+# menucolor options #
+#####################
+
+MENUCOLOR=" blessed "=green
+MENUCOLOR=" holy "=green
+MENUCOLOR=" cursed "=red
+MENUCOLOR=" unholy "=red
+MENUCOLOR=" cursed .* (being worn)"=orange&underline
+MENUCOLOR="Burdened"=brown
+MENUCOLOR="Ill"=red
+
+#########################
+# autopickup_exceptions #
+#########################
+
+## Always pick these:
+AUTOPICKUP_EXCEPTION="<*magic lamp*"
+AUTOPICKUP_EXCEPTION="<*wand of wishing*"
+AUTOPICKUP_EXCEPTION="<*wand of death*"
+AUTOPICKUP_EXCEPTION="<*wand of polymorph*"
+## Don't pick these:
+AUTOPICKUP_EXCEPTION=">*worthless piece of*"
+AUTOPICKUP_EXCEPTION=">*loadstone*"
+AUTOPICKUP_EXCEPTION=">*flint stone*"
+
+###############
+# statuscolor #
+###############
+
+STATUSCOLOR=hp%100:green,hp%75:orange,hp%50:red&bold,hp%25:red&inverse,hp%0:red&inverse
+STATUSCOLOR=pw%100=green,pw%75=yellow,pw%50:orange,pw%25=red&bold
+STATUSCOLOR=burdened:yellow,stressed:orange,strained:red&bold
+STATUSCOLOR=overtaxed:red&inverse,overloaded:red&inverse&blink
+STATUSCOLOR=satiated:yellow,hungry:orange,weak:red&bold
+STATUSCOLOR=fainting:red&inverse,fainted:red&inverse&blink
+STATUSCOLOR=hallu:yellow,conf:orange,stun:red&bold
+STATUSCOLOR=ill:red&inverse,foodpois:red&inverse,slime:red&inverse
