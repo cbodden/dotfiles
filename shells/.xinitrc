@@ -9,3 +9,4 @@ xbindkeys &
 # /usr/bin/xv -quit -root -rmode 5 /home/cbodden/wallpapers/tsoi.gif
 /usr/bin/feh --recursive --randomize --bg-center ~/wallpapers/
 exec sleep infinity
+~/Downloads/xflux -z 11201

@@ -4,45 +4,65 @@
 "gmrun"
 Alt +F2
 
-# decrease backlight
-"sudo xbacklight -dec 5"
-  XF86MonBrightnessDown
-  m:0x0 + c:232
+#####################################
+#### these mappings are for x240 ####
+#####################################
 
-# increase backlight
-"sudo xbacklight -dec -5"
-  XF86MonBrightnessUp
-  m:0x0 + c:233
-
-# decrease master volume
-"amixer -c 0 set Master 3-"
-  XF86AudioLowerVolume
-  m:0x0 + c:122
-
-# increase master volume
-"amixer -c 0 set Master 3+"
-  XF86AudioRaiseVolume
-  m:0x0 + c:123
-
-# Toggle mute
+# func + f1 - Toggle mute
 "amixer set Master toggle"
   m:0x0 + c:121
   XF86AudioMute
 
-# chrome
-"chromium"
-  m:0x0 + c:180
-  XF86HomePage
+# func + f2 - decrease master volume
+"amixer sset Master 650-"
+  m:0x0 + c:122
+  XF86AudioLowerVolume
 
-# f3 hibernate to ram
-"xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram"
-  m:0x0 + c:150
-  XF86Sleep
+# func + f3 - increase master volume
+"amixer sset Master 650+"
+  m:0x0 + c:123
+  XF86AudioRaiseVolume
 
-# f4 lock screen - xscreensaver
+# func + f4
+  m:0x0 + c:198
+  XF86AudioMicMute
+
+# func + f5 - decrease backlight
+"sudo xbacklight -dec 5"
+  XF86MonBrightnessDown
+  m:0x0 + c:199
+
+# func + f6 - increase backlight
+"sudo xbacklight -inc 5"
+  XF86MonBrightnessUp
+  m:0x0 + c:200
+
+# func + f7
 "xscreensaver-command -lock"
   m:0x0 + c:235
   XF86Display
+
+# func + f8
+"xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram"
+  m:0x0 + c:246
+  XF86WLAN
+
+# func + f9
+  m:0x0 + c:179
+  XF86Tools
+
+# func + f10
+  m:0x0 + c:225
+  XF86Search
+
+# func + f11
+  m:0x0 + c:128
+  XF86LaunchA
+
+# func + f12
+"xnview ."
+  m:0x0 + c:152
+  XF86Explorer
 
 # powerbutton on tap hibernate
 "xscreensaver-command -lock && sudo /usr/sbin/hibernate"
