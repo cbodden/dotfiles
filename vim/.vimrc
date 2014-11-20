@@ -155,11 +155,11 @@
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
     " Bundle 'tpope/vim-fugitive'
-    " Bundle 'Valloric/YouCompleteMe'
+    Bundle 'Valloric/YouCompleteMe'
     Bundle 'airblade/vim-gitgutter'
-    " Bundle 'fatih/vim-go'
+    Bundle 'fatih/vim-go'
     Bundle 'gmarik/vundle'
-    " Bundle 'majutsushi/tagbar'
+    Bundle 'majutsushi/tagbar'
     Bundle 'troydm/easybuffer.vim'
 
     "syntastic
@@ -196,41 +196,49 @@
 
     "YouCompleteMe
     " remove initial load message
-    " let g:ycm_confirm_extra_conf = 0
+    let g:ycm_confirm_extra_conf = 0
+
+    " Convenient command to see the difference between the current buffer and
+    " the file it was loaded from, thus the changes you made.
+    " Only define it when not defined already.
+    if !exists(":DiffOrig")
+        command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+            \ | wincmd p | diffthis
+    endif
 
     " https://github.com/jstemmer/gotags
-    " let g:tagbar_type_go = {
-    "     \ 'ctagstype' : 'go',
-    "     \ 'kinds'     : [
-    "         \ 'p:package',
-    "         \ 'i:imports:1',
-    "         \ 'c:constants',
-    "         \ 'v:variables',
-    "         \ 't:types',
-    "         \ 'n:interfaces',
-    "         \ 'w:fields',
-    "         \ 'e:embedded',
-    "         \ 'm:methods',
-    "         \ 'r:constructor',
-    "         \ 'f:functions'
-    "     \ ],
-    "     \ 'sro' : '.',
-    "     \ 'kind2scope' : {
-    "         \ 't' : 'ctype',
-    "         \ 'n' : 'ntype'
-    "     \ },
-    "     \ 'scope2kind' : {
-    "         \ 'ctype' : 't',
-    "         \ 'ntype' : 'n'
-    "     \ },
-    "     \ 'ctagsbin'  : 'gotags',
-    "     \ 'ctagsargs' : '-sort -silent'
-    " \ }
+    let g:tagbar_type_go = {
+        \ 'ctagstype' : 'go',
+        \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+        \ ],
+        \ 'sro' : '.',
+        \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+        \ },
+        \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+        \ },
+        \ 'ctagsbin'  : 'gotags',
+        \ 'ctagsargs' : '-sort -silent'
+    \ }
 
-    " " Tagbar
+    " Tagbar
     " autocmd VimEnter * TagbarOpen
     " autocmd BufEnter * TagbarOpen
-    " nmap <silent> <F8> :TagbarToggle<CR>
+    nmap <silent> <F8> :TagbarToggle<CR>
 
     " Easybuffer
     " https://github.com/troydm/easybuffer.vim
@@ -262,6 +270,9 @@
 " Formatting {
     " remove color columns in sh files
     autocmd BufRead,BufNewFile *.sh set colorcolumn=80
+
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
     " Python Stuff
     let python_highlight_all=1
