@@ -29,6 +29,7 @@
     filetype plugin indent on " load filetype plugins/indent settings
     set autochdir " always switch to the current file directory
     set autoread " auto read when a file is changed from the outside
+    set autowriteall " save all buffers when quitting
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
     set backupdir=~/.vim/backup " where to put backup files
@@ -154,7 +155,7 @@
     "vundle
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    " Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-fugitive'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'airblade/vim-gitgutter'
     Bundle 'fatih/vim-go'
@@ -236,7 +237,7 @@
     \ }
 
     " Tagbar
-    " autocmd VimEnter * TagbarOpen
+    autocmd VimEnter * TagbarOpen
     " autocmd BufEnter * TagbarOpen
     nmap <silent> <F8> :TagbarToggle<CR>
 
@@ -265,6 +266,10 @@
             let tlist_vb_settings = 'asp;f:function;c:class' 
         " }
     " }
+
+    " auto save on focus lost
+    autocmd FocusLost * silent! wall
+
 " }
 
 " Formatting {
