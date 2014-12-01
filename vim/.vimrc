@@ -177,7 +177,7 @@
     " mapped toggle keys
     map <C-n> :NERDTreeToggle<CR>
     map <C-m> :NERDTree<CR>
-    nmap <silent> <F3> :NERDTreeToggle<CR>
+    nmap <silent> <F9> :NERDTreeToggle<CR>
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
     " auto quit nerdtree when buffers closed
