@@ -19,7 +19,8 @@ set my_tmp=`gpg -q --no-verbose -o /tmp/.passwords.tmp -d ~/.passwords.gpg`
 set my_pass_acct1=`cat /tmp/.passwords.tmp | grep acct1 | awk '{ print $2 }'`
 set my_pass_acct2=`cat /tmp/.passwords.tmp | grep acct2 | awk '{ print $2 }'`
 set my_pass_acct3=`cat /tmp/.passwords.tmp | grep acct3 | awk '{ print $2 }'`
-set my_del=`rm -f /tmp/.passwords.tmp`
+set my_del=`shred -xu /tmp/.passwords.tmp`
+# set my_del=`rm -f /tmp/.passwords.tmp`
 #### end passwords ####
 
 #### account1 ####
