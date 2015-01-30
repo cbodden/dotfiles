@@ -43,7 +43,6 @@ URxvt.intensityStyles: false
 *color15: #fdf6e3
 
 
-
 urxvt*termName: rxvt-256color
 urxvt*loginShell: true
 ## borderless and no scrollbar
@@ -52,8 +51,8 @@ urxvt*scrollBar: false
 urxvt*borderLess: false
 
 ## test fonts stuffs
-URxvt.font:             xft:Terminus:pixelsize=10:antialias=false
-# URxvt.boldFont:         xft:Terminus:bold:pixelsize=10:antialias=false
+urxvt.font: xft:Terminus:pixelsize=10:antialias=true,xft:Source\ Code\ Pro\ Medium:pixelsize=12:antialias=true:hinting=true
+# URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=12:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true
 
 ## teh transparency stuff
 # urxvt*inheritPixmap: true
