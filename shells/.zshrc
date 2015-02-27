@@ -152,7 +152,8 @@ fi
 #### tmux init end #### }
 
 #### motd / fortune #### {
-fortune futurama
+# fortune futurama
+fortune | cowthink -f $(ls /usr/share/cowsay-3.03/cows | shuf -n1)
 #### end motd / fortune #### }
 
 #### prompt #### {
