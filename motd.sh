@@ -13,8 +13,8 @@ fi
 
 ##LAST
 LL=$(lastlog -u $USER | tail -n 1)
-FROM=$(echo ${LL} | awk '{ print $2 }')
-AT=$(echo ${LL} | awk '{ print $3,$4,$5,$6 }')
+FROM=$(echo ${LL} | awk '{ print $3 }')
+AT=$(echo ${LL} | awk '{ print $4,$5,$6,$7 }')
 printf "\n%s%s%s%s\n" "${MGN}" "Last Login.: " "${BLU}" "From ${FROM} at ${AT}"
 
 ##UPTIME
