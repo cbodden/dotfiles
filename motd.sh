@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## based on script from :
-## http://www.mewbies.com/how_to_customize_your_console_login_message_tutorial.htm
+## www.mewbies.com/how_to_customize_your_console_login_message_tutorial.htm
 
 # text format && color for messages
 ORN=$(tput setaf 3); RED=$(tput setaf 1); BLU=$(tput setaf 4)

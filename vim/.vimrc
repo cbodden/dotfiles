@@ -157,7 +157,10 @@
     " Use pathogen to easily modify the runtime path to include all
     " plugins under the ~/.vim/bundle directory
     call pathogen#helptags()
-    call pathogen#runtime_append_all_bundles()
+    " call pathogen#runtime_append_all_bundles()
+    call pathogen#infect()
+    execute pathogen#infect()
+
 
     "vundle
     set rtp+=~/.vim/bundle/vundle/
@@ -170,11 +173,10 @@
     Bundle 'majutsushi/tagbar'
     Bundle 'troydm/easybuffer.vim'
     Bundle 'ryanss/vim-hackernews'
+    Bundle 'scrooloose/syntastic'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
-    execute pathogen#infect()
-    call pathogen#helptags()
 
     " NERDTree
     " http://ryanolson.wordpress.com/2013/04/24/how-to-install-nerdtree-for-vim-using-pathogen/
