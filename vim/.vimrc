@@ -41,7 +41,7 @@
     set ml
     set mouse=a " use mouse everywhere
     set noerrorbells " don't make noise
-    set pastetoggle=<F2> " when insert mode, press f2 for paste mode
+    " set pastetoggle=<F2> " when insert mode, press f2 for paste mode
     " set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
     set tags=~/.vim/tags/ " tag usage
     set undodir=~/.vim/undo " persistent undo dir
@@ -185,7 +185,6 @@
     " mapped toggle keys
     map <C-n> :NERDTreeToggle<CR>
     map <C-m> :NERDTree<CR>
-    nmap <silent> <F3> :NERDTreeToggle<CR>
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
     " auto quit nerdtree when buffers closed
@@ -235,15 +234,6 @@
         \ 'ctagsbin'  : 'gotags',
         \ 'ctagsargs' : '-sort -silent'
     \ }
-
-    " Tagbar
-    " autocmd VimEnter * TagbarOpen
-    " autocmd BufEnter * TagbarOpen
-    nmap <silent> <F8> :TagbarToggle<CR>
-
-    " Easybuffer
-    " https://github.com/troydm/easybuffer.vim
-    nmap <silent> <F7> :EasyBuffer<CR>
 
     " TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
@@ -308,5 +298,16 @@
     map <down> <nop>
     map <left> <nop>
     map <right> <nop>
+
+    " Tagbar
+    " autocmd VimEnter * TagbarOpen
+    " autocmd BufEnter * TagbarOpen
+    nmap <silent> <F8> :TagbarToggle<CR>
+
+    " Easybuffer
+    " https://github.com/troydm/easybuffer.vim
+    nmap <silent> <F7> :EasyBuffer<CR>
+
+    nmap <silent> <F3> :NERDTreeToggle<CR>
 
 " }
