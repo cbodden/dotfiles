@@ -48,7 +48,7 @@ printf "%s%s%s%s\n" "${MGN}" "Disk Usage.: " "${BLU}" \
 ##SSH
 USERS=$(who | awk '{print $1}' | sort | uniq | wc -l)
 printf "%s%s%s%s\n" "${MGN}" "SSH Logins.: " "${BLU}" \
-    "There are currently ${USERS} users logged i"
+    "There are currently ${USERS} users logged in"
 
 ##PROC
 P_TOT=$(ps -A h | wc -l)
