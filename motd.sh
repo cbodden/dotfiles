@@ -21,7 +21,7 @@ else
     FROM=$(echo ${LL} | awk '{ print $3 }')
     AT=$(echo ${LL} | awk '{ print $4,$5,$6,$7 }')
 fi
-printf "\n%s%s%s%s\n" "${MGN}" "Last Login.: " "${BLU}" "From ${FROM} at ${AT}"
+printf "\n%s%s%s%s\n" "${MGN}" "Last Login.: " "${BLU}" "From ${FROM} on ${AT}"
 
 ##UPTIME
 UPTOT=$(cut -d. -f1 /proc/uptime)
