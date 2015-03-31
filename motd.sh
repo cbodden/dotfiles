@@ -89,7 +89,7 @@ function FORTUNE() {
     fi
 }
 
-##functions below
+## functions below
 FIGLET
 LAST
 UPTIME
