@@ -164,16 +164,19 @@
 
     "vundle
     set rtp+=~/.vim/bundle/vundle/
+    "call vundle#begin()
     call vundle#rc()
-    " Bundle 'tpope/vim-fugitive'
+    "Plugin 'gmarik/Vundle.vim'
+    Bundle 'gmarik/vundle'
+    Bundle 'tpope/vim-fugitive'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'airblade/vim-gitgutter'
     Bundle 'fatih/vim-go'
-    Bundle 'gmarik/vundle'
     Bundle 'majutsushi/tagbar'
     Bundle 'troydm/easybuffer.vim'
     Bundle 'ryanss/vim-hackernews'
     Bundle 'scrooloose/syntastic'
+    Bundle 'jeaya/color_coded'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
