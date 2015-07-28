@@ -118,6 +118,7 @@ alias ramme='xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias speedtest='echo "scale=2; $(curl  --progress-bar -w "%{speed_download}" http://speedtest.newark.linode.com/100MB-newark.bin -o /dev/null) / 131072" | bc | xargs -I {} echo {} mbps'
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
+alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
 alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
