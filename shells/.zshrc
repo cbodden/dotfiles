@@ -153,7 +153,7 @@ fi
 
 #### motd / fortune #### {
 # fortune futurama
-fortune | cowthink -f $(ls /usr/share/cowsay-3.03/cows | shuf -n1)
+~/git/mine/dotfiles/motd.sh
 #### end motd / fortune #### }
 
 #### prompt #### {
