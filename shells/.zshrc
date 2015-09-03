@@ -49,8 +49,8 @@ bindkey -e                              # emacs mode for emacs style keybindings
 
 #### zsh history #### {
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt APPEND_HISTORY           # append rather than overwrite history file.
 setopt EXTENDED_HISTORY         # save timestamp and runtime information
 setopt HIST_EXPIRE_DUPS_FIRST   # allow dups, but expire old ones when I hit HISTSIZE
