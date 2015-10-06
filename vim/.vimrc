@@ -306,7 +306,7 @@
     "" Tagbar
     "autocmd VimEnter * TagbarOpen
     "autocmd BufEnter * TagbarOpen
-    "nmap <silent> <F8> :TagbarToggle<CR>
+    nmap <silent> <F8> :TagbarToggle<CR>
 
     " Easybuffer
     " https://github.com/troydm/easybuffer.vim
