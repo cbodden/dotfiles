@@ -176,8 +176,6 @@
     Bundle 'troydm/easybuffer.vim'
     Bundle 'ryanss/vim-hackernews'
     Bundle 'scrooloose/syntastic'
-    " Bundle 'jeaya/color_coded'
-    " Bundle 'bling/vim-airline'
 
     "syntastic
     "https://github.com/scrooloose/syntastic
@@ -305,10 +303,10 @@
     map <left> <nop>
     map <right> <nop>
 
-    " Tagbar
-    " autocmd VimEnter * TagbarOpen
-    " autocmd BufEnter * TagbarOpen
-    nmap <silent> <F8> :TagbarToggle<CR>
+    "" Tagbar
+    "autocmd VimEnter * TagbarOpen
+    "autocmd BufEnter * TagbarOpen
+    "nmap <silent> <F8> :TagbarToggle<CR>
 
     " Easybuffer
     " https://github.com/troydm/easybuffer.vim
