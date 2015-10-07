@@ -165,15 +165,16 @@
     call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gmarik/vundle'
-    Plugin 'tpope/vim-fugitive'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'fatih/vim-go'
+    Plugin 'itchyny/lightline.vim'
+    Plugin 'jlanzarotta/bufexplorer'
     Plugin 'majutsushi/tagbar'
-    Plugin 'troydm/easybuffer.vim'
     Plugin 'ryanss/vim-hackernews'
     Plugin 'scrooloose/syntastic'
-    Plugin 'itchyny/lightline.vim'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'troydm/easybuffer.vim'
     "}
 
     "syntastic {
