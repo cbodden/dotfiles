@@ -249,7 +249,7 @@
     \ } "}
 
     "TagList Settings {
-        let Tlist_Auto_Open=1               " let the tag list open automagically
+        let Tlist_Auto_Open=0               " let the tag list open automagically
         let Tlist_Compact_Format = 1        " show small menu
         let Tlist_Ctags_Cmd = 'ctags'       " location of ctags
         let Tlist_Enable_Fold_Column = 0    " do show folding tree
