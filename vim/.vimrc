@@ -134,10 +134,10 @@
     set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
     set foldmethod=marker " Fold on the marker
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
+    function SimpleFoldText() " {
+        return getline(v:foldstart).' '
+    endfunction " }
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
-    "function SimpleFoldText() " {
-    "    return getline(v:foldstart).' '
-    "endfunction " }
     au BufWinEnter * silent loadview
     au BufWinLeave * mkview
 "}
