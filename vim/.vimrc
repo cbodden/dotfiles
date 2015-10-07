@@ -1,8 +1,8 @@
-" Modeline and Notes {
-"   vim: set foldmarker={,} foldlevel=0 spell:
-" }
+"Modeline and Notes {
+"vim: set foldmarker={,} foldlevel=0 spell:
+"}
 
-" Basics {
+"Basics {
     set background=dark " we plan to use a dark background
     set nocompatible " explicitly get out of vi-compatible mode
     set noexrc " don't use local version of .(g)vimrc, .exrc
@@ -23,9 +23,9 @@
     "             |+-- :write updates alternative file name
     "             +-- :read updates alternative file name
     syntax on " syntax highlighting on
-" }
+"}
 
-" General {
+"General {
     filetype plugin indent on " load filetype plugins/indent settings
     set autochdir " always switch to the current file directory
     set autoread " auto read when a file is changed from the outside
@@ -61,9 +61,9 @@
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
-" }
+"}
 
-" Vim UI {
+"Vim UI {
     colorscheme solarized
     set background=dark " always keep background dark regardless of color theme
     set colorcolumn=80,120 " highlight maximum line length
@@ -105,9 +105,9 @@
     ""              | | +-- readonly flag in square brackets
     ""              | +-- rodified flag in square brackets
     ""              +-- full path to file in the buffer
-" }
+"}
 
-" Text Formatting/Layout {
+"Text Formatting/Layout {
     set completeopt= " don't use a pop up menu for completions
     set expandtab " no real tabs please!
     set formatoptions=rq " Automatically insert comment leader on return, and let gq format comments
@@ -119,15 +119,15 @@
     set smartcase " if there are caps, go case-sensitive
     set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
     set tabstop=4 " real tabs should be 8, and they will show with set list on
-" }
+"}
 
-" Tabs {
+"Tabs {
     " tab stuffs : http://www.linux.com/archive/feed/59533
     set showtabline=2 " shows the tab bar at all times
     set tabpagemax=10 " maximum amount of tabs to open on startup
-" }
+"}
 
-" Folding {
+"Folding {
     set foldenable " Turn on folding
     set foldlevel=100 " Don't autofold anything (but I can still fold manually)
     set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
@@ -139,49 +139,50 @@
     endfunction " }
     au BufWinEnter * silent loadview
     au BufWinLeave * mkview
-" }
+"}
 
-" Plugin Settings {
-    let b:match_ignorecase = 1 " case is stupid
-    let perl_extended_vars=1 " highlight advanced perl vars inside strings
+"Plugin Settings {
 
-    " Rainbow Parenthesis
+    "Rainbow Parenthesis {
     au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
     au Syntax * RainbowParenthesesLoadChevrons
     au Syntax * RainbowParenthesesLoadRound
+    "}
 
-    " pathogen
-    " Use pathogen to easily modify the runtime path to include all
-    " plugins under the ~/.vim/bundle directory
+    "pathogen {
+    "Use pathogen to easily modify the runtime path to include all
+    "plugins under the ~/.vim/bundle directory
     call pathogen#helptags()
-    " call pathogen#runtime_append_all_bundles()
+    "call pathogen#runtime_append_all_bundles()
     call pathogen#infect()
     execute pathogen#infect()
+    "}
 
+    "vundle {
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'gmarik/vundle'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'fatih/vim-go'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'troydm/easybuffer.vim'
+    Plugin 'ryanss/vim-hackernews'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'itchyny/lightline.vim'
+    "}
 
-    "vundle
-    set rtp+=~/.vim/bundle/vundle/
-    "call vundle#begin()
-    call vundle#rc()
-    "Plugin 'gmarik/Vundle.vim'
-    Bundle 'gmarik/vundle'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'Valloric/YouCompleteMe'
-    Bundle 'airblade/vim-gitgutter'
-    Bundle 'fatih/vim-go'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'troydm/easybuffer.vim'
-    Bundle 'ryanss/vim-hackernews'
-    Bundle 'scrooloose/syntastic'
-
-    "syntastic
+    "syntastic {
     "https://github.com/scrooloose/syntastic
+    "}
 
-    " NERDTree
-    " http://ryanolson.wordpress.com/2013/04/24/how-to-install-nerdtree-for-vim-using-pathogen/
+    "NERDTree {
+    "http://ryanolson.wordpress.com/2013/04/24/how-to-install-nerdtree-for-vim-using-pathogen/
     autocmd vimenter * NERDTreeToggle
     autocmd vimenter * if !argc() | NERDTree | endif
     autocmd VimEnter * wincmd p
@@ -197,20 +198,27 @@
     let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
     " Show the bookmarks table on startup
     " let NERDTreeShowBookmarks=1
+    "}
 
-    "bash completer
+    "bash completer {
     "http://www.vim.org/scripts/script.php?script_id=365
     "http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
     filetype plugin on
     let g:BASH_AuthorName   = 'CBodden'
     let g:BASH_Email        = 'cesar@pissedoffadmins.com'
     let g:BASH_Company      = 'pissedoffadmins.com'
+    "}
 
-    "YouCompleteMe
+    "lightline {
+    let g:lightline = { 'colorscheme': 'wombat', }
+    "}
+
+    "YouCompleteMe {
     " remove initial load message
     let g:ycm_confirm_extra_conf = 0
+    "}
 
-    " https://github.com/jstemmer/gotags
+    "https://github.com/jstemmer/gotags {
     let g:tagbar_type_go = {
         \ 'ctagstype' : 'go',
         \ 'kinds'     : [
@@ -237,9 +245,9 @@
         \ },
         \ 'ctagsbin'  : 'gotags',
         \ 'ctagsargs' : '-sort -silent'
-    \ }
+    \ } "}
 
-    " TagList Settings {
+    "TagList Settings {
         let Tlist_Auto_Open=0 " let the tag list open automagically
         let Tlist_Compact_Format = 1 " show small menu
         let Tlist_Ctags_Cmd = 'ctags' " location of ctags
@@ -260,9 +268,9 @@
             let tlist_vb_settings = 'asp;f:function;c:class' 
         " }
     " }
-" }
+"}
 
-" Formatting {
+"Formatting {
     " remove color columns in sh files
     autocmd BufRead,BufNewFile *.sh set colorcolumn=80
 
@@ -283,9 +291,12 @@
     " Remove the Windows ^M - when the encodings gets messed up
     noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" }
+    let b:match_ignorecase = 1 " case is stupid
+    let perl_extended_vars=1 " highlight advanced perl vars inside strings
 
-" Key mappings / bindings {
+"}
+
+"Key mappings / bindings {
     " mapping comma to leader key
     let mapleader=","
 
@@ -314,10 +325,20 @@
 
     nmap <silent> <F3> :NERDTreeToggle<CR>
 
-" }
+"}
 
-" StatusLine {
+"StatusLine {
   " http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
+  hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=15 ctermbg=88
+  hi User2 guifg=#000000 guibg=#F4905C ctermfg=0  ctermbg=208
+  hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=0  ctermbg=227
+  hi User4 guifg=#112605 guibg=#aefe7B ctermfg=0  ctermbg=120
+  hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=0  ctermbg=66
+  hi User7 guifg=#ffffff guibg=#880c0e ctermfg=15 ctermbg=88   gui=bold
+  hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=15 ctermbg=69
+  hi User9 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=90
+  hi User0 guifg=#ffffff guibg=#094afe ctermfg=15 ctermbg=0
+
   set statusline=
   set statusline+=%7*\[%n]                                  "buffernr
   set statusline+=%1*\ %<%F\                                "File+path
@@ -337,15 +358,4 @@
       return ''
     endif
   endfunction
-
-  hi User1 guifg=#ffdad8  guibg=#880c0e
-  hi User2 guifg=#000000  guibg=#F4905C
-  hi User3 guifg=#292b00  guibg=#f4f597
-  hi User4 guifg=#112605  guibg=#aefe7B
-  hi User5 guifg=#051d00  guibg=#7dcc7d
-  hi User7 guifg=#ffffff  guibg=#880c0e gui=bold
-  hi User8 guifg=#ffffff  guibg=#5b7fbb
-  hi User9 guifg=#ffffff  guibg=#810085
-  hi User0 guifg=#ffffff  guibg=#094afe
-
-" }
+"}
