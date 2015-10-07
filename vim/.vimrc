@@ -33,6 +33,7 @@
     set backupdir=~/.vim/backup " where to put backup files
     set clipboard+=unnamed " share windows clipboard
     set directory=~/.vim/tmp " directory to place swap files in
+    set fenc=utf-8 " UTF-8
     set fileformats=unix,dos,mac " support all three, in this order
     set hidden " you can change buffers without saving
     set history=1000 " how many lines of history VIM has to remember
@@ -43,6 +44,7 @@
     " set pastetoggle=<F2> " when insert mode, press f2 for paste mode
     " set spell " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
     set tags=~/.vim/tags/ " tag usage
+    set timeoutlen=300 " mapping delays
     set undodir=~/.vim/undo " persistent undo dir
     set undofile " persistent undo regardless of buffer unload
     set undolevels=1000 " many levels of undo
@@ -133,15 +135,14 @@
     set foldmethod=marker " Fold on the marker
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
-    function SimpleFoldText() " {
-        return getline(v:foldstart).' '
-    endfunction " }
+    "function SimpleFoldText() " {
+    "    return getline(v:foldstart).' '
+    "endfunction " }
     au BufWinEnter * silent loadview
     au BufWinLeave * mkview
 "}
 
 "Plugin Settings {
-
     "Rainbow Parenthesis {
     au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
@@ -340,16 +341,16 @@
 "}
 
 "StatusLine {
-    " http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
-    hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=15 ctermbg=88
-    hi User2 guifg=#000000 guibg=#F4905C ctermfg=0  ctermbg=208
-    hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=0  ctermbg=227
-    hi User4 guifg=#112605 guibg=#aefe7B ctermfg=0  ctermbg=120
-    hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=0  ctermbg=66
-    hi User7 guifg=#ffffff guibg=#880c0e ctermfg=15 ctermbg=88   gui=bold
-    hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=15 ctermbg=69
-    hi User9 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=90
-    hi User0 guifg=#ffffff guibg=#094afe ctermfg=15 ctermbg=0
+    "" http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
+    "hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=15 ctermbg=88
+    "hi User2 guifg=#000000 guibg=#F4905C ctermfg=0  ctermbg=208
+    "hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=0  ctermbg=227
+    "hi User4 guifg=#112605 guibg=#aefe7B ctermfg=0  ctermbg=120
+    "hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=0  ctermbg=66
+    "hi User7 guifg=#ffffff guibg=#880c0e ctermfg=15 ctermbg=88   gui=bold
+    "hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=15 ctermbg=69
+    "hi User9 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=90
+    "hi User0 guifg=#ffffff guibg=#094afe ctermfg=15 ctermbg=0
 
     set statusline=
     set statusline+=%7*\[%n]                                  "buffernr
