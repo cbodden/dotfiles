@@ -134,7 +134,7 @@
     set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
     set foldmethod=marker " Fold on the marker
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
-    function SimpleFoldText() " {
+    function! SimpleFoldText() " {
         return getline(v:foldstart).' '
     endfunction " }
     set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
@@ -176,6 +176,7 @@
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'troydm/easybuffer.vim'
+    Plugin 'scrooloose/nerdtree'
     "}
 
     "syntastic {
@@ -196,9 +197,6 @@
     autocmd vimenter * if !argc() | NERDTree | endif
     autocmd VimEnter * wincmd p
     autocmd BufEnter * NERDTreeMirror
-    " mapped toggle keys
-    map <C-n> :NERDTreeToggle<CR>
-    map <C-m> :NERDTree<CR>
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
     " auto quit nerdtree when buffers closed
@@ -207,8 +205,8 @@
     let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
     " Show the bookmarks table on startup
     " let NERDTreeShowBookmarks=1
-    "Nerd tree toggle
-    nmap <silent> <F3> :NERDTreeToggle<CR>
+    " nerdtree statusline
+    let NERDTreeStatusline = "%{ getcwd() }"
     "}
 
     "bash completer {
@@ -338,19 +336,24 @@
     " Easybuffer
     " https://github.com/troydm/easybuffer.vim
     nmap <silent> <F7> :EasyBuffer<CR>
+
+    " nerdtree
+    map <C-n> :NERDTreeToggle<CR>
+    map <C-m> :NERDTree<CR>
+    nmap <silent> <F3> :NERDTreeToggle<CR>
 "}
 
 "StatusLine {
     "" http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
-    "hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=15 ctermbg=88
-    "hi User2 guifg=#000000 guibg=#F4905C ctermfg=0  ctermbg=208
-    "hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=0  ctermbg=227
-    "hi User4 guifg=#112605 guibg=#aefe7B ctermfg=0  ctermbg=120
-    "hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=0  ctermbg=66
-    "hi User7 guifg=#ffffff guibg=#880c0e ctermfg=15 ctermbg=88   gui=bold
-    "hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=15 ctermbg=69
-    "hi User9 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=90
-    "hi User0 guifg=#ffffff guibg=#094afe ctermfg=15 ctermbg=0
+    hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=15 ctermbg=88
+    hi User2 guifg=#000000 guibg=#F4905C ctermfg=0  ctermbg=208
+    hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=0  ctermbg=227
+    hi User4 guifg=#112605 guibg=#aefe7B ctermfg=0  ctermbg=120
+    hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=0  ctermbg=66
+    hi User7 guifg=#ffffff guibg=#880c0e ctermfg=15 ctermbg=88   gui=bold
+    hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=15 ctermbg=69
+    hi User9 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=90
+    hi User0 guifg=#ffffff guibg=#094afe ctermfg=15 ctermbg=0
 
     set statusline=
     set statusline+=%7*\[%n]                                  "buffernr
