@@ -38,7 +38,7 @@
     set hidden                      " you can change buffers without saving
     set history=1000                " how many lines of history VIM has to remember
     set iskeyword+=_,$,@,%,#        " none of these are word dividers 
-    set ml
+    set ml                          " set modelines
     set mouse=a                     " use mouse everywhere
     set noerrorbells                " don't make noise
     " set pastetoggle=<F2>          " when insert mode, press f2 for paste mode
