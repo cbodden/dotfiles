@@ -308,7 +308,7 @@
 "Key mappings / bindings {
     let mapleader=","                       " mapping comma to leader key
 
-    cmap w!! w !sudo tee % >/dev/null       " incase you forget to sudo a file when saving - just type "w!!"
+"    cmap w!! w !sudo tee % >/dev/null       " incase you forget to sudo a file when saving - just type "w!!"
 
     " Quickly edit/reload the vimrc file
     nmap <silent> <leader>ev :e $MYVIMRC<CR>
