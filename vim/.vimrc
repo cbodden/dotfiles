@@ -270,6 +270,14 @@
             let tlist_vb_settings = 'asp;f:function;c:class' 
         " }
     " }
+
+    "Gundo {
+    nnoremap <F5> :GundoToggle<CR>
+    let g:gundo_width = 45
+    let g:gundo_preview_height = 40
+    let g:gundo_right = 1
+    "}
+
 "}
 
 "Formatting {
