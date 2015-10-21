@@ -7,16 +7,16 @@
     set noexrc                      " don't use local version of .(g)vimrc, .exrc
     set cpoptions=aABceFsmq
     "             |||||||||
-    "             ||||||||+-- When joining lines, leave the cursor 
+    "             ||||||||+-- When joining lines, leave the cursor
     "             ||||||||     between joined lines
-    "             |||||||+-- When a new match is created (showmatch) 
+    "             |||||||+-- When a new match is created (showmatch)
     "             |||||||     pause for .5
-    "             ||||||+-- Set buffer options when entering the 
+    "             ||||||+-- Set buffer options when entering the
     "             ||||||     buffer
     "             |||||+-- :write command updates current file name
-    "             ||||+-- Automatically add <CR> to the last line 
+    "             ||||+-- Automatically add <CR> to the last line
     "             ||||     when using :@r
-    "             |||+-- Searching continues at the end of the match 
+    "             |||+-- Searching continues at the end of the match
     "             |||     at the cursor position
     "             ||+-- A backslash has no special meaning in mappings
     "             |+-- :write updates alternative file name
@@ -37,7 +37,7 @@
     set fileformats=unix,dos,mac    " support all three, in this order
     set hidden                      " you can change buffers without saving
     set history=1000                " how many lines of history VIM has to remember
-    set iskeyword+=_,$,@,%,#        " none of these are word dividers 
+    set iskeyword+=_,$,@,%,#        " none of these are word dividers
     set ml                          " set modelines
     set mouse=a                     " use mouse everywhere
     set noerrorbells                " don't make noise
@@ -76,7 +76,7 @@
     set lazyredraw                  " do not redraw while running macros
     set linespace=0                 " don't insert any extra pixel lines betweens rows
     set list                        " we do what to show tabs, to ensure we get them out of my files
-    set listchars=tab:>-,trail:-    " show tabs and trailing 
+    set listchars=tab:>-,trail:-    " show tabs and trailing
     set matchtime=5                 " how many tenths of a second to blink matching brackets for
     set cursorcolumn                " don't highlight the current column
     set nostartofline               " leave my cursor where it was
@@ -98,7 +98,7 @@
     ""              | | | | |          |          |        |    |       |    + current column
     ""              | | | | |          |          |        |    |       +-- current line
     ""              | | | | |          |          |        |    +-- current % into file
-    ""              | | | | |          |          |        +-- current syntax in square brackets 
+    ""              | | | | |          |          |        +-- current syntax in square brackets
     ""              | | | | |          |          +-- current fileformat
     ""              | | | | |          +-- number of lines
     ""              | | | | +-- preview flag in square brackets
@@ -258,18 +258,18 @@
         let Tlist_Enable_Fold_Column = 0    " do show folding tree
         let Tlist_Exist_OnlyWindow = 1      " if you are the last, kill yourself
         let Tlist_File_Fold_Auto_Close = 0  " fold closed other trees
-        let Tlist_Sort_Type = "name"        " order by 
+        let Tlist_Sort_Type = "name"        " order by
         let Tlist_Use_Right_Window = 1      " split to the right side of the screen
         let Tlist_WinWidth = 35             " 40 cols wide, so i can (almost always) read my functions
         " Language Specifics {
             " just functions and classes please
-            let tlist_aspjscript_settings = 'asp;f:function;c:class' 
+            let tlist_aspjscript_settings = 'asp;f:function;c:class'
             " just functions and subs please
-            let tlist_aspvbs_settings = 'asp;f:function;s:sub' 
+            let tlist_aspvbs_settings = 'asp;f:function;s:sub'
             " don't show variables in freaking php
-            let tlist_php_settings = 'php;c:class;d:constant;f:function' 
+            let tlist_php_settings = 'php;c:class;d:constant;f:function'
             " just functions and classes please
-            let tlist_vb_settings = 'asp;f:function;c:class' 
+            let tlist_vb_settings = 'asp;f:function;c:class'
         " }
     " }
 
@@ -300,7 +300,7 @@
     au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
     " Make trailing whitespace be flagged as bad.
     au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-    " remove colorcolumn 
+    " remove colorcolumn
     autocmd BufRead,BufNewFile *.py set colorcolumn=9999
     " End Python stuffs
 
@@ -317,17 +317,17 @@
 "Key mappings / bindings {
     let mapleader=","                       " mapping comma to leader key
 
-"    cmap w!! w !sudo tee % >/dev/null       " incase you forget to sudo a file when saving - just type "w!!"
+    cmap w!! w !sudo tee >/dev/null %       " incase you forget to sudo a file when saving - just type "w!!"
 
     " Quickly edit/reload the vimrc file
     nmap <silent> <leader>ev :e $MYVIMRC<CR>
     nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
     " autoreload vimrc
-    augroup reload_vimrc " {
+    augroup reload_vimrc
         autocmd!
         autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    augroup END " }
+    augroup END
 
     " no more up left right down keys. hjkl motherfucker.
     map <up> <nop>
@@ -371,7 +371,7 @@
     set statusline+=%2*\ %y\                                  "FileType
     set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
     set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-    set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
+    set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
     set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
     set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
     set statusline+=%9*\ col:%03c\                            "Colnr
