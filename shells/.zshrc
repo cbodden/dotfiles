@@ -208,27 +208,4 @@ for ((b=-1.5; b<=1.5; b+=3.0/lines)) do
 done
 }
 
-## go stuffs
-#export GOROOT=$HOME/go
-#export GOBIN=$GOROOT/bin
-#export GOARCH=amd64
-#export GOOS=linux
-## export PATH=$GOBIN;$PATH
-#export GOPATH=$GOROOT
-export GOARCH="amd64"
-export GOCHAR="6"
-export GOEXE=""
-export GOHOSTARCH="amd64"
-export GOHOSTOS="linux"
-export GOOS="linux"
-export GORACE=""
-export GOROOT="/usr/lib/go"
-export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
-export CC="gcc"
-export GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0"
-export CXX="g++"
-export CGO_ENABLED="1"
-export GOBIN=$GOROOT/bin
-export GOPATH=~/go
-
 #### end testing area #### }
