@@ -6,13 +6,13 @@
 
 #### interactive shell check #### {
 if [[ $- != *i* ]] ; then
-  return
+    return
 fi
 #### end interactive check #### }
 
 #### startx automata #### {
 if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]; then
-  [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
+    [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
 fi
 #### end automata #### }
 
@@ -65,10 +65,10 @@ setopt SHARE_HISTORY            # share history between sessions
 
 #### ls colors zsh #### {
 if [[ -x "`whence -p dircolors`" ]]; then
-  eval `dircolors`
-  alias ls='ls -F --color=auto'
+    eval `dircolors`
+    alias ls='ls -F --color=auto'
 else
-  alias ls='ls -F'
+    alias ls='ls -F'
 fi
 #### end ls colors #### }
 
@@ -134,37 +134,40 @@ function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLoo
 
 #### tmux shell init #### {
 if [[ $USER != root ]]; then
-  tmux_count=`tmux ls | wc -l`
-  if [[ "$tmux_count" == "0" ]]; then
-    tmux -2
-  else
-    if [[ -z "$TMUX" ]]; then
-      if [[ "$tmux_count" == "1" ]]; then
-        session_id=1
-      else
-        session_id=`echo $tmux_count`
-      fi
-      tmux -2 new-session -d -s $session_id
-      tmux -2 attach-session -t $session_id
+    tmux_count=`tmux ls | wc -l`
+    if [[ "$tmux_count" == "0" ]]; then
+        tmux -2
+    else
+        if [[ -z "$TMUX" ]]; then
+            if [[ "$tmux_count" == "1" ]]; then
+                session_id=1
+            else
+                session_id=`echo $tmux_count`
+            fi
+            tmux -2 new-session -d -s $session_id
+            tmux -2 attach-session -t $session_id
+        fi
     fi
-  fi
 else
 fi
 #### tmux init end #### }
 
 #### motd / fortune #### {
-# fortune futurama
-~/git/mine/dotfiles/motd.sh
+if [[ $USER != root ]]; then
+    ~/git/mine/dotfiles/motd.sh
+else
+    fortune futurama
+fi
 #### end motd / fortune #### }
 
 #### prompt #### {
 if [[ "$EUID" -ne "0" ]]; then
-  # https://github.com/nojhan/liquidprompt
-  source ~/.zsh/liquidprompt/liquidprompt
+    # https://github.com/nojhan/liquidprompt
+    source ~/.zsh/liquidprompt/liquidprompt
 else
-  # https://github.com/olivierverdier/zsh-git-prompt
-  source ~/.zsh/git-prompt/zshrc.sh
-  PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
+    # https://github.com/olivierverdier/zsh-git-prompt
+    source ~/.zsh/git-prompt/zshrc.sh
+    PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 fi
 #### end prompt #### }
 
@@ -191,18 +194,18 @@ fi
 #### testing area #### {
 # from http://stackoverflow.com/questions/171563/whats-in-your-zshrc
 function most_useless_use_of_zsh {
-   local lines columns colour a b p q i pnew
-   ((columns=COLUMNS-1, lines=LINES-1, colour=0))
-   for ((b=-1.5; b<=1.5; b+=3.0/lines)) do
-       for ((a=-2.0; a<=1; a+=3.0/columns)) do
-           for ((p=0.0, q=0.0, i=0; p*p+q*q < 4 && i < 32; i++)) do
-               ((pnew=p*p-q*q+a, q=2*p*q+b, p=pnew))
-           done
-           ((colour=(i/4)%8))
-            echo -n "\\e[4${colour}m "
+local lines columns colour a b p q i pnew
+((columns=COLUMNS-1, lines=LINES-1, colour=0))
+for ((b=-1.5; b<=1.5; b+=3.0/lines)) do
+    for ((a=-2.0; a<=1; a+=3.0/columns)) do
+        for ((p=0.0, q=0.0, i=0; p*p+q*q < 4 && i < 32; i++)) do
+            ((pnew=p*p-q*q+a, q=2*p*q+b, p=pnew))
         done
-        echo
+        ((colour=(i/4)%8))
+        echo -n "\\e[4${colour}m "
     done
+    echo
+done
 }
 
 ## go stuffs
