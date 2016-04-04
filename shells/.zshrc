@@ -31,42 +31,39 @@ export EIX_LIMIT=0
 #### zsh key bindings #### {
 # bindkey -v                              # vi mode for vi style keybindings
 bindkey -e                                # emacs mode for emacs keybindings
-bindkey "\e[3~"   delete-char             # delete key fix
-bindkey "^[3;5~"  delete-char             # delete key fix
-bindkey "^[[3~"   delete-char             # delete key fix
-bindkey ";3C"     emacs-forward-word      # <alt><right arrow> forward word
-bindkey "^[[5C"   emacs-forward-word      # <ctrl><right arrow> forward word
-bindkey ";3D"     emacs-backward-word     # <alt><left arrow> backword word
-bindkey "^[[5D"   emacs-backward-word     # <ctrl><left arrow> backword word
-bindkey "\eOH"    beginning-of-line       # home key
-bindkey "\e[1~"   beginning-of-line       # home key
-bindkey "\e[7~"   beginning-of-line       # home key
-bindkey "\e[H"    beginning-of-line       # home key
-bindkey "^A"      beginning-of-line       # ctrl-a beginning of line binding
-bindkey "^[[7~"   beginning-of-line       # home key
-bindkey "\eOd"    backward-word
-bindkey "\e[1;3D" backward-word
-bindkey "\e[1;5D" backward-word
-bindkey "\e[5D"   backward-word
-bindkey "\e\e[D"  backward-word
-bindkey "^B"      backward-word           # ctrl-b backward words
-bindkey "\eOF"    end-of-line             # end key
-bindkey "\e[4~"   end-of-line             # end key
-bindkey "\e[8~"   end-of-line             # end key
-bindkey "\e[8~"   end-of-line             # end key
-bindkey "\e[F"    end-of-line             # end key
-bindkey "^E"      end-of-line             # ctrl-e end of line binding
-bindkey "^[[8~"   end-of-line             # end key
-bindkey "\eOc"    forward-word
-bindkey "\e[1;3C" forward-word
-bindkey "\e[1;5C" forward-word
-bindkey "\e[5C"   forward-word
-bindkey "\e\e[C"  forward-word
-bindkey "^F"      forward-word            # ctrl-f forward words
+bindkey "\eOd"    backward-word           # [Ctrl] [LeftArrow] move backward one word
+bindkey "\e[1;3D" backward-word           # [Alt] [LeftArrow] move backward one word
+bindkey "\e[1;5D" backward-word           # [Ctrl] [LeftArrow] move backward one word
+bindkey "\e[5D"   backward-word           # [Esc] [LeftArrow] move backward one word
+bindkey "\e\e[D"  backward-word           # [Ctrl] [LeftArrow] move backward one word
+bindkey "^B"      backward-word           # [Ctrl] [b] move backward one word
+bindkey "\eOH"    beginning-of-line       # [Home] go to beginning of line
+bindkey "\e[1~"   beginning-of-line       # [Home] go to beginning of line
+bindkey "\e[H"    beginning-of-line       # [Home] go to beginning of line
+bindkey "^A"      beginning-of-line       # [Ctrl] [a] go to beginning of line
+bindkey "^[[7~"   beginning-of-line       # [Home] go to beginning of line
+bindkey "\e[3~"   delete-char             # [Delete] delete forward
+bindkey "^[3;5~"  delete-char             # [Delete] delete forward
+bindkey "^[[3~"   delete-char             # [Delete] delete forward
+bindkey ";3C"     emacs-forward-word      # [Alt] [RightArrow] forward word
+bindkey "^[[5C"   emacs-forward-word      # [Ctrl] [RightArrow] forward word
+bindkey ";3D"     emacs-backward-word     # [Alt] [LeftArrow] backword word
+bindkey "^[[5D"   emacs-backward-word     # [Ctrl] [LeftArrow] backword word
+bindkey "\eOF"    end-of-line             # [End] go to end of line
+bindkey "\e[4~"   end-of-line             # [End] go to end of line
+bindkey "\e[F"    end-of-line             # [End] go to end of line
+bindkey "^E"      end-of-line             # [Ctrl] [e] go to end of line
+bindkey "^[[8~"   end-of-line             # [End] go to end of line
+bindkey "\eOc"    forward-word            # [Ctrl] [RightArrow] move forward one word
+bindkey "\e[1;3C" forward-word            # [Alt] [RightArrow] move forward one word
+bindkey "\e[1;5C" forward-word            # [Ctrl] [RightArrow] move forward one word
+bindkey "\e[5C"   forward-word            # [Esc] [RightArrow] move forward one word
+bindkey "\e\e[C"  forward-word            # [Esc] [RightArrow] move forward one word
+bindkey "^F"      forward-word            # [Ctrl] [f] move forward one word
 bindkey "\e[5~"   history-search-backward
 bindkey "\e[6~"   history-search-forward
-bindkey "^R"      history-incremental-search-backward  # ctrl-r history incremental search backwards
-bindkey "\e[2~"   quoted-insert
+bindkey "^R"      history-incremental-search-backward  # [Ctrl] [r] history incremental search backwards
+bindkey "\e[2~"   quoted-insert           # [Insert] insert key
 bindkey "^[[2~"   overwrite-mode          # insert key overwrite mode
 #### end zsh key bindings #### }
 
