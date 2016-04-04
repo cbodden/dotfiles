@@ -29,22 +29,45 @@ export EIX_LIMIT=0
 #### end eix #### }
 
 #### zsh key bindings #### {
-# bindkey -v                            # vi mode for vi style keybindings
-bindkey "^[3;5~" delete-char            # delete key fix
-bindkey "^[[3~"  delete-char            # delete key fix
-bindkey ';3C' emacs-forward-word        # <alt><right arrow> forward word
-bindkey ';3D' emacs-backward-word       # <alt><left arrow> backword word
-bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
-bindkey '^B' backward-word              # ctrl-b backward words
-bindkey '^E' end-of-line                # ctrl-e end of line binding
-bindkey '^F' forward-word               # ctrl-f forward words
-bindkey '^R' history-incremental-search-backward        # ctrl-r history incremental search backwards
-bindkey '^[[2~'  overwrite-mode         # insert key overwrite mode
-bindkey '^[[5C'  emacs-forward-word     # <ctrl><right arrow> forward word
-bindkey '^[[5D'  emacs-backward-word    # <ctrl><left arrow> backword word
-bindkey '^[[7~'  beginning-of-line      # home key
-bindkey '^[[8~'  end-of-line            # end key
-bindkey -e                              # emacs mode for emacs style keybindings
+# bindkey -v                              # vi mode for vi style keybindings
+bindkey -e                                # emacs mode for emacs keybindings
+bindkey "\e[3~"   delete-char             # delete key fix
+bindkey "^[3;5~"  delete-char             # delete key fix
+bindkey "^[[3~"   delete-char             # delete key fix
+bindkey ";3C"     emacs-forward-word      # <alt><right arrow> forward word
+bindkey "^[[5C"   emacs-forward-word      # <ctrl><right arrow> forward word
+bindkey ";3D"     emacs-backward-word     # <alt><left arrow> backword word
+bindkey "^[[5D"   emacs-backward-word     # <ctrl><left arrow> backword word
+bindkey "\eOH"    beginning-of-line       # home key
+bindkey "\e[1~"   beginning-of-line       # home key
+bindkey "\e[7~"   beginning-of-line       # home key
+bindkey "\e[H"    beginning-of-line       # home key
+bindkey "^A"      beginning-of-line       # ctrl-a beginning of line binding
+bindkey "^[[7~"   beginning-of-line       # home key
+bindkey "\eOd"    backward-word
+bindkey "\e[1;3D" backward-word
+bindkey "\e[1;5D" backward-word
+bindkey "\e[5D"   backward-word
+bindkey "\e\e[D"  backward-word
+bindkey "^B"      backward-word           # ctrl-b backward words
+bindkey "\eOF"    end-of-line             # end key
+bindkey "\e[4~"   end-of-line             # end key
+bindkey "\e[8~"   end-of-line             # end key
+bindkey "\e[8~"   end-of-line             # end key
+bindkey "\e[F"    end-of-line             # end key
+bindkey "^E"      end-of-line             # ctrl-e end of line binding
+bindkey "^[[8~"   end-of-line             # end key
+bindkey "\eOc"    forward-word
+bindkey "\e[1;3C" forward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[5C"   forward-word
+bindkey "\e\e[C"  forward-word
+bindkey "^F"      forward-word            # ctrl-f forward words
+bindkey "\e[5~"   history-search-backward
+bindkey "\e[6~"   history-search-forward
+bindkey "^R"      history-incremental-search-backward  # ctrl-r history incremental search backwards
+bindkey "\e[2~"   quoted-insert
+bindkey "^[[2~"   overwrite-mode          # insert key overwrite mode
 #### end zsh key bindings #### }
 
 #### zsh history #### {
