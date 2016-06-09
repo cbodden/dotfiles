@@ -229,3 +229,7 @@ done
 }
 
 #### end testing area #### }
+
+#### sourcing of other files #### {
+source ~/.awscreds.mine
+#### end sourcing #### }

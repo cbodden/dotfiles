@@ -1,0 +1,9 @@
+pcm.primary {
+  type hw
+  card 1
+}
+
+ctl.primary {
+  type hw
+  card 1
+}
