@@ -312,6 +312,9 @@
 
     let b:match_ignorecase = 1 " case is stupid
     let perl_extended_vars=1 " highlight advanced perl vars inside strings
+
+    " adding shlibs to sh syntax hilighting
+    au BufNewFile,BufRead *.shlib set filetype=sh
 "}
 
 "Key mappings / bindings {
