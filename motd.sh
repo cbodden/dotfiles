@@ -102,7 +102,7 @@ AG8vk6pDVej09WGCJe0gHvchzE5uFBg++sATwkAB0V5BjmFsQLDo5caw1wDqOvZ+WZGJ1vCT9Sth
 WNqZ3STeizU4O7ugGHSaxGTYW8g4ck8jzjKyh3V3WJCbhJhBB4qrB0vM8tthsBPjJI67YF1c4cI8
 P3j/lt3IZFZ3ixMmujAc99eRHH6ouxwanT3F0jwHPkq9fq8KHOuDQqPqjVrvND5VvcO2KJpyv4Eu
 9rpsy+8CVb3RqBW+St3W6og8T5PkD18OD5WAAQAA"
-echo "${R_TXT}" | base64 -d | gunzip
+    echo "${R_TXT}" | base64 -d | gunzip
 }
 
 function fortune() {
