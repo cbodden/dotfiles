@@ -95,14 +95,14 @@ function proc() {
 }
 
 function rules() {
-    printf "%s\n\n" "${GRN}"
-cat <<EOL
-  ::::::::::::::::::::::::::::::::::-RULES-::::::::::::::::::::::::::::::::::
-    This is a private system that you are not to give out access to anyone
-    without permission from the admin. No illegal files or activity. Stay,
-    in your home directory, keep the system clean, and make regular backUPS.
-     -==  DISABLE YOUR PROGRAMS FROM KEEPING SENSITIVE LOGS OR HISTORY ==-
-EOL
+    printf "%s" "${GRN}"
+local R_TXT="
+H4sIAFVjdVcAA4WOQW7CMBBF9znFPwDJASplQdWURgQS2aESy2kYkhGJHdmGyrcvge75mtX80ZuX
+AG8vk6pDVej09WGCJe0gHvchzE5uFBg++sATwkAB0V5BjmFsQLDo5caw1wDqOvZ+WZGJ1vCT9Sth
+WNqZ3STeizU4O7ugGHSaxGTYW8g4ck8jzjKyh3V3WJCbhJhBB4qrB0vM8tthsBPjJI67YF1c4cI8
+P3j/lt3IZFZ3ixMmujAc99eRHH6ouxwanT3F0jwHPkq9fq8KHOuDQqPqjVrvND5VvcO2KJpyv4Eu
+9rpsy+8CVb3RqBW+St3W6og8T5PkD18OD5WAAQAA"
+echo "${R_TXT}" | base64 -d | gunzip
 }
 
 function fortune() {
