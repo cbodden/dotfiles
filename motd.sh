@@ -51,8 +51,7 @@ function uptime() {
 
 function load() {
     eval $(cat /proc/loadavg \
-        | awk '{printf "LOAD1=%s; LOAD5=%s; LOAD15=%s;", \
-        $1,$2,$3};' -)
+        | awk '{printf "LOAD1=%s; LOAD5=%s; LOAD15=%s;", $1,$2,$3};' -)
     printf "%s%s%s%s\n" "${MGN}" "Load.......: " "${BLU}" \
         "${LOAD1} (1 minute) ${LOAD5} (5 minutes) ${LOAD15} (15 minutes)"
 }
