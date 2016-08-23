@@ -93,6 +93,23 @@ function proc() {
         "${P_TOT} total running of which ${P_USR} are yours"
 }
 
+function temperature() {
+    local REGION=$(curl -s ipinfo.io \
+        | awk '/city/ {print $2}' \
+        | tr -d '[",]')
+    eval ACCU="http://rss.accuweather.com/rss/liveweather_rss.asp"
+    eval MET="\?metric\=\"\""
+    eval L_CODE="\&locCode\=\"${REGION}\""
+
+    if [[ -n ${REGION} ]]; then
+        local DEGTMP=$(curl -s ${ACCU}${MET}${L_CODE} \
+            | sed -n \
+                '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \1/p')
+        printf "%s%s%s%s\n" "${MGN}" "Temperature: " "${BLU}" \
+            "${REGION} ${DEGTMP}"
+    fi
+}
+
 function rules() {
     printf "%s" "${GRN}"
 local R_TXT="
@@ -109,7 +126,7 @@ function fortune() {
         if [[ -f $(which cowthink 2>/dev/null) ]]; then
             printf "%s\n" "${RED}"
             command fortune \
-                | cowthink -f $(ls /usr/share/cowsay-3.03/cows \
+                | cowthink -f $(ls /usr/share/cowsay/cows \
                 | shuf -n1)
         fi
     fi
