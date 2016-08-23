@@ -142,5 +142,6 @@ memory
 diskusage
 ssh
 proc
+temperature
 rules
 fortune
