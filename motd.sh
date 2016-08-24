@@ -12,7 +12,8 @@ function main()
 }
 
 function figlet() {
-    if [[ -f $(which figlet 2>/dev/null) ]]; then
+    if [[ -f $(which figlet 2>/dev/null) ]]
+    then
         printf "%s" "${GRN}"
         command figlet -c $(hostname)
     fi
@@ -20,7 +21,8 @@ function figlet() {
 
 function last() {
     if [[ $(lastlog -u $USER \
-        | awk 'END {print $2}') = tty* ]]; then
+        | awk 'END {print $2}') = tty* ]]
+    then
         local LL=$(lastlog -u $USER \
             | tail -n 1)
         local FROM=$(echo ${LL} \
@@ -101,7 +103,8 @@ function temperature() {
     eval MET="\?metric\=\"\""
     eval L_CODE="\&locCode\=\"${REGION}\""
 
-    if [[ -n ${REGION} ]]; then
+    if [[ -n ${REGION} ]]
+    then
         local DEGTMP=$(curl -s ${ACCU}${MET}${L_CODE} \
             | sed -n \
                 '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \1/p')
@@ -122,8 +125,10 @@ P3j/lt3IZFZ3ixMmujAc99eRHH6ouxwanT3F0jwHPkq9fq8KHOuDQqPqjVrvND5VvcO2KJpyv4Eu
 }
 
 function fortune() {
-    if [[ -f $(which fortune 2>/dev/null) ]]; then
-        if [[ -f $(which cowthink 2>/dev/null) ]]; then
+    if [[ -f $(which fortune 2>/dev/null) ]]
+    then
+        if [[ -f $(which cowthink 2>/dev/null) ]]
+        then
             printf "%s\n" "${RED}"
             command fortune \
                 | cowthink -f $(ls /usr/share/cowsay/cows \
