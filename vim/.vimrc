@@ -370,6 +370,10 @@
     " testing tig mappings
     " show history in tig
     nnoremap <Leader>gv :!tig %<CR>
+
+    " run present edit in bash
+    map r :!bash %
+
 "}
 
 "StatusLine {
