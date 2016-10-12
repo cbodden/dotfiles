@@ -1,45 +1,54 @@
 servers = (
   {
-    address = "irc.gonullyourself.org";
-    chatnet = "0x00";
+    address = "irc.freenode.net";
+    chatnet = "freenode";
     port = "6697";
-    autoconnect = "yes";
+    password = "<PASSWORD>";
     use_ssl = "yes";
-  },
-
-  {
-    address = "irc.prison.net";
-    chatnet = "efnet";
-    port = "6667";
+    ssl_verify = "yes";
     autoconnect = "yes";
-    use_ssl = "no";
   },
-
+  {
+    address = "irc.mzima.net";
+    chatnet = "efnet";
+    port = "9999";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
 );
 
 chatnets = {
-  IRCnet = {
+  freenode = {
     type = "IRC";
-    max_kicks = "4";
-    max_msgs = "5";
-    max_whois = "4";
-    max_query_chans = "5";
+    real_name = "<NICK1>";
+    user_name = "<NICK1>";
+    nick = "<NICK1>";
+    alternate_nick = "<NICK2>";
   };
-  EFNet = { 
+  efnet = {
     type = "IRC";
-    max_kicks = "4";
-    max_msgs = "3";
-    max_whois = "1";
-  };
-  0x00 = {
-    type = "IRC";
-    autosendcmd = "/msg nickserv identify PASSWORD ;wait 2000";
+    real_name = "<NICK3>";
+    user_name = "<NICK3>";
+    nick = "<NICK3>";
+    alternate_nick = "<NICK4>";
   };
 };
 
 channels = (
-  { name = "#poa"; chatnet = "0x00"; autojoin = "yes"; },
-  { name = "#poa"; chatnet = "efnet"; autojoin = "yes"; }
+  { name = "#<ROOM1>";
+    chatnet = "freenode";
+    autojoin = "yes";
+    password = "<PASSWORD>";
+  },
+  { name = "#<ROOM2>; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#<ROOM1>"; chatnet = "efnet"; autojoin = "yes"; },
+  {
+    name = "#<ROOM2>";
+    chatnet = "freenode";
+    autojoin = "yes";
+    password = "<PASSWORD>";
+  }
 );
 
 aliases = {
@@ -81,7 +90,6 @@ aliases = {
   GOTO = "sb goto";
   CHAT = "dcc chat";
   RUN = "SCRIPT LOAD";
-  CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
   Q = "QUERY";
@@ -90,6 +98,105 @@ aliases = {
   ATAG = "WINDOW SERVER";
   UNSET = "set -clear";
   RESET = "set -default";
+  1 = "window goto 1";
+  2 = "window goto 2";
+  3 = "window goto 3";
+  4 = "window goto 4";
+  5 = "window goto 5";
+  6 = "window goto 6";
+  7 = "window goto 7";
+  8 = "window goto 8";
+  9 = "window goto 9";
+  10 = "window goto 10";
+  11 = "window goto 11";
+  12 = "window goto 12";
+  13 = "window goto 13";
+  14 = "window goto 14";
+  15 = "window goto 15";
+  16 = "window goto 16";
+  17 = "window goto 17";
+  18 = "window goto 18";
+  19 = "window goto 19";
+  20 = "window goto 20";
+  21 = "window goto 21";
+  22 = "window goto 22";
+  23 = "window goto 23";
+  24 = "window goto 24";
+  25 = "window goto 25";
+  26 = "window goto 26";
+  27 = "window goto 27";
+  28 = "window goto 28";
+  29 = "window goto 29";
+  30 = "window goto 30";
+  31 = "window goto 31";
+  32 = "window goto 32";
+  33 = "window goto 33";
+  34 = "window goto 34";
+  35 = "window goto 35";
+  36 = "window goto 36";
+  37 = "window goto 37";
+  38 = "window goto 38";
+  39 = "window goto 39";
+  40 = "window goto 40";
+  41 = "window goto 41";
+  42 = "window goto 42";
+  43 = "window goto 43";
+  44 = "window goto 44";
+  45 = "window goto 45";
+  46 = "window goto 46";
+  47 = "window goto 47";
+  48 = "window goto 48";
+  49 = "window goto 49";
+  50 = "window goto 50";
+  51 = "window goto 51";
+  52 = "window goto 52";
+  53 = "window goto 53";
+  54 = "window goto 54";
+  55 = "window goto 55";
+  56 = "window goto 56";
+  57 = "window goto 57";
+  58 = "window goto 58";
+  59 = "window goto 59";
+  60 = "window goto 60";
+  61 = "window goto 61";
+  62 = "window goto 62";
+  63 = "window goto 63";
+  64 = "window goto 64";
+  65 = "window goto 65";
+  66 = "window goto 66";
+  67 = "window goto 67";
+  68 = "window goto 68";
+  69 = "window goto 69";
+  70 = "window goto 70";
+  71 = "window goto 71";
+  72 = "window goto 72";
+  73 = "window goto 73";
+  74 = "window goto 74";
+  75 = "window goto 75";
+  76 = "window goto 76";
+  77 = "window goto 77";
+  78 = "window goto 78";
+  79 = "window goto 79";
+  80 = "window goto 80";
+  81 = "window goto 81";
+  82 = "window goto 82";
+  83 = "window goto 83";
+  84 = "window goto 84";
+  85 = "window goto 85";
+  86 = "window goto 86";
+  87 = "window goto 87";
+  88 = "window goto 88";
+  89 = "window goto 89";
+  90 = "window goto 90";
+  91 = "window goto 91";
+  92 = "window goto 92";
+  93 = "window goto 93";
+  94 = "window goto 94";
+  95 = "window goto 95";
+  96 = "window goto 96";
+  97 = "window goto 97";
+  98 = "window goto 98";
+  99 = "window goto 99";
 };
 
 statusbar = {
@@ -153,6 +260,7 @@ statusbar = {
         lag = { priority = "-1"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
+        usercount = { };
       };
     };
 
@@ -209,57 +317,71 @@ statusbar = {
     };
   };
 };
+
 settings = {
   core = {
-    real_name = "USER";
-    user_name = "USER";
-    nick = "USER";
     rawlog_lines = "1000";
+    real_name = "<REAL NAME>";
+    user_name = "<USER NAME>";
+    nick = "<NICK>";
+    hostname = "<HOSTNAME>
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
     theme = "mine.theme";
     autolog = "yes";
-    autolog_colors = "no";
+    autolog_colors = "yes";
     max_command_history = "1000";
+    window_history = "yes";
   };
   "perl/core/scripts" = {
-    awl_block = "-14";
+    awl_block = "-16";
     awl_sbar_maxlength = "yes";
     awl_maxlines = "5";
-    awl_display_key = "$Q%K|$N%n $H$C$S";
+    awl_display_key = "$Q| $H$C$S";
     awl_display_nokey = "[$N]$H$C$S";
-    awl_display_key_active = "$Q%K|$N%n $H%U$C%n$S";
+    awl_display_key_active = "$Q| $H%U$C%n";
+    nicklist_automode = "OFF";
+    awl_shared_sbar = "OFF";
+    awl_viewer = "no";
   };
 };
+
 logs = { };
-hilights = ( { text = "USER"; nick = "no"; word = "no"; } );
+
+ignores = (
+  {
+    level = "MODES JOINS PARTS QUITS NICKS";
+    channels = ( "#<ROOM1>" );
+  }
+);
+
+hilights = (
+  { text = "<NICK1>"; nick = "yes"; word = "yes"; },
+  { text = "<NICK2>"; nick = "yes"; word = "yes"; },
+  { text = "<NICK3>"; nick = "yes"; word = "yes"; },
+  { text = "<NICK4>"; nick = "yes"; word = "yes"; },
+);
+
 windows = {
-  1 = { 
-    immortal = "yes";
-    name = "(status)";
-    level = "ALL";
-    sticky = "yes";
-  };
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
   2 = {
     items = (
-      { 
+      {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#poa";
-        tag = "0x00";
+        name = "#<ROOM1>";
+        tag = "freenode";
       }
     );
-    sticky = "yes";
-    parent = "1";
   };
   3 = {
     items = (
       {
-        type = "QUERY";
+        type = "CHANNEL";
         chat_type = "IRC";
-        name = "nickserv";
-        tag = "0x00";
+        name = "#<ROOM2>";
+        tag = "freenode";
       }
     );
   };
@@ -268,14 +390,21 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#poa";
-        tag = "EFNet";
+        name = "#<ROOM1>";
+        tag = "efnet";
       }
     );
   };
-  5 = { name = "hilight"; sticky = "yes"; };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#<ROOM2>";
+        tag = "efnet";
+      }
+    );
+  };
 };
-mainwindows = {
-  1 = { first_line = "8"; lines = "69"; };
-  5 = { first_line = "1"; lines = "7"; };
-};
+
+mainwindows = { 1 = { first_line = "1"; lines = "70"; }; };
