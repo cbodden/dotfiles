@@ -41,7 +41,7 @@
     set ml                          " set modelines
     set mouse=a                     " use mouse everywhere
     set noerrorbells                " don't make noise
-    " set pastetoggle=<F2>          " when insert mode, press f2 for paste mode
+    set pastetoggle=<F2>            " when insert mode, press f2 for paste mode
     " set spell                     " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
     set tags=~/.vim/tags/           " tag usage
     set timeoutlen=300 ttimeoutlen=0" mapping delays
@@ -385,6 +385,9 @@
 
     " run present edit in bash
     map r :!bash %
+
+    " ctrlP remap
+    noremap <leader>p :CtrlP<CR>
 
 "}
 
