@@ -6,5 +6,5 @@ setxkbmap -option terminate:ctrl_alt_bksp &
 xbindkeys &
 /usr/bin/xscreensaver -no-splash &
 ~/Downloads/xflux -z 11221 &
-~/lb/newbar.sh
+~/git/mine/dotfiles/bar.sh
 exec sleep infinity
