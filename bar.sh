@@ -136,4 +136,4 @@ do
     echo $(statusbar)
     sleep 0.2
 done \
-    | lemonbar -B ${BG} -F ${FG} -b -d &
+    | lemonbar -B ${BG} -F ${FG} -d &
