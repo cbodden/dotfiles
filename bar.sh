@@ -84,6 +84,43 @@ life(){
     echo %{F$FG}[ $_BAT% ]%{F-}
 }
 
+load(){
+    local CNT=0
+    local _TP=$(grep processor /proc/cpuinfo \
+        | wc -l)
+
+    local _1MIN=$(uptime \
+        | grep -ohe 'load average[s:][: ].*' \
+        | awk '{ print $3 }' \
+        | sed 's/,//')
+
+    local _5MIN=$(uptime \
+        | grep -ohe 'load average[s:][: ].*' \
+        | awk '{ print $4 }' \
+        | sed 's/,//')
+
+    local _15MIN=$(uptime \
+        | grep -ohe 'load average[s:][: ].*' \
+        | awk '{ print $5 }')
+
+    _LDS=("${_1MIN}" "${_5MIN}" "${_15MIN}")
+
+    for _CL in "${_LDS[@]}"
+    do
+        if [ "${_CL%%.*}" -ge "$((_TP * 50 / 100))" ] && [ "${_CL%%.*}" -lt "$((_TP * 75 / 100))" ]
+        then
+            export _L${CNT}="#ffff00"
+        elif [ "${_CL%%.*}" -ge "$((_TP * 75 / 100))" ]
+        then
+            export _L${CNT}="#ff0000"
+        else
+            export _L${CNT}="#657b83"
+        fi
+        local CNT=$((CNT+1))
+    done
+    echo %{F$FG}[ %{F$_L0}${_LDS[0]} %{F$_L1}${_LDS[1]} %{F$_L2}${_LDS[2]}%{F-} ]
+}
+
 clock() {
     local _TIME=$(\
         date "+%d-%b-%y %H:%M")
@@ -91,7 +128,7 @@ clock() {
 }
 
 statusbar(){
-    echo "$(clock) %{c} $(desk) %{r} $(temperature)$(life)"
+    echo "$(clock)$(life) %{c} $(desk) %{r} $(load)$(temperature)"
 }
 
 while :
