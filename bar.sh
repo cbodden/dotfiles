@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-readonly BG="#000000"
+readonly BG="#002b36"
 readonly FG="#657b83"
 readonly BLK="#707070"
-readonly DRK="#000000"
 readonly RES="1366x15x0x0"
 readonly WMN="bar"
+readonly BRKT="#268bd2"
+readonly VDS="#dc322f"
 
 desk(){
     local _CUR=$(\
@@ -14,52 +15,43 @@ desk(){
     case $_CUR in
         0)
             echo "\
-                %{F$FG}[1]${F-}%{B$DRK} 2 ${F-}%{B$DRK} 3 \
-                ${F-}%{B$DRK} 4 ${F-}%{B$DRK} 5 ${F-}%{B$DRK} 6 \
-                ${F-}%{B$DRK} 7 ${F-}%{B$DRK} 8 "
+                %{F$BRKT}[%{F$VDS}1%{F$BRKT}]%{F$FG} 2 ${F-} 3 \
+                ${F-} 4 ${F-} 5 ${F-} 6 ${F-} 7 ${F-} 8 "
             ;;
         1)
             echo "\
-                ${F-}%{B$DRK} 1 %{F$FG}[2]${F-}%{B$DRK} 3 \
-                ${F-}%{B$DRK} 4 ${F-}%{B$DRK} 5 ${F-}%{B$DRK} 6 \
-                ${F-}%{B$DRK} 7 ${F-}%{B$DRK} 8 "
+                %{F$FG} 1 %{F$BRKT}[%{F$VDS}2%{F$BRKT}]%{F$FG} 3 \
+                ${F-} 4 ${F-} 5 ${F-} 6 ${F-} 7 ${F-} 8 "
             ;;
         2)
             echo "\
-                ${F-}%{B$DRK} 1 ${F-}%{B$DRK} 2 %{F$FG}[3]${F-}%{B$DRK} 4 \
-                ${F-}%{B$DRK} 5 ${F-}%{B$DRK} 6 \
-                ${F-}%{B$DRK} 7 ${F-}%{B$DRK} 8 "
+                %{F$FG} 1 ${F-} 2 %{F$BRKT}[%{F$VDS}3%{F$BRKT}]%{F$FG} 4 \
+                ${F-} 5 ${F-} 6 ${F-} 7 ${F-} 8 "
             ;;
         3)
             echo "\
-                ${F-}%{B$DRK} 1 ${F-}%{B$DRK} 2 ${F-}%{B$DRK} 3 \
-                %{F$FG}[4]${F-}%{B$DRK} 5 ${F-}%{B$DRK} 6 \
-                ${F-}%{B$DRK} 7 ${F-}%{B$DRK} 8 "
+                %{F$FG} 1 ${F-} 2 ${F-} 3 \
+                %{F$BRKT}[%{F$VDS}4%{F$BRKT}]%{F$FG} 5 ${F-} 6 ${F-} 7 ${F-} 8 "
             ;;
         4)
             echo "\
-                ${F-}%{B$DRK} 1 ${F-}%{B$DRK} 2 ${F-}%{B$DRK} 3 \
-                ${F-}%{B$DRK} 4 %{F$FG}[5]${F-}%{B$DRK} 6 \
-                ${F-}%{B$DRK} 7 ${F-}%{B$DRK} 8 "
+                %{F$FG} 1 ${F-} 2 ${F-} 3 \
+                ${F-} 4 %{F$BRKT}[%{F$VDS}5%{F$BRKT}]%{F$FG} 6 ${F-} 7 ${F-} 8 "
             ;;
-
         5)
             echo "\
-                ${F-}%{B$DRK} 1 ${F-}%{B$DRK} 2 ${F-}%{B$DRK} 3 \
-                ${F-}%{B$DRK} 4 ${F-}%{B$DRK} 5 %{F$FG}[6]${F-}%{B$DRK} 7 \
-                ${F-}%{B$DRK} 8 "
+                %{F$FG} 1 ${F-} 2 ${F-} 3 ${F-} 4 ${F-} 5 \
+                %{F$BRKT}[%{F$VDS}6%{F$BRKT}]%{F$FG} 7 ${F-} 8 "
             ;;
         6)
             echo "\
-                ${F-}%{B$DRK} 1 ${F-}%{B$DRK} 2 ${F-}%{B$DRK} 3 \
-                ${F-}%{B$DRK} 4 ${F-}%{B$DRK} 5 ${F-}%{B$DRK} 6 \
-                %{F$FG}[7]${F-}%{B$DRK} 8 "
+                %{F$FG} 1 ${F-} 2 ${F-} 3 ${F-} 4 ${F-} 5 ${F-} 6 \
+                %{F$BRKT}[%{F$VDS}7%{F$BRKT}]%{F$FG} 8 "
             ;;
         7)
             echo "\
-                ${F-}%{B$DRK} 1 ${F-}%{B$DRK} 2 ${F-}%{B$DRK} 3 \
-                ${F-}%{B$DRK} 4 ${F-}%{B$DRK} 5 ${F-}%{B$DRK} 6 \
-                ${F-}%{B$DRK} 7 %{F$FG}[8]${F-}%{B$DRK}"
+                %{F$FG} 1 ${F-} 2 ${F-} 3 ${F-} 4 ${F-} 5 ${F-} 6 \
+                ${F-} 7 %{F$BRKT}[%{F$VDS}8%{F$BRKT}]${F-}"
             ;;
         *)
             echo "*"
