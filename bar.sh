@@ -4,6 +4,8 @@ readonly BG="#000000"
 readonly FG="#657b83"
 readonly BLK="#707070"
 readonly DRK="#000000"
+readonly RES="1366x15x0x0"
+readonly WMN="bar"
 
 desk(){
     local _CUR=$(\
@@ -136,4 +138,4 @@ do
     echo $(statusbar)
     sleep 0.2
 done \
-    | lemonbar -B ${BG} -F ${FG} -d &
+    | lemonbar -B ${BG} -F ${FG} -g ${RES} -n ${WMN} &
