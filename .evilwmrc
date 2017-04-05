@@ -1,0 +1,8 @@
+dock bar
+fixed bar
+snap 10
+term urxvt
+nosoliddrag
+fg #002b36
+bg #000000
+bw 1
