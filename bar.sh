@@ -2,8 +2,7 @@
 
 readonly BG="#002b36"
 readonly FG="#657b83"
-readonly BLK="#707070"
-readonly RES="1366x15x0x0"
+readonly RES="1366x16x0x0"
 readonly WMN="bar"
 readonly BRKT="#268bd2"
 readonly VDS="#dc322f"
@@ -35,8 +34,8 @@ desk(){
             ;;
         4)
             echo "\
-                %{F$FG} 1 ${F-} 2 ${F-} 3 \
-                ${F-} 4 %{F$BRKT}[%{F$VDS}5%{F$BRKT}]%{F$FG} 6 ${F-} 7 ${F-} 8 "
+                %{F$FG} 1 ${F-} 2 ${F-} 3 ${F-} 4 \
+                %{F$BRKT}[%{F$VDS}5%{F$BRKT}]%{F$FG} 6 ${F-} 7 ${F-} 8 "
             ;;
         5)
             echo "\
@@ -82,6 +81,8 @@ load(){
     local CNT=0
     local _TP=$(grep processor /proc/cpuinfo \
         | wc -l)
+    local _TP1=$((_TP * 50 / 100)) # 1/2
+    local _TP2=$((_TP * 75 / 100)) # 3/4
 
     local _1MIN=$(uptime \
         | grep -ohe 'load average[s:][: ].*' \
@@ -97,14 +98,14 @@ load(){
         | grep -ohe 'load average[s:][: ].*' \
         | awk '{ print $5 }')
 
-    _LDS=("${_1MIN}" "${_5MIN}" "${_15MIN}")
+    _LD=("${_1MIN}" "${_5MIN}" "${_15MIN}")
 
-    for _CL in "${_LDS[@]}"
+    for _CL in "${_LD[@]}"
     do
-        if [ "${_CL%%.*}" -ge "$((_TP * 50 / 100))" ] && [ "${_CL%%.*}" -lt "$((_TP * 75 / 100))" ]
+        if [ "${_CL%%.*}" -ge "$((_TP1))" ] && [ "${_CL%%.*}" -lt "$((_TP2))" ]
         then
             export _L${CNT}="#ffff00"
-        elif [ "${_CL%%.*}" -ge "$((_TP * 75 / 100))" ]
+        elif [ "${_CL%%.*}" -ge "$((_TP2))" ]
         then
             export _L${CNT}="#ff0000"
         else
@@ -112,17 +113,22 @@ load(){
         fi
         local CNT=$((CNT+1))
     done
-    echo %{F$FG}[ %{F$_L0}${_LDS[0]} %{F$_L1}${_LDS[1]} %{F$_L2}${_LDS[2]}%{F-} ]
+    echo %{F$FG}[ %{F$_L0}${_LD[0]} %{F$_L1}${_LD[1]} %{F$_L2}${_LD[2]}%{F-} ]
 }
 
-clock() {
+clock(){
     local _TIME=$(\
         date "+%d-%b-%y %H:%M")
     echo %{F$FG}[ $_TIME ]%{F-}
 }
 
+lockscreen(){
+    echo %{A:xscreensaver-command -lock:}[ L ]%{A}
+}
+
 statusbar(){
-    echo "$(clock)$(life) %{c} $(desk) %{r} $(load)$(temperature)"
+    echo "$(clock) %{c}$(desk) %{r}$(load)$(temperature)"
+    #echo "$(clock)$(life) %{c} $(desk) %{r} $(load)$(temperature)"
 }
 
 while :
