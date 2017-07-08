@@ -274,13 +274,6 @@
         " }
     " }
 
-    "Gundo {
-    nnoremap <F5> :GundoToggle<CR>
-    let g:gundo_width = 45
-    let g:gundo_preview_height = 40
-    let g:gundo_right = 1
-    "}
-
     "vim-markdown {
     let g:vim_markdown_folding_disabled=1
     let g:vim_markdown_no_default_key_mappings=1
@@ -388,6 +381,11 @@
 
     " ctrlP remap
     noremap <leader>p :CtrlP<CR>
+
+    "Remove all trailing whitespace by pressing F9
+    nnoremap <F9> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+    "selective remove of trailing whitespace by pressing F10
+    nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
 "}
 

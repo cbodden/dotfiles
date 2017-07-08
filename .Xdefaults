@@ -4,7 +4,6 @@ URxvt.intensityStyles: false
 
 *background: #002b36
 *foreground: #657b83
-!!*fading: 40
 *fadeColor: #002b36
 *cursorColor: #93a1a1
 *pointerColorBackground: #586e75
@@ -42,51 +41,30 @@ URxvt.intensityStyles: false
 *color7: #eee8d5
 *color15: #fdf6e3
 
-
 urxvt*termName: rxvt-256color
 urxvt*loginShell: true
+
 ## borderless and no scrollbar
 urxvt*scrollBar_right: false
 urxvt*scrollBar: false
 urxvt*borderLess: false
 
 ## test fonts stuffs
-urxvt.font: xft:Terminus:pixelsize=10:antialias=true,xft:Source\ Code\ Pro\ Medium:pixelsize=12:antialias=true:hinting=true
-#URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=12:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true
+URxvt.font: 10x20
+#URxvt.font: xft:Terminus:pixelsize=10:antialias=true,xft:Source\ Code\ Pro\ Medium:pixelsize=12:antialias=true:hinting=true
 
 ## teh transparency stuff
 # urxvt*inheritPixmap: true
-urxvt*inheritPixmap: false
-urxvt*tintColor: white
-urxvt*shading: 60
+URxvt*inheritPixmap: false
+URxvt*tintColor: white
+URxvt*shading: 60
 
-## geometry and font
-
-## change default colors
-## urxvt*background: #000000
-## urxvt*foreground: #A8A8A8
-## urxvt*color0: #000000
-## urxvt*color1: #A80000
-## urxvt*color2: #00A800
-## urxvt*color3: #A85400
-## urxvt*color4: #0000A8
-## urxvt*color5: #A800A8
-## urxvt*color6: #00A8A8
-## urxvt*color7: #A8A8A8
-## urxvt*color8: #545054
-## urxvt*color9: #F85450
-## urxvt*color10: #50FC50
-## urxvt*color11: #F2FC50
-## urxvt*color12: #5054F8
-## urxvt*color13: #F854F8
-## urxvt*color14: #50FCF8
-## urxvt*color15: pink
-
-urxvt*perl-lib: /usr/lib/urxvt/perl/
-urxvt.perl-ext-common: default,matcher,searchable-scrollback
-urxvt.urlLauncher: chromium
-urxvt.matcher.button: 2
-urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*perl-lib: /usr/lib/urxvt/perl/
+URxvt.perl-ext-common: default,matcher,searchable-scrollback
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.maticher.rend.0: Uline Bold fg5
 
 xscreensaver.splash: false
 
