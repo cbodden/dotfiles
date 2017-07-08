@@ -382,6 +382,8 @@
     " ctrlP remap
     noremap <leader>p :CtrlP<CR>
 
+    "From :
+    "https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
     "Remove all trailing whitespace by pressing F9
     nnoremap <F9> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
     "selective remove of trailing whitespace by pressing F10
