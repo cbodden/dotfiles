@@ -1,5 +1,3 @@
-URxvt.intensityStyles: false
-
 !!Source http://github.com/altercation/solarized
 
 *background: #002b36
@@ -41,20 +39,26 @@ URxvt.intensityStyles: false
 *color7: #eee8d5
 *color15: #fdf6e3
 
-urxvt*termName: rxvt-256color
-urxvt*loginShell: true
+
+#####################
+#### urxvt stuff ####
+#####################
+URxvt.intensityStyles: false
+URxvt*termName: rxvt-256color
+URxvt*loginShell: true
 
 ## borderless and no scrollbar
-urxvt*scrollBar_right: false
-urxvt*scrollBar: false
-urxvt*borderLess: false
+URxvt*scrollBar_right: false
+URxvt*scrollBar: false
+URxvt*borderLess: false
 
 ## test fonts stuffs
-URxvt.font: 10x20
-#URxvt.font: xft:Terminus:pixelsize=10:antialias=true,xft:Source\ Code\ Pro\ Medium:pixelsize=12:antialias=true:hinting=true
+# URxvt.font: 9x15
+## xset fp+ /usr/share/fonts/terminus
+## xset fp+ /usr/share/fonts/proggy
+URxvt.font: -xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*
 
 ## teh transparency stuff
-# urxvt*inheritPixmap: true
 URxvt*inheritPixmap: false
 URxvt*tintColor: white
 URxvt*shading: 60
@@ -66,6 +70,10 @@ URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.maticher.rend.0: Uline Bold fg5
 
+
+############################
+#### xscreensaver stuff ####
+############################
 xscreensaver.splash: false
 
 !font settings
