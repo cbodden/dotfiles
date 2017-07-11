@@ -57,6 +57,7 @@ URxvt*borderLess: false
 ## xset fp+ /usr/share/fonts/terminus /usr/share/fonts/proggy
 ## xlsfonts | grep -e terminus -e proggy
 URxvt.font: -xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*
+URxvt.boldFont: -xos4-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*
 
 ## teh transparency stuff
 URxvt*inheritPixmap: false
