@@ -54,8 +54,8 @@ URxvt*borderLess: false
 
 ## test fonts stuffs
 # URxvt.font: 9x15
-## xset fp+ /usr/share/fonts/terminus
-## xset fp+ /usr/share/fonts/proggy
+## xset fp+ /usr/share/fonts/terminus /usr/share/fonts/proggy
+## xlsfonts | grep -e terminus -e proggy
 URxvt.font: -xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*
 
 ## teh transparency stuff
