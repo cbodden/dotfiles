@@ -28,6 +28,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export EIX_LIMIT=0
 #### end eix #### }
 
+#### gpg ioctl fix ####
+export GPG_TTY=$(tty)
+#### end gpg ####
+
 #### zsh key bindings #### {
 # bindkey -v                              # vi mode for vi style keybindings
 bindkey -e                                # emacs mode for emacs keybindings
