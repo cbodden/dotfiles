@@ -83,6 +83,7 @@
     set novisualbell                " don't blink
     set number                      " turn on line numbers
     set numberwidth=5               " We are good up to 99999 lines
+    set relativenumber              " show relative line number
     set report=0                    " tell us when anything is changed via :...
     set ruler                       " Always show current positions along the bottom
     set scrolloff=10                " Keep 10 lines (top/bottom) for scope
