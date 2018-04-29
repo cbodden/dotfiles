@@ -20,7 +20,8 @@ fi
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export TERM=screen-256color
+# export TERM=st-256color
+export TERM=xterm-256color
 export XDG_CONFIG_HOME="$HOME/.config"
 #### end exports #### }
 
@@ -116,9 +117,6 @@ setopt autocd                   # no more pesky cd to change dirs
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
 alias -g E='|egrep '
 alias -g G='|grep '
-alias -s erb=vi
-alias -s json=vi
-alias -s rb=vi
 alias 1g='openssl rand -base64 $(( 2**30 * 3/4 )) > test.img'
 alias add='git add -p .'
 alias commit='git commit .'
@@ -150,6 +148,11 @@ alias x='exit'
 
 function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
+
+function _sd() {for ITER in $(awk '/*enabled/ {print $1}' <(cat /proc/acpi/wakeup)) ; do sudo sh -c "echo ${ITER} > /proc/acpi/wakeup" ; done && sudo pm-suspend-hybrid}
+function _sr() {for ITER in $(awk '/*enabled/ {print $1}' <(cat /proc/acpi/wakeup)) ; do sudo sh -c "echo ${ITER} > /proc/acpi/wakeup" ; done && sudo pm-suspend}
+function _sh() {for ITER in $(awk '/*enabled/ {print $1}' <(cat /proc/acpi/wakeup)) ; do sudo sh -c "echo ${ITER} > /proc/acpi/wakeup" ; done && sudo pm-hibernate}
+
 
 function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
 function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }

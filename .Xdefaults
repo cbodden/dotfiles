@@ -56,8 +56,8 @@ URxvt*borderLess: false
 # URxvt.font: 9x15
 ## xset fp+ /usr/share/fonts/terminus /usr/share/fonts/proggy
 ## xlsfonts | grep -e terminus -e proggy
-URxvt.font: -xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*
-URxvt.boldFont: -xos4-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*
+URxvt.font: -xos4-terminus-medium-r-normal-*-14-*-*-*-*-*-*-*
+URxvt.boldFont: -xos4-terminus-bold-r-normal-*-14-*-*-*-*-*-*-*
 
 ## teh transparency stuff
 URxvt*inheritPixmap: false
@@ -78,13 +78,13 @@ URxvt.maticher.rend.0: Uline Bold fg5
 xscreensaver.splash: false
 
 !font settings
-xscreensaver.Dialog.headingFont:        -*-georgia-bold-r-*-*-18-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-georgia-bold-r-*-*-18-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-georgia-medium-r-*-*-18-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-georgia-bold-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-terminus-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-18-*-*-*-*-*-*-*
 
 !general dialog box (affects main hostname, username, password text)
 xscreensaver.Dialog.foreground:         #00efef
