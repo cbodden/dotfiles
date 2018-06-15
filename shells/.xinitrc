@@ -8,5 +8,6 @@ setxkbmap -option terminate:ctrl_alt_bksp &
 xbindkeys &
 /usr/bin/xscreensaver -no-splash &
 xset m 1 1
+/usr/bin/xflux -z 10010 &
 /usr/bin/xmodmap ~/.Xmodmap &
 exec sleep infinity

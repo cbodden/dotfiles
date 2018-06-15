@@ -109,6 +109,15 @@ unsetopt caseglob
 #setopt CORRECT                  # spell checking
 setopt NO_BEEP                  # no more beeps
 setopt autocd                   # no more pesky cd to change dirs
+
+autoload -U compinit promptinit
+compinit
+promptinit; prompt gentoo
+zstyle ':completion::complete:*' use-cache 1
+# https://github.com/zsh-users/zsh-completions
+plugins=(… zsh-completions)
+autoload -U compinit && compinit
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #setopt correctall               # autocorrection of commands typed
 #### end misc zsh options #### }
 
