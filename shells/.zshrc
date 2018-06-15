@@ -20,7 +20,6 @@ fi
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-# export TERM=st-256color
 export TERM=xterm-256color
 export XDG_CONFIG_HOME="$HOME/.config"
 #### end exports #### }
@@ -76,16 +75,16 @@ bindkey "^[[2~"   overwrite-mode          # insert key overwrite mode
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt APPEND_HISTORY           # append rather than overwrite history file.
-setopt EXTENDED_HISTORY         # save timestamp and runtime information
-setopt HIST_EXPIRE_DUPS_FIRST   # allow dups, but expire old ones when I hit HISTSIZE
-setopt HIST_FIND_NO_DUPS        # don't find duplicates in history
-setopt HIST_IGNORE_ALL_DUPS     # ignore duplicate commands regardless of commands in between
-setopt HIST_IGNORE_DUPS         # ignore duplicate commands
-setopt HIST_REDUCE_BLANKS       # leave blanks out
-setopt HIST_SAVE_NO_DUPS        # don't save duplicates
-setopt INC_APPEND_HISTORY       # write after each command
-setopt SHARE_HISTORY            # share history between sessions
+setopt APPEND_HISTORY                     # append rather than overwrite history file.
+setopt EXTENDED_HISTORY                   # save timestamp and runtime information
+setopt HIST_EXPIRE_DUPS_FIRST             # allow dups, but expire old ones when I hit HISTSIZE
+setopt HIST_FIND_NO_DUPS                  # don't find duplicates in history
+setopt HIST_IGNORE_ALL_DUPS               # ignore duplicate commands regardless of commands in between
+setopt HIST_IGNORE_DUPS                   # ignore duplicate commands
+setopt HIST_REDUCE_BLANKS                 # leave blanks out
+setopt HIST_SAVE_NO_DUPS                  # don't save duplicates
+setopt INC_APPEND_HISTORY                 # write after each command
+setopt SHARE_HISTORY                      # share history between sessions
 #### end zsh history #### }
 
 #### ls colors zsh #### {
@@ -98,26 +97,23 @@ fi
 #### end ls colors #### }
 
 #### zsh super globs #### {
-setopt NO_CASE_GLOB             # case insensitive globbing
-setopt NUMERIC_GLOB_SORT        # numeric glob sort
+setopt NO_CASE_GLOB                       # case insensitive globbing
+setopt NUMERIC_GLOB_SORT                  # numeric glob sort
 setopt extended_glob
-setopt globdots                 # lets files beginning with a "." match explicitly without specifying
+setopt globdots                           # lets files beginning with a "." match explicitly without specifying
 unsetopt caseglob
 #### end super globs #### }
 
 #### misc zsh options #### {
-#setopt CORRECT                  # spell checking
-setopt NO_BEEP                  # no more beeps
-setopt autocd                   # no more pesky cd to change dirs
+setopt NO_BEEP                            # no more beeps
+setopt autocd                             # no more pesky cd to change dirs
 autoload -U compinit promptinit
 compinit
 promptinit; prompt gentoo
 zstyle ':completion::complete:*' use-cache 1
-# https://github.com/zsh-users/zsh-completions
 plugins=(… zsh-completions)
 autoload -U compinit && compinit
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-#setopt correctall               # autocorrection of commands typed
 #### end misc zsh options #### }
 
 #### aliases and functions #### {
