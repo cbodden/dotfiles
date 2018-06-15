@@ -109,7 +109,6 @@ unsetopt caseglob
 #setopt CORRECT                  # spell checking
 setopt NO_BEEP                  # no more beeps
 setopt autocd                   # no more pesky cd to change dirs
-
 autoload -U compinit promptinit
 compinit
 promptinit; prompt gentoo
