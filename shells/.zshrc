@@ -74,13 +74,23 @@ setopt NO_BEEP                            # no more beeps
 setopt autocd                             # no more pesky cd to change dirs
 #### end misc zsh options #### }
 
+#### prompt #### {
+if [[ "$EUID" -ne "0" ]]; then
+    # https://github.com/nojhan/liquidprompt
+    source ~/.zsh/liquidprompt/liquidprompt
+else
+    # https://github.com/olivierverdier/zsh-git-prompt
+    source ~/.zsh/git-prompt/zshrc.sh
+    PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
+fi
+#### end prompt #### }
+
 #### zsh plugins #### {
 autoload -U compinit promptinit
 compinit
 promptinit; prompt gentoo
 zstyle ':completion::complete:*' use-cache 1
 plugins=(… zsh-completions)
-autoload -U compinit && compinit
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ### end zsh options #### }
 
@@ -151,17 +161,6 @@ else
     fortune futurama
 fi
 #### end motd / fortune #### }
-
-#### prompt #### {
-if [[ "$EUID" -ne "0" ]]; then
-    # https://github.com/nojhan/liquidprompt
-    source ~/.zsh/liquidprompt/liquidprompt
-else
-    # https://github.com/olivierverdier/zsh-git-prompt
-    source ~/.zsh/git-prompt/zshrc.sh
-    PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
-fi
-#### end prompt #### }
 
 #### colored man pages #### {
 # as per : http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
