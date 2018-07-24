@@ -92,8 +92,6 @@ alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias d='dirs -v'
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
-alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
-alias dud='du --max-depth=1 -h | sort -h'
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
 alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
 alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
