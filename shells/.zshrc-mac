@@ -1,165 +1,129 @@
 ####################################################
-# .zshrc-mac file                                  #
+# .zshrc file                                      #
 #                                                  #
 # in the titles, the brackets are for vim folding. #
 ####################################################
 
-# Path to your oh-my-zsh configuration.
-# ZSH=$HOME/.oh-my-zsh
-# source ~/.oh-my-zsh/oh-my-zsh.sh
+#### Modeline and Notes #### {{{
+# vim: set foldmarker={{{,}}} foldlevel=1 spell:
+#### }}}
 
-#### interactive shell check #### {
+#### interactive shell check #### {{{
 if [[ $- != *i* ]] ; then
     return
 fi
-#### end interactive check #### }
+#### end interactive check #### }}}
 
-##### exports #### {
+#### exports #### {{{
+export EDITOR=/usr/bin/vim
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export TERM=screen-256color
-export PATH=/opt/local/bin:/opt/local/sbin:/opt/chef/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$PATH
-export EDITOR=vi
-#### end exports #### }
+export TERM=xterm-256color
+#### end exports #### }}}
 
-#### non-git'able stuff {
-#### end non-git'able }
+#### prompt #### {{{
+if [[ "$EUID" -ne "0" ]]; then
+    # https://github.com/nojhan/liquidprompt
+    source ~/.zsh/liquidprompt/liquidprompt
+else
+fi
+#### end prompt #### }}}
 
-#### zsh key bindings #### {
-bindkey '^A' beginning-of-line          # ctrl-a beginning of line binding
-bindkey '^B' backward-word              # ctrl-b backwards word
-bindkey '^E' end-of-line                # ctrl-e end of line binding
-bindkey '^F' forward-word               # ctrl-f forward words
-bindkey '^R' history-iNCRemental-search-backward        # ctrl-r incremental search
-bindkey '^[[2~' overwrite-mode          # insert key overwrite mode
-bindkey '^[[3~' delete-char             # delete key fix
-bindkey '^[[7~' beginning-of-line       # home key
-bindkey '^[[8~' end-of-line             # end key
-bindkey -e
-#### end zsh key bindings #### }
+#### misc zsh options #### {{{
+setopt NO_BEEP                            # no more beeps
+setopt autocd                             # no more pesky cd to change dirs
+#### end misc zsh options #### }}}
 
-#### zsh history #### {
-HISTFILE=$HOME/.zsh_history    # enable history saving on shell exit
-HISTSIZE=10000                 # lines of history to maintain memory
-SAVEHIST=10000                 # lines of history to maintain in history file.
-setopt APPEND_HISTORY           # append rather than overwrite history file.
-setopt EXTENDED_HISTORY         # save timestamp and runtime information
-setopt HIST_EXPIRE_DUPS_FIRST   # allow dups, but expire old ones when I hit HISTSIZE
-setopt HIST_FIND_NO_DUPS        # don't find duplicates in history
-setopt HIST_IGNORE_ALL_DUPS     # ignore duplicate commands regardless of commands in between
-setopt HIST_IGNORE_DUPS         # ignore duplicate commands
-setopt HIST_REDUCE_BLANKS       # leave blanks out
-setopt HIST_SAVE_NO_DUPS        # don't save duplicates
-setopt INC_APPEND_HISTORY       # write after each command
-setopt SHARE_HISTORY            # share history between sessions
-#### end zsh history #### }
-
-#### ls colors zsh #### {
-if [[ -x "`whence -p dircolors`" ]]; then
-      eval `dircolors`
-        alias ls='ls -F --color=auto'
-    else
-          alias ls='ls -F'
-      fi
-#### end ls colors #### }
-
-#### mac color fix #### {
-export CLICOLOR=1;
-export LSCOLORS=exfxcxdxbxegedabagacad; # It is the default value on OSX, so this line can be omitted
-autoload -Uz compinit
+#### zsh / oh my zsh plugins #### {{{
+autoload -U compinit promptinit
 compinit
-zstyle ':completion:*' list-colors 'exfxcxdxbxegedabagacad'
-#### end mac color fix #### }
+zstyle ':completion::complete:*' use-cache 1
+plugins=(zsh-completions vi-mode)
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#### zsh / oh my zsh plugins #### }}}
 
-#### zsh super globs #### {
-setopt NO_CASE_GLOB             # case insensitive globbing
-setopt NUMERIC_GLOB_SORT        # numeric glob sort
+#### zsh key bindings #### {{{
+bindkey -v
+bindkey -M vicmd '?' history-incremental-search-backward  # Better searching in command mode
+bindkey -M vicmd '/' history-incremental-search-forward
+bindkey "^[OA" up-line-or-beginning-search  # Beginning search with arrow keys
+bindkey "^[OB" down-line-or-beginning-search
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
+bindkey -M vicmd "^V" edit-command-line
+export KEYTIMEOUT=1     # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+
+#  Mode indication
+autoload -U colors && colors
+function zle-line-init zle-keymap-select {
+    _I_PMPT="%{$fg[red]%} [% INSERT]%  %{$reset_color%}"
+    _N_PMPT="%{$fg[blue]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="%B${${KEYMAP/vicmd/${_N_PMPT}}/(main|viins)/${_I_PMPT}}$b"
+    #RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+setopt transient_rprompt
+#### end zsh key bindings #### }}}
+
+#### zsh history #### {{{
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt APPEND_HISTORY                     # append rather than overwrite history file.
+setopt EXTENDED_HISTORY                   # save timestamp and runtime information
+setopt HIST_EXPIRE_DUPS_FIRST             # allow dups, but expire old ones when I hit HISTSIZE
+setopt HIST_FIND_NO_DUPS                  # don't find duplicates in history
+setopt HIST_IGNORE_ALL_DUPS               # ignore duplicate commands regardless of commands in between
+setopt HIST_IGNORE_DUPS                   # ignore duplicate commands
+setopt HIST_REDUCE_BLANKS                 # leave blanks out
+setopt HIST_SAVE_NO_DUPS                  # don't save duplicates
+setopt INC_APPEND_HISTORY                 # write after each command
+setopt SHARE_HISTORY                      # share history between sessions
+#### end zsh history #### }}}
+
+#### zsh super globs #### {{{
+setopt NO_CASE_GLOB                       # case insensitive globbing
+setopt NUMERIC_GLOB_SORT                  # numeric glob sort
 setopt extended_glob
-setopt extendedglob
-setopt globdots                 # lets files beginning with a "." match explicitly without specifying
+setopt globdots                           # lets files beginning with a "." match explicitly without specifying
 unsetopt caseglob
-#### end super globs #### }
+#### end super globs #### }}}
 
-#### zsh misc settings {
-setopt autocd                   # no more pesky cd to change dirs
-setopt correctall               # autocorrection of commands typed
-#### end zsh misc }
-
-#### aliases and functions #### {
-# alias -s sh=vi
-alias -g E='|egrep '
-alias -g G='|grep '
-alias -s erb=vi
-alias -s json=vi
-alias -s rb=vi
-alias add='git add .'
+#### aliases and functions #### {{{
+alias add='git add -p .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias dud100='du -a --max-depth=1 | sort -n | awk '\''{if($1 > 102400) print $1/1024 "MB" " " $2 }'\'''
-alias dud='du --max-depth=1 -h'
-alias duf='du -sk * | sort -n | while read size fname; do for unit in k M G T P E Z Y; do if [ $size -lt 1024 ]; then echo -e "${size}${unit}\t${fname}"; break; fi; size=$((size/1024)); done; done'
+alias d='dirs -v'
+alias did="vim +'normal Go' +'r!date' ~/did.txt"
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
-alias fchat='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then finch ; else ; tmux rename-window "chat" && finch ; fi'
-alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else ; tmux rename-window "irc" && irssi ; fi'
-alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt -F ~/.mutt-cfg/.muttrc ; else tmux rename-window "emails" && mutt -F ~/.mutt-cfg/.muttrc ; fi'
+alias irc='tmux rename-window "weechat" ; weechat'
+alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
+alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias ls='ls -G'
 alias o='popd'
 alias p='pushd'
+alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
 alias push='git push origin master && facts'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
-alias vi='/usr/local/bin/vim'
+alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
-function _force_rehash() { (( CURRENT == 1 )) && rehash ; return 1 }
-function goog; { /usr/local/bin/links 'http://www.google.com/search?q='${(j:+:)*} }
-function google; { /usr/bin/chromium 'http://www.google.com/search?q='${(j:+:)*} }
-function h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
-#### end aliases and functions #### }
 
-#### work vagrant functions {
-function ol() {
-    DIR_PREFIX="$HOME/Projects/outland"
-    if [ "$1" = "" ]; then cd "$DIR_PREFIX/outland" ;
-    elif [ "$1" = "ssh" ]; then cd "$DIR_PREFIX" ; $(which vagrant) ssh ;
-    elif [ "$1" = "j2" ]; then cd "$DIR_PREFIX/outland/web/site/jinja_templates" ;
-    elif [ "$1" = "img" ]; then cd "$DIR_PREFIX/outland/web/site/static/img" ;
-    elif [ "$1" = "js" ]; then cd "$DIR_PREFIX/outland/web/site/static/js-src" ;
-    elif [ "$1" = "less" ]; then cd "$DIR_PREFIX/outland/web/src/less" ;
-    elif [ "$1" = "standup" ]; then cd "$DIR_PREFIX/outland" && clear && hg log --no-merges --user=cbodden -v -r: ;
-    elif [ "$1" = "pause" ]; then vpause ;
-    elif [ "$1" = "resume" ]; then vresume ;
-    else cd "$DIR_PREFIX/" && vagrant "$1" ;
-    fi
-}
+function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
+function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 
-_ol() {
-    local cur=${COMP_WORDS[COMP_CWORD]}
-    ##fix for zsh## COMPREPLY=( $(compgen -W "j2 img js less ssh pause resume" -- $cur) )
-    ##attempted fix## COMPREPLY=( $(compinit -W "j2 img js less ssh pause resume" -- $cur) )
-}
-#complete -F _ol ol
+function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
+function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
+function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
+function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
+#### end aliases and functions #### }}}
 
-function vpause () { VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX pause }
-function vresume () { VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX resume }
-#### work end functions }
-
-#### zsh perl find and replace #### {
-## from : http://superuser.com/questions/428493/how-can-i-do-a-recursive-find-and-replace-from-the-command-line
-# USAGE : change foo bar **/*.java
-change () {
-        from=$1
-        shift
-        to=$1
-        shift
-        for file in $*
-        do
-                perl -i.bak -p -e "s{$from}{$to}g;" $file
-                echo "Changing $from to $to in $file"
-        done
-}
-#### end find replace #### }
-
-#### tmux shell init #### {
+#### tmux shell init #### {{{
 if [[ $USER != root ]]; then
     tmux_count=`tmux ls | wc -l`
     if [[ "$tmux_count" == "0" ]]; then
@@ -171,61 +135,25 @@ if [[ $USER != root ]]; then
             else
                 session_id=`echo $tmux_count`
             fi
-        tmux -2 new-session -d -s $session_id
-        tmux -2 attach-session -t $session_id
+            tmux -2 new-session -d -s $session_id
+            tmux -2 attach-session -t $session_id
         fi
     fi
 else
 fi
-#### tmux init end #### }
+#### tmux init end #### }}}
 
-#### prompt begin #### {
-if [[ "$EUID" -ne "0" ]]; then
-  # https://github.com/nojhan/liquidprompt
-  source ~/.zsh/liquidprompt/liquidprompt
-else
-  # https://github.com/olivierverdier/zsh-git-prompt
-  source ~/.zsh/git-prompt/zshrc.sh
-  PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{☿%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
-fi
-#### end prompt #### }
-
-#### ssh-reagent from http://tychoish.com/rhizome/9-awesome-ssh-tricks/ {
-ssh-reagent () {
-          for agent in /tmp/ssh-*/agent.*; do
-                 export SSH_AUTH_SOCK=$agent
-                 if ssh-add -l 2>&1 > /dev/null; then
-                         echo Found working SSH Agent:
-                         ssh-add -l
-                         return
-                 fi
-         done
-         echo Cannot find ssh agent - maybe you should reconnect and forward it?
-  }
-#### end ssh-reagent }
-
-#### testing area #### {
-# from http://stackoverflow.com/questions/171563/whats-in-your-zshrc
-function most_useless_use_of_zsh {
-   local lines columns colour a b p q i pnew
-   ((columns=COLUMNS-1, lines=LINES-1, colour=0))
-   for ((b=-1.5; b<=1.5; b+=3.0/lines)) do
-       for ((a=-2.0; a<=1; a+=3.0/columns)) do
-           for ((p=0.0, q=0.0, i=0; p*p+q*q < 4 && i < 32; i++)) do
-               ((pnew=p*p-q*q+a, q=2*p*q+b, p=pnew))
-           done
-           ((colour=(i/4)%8))
-            echo -n "\\e[4${colour}m "
-        done
-        echo
-    done
+#### colored man pages #### {{{
+# as per : http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+            man "$@"
 }
-#### end testing area #### }
-
-#### oh my zsh #### {
-# Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="robbyrussell"
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git knife)
-
-##### end oh my zsh #### }
+#### end colored man pages }
