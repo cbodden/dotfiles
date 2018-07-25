@@ -1,38 +1,41 @@
+#### Modeline and Notes #### {{{
+# vim: set foldmarker={{{,}}} foldlevel=0 spell:
 ####################################################
 # .zshrc file                                      #
 #                                                  #
 # in the titles, the brackets are for vim folding. #
 ####################################################
+#### end modeline and notes }}}
 
-#### interactive shell check #### {
+#### interactive shell check #### {{{
 if [[ $- != *i* ]] ; then
     return
 fi
-#### end interactive check #### }
+#### end interactive check #### }}}
 
-#### startx automata #### {
+#### startx automata #### {{{
 if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]] ; then
     [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
 fi
-#### end automata #### }
+#### end automata #### }}}
 
-#### exports #### {
+#### exports #### {{{
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
 export XDG_CONFIG_HOME="$HOME/.config"
-#### end exports #### }
+#### end exports #### }}}
 
-#### eix #### {
+#### eix #### {{{
 export EIX_LIMIT=0
-#### end eix #### }
+#### end eix #### }}}
 
-#### gpg ioctl fix #### {
+#### gpg ioctl fix #### {{{
 export GPG_TTY=$(tty)
-#### end gpg #### }
+#### end gpg #### }}}
 
-#### key bindings #### {
+#### key bindings #### {{{
 bindkey -v                                # vi mode for vi style keybindings
 bindkey -M vicmd '?' history-incremental-search-backward  # Better searching in command mode
 bindkey -M vicmd '/' history-incremental-search-forward
@@ -58,9 +61,9 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 setopt transient_rprompt
-#### end key bindings #### }
+#### end key bindings #### }}}
 
-#### history #### {
+#### history #### {{{
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -74,31 +77,31 @@ setopt HIST_REDUCE_BLANKS                 # leave blanks out
 setopt HIST_SAVE_NO_DUPS                  # don't save duplicates
 setopt INC_APPEND_HISTORY                 # write after each command
 setopt SHARE_HISTORY                      # share history between sessions
-#### end history #### }
+#### end history #### }}}
 
-#### ls colors #### {
+#### ls colors #### {{{
 if [[ -x "`whence -p dircolors`" ]]; then
     eval `dircolors`
     alias ls='ls -F --color=auto'
 else
     alias ls='ls -F'
 fi
-#### end ls colors #### }
+#### end ls colors #### }}}
 
-#### super globs #### {
+#### super globs #### {{{
 setopt NO_CASE_GLOB                       # case insensitive globbing
 setopt NUMERIC_GLOB_SORT                  # numeric glob sort
 setopt extended_glob
 setopt globdots                           # lets files beginning with a "." match explicitly without specifying
 unsetopt caseglob
-#### end super globs #### }
+#### end super globs #### }}}
 
-#### misc options #### {
+#### misc options #### {{{
 setopt NO_BEEP                            # no more beeps
 setopt autocd                             # no more pesky cd to change dirs
-#### end misc options #### }
+#### end misc options #### }}}
 
-#### prompt #### {
+#### prompt #### {{{
 if [[ "$EUID" -ne "0" ]]; then
     # https://github.com/nojhan/liquidprompt
     source ~/.zsh/liquidprompt/liquidprompt
@@ -107,18 +110,18 @@ else
     source ~/.zsh/git-prompt/zshrc.sh
     PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
 fi
-#### end prompt #### }
+#### end prompt #### }}}
 
-#### zsh plugins #### {
+#### zsh plugins #### {{{
 autoload -U compinit promptinit
 compinit
 promptinit; prompt gentoo
 zstyle ':completion::complete:*' use-cache 1
 plugins=(… zsh-completions vi-mode)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-### end zsh options #### }
+### end zsh options #### }}}
 
-#### aliases #### {
+#### aliases #### {{{
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
 alias add='git add -p .'
@@ -144,9 +147,9 @@ alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
 alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
-#### end aliases #### }
+#### end aliases #### }}}
 
-#### functions #### {{{
+#### functions #### {{{{{
 function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 
@@ -156,9 +159,9 @@ function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" 
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function search; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
-#### functions #### }}}
+#### functions #### }}}}}
 
-#### tmux shell init #### {
+#### tmux shell init #### {{{
 if [[ $USER != root ]]; then
     tmux_count=`tmux ls | wc -l`
     if [[ "$tmux_count" == "0" ]]; then
@@ -176,17 +179,17 @@ if [[ $USER != root ]]; then
     fi
 else
 fi
-#### tmux init end #### }
+#### tmux init end #### }}}
 
-#### motd / fortune #### {
+#### motd / fortune #### {{{
 if [[ $USER != root ]]; then
     ~/git/mine/dotfiles/motd.sh
 else
     fortune futurama
 fi
-#### end motd / fortune #### }
+#### end motd / fortune #### }}}
 
-#### colored man pages #### {
+#### colored man pages #### {{{
 # as per : http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 man() {
     env \
