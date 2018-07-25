@@ -44,15 +44,17 @@ bindkey -M vicmd v edit-command-line                      # Easier, more vim-lik
 bindkey -M vicmd "^V" edit-command-line                   # `v` is already mapped to visual mode, so we need to use a different key to open Vim
 export KEYTIMEOUT=1                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 
-precmd() { RPROMPT="" }
+#  Mode indication
 function zle-line-init zle-keymap-select {
-   VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-   zle reset-prompt
+    RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
+    #RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
+    RPS2=$RPS1
+    zle reset-prompt
 }
-
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+setopt transient_rprompt
 #### end zsh key bindings #### }
 
 #### zsh history #### {
