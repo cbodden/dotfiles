@@ -114,7 +114,7 @@ autoload -U compinit promptinit
 compinit
 promptinit; prompt gentoo
 zstyle ':completion::complete:*' use-cache 1
-plugins=(… zsh-completions)
+plugins=(… zsh-completions vi-mode)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ### end zsh options #### }
 
@@ -127,7 +127,7 @@ alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias d='dirs -v'
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
-alias irc='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then irssi ; else tmux rename-window "irc" && irssi ; fi'
+alias irc='tmux rename-window "weechat" ; weechat'
 alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
 alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias lockme='xscreensaver-command -lock && sudo /usr/sbin/hibernate'
@@ -139,7 +139,6 @@ alias pull='git pull --rebase && facts'
 alias push='git push origin master && facts'
 alias ramme='xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
-alias speedtest='echo "scale=2; $(curl  --progress-bar -w "%{speed_download}" http://speedtest.newark.linode.com/100MB-newark.bin -o /dev/null) / 131072" | bc | xargs -I {} echo {} mbps'
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
