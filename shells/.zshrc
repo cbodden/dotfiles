@@ -11,7 +11,7 @@ fi
 #### end interactive check #### }
 
 #### startx automata #### {
-if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]; then
+if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]] ; then
     [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
 fi
 #### end automata #### }
@@ -33,7 +33,26 @@ export GPG_TTY=$(tty)
 #### end gpg ####
 
 #### zsh key bindings #### {
-bindkey -v                              # vi mode for vi style keybindings
+bindkey -v                                # vi mode for vi style keybindings
+bindkey -M vicmd '?' history-incremental-search-backward  # Better searching in command mode
+bindkey -M vicmd '/' history-incremental-search-forward
+bindkey "^[OA" up-line-or-beginning-search                # Beginning search with arrow keys
+bindkey "^[OB" down-line-or-beginning-search
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
+bindkey -M vicmd v edit-command-line                      # Easier, more vim-like editor opening
+bindkey -M vicmd "^V" edit-command-line                   # `v` is already mapped to visual mode, so we need to use a different key to open Vim
+export KEYTIMEOUT=1                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+
+# Updates editor information when the keymap changes.
+function zle-keymap-select() {
+  zle reset-prompt
+  zle -R
+}
+zle -N zle-keymap-select
+function vi_mode_prompt_info() { echo "${${KEYMAP/vicmd/[% NORMAL]%}/(main|viins)/[% INSERT]%}" }
+RPS1=$(vi_mode_prompt_info)               # define right prompt, regardless of whether the theme defined it
+RPS2=$RPS1
 #### end zsh key bindings #### }
 
 #### zsh history #### {
