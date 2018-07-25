@@ -45,8 +45,11 @@ bindkey -M vicmd "^V" edit-command-line                   # `v` is already mappe
 export KEYTIMEOUT=1                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 
 #  Mode indication
+autoload -U colors && colors
 function zle-line-init zle-keymap-select {
-    RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
+    _I_PMPT="%{$fg[red]%} [% INSERT]%  %{$reset_color%}"
+    _N_PMPT="%{$fg[blue]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="%B${${KEYMAP/vicmd/${_N_PMPT}}/(main|viins)/${_I_PMPT}}$b"
     #RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
     RPS2=$RPS1
     zle reset-prompt
