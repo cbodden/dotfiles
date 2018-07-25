@@ -28,11 +28,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export EIX_LIMIT=0
 #### end eix #### }
 
-#### gpg ioctl fix ####
+#### gpg ioctl fix #### {
 export GPG_TTY=$(tty)
-#### end gpg ####
+#### end gpg #### }
 
-#### zsh key bindings #### {
+#### key bindings #### {
 bindkey -v                                # vi mode for vi style keybindings
 bindkey -M vicmd '?' history-incremental-search-backward  # Better searching in command mode
 bindkey -M vicmd '/' history-incremental-search-forward
@@ -58,9 +58,9 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 setopt transient_rprompt
-#### end zsh key bindings #### }
+#### end key bindings #### }
 
-#### zsh history #### {
+#### history #### {
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -74,9 +74,9 @@ setopt HIST_REDUCE_BLANKS                 # leave blanks out
 setopt HIST_SAVE_NO_DUPS                  # don't save duplicates
 setopt INC_APPEND_HISTORY                 # write after each command
 setopt SHARE_HISTORY                      # share history between sessions
-#### end zsh history #### }
+#### end history #### }
 
-#### ls colors zsh #### {
+#### ls colors #### {
 if [[ -x "`whence -p dircolors`" ]]; then
     eval `dircolors`
     alias ls='ls -F --color=auto'
@@ -85,7 +85,7 @@ else
 fi
 #### end ls colors #### }
 
-#### zsh super globs #### {
+#### super globs #### {
 setopt NO_CASE_GLOB                       # case insensitive globbing
 setopt NUMERIC_GLOB_SORT                  # numeric glob sort
 setopt extended_glob
@@ -93,10 +93,10 @@ setopt globdots                           # lets files beginning with a "." matc
 unsetopt caseglob
 #### end super globs #### }
 
-#### misc zsh options #### {
+#### misc options #### {
 setopt NO_BEEP                            # no more beeps
 setopt autocd                             # no more pesky cd to change dirs
-#### end misc zsh options #### }
+#### end misc options #### }
 
 #### prompt #### {
 if [[ "$EUID" -ne "0" ]]; then
@@ -118,7 +118,7 @@ plugins=(… zsh-completions vi-mode)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ### end zsh options #### }
 
-#### aliases and functions #### {
+#### aliases #### {
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
 # alias speak_time='espeak "Time is `/bin/date` \"+%H hours %M minutes %S seconds\""'
 alias add='git add -p .'
@@ -144,7 +144,9 @@ alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
 alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
+#### end aliases #### }
 
+#### functions #### {{{
 function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 
@@ -154,7 +156,7 @@ function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" 
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function search; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
-#### end aliases and functions #### }
+#### functions #### }}}
 
 #### tmux shell init #### {
 if [[ $USER != root ]]; then
