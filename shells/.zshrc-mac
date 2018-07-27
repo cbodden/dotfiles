@@ -5,7 +5,7 @@
 ####################################################
 
 #### Modeline and Notes #### {{{
-# vim: set foldmarker={{{,}}} foldlevel=1 spell:
+# vim: set foldmarker={{{,}}} foldlevel=0 spell:
 #### }}}
 
 #### interactive shell check #### {{{
@@ -22,11 +22,8 @@ export TERM=xterm-256color
 #### end exports #### }}}
 
 #### prompt #### {{{
-if [[ "$EUID" -ne "0" ]]; then
-    # https://github.com/nojhan/liquidprompt
-    source ~/.zsh/liquidprompt/liquidprompt
-else
-fi
+# https://github.com/nojhan/liquidprompt
+[[ $- = *i* ]] && source ~/.zsh/liquidprompt/liquidprompt
 #### end prompt #### }}}
 
 #### misc zsh options #### {{{
