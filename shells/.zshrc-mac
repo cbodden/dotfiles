@@ -103,7 +103,7 @@ alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Crese
 alias ls='ls -G'
 alias o='popd'
 alias p='pushd'
-alias ps='ps --forest'
+#alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
 alias push='git push origin master && facts'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
@@ -154,3 +154,4 @@ man() {
             man "$@"
 }
 #### end colored man pages }
+export PATH="~/Library/Python/2.7/bin:$PATH"
