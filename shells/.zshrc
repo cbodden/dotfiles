@@ -130,7 +130,7 @@ alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias d='dirs -v'
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
 alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
-alias irc='tmux rename-window "weechat" ; weechat'
+alias irc='export TERM=tmux-256color ; tmux rename-window "weechat" ; weechat'
 alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
 alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 alias lockme='xscreensaver-command -lock && sudo /usr/sbin/hibernate'
