@@ -11,6 +11,22 @@
 # Type: Dict
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 
+# Require a confirmation before quitting the application.
+# Type: ConfirmQuit
+# Valid values:
+#   - always: Always show a confirmation.
+#   - multiple-tabs: Show a confirmation if multiple tabs are opened.
+#   - downloads: Show a confirmation if downloads are running
+#   - never: Never show a confirmation.
+c.confirm_quit = ['never']
+
+# Maximum time (in minutes) between two history items for them to be
+# considered being from the same browsing session. Items with less time
+# between them are grouped when being displayed in `:history`. Use -1 to
+# disable separation.
+# Type: Int
+c.history_gap_interval = 30
+
 # When to find text on a page case-insensitively.
 # Type: String
 # Valid values:
@@ -23,6 +39,34 @@ c.search.ignore_case = 'smart'
 # character.
 # Type: Bool
 c.search.incremental = True
+
+# How to open links in an existing instance if a new one is launched.
+# This happens when e.g. opening a link from a terminal. See
+# `new_instance_open_target_window` to customize in which window the
+# link is opened in.
+# Type: String
+# Valid values:
+#   - tab: Open a new tab in the existing window and activate the window.
+#   - tab-bg: Open a new background tab in the existing window and activate the window.
+#   - tab-silent: Open a new tab in the existing window without activating the window.
+#   - tab-bg-silent: Open a new background tab in the existing window without activating the window.
+#   - window: Open in a new window.
+c.new_instance_open_target = 'tab'
+
+# Which window to choose when opening links as new tabs. When
+# `new_instance_open_target` is not set to `window`, this is ignored.
+# Type: String
+# Valid values:
+#   - first-opened: Open new tabs in the first (oldest) opened window.
+#   - last-opened: Open new tabs in the last (newest) opened window.
+#   - last-focused: Open new tabs in the most recently focused window.
+#   - last-visible: Open new tabs in the most recently visible window.
+c.new_instance_open_target_window = 'last-focused'
+
+# Name of the session to save by default. If this is set to null, the
+# session which was last loaded is saved.
+# Type: SessionName
+c.session.default_name = None
 
 # Load a restored tab as soon as it takes focus.
 # Type: Bool
@@ -42,39 +86,71 @@ c.session.lazy_restore = True
 #   - webkit: Use QtWebKit (based on WebKit, similar to Safari).
 c.backend = 'webengine'
 
+# Additional arguments to pass to Qt, without leading `--`. With
+# QtWebEngine, some Chromium arguments (see
+# https://peter.sh/experiments/chromium-command-line-switches/ for a
+# list) will work.
+# Type: List of String
+c.qt.args = []
+
+# Force software rendering for QtWebEngine. This is needed for
+# QtWebEngine to work with Nouveau drivers and can be useful in other
+# scenarios related to graphic issues.
+# Type: String
+# Valid values:
+#   - software-opengl: Tell LibGL to use a software implementation of GL (`LIBGL_ALWAYS_SOFTWARE` / `QT_XCB_FORCE_SOFTWARE_OPENGL`)
+#   - qt-quick: Tell Qt Quick to use a software renderer instead of OpenGL. (`QT_QUICK_BACKEND=software`)
+#   - chromium: Tell Chromium to disable GPU support and use Skia software rendering instead. (`--disable-gpu`)
+#   - none: Don't force software rendering.
+c.qt.force_software_rendering = 'none'
+
+# Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
+# environment variable and is useful to force using the XCB plugin when
+# running QtWebEngine on Wayland.
+# Type: String
+c.qt.force_platform = None
+
 # Turn on Qt HighDPI scaling. This is equivalent to setting
 # QT_AUTO_SCREEN_SCALE_FACTOR=1 in the environment. It's off by default
 # as it can cause issues with some bitmap fonts. As an alternative to
 # this, it's possible to set font sizes and the `zoom.default` setting.
 # Type: Bool
-c.qt.highdpi = True
+c.qt.highdpi = False
+
+# Time interval (in milliseconds) between auto-saves of
+# config/cookies/etc.
+# Type: Int
+c.auto_save.interval = 15000
 
 # Always restore open sites when qutebrowser is reopened.
 # Type: Bool
 c.auto_save.session = True
 
-# Automatically start playing `<video>` elements. Note this option needs
-# a restart with QtWebEngine on Qt < 5.11.
+# Automatically start playing `<video>` elements. Note: On Qt < 5.11,
+# this option needs a restart and does not support URL patterns.
 # Type: Bool
 c.content.autoplay = False
 
-# Value to send in the `Accept-Language` header. Note that the value
-# read from JavaScript is always the global value.
-# Type: String
-c.content.headers.accept_language = 'en-US,en;q=0.5'
+# Size (in bytes) of the HTTP network cache. Null to use the default
+# value. With QtWebEngine, the maximum supported value is 2147483647 (~2
+# GB).
+# Type: Int
+c.content.cache.size = None
 
-# Custom headers for qutebrowser HTTP requests.
-# Type: Dict
-c.content.headers.custom = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
-
-# User agent to send. Unset to send the default. Note that the value
-# read from JavaScript is always the global value.
-# Type: String
-c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
-
-# Allow JavaScript to open new tabs without user interaction.
+# Allow websites to read canvas elements. Note this is needed for some
+# websites to work properly.
 # Type: Bool
-c.content.javascript.can_open_tabs_automatically = True
+c.content.canvas_reading = True
+
+# Store cookies. Note this option needs a restart with QtWebEngine on Qt
+# < 5.9.
+# Type: Bool
+c.content.cookies.store = True
+
+# Default encoding to use for websites. The encoding must be a string
+# describing an encoding such as _utf-8_, _iso-8859-1_, etc.
+# Type: String
+c.content.default_encoding = 'j'
 
 # Enable JavaScript.
 # Type: Bool
@@ -88,39 +164,50 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
-# Enable plugins in Web pages.
-# Type: Bool
-c.content.plugins = True
-
 # List of user stylesheet filenames to use.
 # Type: List of File, or File
 c.content.user_stylesheets = []
-
-# Number of commands to save in the command history. 0: no history / -1:
-# unlimited
-# Type: Int
-c.completion.cmd_history_max_items = 40
 
 # Height (in pixels or as percentage of the window) of the completion.
 # Type: PercOrInt
 c.completion.height = '20%'
 
-# Shrink the completion to be smaller than the configured size if there
-# are no scrollbars.
+# Directory to save downloads to. If unset, a sensible OS-specific
+# default is used.
+# Type: Directory
+c.downloads.location.directory = '~/Downloads'
+
+# Prompt the user for the download location. If set to false,
+# `downloads.location.directory` will be used.
 # Type: Bool
-c.completion.shrink = True
+c.downloads.location.prompt = False
 
-# Width (in pixels) of the scrollbar in the completion window.
-# Type: Int
-c.completion.scrollbar.width = 6
+# Remember the last used download directory.
+# Type: Bool
+c.downloads.location.remember = False
 
-# Padding (in pixels) of the scrollbar handle in the completion window.
-# Type: Int
-c.completion.scrollbar.padding = 0
+# What to display in the download filename input.
+# Type: String
+# Valid values:
+#   - path: Show only the download path.
+#   - filename: Show only download filename.
+#   - both: Show download path and filename.
+c.downloads.location.suggestion = 'path'
 
-# Minimum amount of characters needed to update completions.
+# Duration (in milliseconds) to wait before removing finished downloads.
+# If set to -1, downloads are never removed.
 # Type: Int
-c.completion.min_chars = 2
+c.downloads.remove_finished = -1
+
+# Automatically enter insert mode if an editable element is focused
+# after loading the page.
+# Type: Bool
+c.input.insert_mode.auto_load = True
+
+# Enable smooth scrolling for web pages. Note smooth scrolling does not
+# work with the `:scroll-px` command.
+# Type: Bool
+c.scrolling.smooth = True
 
 # Languages to use for spell checking. You can check for available
 # languages and install dictionaries using scripts/dictcli.py. Run the
@@ -170,7 +257,7 @@ c.completion.min_chars = 2
 #   - tr-TR: Turkish (Turkey)
 #   - uk-UA: Ukrainian (Ukraine)
 #   - vi-VN: Vietnamese (Viet Nam)
-c.spellcheck.languages = ['en-US', 'es-ES', 'pt-PT', 'ru-RU']
+c.spellcheck.languages = ['en-US', 'pt-BR', 'pt-PT', 'es-ES']
 
 # Hide the statusbar unless a message is shown.
 # Type: Bool
@@ -179,6 +266,18 @@ c.statusbar.hide = False
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
 c.tabs.background = True
+
+# When to show favicons in the tab bar.
+# Type: String
+# Valid values:
+#   - always: Always show favicons.
+#   - never: Always hide favicons.
+#   - pinned: Show favicons only on pinned tabs.
+c.tabs.favicons.show = 'always'
+
+# Switch between tabs using the mouse wheel.
+# Type: Bool
+c.tabs.mousewheel_switching = False
 
 # Position of the tab bar.
 # Type: Position
@@ -189,6 +288,14 @@ c.tabs.background = True
 #   - right
 c.tabs.position = 'left'
 
+# Which tab to select when the focused tab is removed.
+# Type: SelectOnRemove
+# Valid values:
+#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
+#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
+#   - last-used: Select the previously selected tab.
+c.tabs.select_on_remove = 'next'
+
 # When to show the tab bar.
 # Type: String
 # Valid values:
@@ -196,33 +303,38 @@ c.tabs.position = 'left'
 #   - never: Always hide the tab bar.
 #   - multiple: Hide the tab bar if only one tab is open.
 #   - switching: Show the tab bar when switching tabs.
-c.tabs.show = 'switching'
+c.tabs.show = 'never'
 
 # Duration (in milliseconds) to show the tab bar before hiding it when
 # tabs.show is set to 'switching'.
 # Type: Int
-c.tabs.show_switching_delay = 1500
+c.tabs.show_switching_delay = 2000
 
 # Width (in pixels or as percentage of the window) of the tab bar if
 # it's vertical.
 # Type: PercOrInt
-c.tabs.width = '7%'
+c.tabs.width = '6%'
+
+# Minimum width (in pixels) of tabs (-1 for the default minimum size
+# behavior). This setting only applies when tabs are horizontal. This
+# setting does not apply to pinned tabs, unless `tabs.pinned.shrink` is
+# False.
+# Type: Int
+c.tabs.min_width = -1
+
+# Width (in pixels) of the progress indicator (0 to disable).
+# Type: Int
+c.tabs.indicator.width = 3
 
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
 c.url.default_page = 'about:blank'
 
-# URL segments where `:navigate increment/decrement` will search for a
-# number.
-# Type: FlagList
-# Valid values:
-#   - host
-#   - port
-#   - path
-#   - query
-#   - anchor
-c.url.incdec_segments = ['path', 'query']
+# Open base URL of the searchengine if a searchengine shortcut is
+# invoked without parameters.
+# Type: Bool
+c.url.open_base_url = False
 
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -233,40 +345,16 @@ c.url.incdec_segments = ['path', 'query']
 # used by prepending the search engine name to the search term, e.g.
 # `:open google qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}'}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'about:blank'
 
-# Format to use for the window title. The same placeholders like for
-# `tabs.title.format` are defined.
-# Type: FormatString
-c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
-
-# Default zoom level.
-# Type: Perc
-c.zoom.default = '80%'
-
-# Number of zoom increments to divide the mouse wheel movements to.
-# Type: Int
-c.zoom.mouse_divider = 512
-
-# Font family for fantasy fonts.
-# Type: FontFamily
-c.fonts.web.family.fantasy = None
-
-# Default font size (in pixels) for regular text.
-# Type: Int
-c.fonts.web.size.default = 16
-
-# Default font size (in pixels) for fixed-pitch text.
-# Type: Int
-c.fonts.web.size.default_fixed = 16
-
-# Hard minimum font size (in pixels).
-# Type: Int
-c.fonts.web.size.minimum = 0
+# Hide the window decoration.  This setting requires a restart on
+# Wayland.
+# Type: Bool
+c.window.hide_decoration = True
 
 # Bindings for normal mode
-config.bind(',n', 'config-cycle content.user_stylesheets ~/git/others/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ~/git/others/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css ""')
+config.bind(',n', 'config-cycle content.user_stylesheets ~/git/others/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ~/git/others/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css  ""')
