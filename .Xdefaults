@@ -1,112 +1,142 @@
 !!Source http://github.com/altercation/solarized
 
-*background: #002b36
-*foreground: #657b83
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
+*background:            #002b36
+*foreground:            #657b83
+*fadeColor:             #002b36
+*cursorColor:           #93a1a1
+*pointerColorBackground:#586e75
+*pointerColorForeground:#93a1a1
+
 
 !! black dark/light
-*color0: #073642
-*color8: #002b36
-
+*color0:                #073642
+*color8:                #002b36
 !! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
-
+*color1:                #dc322f
+*color9:                #cb4b16
 !! green dark/light
-*color2: #859900
-*color10: #586e75
-
+*color2:                #859900
+*color10:               #586e75
 !! yellow dark/light
-*color3: #b58900
-*color11: #657b83
-
+*color3:                #b58900
+*color11:               #657b83
 !! blue dark/light
-*color4: #268bd2
-*color12: #839496
-
+*color4:                #268bd2
+*color12:               #839496
 !! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
-
+*color5:                #d33682
+*color13:               #6c71c4
 !! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
-
+*color6:                #2aa198
+*color14:               #93a1a1
 !! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
+*color7:                #eee8d5
+*color15:               #fdf6e3
 
 
-#####################
-#### urxvt stuff ####
-#####################
-URxvt.intensityStyles: false
-URxvt*termName: rxvt-256color
-URxvt*loginShell: true
 
-## borderless and no scrollbar
-URxvt*scrollBar_right: false
-URxvt*scrollBar: false
-URxvt*borderLess: false
-
-## test fonts stuffs
-# URxvt.font: 9x15
-## xset fp+ /usr/share/fonts/terminus /usr/share/fonts/proggy
-## xlsfonts | grep -e terminus -e proggy
-## fc-list
-URxvt.font: -xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*
-##URxvt.font: xft:xos4 Terminus:style=Regular:size=12
-URxvt.boldFont: -xos4-terminus-bold-r-normal-*-16-*-*-*-*-*-*-*
-
-## teh transparency stuff
-URxvt*inheritPixmap: false
-URxvt*tintColor: white
-URxvt*shading: 60
-
-URxvt*perl-lib: /usr/lib/urxvt/perl/
-URxvt.perl-ext-common: default,matcher,searchable-scrollback
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt.maticher.rend.0: Uline Bold fg5
+!####################
+!### xterm stuff ####
+!####################
+XTerm*faceName:         Bitstream Vera Serif Mono
+XTerm*termName:         xterm-256color
+XTerm*ttyModes:         erase ^?
+XTerm*vt100.backarrowKey:       false
+XTerm*vt100.locale:     true
+XTerm*vt100.metaSendsEscape:    true
+XTerm*vt100.saveLines:  4096
+XTerm*vt100.scrollBar:  false
+xterm*charClass:        33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*eightBitInput:    false
+xterm*faceSize:         16
+xterm*loginShell:       true
+xterm*saveLines:        16384
+xterm*termName:         xterm-color
+xterm*vt100*geometry:   80x60
 
 
-############################
-#### xscreensaver stuff ####
-############################
-xscreensaver.splash: false
+
+!####################
+!### urxvt stuff ####
+!####################
+URxvt*intensityStyles:  false
+URxvt*termName:         rxvt-256color
+URxvt*loginShell:       true
+
+!# borderless and no scrollbar
+URxvt*scrollBar_right:  false
+URxvt*scrollBar:        false
+URxvt*borderLess:       false
+
+!# fonts stuffs
+#define font1           xos4 Terminus
+#define font2           Inconsolata LGC
+#define font3           Inconsolata
+
+!URxvt*font: xft:xos4 Terminus:Regular:pixelsize=16
+!URxvt*boldfont: xft:xos4 Terminus:Bold:pixelsize=16
+URxvt*letterSpace:      0
+
+URxvt*font:             xft:font1:Regular:pixelsize=16,    xft:font2:Regular:pixelsize=14, xft:font3:Regular:pixelsize=14
+URxvt*boldfont:         xft:font1:Bold:pixelsize=16,       xft:font2:Bold:pixelsize=14,    xft:font3:Bold:pixelsize=14
+URxvt*italicfont:       xft:font2:Italic:pixelsize=16,     xft:font3:pixelsize=14
+URxvt*bolditalicfont:   xft:font2:BoldItalic:pixelsize=16, xft:font3:pixelsize=14
+
+!!# teh transparency stuff
+!URxvt*transparent:      true
+!URxvt*tintColor:        #002b36
+!URxvt*depth:            32
+!URxvt*shading:          90
+!!URxvt*background:       [25]#002b36
+!!urxvt.background:       rgba:0000/002b/0036/4444
+
+UXxvt*metaSendsEscape:  true
+
+URxvt*perl-lib:         /usr/lib/urxvt/perl/
+URxvt*perl-ext-common:  default,matcher,searchable-scrollback,font-size
+URxvt*url-launcher:     /usr/bin/xdg-open
+URxvt*matcher.button:   1
+URxvt*matcher.pattern.1:\\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt*maticher.rend.0:  Uline Bold fg5
+
+!from https://wiki.archlinux.org/index.php/rxvt-unicode
+URxvt*perl-ext:         default,url-select
+URxvt*keysym.M-u:       perl:url-select:select_next
+URxvt*url-select.launcher:      /usr/bin/xdg-open
+URxvt*url-select.underline:     true
+
+URxvt*keysym.C-Down:    font-size:decrease
+URxvt*keysym.C-S-Down:  font-size:decglobal
+URxvt*keysym.C-S-Up:    font-size:incglobal
+URxvt*keysym.C-Up:      font-size:increase
+URxvt*keysym.C-equal:   font-size:reset
+URxvt*keysym.C-slash:   font-size:show
+
+
+
+!###########################
+!### xscreensaver stuff ####
+!###########################
+xscreensaver.splash:    false
 
 !font settings
-xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.Dialog.labelFont:          -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+!xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
 
 !general dialog box (affects main hostname, username, password text)
 xscreensaver.Dialog.foreground:         #00efef
-xscreensaver.Dialog.background:         #111111
-xscreensaver.Dialog.topShadowColor:     #111111
-xscreensaver.Dialog.bottomShadowColor:  #111111
-xscreensaver.Dialog.Button.foreground:  #111111
-xscreensaver.Dialog.Button.background:  #2040e0
-
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #2040e0
-xscreensaver.Dialog.text.background:    #efefef
-xscreensaver.Dialog.internalBorderWidth:36
 xscreensaver.Dialog.borderWidth:        0
 xscreensaver.Dialog.shadowThickness:    2
 
 !timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #2040e0
-xscreensaver.passwd.thermometer.background:  #2040e0
-xscreensaver.passwd.thermometer.width:       0
+xscreensaver.passwd.thermometer.foreground:     #2040e0
+xscreensaver.passwd.thermometer.background:     #2040e0
+xscreensaver.passwd.thermometer.width:          0
 
 !datestamp format--see the strftime(3) manual page for details
-xscreensaver.dateFormat:    %I:%M%p - %a %b %d, %Y
+xscreensaver.dateFormat:        %I:%M%p - %a %b %d, %Y
