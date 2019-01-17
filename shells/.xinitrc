@@ -4,9 +4,9 @@
 if hash xsetroot 2>/dev/null
 then
     xsetroot \
-        -solid "#000000" \
         -background "#000000"  \
         -cursor_name crosshair \
+        -solid "#000000" \
         &
 fi
 
@@ -53,24 +53,33 @@ fi
 if hash unclutter 2>/dev/null
 then
     unclutter \
-        --timeout 10 \
-        --jitter 300 \
         --fork \
+        --jitter 300 \
+        --timeout 10 \
         &
 fi
 
-## this starts xmonad
+## daemonize urxvt to save memory running urxvtc
+if hash urxvtd 2>/dev/null
+then
+    urxvtd \
+        --fork \
+        --opendisplay \
+        --quiet \
+        &
+fi
+
+## this starts the wm
 if hash xmonad 2>/dev/null
 then
+    # evilwm -term urxvt &
     xmonad \
         &
+    ## this blocks exiting unless forcefully exited
+    exec sleep infinity
+else
+    exit 1
 fi
 
-## this blocks exiting unless forcefully exited
-exec sleep infinity
-
-
 #### errata
-# urxvtd -q -f -o &
 # xcompmgr -c -f &
-# evilwm -term urxvt &

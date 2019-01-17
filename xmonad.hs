@@ -8,7 +8,7 @@ import XMonad.Layout.NoBorders
 myBorderWidth       = 1
 myFocusFollowsMouse = False
 myModMask           = mod4Mask
-myTerminal          = "urxvt"
+myTerminal          = "urxvtc || urxvt"
 
 myManageHook = composeAll
   [ isFullscreen       --> doFullFloat
