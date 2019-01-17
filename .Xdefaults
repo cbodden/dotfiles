@@ -130,6 +130,16 @@ xscreensaver.splash:    false
 
 !general dialog box (affects main hostname, username, password text)
 xscreensaver.Dialog.foreground:         #00efef
+xscreensaver.Dialog.background:         #111111
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+xscreensaver.Dialog.Button.foreground:  #111111
+xscreensaver.Dialog.Button.background:  #2040e0
+
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #2040e0
+xscreensaver.Dialog.text.background:    #efefef
+xscreensaver.Dialog.internalBorderWidth:36
 xscreensaver.Dialog.borderWidth:        0
 xscreensaver.Dialog.shadowThickness:    2
 
