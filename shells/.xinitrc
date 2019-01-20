@@ -31,8 +31,6 @@ fi
 ## this sets xbindkeys
 if hash xbindkeys 2>/dev/null
 then
-
-
     if pgrep -f xbindkeys >/dev/null 2>&1
     then
         return 0
@@ -45,9 +43,6 @@ fi
 ## this starts the xscreensaver daemon
 if hash xscreensaver 2>/dev/null
 then
-
-
-
     if pgrep -f xscreensaver >/dev/null 2>&1
     then
         return 0
