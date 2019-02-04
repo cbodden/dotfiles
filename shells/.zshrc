@@ -133,14 +133,14 @@ alias facts='elinks -dump randomfunfacts.com | sed -n '\''/^| /p'\'' | tr -d \|'
 alias irc='export TERM=tmux-256color ; tmux rename-window "weechat" ; weechat'
 alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
 alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
-alias lockme='xscreensaver-command -lock && sudo /usr/sbin/hibernate'
+alias lockme='xscreensaver-command -lock && sudo xset -display :0 dpms force off && sudo s2disk -r /dev/nvme0n1p2'
 alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
 alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
 alias push='git push origin master && facts'
-alias ramme='xscreensaver-command -lock && sudo /usr/sbin/hibernate-ram'
+alias ramme='xscreensaver-command -lock && sudo xset -display :0 dpms force off && sudo s2ram --vbe_save --vbe_mode'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
@@ -152,13 +152,14 @@ alias x='exit'
 #### functions #### {{{{{
 function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
-
 function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
 function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
 function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function search; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
+function tor_route() { (echo authenticate '""'; echo signal newnym; echo quit) | nc localhost 9051 }
+function tor_address() { curl --socks5 127.0.0.1:9050 http://checkip.amazonaws.com/ }
 #### functions #### }}}}}
 
 #### tmux shell init #### {{{
