@@ -144,8 +144,8 @@ xscreensaver.Dialog.shadowThickness:    2
 
 !timeout bar (background is actually determined by Dialog.text.background)
 xscreensaver.passwd.thermometer.foreground:     #2040e0
-xscreensaver.passwd.thermometer.background:     #2040e0
-xscreensaver.passwd.thermometer.width:          0
+xscreensaver.passwd.thermometer.background:     #111111
+xscreensaver.passwd.thermometer.width:          8
 
 !datestamp format--see the strftime(3) manual page for details
 xscreensaver.dateFormat:        %I:%M%p - %a %b %d, %Y
