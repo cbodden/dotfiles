@@ -159,8 +159,8 @@ function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egre
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function search; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
 function tor_route() { printf "%s\n" "authenticate \"\"" "signal newnym" "quit" | nc 127.0.0.1 9051 }
-# function tor_route() { (echo authenticate '""'; echo signal newnym; echo quit) | nc localhost 9051 }
 function tor_address() { curl --socks5 127.0.0.1:9050 http://ifconfig.me/ -w "\n" }
+function whatismyip() { curl http://ifconfig.me/ -w "\n" }
 #### functions #### }}}}}
 
 #### tmux shell init #### {{{
