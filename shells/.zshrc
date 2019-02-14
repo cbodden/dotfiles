@@ -24,6 +24,7 @@ export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 #export TERM=tmux-256color
+# export TERM=xterm-256color
 export XDG_CONFIG_HOME="$HOME/.config"
 #### end exports #### }}}
 
@@ -153,8 +154,8 @@ alias x='exit'
 function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
-function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
-function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
+function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
+function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function search; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }

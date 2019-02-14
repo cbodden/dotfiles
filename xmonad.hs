@@ -8,6 +8,7 @@ import XMonad.Layout.NoBorders
 myBorderWidth       = 1
 myFocusFollowsMouse = False
 myModMask           = mod4Mask
+--myTerminal          = "st"
 myTerminal          = "urxvtc || urxvt"
 
 myManageHook = composeAll
