@@ -14,6 +14,7 @@ Config { font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
         , pickBroadest =     False   -- choose widest display (multi-monitor)
         , persistent =       True    -- enable/disable hiding (True = disabled)
 
+        -- commands, template, sepchar, and alignsep section
         , commands = [ Run Weather "CYVR" ["-t","<tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
                         , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                         , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
