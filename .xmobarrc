@@ -1,0 +1,30 @@
+Config { font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
+        -- general appearance
+        , borderColor = "black"
+        , border = TopB
+        , bgColor = "black"
+        , fgColor = "grey"
+        , position = TopW L 100
+
+        -- general behavior
+        , lowerOnStart =     False   -- send to bottom of window stack on start
+        , hideOnStart =      False   -- start with window unmapped (hidden)
+        , allDesktops =      True    -- show on all desktops
+        , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+        , pickBroadest =     False   -- choose widest display (multi-monitor)
+        , persistent =       True    -- enable/disable hiding (True = disabled)
+
+        , commands = [ Run Weather "CYVR" ["-t","<tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                        , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                        , Run Memory ["-t","Mem: <usedratio>%"] 10
+                        , Run Swap [] 10
+                        , Run Com "uname" ["-s","-r"] "" 36000
+                        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                        , Run StdinReader
+                        ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% - %eth1% }{<fc=#ee9a00>%date%</fc> | %uname% "
+        }
