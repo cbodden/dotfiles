@@ -14,7 +14,7 @@ myBorderWidth       = 1
 myFocusFollowsMouse = True
 myModMask           = mod4Mask
 myTerminal          = "st"
-myWorkspaces        = ["term","browse"]
+myWorkspaces        = ["term","browse","3","4","5","6","7","8","9"]
 
 -- Color of current window title in xmobar.
 xmobarTitleColor = "#22CCDD"
