@@ -14,7 +14,13 @@ myBorderWidth       = 1
 myFocusFollowsMouse = False
 myModMask           = mod4Mask
 myTerminal          = "st"
---myTerminal          = "urxvtc || urxvt"
+myWorkspaces        = ["term","browse","media"]
+
+-- Color of current window title in xmobar.
+xmobarTitleColor = "#22CCDD"
+
+-- Color of current workspace in xmobar.
+xmobarCurrentWorkspaceColor = "#00ff00"
 
 myManageHook = composeAll
   [ isFullscreen       --> doFullFloat
@@ -32,6 +38,7 @@ main = do
         { borderWidth        = myBorderWidth
         , modMask            = myModMask
         , terminal           = myTerminal
+        , workspaces         = myWorkspaces
         , normalBorderColor  = "#D0D0D0"
         , focusedBorderColor = "#FFAA00"
         , manageHook         = manageDocks <+> manageHook defaultConfig
@@ -40,7 +47,9 @@ main = do
         , handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
         , logHook = dynamicLogWithPP xmobarPP
                  { ppOutput = hPutStrLn xmproc
-                 , ppTitle = xmobarColor "green" "" . shorten 50
                  , ppHiddenNoWindows = xmobarColor "grey" ""
+                 , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40
+                 , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+                 , ppSep = "   "
                  }
         }

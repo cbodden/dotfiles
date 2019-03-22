@@ -1,5 +1,6 @@
-Config { font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
+Config {
         -- general appearance
+        font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
         , borderColor = "black"
         , border = TopB
         , bgColor = "black"
@@ -16,16 +17,17 @@ Config { font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
 
         -- commands, template, sepchar, and alignsep section
         , commands = [ Run Weather "CYVR" ["-t","<tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-                        , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                        , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        --, Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        --, Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
                         , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                         , Run Memory ["-t","Mem: <usedratio>%"] 10
                         , Run Swap [] 10
                         , Run Com "uname" ["-s","-r"] "" 36000
                         , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                        , Run Com "/home/cbodden/git/mine/scripts/wifi_bar_info.sh" [] "wifibar" 200
                         , Run StdinReader
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% - %eth1% }{<fc=#ee9a00>%date%</fc> | %uname% "
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %wifibar% }{<fc=#ee9a00>%date%</fc> | %uname% "
         }
