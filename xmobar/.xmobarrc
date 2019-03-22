@@ -25,9 +25,23 @@ Config {
                         , Run Com "uname" ["-s","-r"] "" 36000
                         , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                         , Run Com "/home/cbodden/git/mine/scripts/wifi_bar_info.sh" [] "wifibar" 200
+                        , Run Battery       [ "--template" , "Batt: <acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "red"
+                             , "--normal"   , "orange"
+                             , "--high"     , "green"
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"   , "<left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"   , "<fc=orange>Charging</fc>" -- dAA520
+                                       -- charged status
+                                       , "-i"   , "<fc=green>Charged</fc>" -- #006000
+                             ] 50
                         , Run StdinReader
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %wifibar% }{<fc=#ee9a00>%date%</fc> | %uname% "
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %wifibar% }{ <fc=#ee9a00>%date%</fc> | %battery% | %uname% "
         }

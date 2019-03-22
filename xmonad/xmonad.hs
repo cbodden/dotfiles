@@ -11,10 +11,10 @@ import System.IO
 
 --Simple variable declarations.
 myBorderWidth       = 1
-myFocusFollowsMouse = False
+myFocusFollowsMouse = True
 myModMask           = mod4Mask
 myTerminal          = "st"
-myWorkspaces        = ["term","browse","media"]
+myWorkspaces        = ["term","browse"]
 
 -- Color of current window title in xmobar.
 xmobarTitleColor = "#22CCDD"
@@ -39,8 +39,10 @@ main = do
         , modMask            = myModMask
         , terminal           = myTerminal
         , workspaces         = myWorkspaces
-        , normalBorderColor  = "#D0D0D0"
-        , focusedBorderColor = "#FFAA00"
+        --, normalBorderColor  = "#D0D0D0"
+        , normalBorderColor  = "#000000"
+        --, focusedBorderColor = "#FFAA00"
+        , focusedBorderColor = "#000000"
         , manageHook         = manageDocks <+> manageHook defaultConfig
         , focusFollowsMouse  = myFocusFollowsMouse
         , layoutHook         = avoidStruts  $ layoutHook defaultConfig
