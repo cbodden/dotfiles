@@ -2,10 +2,10 @@ Config {
         -- general appearance
         font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
         , borderColor = "black"
-        , border = TopB
-        , bgColor = "black"
-        , fgColor = "grey"
-        , position = TopW L 100
+        , border =      TopB
+        , bgColor =     "black"
+        , fgColor =     "grey"
+        , position =    TopW L 100
 
         -- general behavior
         , lowerOnStart =     False   -- send to bottom of window stack on start
