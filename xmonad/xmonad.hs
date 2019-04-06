@@ -34,7 +34,7 @@ myManageHook = composeAll
 
 -- Layouthook settings
 tall = Tall 1 (3/100) (1/2)
-myLayoutHook = smartBorders tall ||| smartBorders (Mirror tall) ||| smartBorders Full
+myLayoutHook = avoidStruts  $ layoutHook defaultConfig
 
 -- eventhook settings
 myEventHook = handleEventHook defaultConfig <+> docksEventHook
