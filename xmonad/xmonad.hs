@@ -10,26 +10,34 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 
 --Simple variable declarations.
-myBorderWidth       = 1
-myFocusFollowsMouse = True
-myModMask           = mod4Mask
-myTerminal          = "st"
-myWorkspaces        = ["term","browse","3","4","5","6","7","8","9"]
+myBorderWidth        = 1
+myFocusFollowsMouse  = True
+myModMask            = mod4Mask
+myTerminal           = "st"
+myWorkspaces         = ["term","browse","3","4","5","6","7","8","9"]
+myNormalBorderColor  = "#000000"
+myFocusedBorderColor = "#000000"
 
 -- Color of current window title in xmobar.
-xmobarTitleColor = "#22CCDD"
+xmobarTitleColor     = "#22CCDD"
 
 -- Color of current workspace in xmobar.
 xmobarCurrentWorkspaceColor = "#00ff00"
 
+-- managehook settings
 myManageHook = composeAll
-  [ isFullscreen       --> doFullFloat
-  , isDialog           --> doCenterFloat
-  , className =? "mpv" --> doFloat
+  [ className =? "mpv"  --> doFloat
+  , className =? "sxiv" --> doFloat
+  , isFullscreen        --> doFullFloat
+  , isDialog            --> doCenterFloat
   ]
 
+-- Layouthook settings
 tall = Tall 1 (3/100) (1/2)
 myLayoutHook = smartBorders tall ||| smartBorders (Mirror tall) ||| smartBorders Full
+
+-- eventhook settings
+myEventHook = handleEventHook defaultConfig <+> docksEventHook
 
 main = do
   xmproc <- spawnPipe "xmobar"
@@ -39,14 +47,12 @@ main = do
         , modMask            = myModMask
         , terminal           = myTerminal
         , workspaces         = myWorkspaces
-        --, normalBorderColor  = "#D0D0D0"
-        , normalBorderColor  = "#000000"
-        --, focusedBorderColor = "#FFAA00"
-        , focusedBorderColor = "#000000"
-        , manageHook         = manageDocks <+> manageHook defaultConfig
+        , normalBorderColor  = myNormalBorderColor
+        , focusedBorderColor = myFocusedBorderColor
+        , manageHook         = myManageHook
         , focusFollowsMouse  = myFocusFollowsMouse
-        , layoutHook         = avoidStruts  $ layoutHook defaultConfig
-        , handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
+        , layoutHook         = myLayoutHook
+        , handleEventHook    = myEventHook
         , logHook = dynamicLogWithPP xmobarPP
                  { ppOutput = hPutStrLn xmproc
                  , ppHiddenNoWindows = xmobarColor "grey" ""
