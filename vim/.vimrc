@@ -163,13 +163,13 @@
     call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'gmarik/vundle'
-    "Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'fatih/vim-go'
     Plugin 'itchyny/lightline.vim'
     Plugin 'jlanzarotta/bufexplorer'
     Plugin 'majutsushi/tagbar'
-    "Plugin 'ryanss/vim-hackernews'
+    Plugin 'ryanss/vim-hackernews'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
     Plugin 'troydm/easybuffer.vim'
@@ -390,6 +390,10 @@
     "selective remove of trailing whitespace by pressing F10
     nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
+    " Buffer navigation
+    map <C-H> :bp!<ENTER>
+    map <C-L> :bn!<ENTER>
+
 "}
 
 "StatusLine {
@@ -423,4 +427,11 @@
             return ''
         endif
     endfunction
+"}
+
+"Folder creations for mappings {
+    silent !mkdir ~/.vim/backup > /dev/null 2>&1
+    silent !mkdir ~/.vim/tmp > /dev/null 2>&1
+    silent !mkdir ~/.vim/undo > /dev/null 2>&1
+    silent !mkdir ~/.vim/swap > /dev/null 2>&1
 "}
