@@ -83,26 +83,26 @@ then
     else
         unclutter \
             --fork \
-            --jitter 300 \
+            --jitter 150 \
             --timeout 10 \
             &
     fi
 fi
 
-## daemonize urxvt to save memory running urxvtc
-if hash urxvtd 2>/dev/null
-then
-    if pgrep -f urxvtd >/dev/null 2>&1
-    then
-        return 0
-    else
-        urxvtd \
-            --fork \
-            --opendisplay \
-            --quiet \
-            &
-    fi
-fi
+#### daemonize urxvt to save memory running urxvtc
+##if hash urxvtd 2>/dev/null
+##then
+##    if pgrep -f urxvtd >/dev/null 2>&1
+##    then
+##        return 0
+##    else
+##        urxvtd \
+##            --fork \
+##            --opendisplay \
+##            --quiet \
+##            &
+##    fi
+##fi
 
 ## this starts the wm
 if hash xmonad 2>/dev/null
