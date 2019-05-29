@@ -20,6 +20,7 @@ fi
 #### end automata #### }}}
 
 #### exports #### {{{
+export XAUTHORITY=~/.Xauthority
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
