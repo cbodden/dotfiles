@@ -66,28 +66,28 @@ then
     fi
 fi
 
-## this merges the xresources / xdefaults file for font compatability
-if hash xrdb 2>/dev/null
-then
-    xrdb \
-        -merge ~/.Xresources \
-        &
-fi
-
-## this hides the cursor after 10 seconds and waits for at least 300px movement
-if hash unclutter 2>/dev/null
-then
-    if pgrep -f unclutter >/dev/null 2>&1
-    then
-        return 0
-    else
-        unclutter \
-            --fork \
-            --jitter 150 \
-            --timeout 10 \
-            &
-    fi
-fi
+#### this merges the xresources / xdefaults file for font compatability
+##if hash xrdb 2>/dev/null
+##then
+##    xrdb \
+##        -merge ~/.Xresources \
+##        &
+##fi
+##
+#### this hides the cursor after 10 seconds and waits for at least 300px movement
+##if hash unclutter 2>/dev/null
+##then
+##    if pgrep -f unclutter >/dev/null 2>&1
+##    then
+##        return 0
+##    else
+##        unclutter \
+##            --fork \
+##            --jitter 150 \
+##            --timeout 10 \
+##            &
+##    fi
+##fi
 
 #### daemonize urxvt to save memory running urxvtc
 ##if hash urxvtd 2>/dev/null

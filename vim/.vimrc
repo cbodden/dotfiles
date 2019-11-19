@@ -65,7 +65,8 @@
 "}
 
 "Vim UI {
-    colorscheme solarized
+    "colorscheme dracula
+    " colorscheme solarized
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
     set cursorline                  " highlight current line
@@ -177,6 +178,7 @@
     Plugin 'godlygeek/tabular'
     Plugin 'plasticboy/vim-markdown'
     Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'dracula/vim'
     "}
 
     "syntastic {
