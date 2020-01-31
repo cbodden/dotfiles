@@ -15,7 +15,7 @@ fi
 
 #### startx automata #### {{{
 if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]] ; then
-    [[ -z `ps -ef | awk '/\/bin\/evilwm/'` ]] && { startx 2> /dev/null }
+    [[ -z `ps -ef | grep xmonad | grep -v xmonad` ]] && { startx 2> /dev/null }
 fi
 #### end automata #### }}}
 
