@@ -11,7 +11,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 
 -- Simple variable declarations.
-myBorderWidth        = 1
+myBorderWidth        = 0
 myFocusFollowsMouse  = True
 myModMask            = mod4Mask
 myTerminal           = "st"
