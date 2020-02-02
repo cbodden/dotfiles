@@ -5,11 +5,12 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 
---Simple variable declarations.
+-- Simple variable declarations.
 myBorderWidth        = 1
 myFocusFollowsMouse  = True
 myModMask            = mod4Mask
@@ -33,7 +34,7 @@ myManageHook = composeAll
   ]
 
 -- Layouthook settings
-tall = Tall 1 (3/100) (1/2)
+tall =  ResizableTall 1 (1/100) 1
 myLayoutHook = avoidStruts  $ layoutHook defaultConfig
 
 -- eventhook settings

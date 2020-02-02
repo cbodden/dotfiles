@@ -380,7 +380,7 @@
     nnoremap <Leader>gv :!tig %<CR>
 
     " run present edit in bash
-    map r :!bash %
+    "map r :!bash %
 
     " ctrlP remap
     noremap <leader>p :CtrlP<CR>
