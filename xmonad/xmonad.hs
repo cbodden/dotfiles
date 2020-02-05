@@ -78,3 +78,11 @@ main = do
                  , ppSep = "   "
                  }
         }
+        `additionalKeysP`
+        [("M-q",                     spawn "xmonad --recompile && xmonad --restart")
+        ,("<XF86AudioMute>",         spawn "amixer set Master toggle")
+        ,("<XF86AudioRaiseVolume>",  spawn "amixer set Master playback 1+ unmute")
+        ,("<XF86AudioLowerVolume>",  spawn "amixer set Master playback 1-")
+        ,("<XF86MonBrightnessDown>", spawn "/usr/bin/xbacklight -dec 2")
+        ,("<XF86MonBrightnessUp>",   spawn "/usr/bin/xbacklight -inc 2")
+        ]
