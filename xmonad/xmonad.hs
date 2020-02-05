@@ -16,7 +16,7 @@ import XMonad.Util.Run(spawnPipe)
 
 -- Simple variable declarations.
 myBorderWidth        = 0
-myFocusFollowsMouse  = True
+myFocusFollowsMouse  = False
 myModMask            = mod4Mask
 myTerminal           = "st"
 myWorkspaces         = ["term","browse","3","4","5","6","7","8","9"]
@@ -38,24 +38,20 @@ myManageHook = composeAll
   ]
 
 -- Layouthook settings
----- original
---- tall =  ResizableTall 1 (1/100) 1
---- myLayoutHook = avoidStruts  $ layoutHook defaultConfig
-
 myLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
-        $ onWorkspace "web" floaT
-        $ onWorkspace "dev" tiled
+        -- $ onWorkspace "term" Full
+        -- $ onWorkspace "browse" tiled
         $ standardLayouts
     where
         standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
         floaT   = simpleFloat
         tiled1  = Tall nmaster delta ratio
         mtiled  = Mirror tiled1
-        tiled   = spacing 5 $ ResizableTall nmaster delta ratio []
+        tiled   = spacing 6 $ ResizableTall nmaster delta ratio []
         nmaster = 1       -- The default number of windows in the master pane
-        ratio   = 1/2     -- Default proportion of screen occupied by master pane
         delta   = 3/100   -- Percent of screen to increment by when resizing panes
+        ratio   = 1/2     -- Default proportion of screen occupied by master pane
 
 -- eventhook settings
 myEventHook = handleEventHook defaultConfig <+> docksEventHook
