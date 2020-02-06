@@ -145,47 +145,29 @@
 
 "Plugin Settings {
     "Rainbow Parenthesis {
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
-    au Syntax * RainbowParenthesesLoadChevrons
-    au Syntax * RainbowParenthesesLoadRound
+    let g:rainbow_active = 1
     "}
 
-    "pathogen {
-    call pathogen#helptags()
-    call pathogen#infect()
-    execute pathogen#infect()
-    "}
-
-    "vundle {
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'gmarik/vundle'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'airblade/vim-gitgutter'
-    Plugin 'fatih/vim-go'
-    Plugin 'itchyny/lightline.vim'
-    Plugin 'jlanzarotta/bufexplorer'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'ryanss/vim-hackernews'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'troydm/easybuffer.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'godlygeek/tabular'
-    Plugin 'plasticboy/vim-markdown'
-    Plugin 'ctrlpvim/ctrlp.vim'
-    Plugin 'dracula/vim'
+    "vim-plug {
+    "from https://github.com/junegunn/vim-plug
+    call plug#begin('~/.vim/plugged')
+    Plug 'airblade/vim-gitgutter'
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'godlygeek/tabular'
+    Plug 'itchyny/lightline.vim'
+    Plug 'jlanzarotta/bufexplorer'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/syntastic'
+    Plug 'tpope/vim-fugitive'
+    Plug 'troydm/easybuffer.vim'
+    call plug#end()
     "}
 
     "syntastic {
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
-
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
@@ -200,7 +182,8 @@
     let NERDTreeShowHidden = 1
     let g:NERDTreeWinSize = 35
     " auto quit nerdtree when buffers closed
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+        \ && b:NERDTree.isTabTree()) | q | endif
     " Store the bookmarks file
     let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
     " Show the bookmarks table on startup
@@ -209,73 +192,9 @@
     let NERDTreeStatusline = "%{ getcwd() }"
     "}
 
-    "bash completer {
-    "http://www.vim.org/scripts/script.php?script_id=365
-    "http://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
-    filetype plugin on
-    let g:BASH_AuthorName   = 'CBodden'
-    let g:BASH_Email        = 'cesar@pissedoffadmins.com'
-    let g:BASH_Company      = 'pissedoffadmins.com'
-    "}
-
     "lightline {
     let g:lightline = { 'colorscheme': 'wombat', }
     "}
-
-    "YouCompleteMe {
-    let g:ycm_confirm_extra_conf = 0    " remove initial load message
-    "}
-
-    "https://github.com/jstemmer/gotags {
-    let g:tagbar_type_go = {
-        \ 'ctagstype' : 'go',
-        \ 'kinds'     : [
-            \ 'p:package',
-            \ 'i:imports:1',
-            \ 'c:constants',
-            \ 'v:variables',
-            \ 't:types',
-            \ 'n:interfaces',
-            \ 'w:fields',
-            \ 'e:embedded',
-            \ 'm:methods',
-            \ 'r:constructor',
-            \ 'f:functions'
-        \ ],
-        \ 'sro' : '.',
-        \ 'kind2scope' : {
-            \ 't' : 'ctype',
-            \ 'n' : 'ntype'
-        \ },
-        \ 'scope2kind' : {
-            \ 'ctype' : 't',
-            \ 'ntype' : 'n'
-        \ },
-        \ 'ctagsbin'  : 'gotags',
-        \ 'ctagsargs' : '-sort -silent'
-    \ } "}
-
-    "TagList Settings {
-        let Tlist_Auto_Open=0               " let the tag list open automagically
-        let Tlist_Compact_Format = 1        " show small menu
-        let Tlist_Ctags_Cmd = 'ctags'       " location of ctags
-        let Tlist_Enable_Fold_Column = 0    " do show folding tree
-        let Tlist_Exist_OnlyWindow = 1      " if you are the last, kill yourself
-        let Tlist_File_Fold_Auto_Close = 0  " fold closed other trees
-        let Tlist_Sort_Type = "name"        " order by
-        let Tlist_Use_Right_Window = 1      " split to the right side of the screen
-        let Tlist_WinWidth = 35             " 40 cols wide, so i can (almost always) read my functions
-        " Language Specifics {
-            " just functions and classes please
-            let tlist_aspjscript_settings = 'asp;f:function;c:class'
-            " just functions and subs please
-            let tlist_aspvbs_settings = 'asp;f:function;s:sub'
-            " don't show variables in freaking php
-            let tlist_php_settings = 'php;c:class;d:constant;f:function'
-            " just functions and classes please
-            let tlist_vb_settings = 'asp;f:function;c:class'
-        " }
-    " }
 
     "vim-markdown {
     let g:vim_markdown_folding_disabled=1
@@ -283,21 +202,6 @@
     let g:vim_markdown_math=1
     let g:vim_markdown_frontmatter=1
     "}
-
-    "ctrlp {
-    let g:ctrlp_map = '<c-P>'
-    let g:ctrlp_cmd = 'CtrlP'
-    let g:ctrlp_working_path_mode = 'ra'
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-      \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': 'some_bad_symbolic_links',
-      \ }
-    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-    " }
 
 "}
 
@@ -323,7 +227,6 @@
     noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
     let b:match_ignorecase = 1 " case is stupid
-    let perl_extended_vars=1 " highlight advanced perl vars inside strings
 
     " adding shlibs to sh syntax hilighting
     au BufNewFile,BufRead *.shlib set filetype=sh
@@ -331,12 +234,6 @@
 
 "Key mappings / bindings {
     let mapleader=","                       " mapping comma to leader key
-
-    cmap w!! w !sudo tee >/dev/null %       " incase you forget to sudo a file when saving - just type "w!!"
-
-    " Quickly edit/reload the vimrc file
-    nmap <silent> <leader>ev :e $MYVIMRC<CR>
-    nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
     " autoreload vimrc
     augroup reload_vimrc
@@ -362,11 +259,6 @@
     noremap <leader>9 9gt
     noremap <leader>0 :tablast<cr>
 
-    " Tagbar
-    "autocmd VimEnter * TagbarOpen
-    "autocmd BufEnter * TagbarOpen
-    nmap <silent> <F8> :TagbarToggle<CR>
-
     " Easybuffer
     nmap <silent> <F7> :EasyBuffer<CR>
 
@@ -374,16 +266,6 @@
     map <C-n> :NERDTreeToggle<CR>
     map <C-m> :NERDTree<CR>
     nmap <silent> <F3> :NERDTreeToggle<CR>
-
-    " testing tig mappings
-    " show history in tig
-    nnoremap <Leader>gv :!tig %<CR>
-
-    " run present edit in bash
-    "map r :!bash %
-
-    " ctrlP remap
-    noremap <leader>p :CtrlP<CR>
 
     "From :
     "https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file

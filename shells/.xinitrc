@@ -1,20 +1,5 @@
 #!/bin/bash
 
-## this sets the root bg color, window bg color, and cursor
-if hash xsetroot 2>/dev/null
-then
-    if pgrep -f xsetroot >/dev/null 2>&1
-    then
-        return 0
-    else
-        xsetroot \
-            -background "#000000"  \
-            -cursor_name crosshair \
-            -solid "#000000" \
-            &
-    fi
-fi
-
 ## this sets alt + ctrl + del to breakout of wm
 if hash setxkbmap 2>/dev/null
 then

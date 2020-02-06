@@ -54,8 +54,8 @@ myLayoutHook =
         mtiled  = Mirror tiled1
         tiled   = spacing 6 $ ResizableTall nmaster delta ratio []
         nmaster = 1       -- The default number of windows in the master pane
-        delta   = 3/100   -- Percent of screen to increment by when resizing panes
-        ratio   = 1/2     -- Default proportion of screen occupied by master pane
+        delta   = 3/100   -- Percent of screen to increment when resizing panes
+        ratio   = 1/2     -- Default amount of screen occupied by master pane
 
 -- eventhook settings
 myEventHook = handleEventHook defaultConfig <+> docksEventHook
