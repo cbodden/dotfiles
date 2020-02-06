@@ -40,8 +40,7 @@ myManageHook = composeAll
 -- Layouthook settings
 myLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
-        -- $ onWorkspace "term" Full
-        -- $ onWorkspace "browse" tiled
+        $ onWorkspace "term" Full
         $ standardLayouts
     where
         standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
