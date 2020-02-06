@@ -33,7 +33,8 @@ xmobarCurrentWorkspaceColor = "#00ff00"
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
 myManageHook = composeAll
     [ className =? "qutebrowser"     --> doShift "2:browse"
-    , className =? "vivaldi-stable"  --> doShift "3"
+    , className =? "Vivaldi-stable"  --> doShift "3"
+    , className =? "Virt-manager"    --> doShift "4"
     , className =? "mpv"             --> doFloat
     , className =? "sxiv"            --> doFloat
     , isFullscreen                   --> doFullFloat
@@ -44,7 +45,7 @@ myManageHook = composeAll
 myLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
         $ onWorkspace "1:term" Full
-        $ onWorkspace "1" Full
+        $ onWorkspace "1"      Full
         $ standardLayouts
     where
         standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
