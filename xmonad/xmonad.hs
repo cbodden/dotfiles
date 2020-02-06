@@ -19,7 +19,7 @@ myBorderWidth        = 0
 myFocusFollowsMouse  = False
 myModMask            = mod4Mask
 myTerminal           = "st"
-myWorkspaces         = ["term","browse","3","4","5","6","7","8","9"]
+myWorkspaces         = ["1:term","2:browse"] ++ map show [3..9]
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#000000"
 
@@ -30,17 +30,21 @@ xmobarTitleColor     = "#22CCDD"
 xmobarCurrentWorkspaceColor = "#00ff00"
 
 -- managehook settings
+-- -- to find the property name > "xprop | grep WM_CLASS" then select window
 myManageHook = composeAll
-  [ className =? "mpv"  --> doFloat
-  , className =? "sxiv" --> doFloat
-  , isFullscreen        --> doFullFloat
-  , isDialog            --> doCenterFloat
-  ]
+    [ className =? "qutebrowser"     --> doShift "2:browse"
+    , className =? "vivaldi-stable"  --> doShift "3"
+    , className =? "mpv"             --> doFloat
+    , className =? "sxiv"            --> doFloat
+    , isFullscreen                   --> doFullFloat
+    , isDialog                       --> doCenterFloat
+    ]
 
 -- Layouthook settings
 myLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
-        $ onWorkspace "term" Full
+        $ onWorkspace "1:term" Full
+        $ onWorkspace "1" Full
         $ standardLayouts
     where
         standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
@@ -56,9 +60,9 @@ myLayoutHook =
 myEventHook = handleEventHook defaultConfig <+> docksEventHook
 
 main = do
-  xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "xmobar"
 
-  xmonad $ defaultConfig
+    xmonad $ defaultConfig
         { borderWidth        = myBorderWidth
         , modMask            = myModMask
         , terminal           = myTerminal
@@ -69,14 +73,15 @@ main = do
         , focusFollowsMouse  = myFocusFollowsMouse
         , layoutHook         = myLayoutHook
         , handleEventHook    = myEventHook
-        , logHook = dynamicLogWithPP xmobarPP
-                 { ppOutput = hPutStrLn xmproc
-                 , ppHiddenNoWindows = xmobarColor "grey" ""
-                 , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40
-                 , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-                 , ppSep = "   "
-                 }
+        , logHook            = dynamicLogWithPP xmobarPP
+            { ppOutput          = hPutStrLn xmproc
+            , ppHiddenNoWindows = xmobarColor "grey" ""
+            , ppTitle           = xmobarColor xmobarTitleColor "" . shorten 40
+            , ppCurrent         = xmobarColor xmobarCurrentWorkspaceColor ""
+            , ppSep             = "   "
+            }
         }
+
         `additionalKeysP`
         [("M-q",                     spawn "xmonad --recompile && xmonad --restart")
         ,("<XF86AudioMute>",         spawn "amixer set Master toggle")
