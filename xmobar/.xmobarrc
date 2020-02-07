@@ -33,13 +33,10 @@ Config
             , "--low"       , "red"
             , "--normal"    , "orange"
             , "--high"      , "green"
-            , "--"          -- battery specific options
-            -- discharging status
-            , "-o"          , "<left>% (<timeleft>)"
-            -- AC "on" status
-            , "-O"          , "<fc=orange>Charging</fc>"
-            -- charged status
-            , "-i"          , "<fc=green>Charged</fc>"
+            , "--"                                          -- battery specific options
+            , "-o"          , "<left>% (<timeleft>)"        -- discharging status
+            , "-O"          , "<fc=orange>Charging</fc>"    -- AC "on" status
+            , "-i"          , "<fc=green>Charged</fc>"      -- charged status
             ] 50
         , Run StdinReader
         ]
