@@ -1,44 +1,49 @@
-Config {
-        -- general appearance
-        font = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
-        , borderColor = "black"
-        , border =      TopB
-        , bgColor =     "black"
-        , fgColor =     "grey"
-        , position =    TopW L 100
-
-        -- general behavior
-        , lowerOnStart =     False   -- send to bottom of window stack on start
-        , hideOnStart =      False   -- start with window unmapped (hidden)
-        , allDesktops =      True    -- show on all desktops
-        , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-        , pickBroadest =     False   -- choose widest display (multi-monitor)
-        , persistent =       True    -- enable/disable hiding (True = disabled)
-
-        -- commands, template, sepchar, and alignsep section
-        , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                        , Run Memory ["-t","Mem: <usedratio>%"] 10
-                        , Run Swap [] 10
-                        , Run Com "uname" ["-s","-r"] "" 36000
-                        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-                        , Run Com "/home/cbodden/git/mine/scripts/wifi_bar_info.sh" [] "wifibar" 200
-                        , Run Battery       [ "--template" , "Batt: <acstatus>"
-                             , "--Low"      , "10"        -- units: %
-                             , "--High"     , "80"        -- units: %
-                             , "--low"      , "red"
-                             , "--normal"   , "orange"
-                             , "--high"     , "green"
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o"   , "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O"   , "<fc=orange>Charging</fc>" -- dAA520
-                                       -- charged status
-                                       , "-i"   , "<fc=green>Charged</fc>" -- #006000
-                             ] 50
-                        , Run StdinReader
-                        ]
-        , sepChar = "%"
-        , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %wifibar% }{ <fc=#ee9a00>%date%</fc> | %battery% | %uname% "
-        }
+Config
+    { font              = "xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true"
+    , borderColor       = "black"
+    , border            = TopB
+    , bgColor           = "black"
+    , fgColor           = "grey"
+    , position          = TopW L 100
+    , lowerOnStart      = False
+    , hideOnStart       = False
+    , allDesktops       = True
+    , overrideRedirect  = True
+    , pickBroadest      = False
+    , persistent        = True
+    , commands          = [
+        Run Cpu
+            [ "-L"  ,"3"
+            , "-H"  ,"50"
+            , "--normal"    ,"green"
+            , "--high"      ,"red"
+            ] 10
+        , Run Memory
+            [ "-t"  ,"Mem: <usedratio>%"
+            ] 10
+        , Run Swap
+            [] 10
+        , Run Com   "uname" ["-s","-r"] "" 36000
+        , Run Date  "%a %b %_d %Y %H:%M:%S" "date" 10
+        , Run Com   "/home/cbodden/git/mine/scripts/wifi_bar_info.sh" [] "wifibar" 200
+        , Run Battery
+            [ "--template"  , "Batt: <acstatus>"
+            , "--Low"       , "10"
+            , "--High"      , "80"
+            , "--low"       , "red"
+            , "--normal"    , "orange"
+            , "--high"      , "green"
+            , "--"          -- battery specific options
+            -- discharging status
+            , "-o"          , "<left>% (<timeleft>)"
+            -- AC "on" status
+            , "-O"          , "<fc=orange>Charging</fc>"
+            -- charged status
+            , "-i"          , "<fc=green>Charged</fc>"
+            ] 50
+        , Run StdinReader
+        ]
+        , sepChar   = "%"
+        , alignSep  = "}{"
+        , template  = "%StdinReader% | %cpu% | %memory% * %swap% | %wifibar% }{ <fc=#ee9a00>%date%</fc> | %battery% | %uname% "
+    }
