@@ -24,7 +24,7 @@ Config
         , Run Swap
             [] 10
         , Run Com   "uname" ["-s","-r"] "" 36000
-        , Run Date  "%a %b %_d %Y %H:%M:%S" "date" 10
+        , Run Date  "%a %_d-%b-%Y %H:%M:%S" "date" 10
         , Run Com   "/home/cbodden/git/mine/scripts/wifi_bar_info.sh" [] "wifibar" 200
         , Run Battery
             [ "--template"  , "Batt: <acstatus>"
