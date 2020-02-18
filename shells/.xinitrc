@@ -26,18 +26,32 @@ then
     fi
 fi
 
-## this runs xflux in the background
-if hash xflux 2>/dev/null
+## this runs redshift in the background
+if hash redshift 2>/dev/null
 then
-    if pgrep -f xflux >/dev/null 2>&1
+    if pgrep -f redshift >/dev/null 2>&1
     then
         return 0
     else
-        xflux \
-            -z 10010 \
+        redshift \
+            -l geoclue2 \
+            -t 6500:3000 \
             &
     fi
 fi
+
+## this runs xflux in the background
+#if hash xflux 2>/dev/null
+#then
+#    if pgrep -f xflux >/dev/null 2>&1
+#    then
+#        return 0
+#    else
+#        xflux \
+#            -z 10010 \
+#            &
+#    fi
+#fi
 
 ## this hides the cursor after 10 seconds and waits for at least 300px movement
 if hash unclutter 2>/dev/null
