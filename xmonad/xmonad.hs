@@ -19,7 +19,7 @@ myBorderWidth        = 0
 myFocusFollowsMouse  = False
 myModMask            = mod4Mask
 myTerminal           = "st"
-myWorkspaces         = ["1:term","2:browse"] ++ map show [3..9]
+myWorkspaces         = ["1","2"] ++ map show [3..9]
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#000000"
 
@@ -32,7 +32,7 @@ xmobarCurrentWorkspaceColor = "#00ff00"
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
 myManageHook = composeAll
-    [ className =? "qutebrowser"     --> doShift "2:browse"
+    [ className =? "qutebrowser"     --> doShift "2"
     , className =? "Vivaldi-stable"  --> doShift "3"
     , className =? "Virt-manager"    --> doShift "4"
     , className =? "mpv"             --> doFloat
@@ -44,7 +44,6 @@ myManageHook = composeAll
 -- Layouthook settings
 myLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
-        $ onWorkspace "1:term" Full
         $ onWorkspace "1"      Full
         $ standardLayouts
     where
