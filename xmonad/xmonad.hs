@@ -14,14 +14,14 @@ import XMonad.Util.EZConfig
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 
--- Simple variable declarations.
-myBorderWidth        = 0
-myFocusFollowsMouse  = False
-myFocusedBorderColor = "#000000"
-myModMask            = mod4Mask
-myNormalBorderColor  = "#000000"
-myTerminal           = "st"
-myWorkspaces         = ["1","2"] ++ map show [3..9]
+-- xmonad variable declarations.
+xmonadBorderWidth        = 0
+xmonadFocusFollowsMouse  = False
+xmonadFocusedBorderColor = "#000000"
+xmonadModMask            = mod4Mask
+xmonadNormalBorderColor  = "#000000"
+xmonadTerminal           = "st"
+xmonadWorkspaces         = ["1","2"] ++ map show [3..9]
 
 -- xmobar variable declarations.
 xmobarTitleColor     = "#22CCDD"
@@ -38,7 +38,7 @@ xmobarUrgentWSRight  = "}"
 
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
-myManageHook = composeAll
+xmonadManageHook = composeAll
     [ className =? "qutebrowser"     --> doShift "2"
     , className =? "Vivaldi-stable"  --> doShift "3"
     , className =? "Virt-manager"    --> doShift "4"
@@ -49,7 +49,7 @@ myManageHook = composeAll
     ]
 
 -- Layouthook settings
-myLayoutHook =
+xmonadLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
         $ onWorkspace "1" Full
         $ standardLayouts
@@ -64,22 +64,22 @@ myLayoutHook =
         ratio   = 1/2     -- Default amount of screen occupied by master pane
 
 -- eventhook settings
-myEventHook = handleEventHook defaultConfig <+> docksEventHook
+xmonadEventHook = handleEventHook defaultConfig <+> docksEventHook
 
 main = do
     xmproc <- spawnPipe "xmobar"
 
     xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
-        { borderWidth        = myBorderWidth
-        , focusFollowsMouse  = myFocusFollowsMouse
-        , focusedBorderColor = myFocusedBorderColor
-        , handleEventHook    = myEventHook
-        , layoutHook         = myLayoutHook
-        , manageHook         = myManageHook
-        , modMask            = myModMask
-        , normalBorderColor  = myNormalBorderColor
-        , terminal           = myTerminal
-        , workspaces         = myWorkspaces
+        { borderWidth        = xmonadBorderWidth
+        , focusFollowsMouse  = xmonadFocusFollowsMouse
+        , focusedBorderColor = xmonadFocusedBorderColor
+        , handleEventHook    = xmonadEventHook
+        , layoutHook         = xmonadLayoutHook
+        , manageHook         = xmonadManageHook
+        , modMask            = xmonadModMask
+        , normalBorderColor  = xmonadNormalBorderColor
+        , terminal           = xmonadTerminal
+        , workspaces         = xmonadWorkspaces
         , logHook            = takeTopFocus <+> dynamicLogWithPP xmobarPP
             { ppOutput          = hPutStrLn xmproc
             , ppHiddenNoWindows = xmobarColor "grey" ""
