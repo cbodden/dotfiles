@@ -23,11 +23,18 @@ myWorkspaces         = ["1","2"] ++ map show [3..9]
 myNormalBorderColor  = "#000000"
 myFocusedBorderColor = "#000000"
 
--- Color of current window title in xmobar.
+-- xmobar variable declarations.
 xmobarTitleColor     = "#22CCDD"
-
--- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#00ff00"
+xmobarTitleLength    = 40
+xmobarCurrentWSColor = "#00ff00"
+xmobarVisibleWSColor = "#c185a7"
+xmobarUrgentWSColor  = "#cc0000"
+xmobarCurrentWSLeft  = "["
+xmobarCurrentWSRight = "]"
+xmobarVisibleWSLeft  = "("
+xmobarVisibleWSRight = ")"
+xmobarUrgentWSLeft   = "{"
+xmobarUrgentWSRight  = "}"
 
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
@@ -44,7 +51,7 @@ myManageHook = composeAll
 -- Layouthook settings
 myLayoutHook =
     avoidStrutsOn [U] -- avoid statusbar overlapping
-        $ onWorkspace "1"      Full
+        $ onWorkspace "1" Full
         $ standardLayouts
     where
         standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
@@ -62,7 +69,7 @@ myEventHook = handleEventHook defaultConfig <+> docksEventHook
 main = do
     xmproc <- spawnPipe "xmobar"
 
-    xmonad $ defaultConfig
+    xmonad $ ewmh defaultConfig
         { borderWidth        = myBorderWidth
         , modMask            = myModMask
         , terminal           = myTerminal
@@ -76,8 +83,10 @@ main = do
         , logHook            = dynamicLogWithPP xmobarPP
             { ppOutput          = hPutStrLn xmproc
             , ppHiddenNoWindows = xmobarColor "grey" ""
-            , ppTitle           = xmobarColor xmobarTitleColor "" . shorten 40
-            , ppCurrent         = xmobarColor xmobarCurrentWorkspaceColor ""
+            , ppTitle           = xmobarColor xmobarTitleColor "" . shorten xmobarTitleLength
+            , ppCurrent         = xmobarColor xmobarCurrentWSColor "" . wrap xmobarCurrentWSLeft xmobarCurrentWSRight
+			, ppVisible 		= xmobarColor xmobarVisibleWSColor "" . wrap xmobarVisibleWSLeft xmobarVisibleWSRight
+			, ppUrgent 			= xmobarColor xmobarUrgentWSColor "" . wrap xmobarUrgentWSLeft xmobarUrgentWSRight
             , ppSep             = "   "
             }
         }
