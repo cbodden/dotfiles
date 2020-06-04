@@ -17,11 +17,11 @@ import XMonad.Util.Run(spawnPipe)
 -- Simple variable declarations.
 myBorderWidth        = 0
 myFocusFollowsMouse  = False
+myFocusedBorderColor = "#000000"
 myModMask            = mod4Mask
+myNormalBorderColor  = "#000000"
 myTerminal           = "st"
 myWorkspaces         = ["1","2"] ++ map show [3..9]
-myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#000000"
 
 -- xmobar variable declarations.
 xmobarTitleColor     = "#22CCDD"
@@ -69,18 +69,18 @@ myEventHook = handleEventHook defaultConfig <+> docksEventHook
 main = do
     xmproc <- spawnPipe "xmobar"
 
-    xmonad $ ewmh defaultConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
         { borderWidth        = myBorderWidth
+        , focusFollowsMouse  = myFocusFollowsMouse
+        , focusedBorderColor = myFocusedBorderColor
+        , handleEventHook    = myEventHook
+        , layoutHook         = myLayoutHook
+        , manageHook         = myManageHook
         , modMask            = myModMask
+        , normalBorderColor  = myNormalBorderColor
         , terminal           = myTerminal
         , workspaces         = myWorkspaces
-        , normalBorderColor  = myNormalBorderColor
-        , focusedBorderColor = myFocusedBorderColor
-        , manageHook         = myManageHook
-        , focusFollowsMouse  = myFocusFollowsMouse
-        , layoutHook         = myLayoutHook
-        , handleEventHook    = myEventHook
-        , logHook            = dynamicLogWithPP xmobarPP
+        , logHook            = takeTopFocus <+> dynamicLogWithPP xmobarPP
             { ppOutput          = hPutStrLn xmproc
             , ppHiddenNoWindows = xmobarColor "grey" ""
             , ppTitle           = xmobarColor xmobarTitleColor "" . shorten xmobarTitleLength
