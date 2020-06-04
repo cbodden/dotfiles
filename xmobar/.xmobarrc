@@ -5,7 +5,7 @@ Config
     , bgColor           = "black"
     , fgColor           = "grey"
     , position          = TopW L 100
-    , lowerOnStart      = False
+    , lowerOnStart      = True
     , hideOnStart       = False
     , allDesktops       = True
     , overrideRedirect  = True

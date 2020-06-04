@@ -3,6 +3,7 @@ import XMonad
 import XMonad hiding ( (|||) )
 import XMonad.Hooks.DynamicLog          -- output status info to external status programs
 import XMonad.Hooks.EwmhDesktops        -- make xmonad use EWMH hints
+import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks         -- provide tools ot manage dock type programs
 import XMonad.Hooks.ManageHelpers       -- helper functions to be used in manageHook
 import XMonad.Hooks.UrgencyHook         -- configure action to occur when window needs attention
@@ -52,7 +53,7 @@ xmonadManageHook = composeAll
 -- Layouthook settings
 xmonadLayoutHook =
     avoidStrutsOn [U]                   -- avoid statusbar overlapping
-        $ onWorkspace "1" Full
+        -- $ onWorkspace "1" Full
         $ standardLayouts
     where
         standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
@@ -93,10 +94,12 @@ main = do
         }
 
         `additionalKeysP`
-        [("M-q",                     spawn "xmonad --recompile && xmonad --restart")
-        ,("<XF86AudioMute>",         spawn "amixer set Master toggle")
-        ,("<XF86AudioRaiseVolume>",  spawn "amixer set Master playback 1+ unmute")
-        ,("<XF86AudioLowerVolume>",  spawn "amixer set Master playback 1-")
-        ,("<XF86MonBrightnessDown>", spawn "/usr/bin/xbacklight -dec 2")
-        ,("<XF86MonBrightnessUp>",   spawn "/usr/bin/xbacklight -inc 2")
-        ]
+            [ ("<XF86AudioLowerVolume>",  spawn "amixer set Master playback 1-")
+            , ("<XF86AudioMute>",         spawn "amixer set Master toggle")
+            , ("<XF86AudioRaiseVolume>",  spawn "amixer set Master playback 1+ unmute")
+            , ("<XF86MonBrightnessDown>", spawn "/usr/bin/xbacklight -dec 2")
+            , ("<XF86MonBrightnessUp>",   spawn "/usr/bin/xbacklight -inc 2")
+            , ("M-S-x",                   spawn "xscreensaver-command -lock")
+            , ("M-b",                     sendMessage ToggleStruts)
+            , ("M-q",                     spawn "xmonad --recompile && xmonad --restart")
+            ]
