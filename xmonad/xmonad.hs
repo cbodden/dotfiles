@@ -3,7 +3,7 @@ import XMonad
 import XMonad hiding ( (|||) )
 import XMonad.Hooks.DynamicLog          -- output status info to external status programs
 import XMonad.Hooks.EwmhDesktops        -- make xmonad use EWMH hints
-import XMonad.Hooks.ICCCMFocus
+import XMonad.Hooks.ICCCMFocus          -- will not misbehavewhentaking and losing focus
 import XMonad.Hooks.ManageDocks         -- provide tools ot manage dock type programs
 import XMonad.Hooks.ManageHelpers       -- helper functions to be used in manageHook
 import XMonad.Hooks.UrgencyHook         -- configure action to occur when window needs attention
@@ -56,14 +56,14 @@ xmonadLayoutHook =
         -- $ onWorkspace "1" Full
         $ standardLayouts
     where
-        standardLayouts = Full ||| tiled ||| mtiled ||| Grid ||| floaT
-        floaT   = simpleFloat
-        tiled1  = Tall nmaster delta ratio
-        mtiled  = Mirror tiled1
-        tiled   = spacing 6 $ ResizableTall nmaster delta ratio []
-        nmaster = 1                     -- The default number of windows in the master pane
-        delta   = 3/100                 -- Percent of screen to increment when resizing panes
-        ratio   = 1/2                   -- Default amount of screen occupied by master pane
+        standardLayouts      = Full ||| tiled ||| mtiled ||| Grid ||| floaT
+        floaT                = simpleFloat
+        tiled1               = Tall nmaster delta ratio
+        mtiled               = Mirror tiled1
+        tiled                = spacing 6 $ ResizableTall nmaster delta ratio []
+        nmaster              = 1                         -- The default number of windows in the master pane
+        delta                = 3/100                     -- Percent of screen to increment when resizing panes
+        ratio                = 1/2                       -- Default amount of screen occupied by master pane
 
 -- eventhook settings
 xmonadEventHook = handleEventHook defaultConfig <+> docksEventHook
