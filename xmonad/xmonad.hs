@@ -85,8 +85,8 @@ main = do
             , ppHiddenNoWindows = xmobarColor "grey" ""
             , ppTitle           = xmobarColor xmobarTitleColor "" . shorten xmobarTitleLength
             , ppCurrent         = xmobarColor xmobarCurrentWSColor "" . wrap xmobarCurrentWSLeft xmobarCurrentWSRight
-			, ppVisible 		= xmobarColor xmobarVisibleWSColor "" . wrap xmobarVisibleWSLeft xmobarVisibleWSRight
-			, ppUrgent 			= xmobarColor xmobarUrgentWSColor "" . wrap xmobarUrgentWSLeft xmobarUrgentWSRight
+            , ppVisible         = xmobarColor xmobarVisibleWSColor "" . wrap xmobarVisibleWSLeft xmobarVisibleWSRight
+            , ppUrgent          = xmobarColor xmobarUrgentWSColor "" . wrap xmobarUrgentWSLeft xmobarUrgentWSRight
             , ppSep             = "   "
             }
         }
