@@ -1,39 +1,39 @@
 import System.IO
 import XMonad
 import XMonad hiding ( (|||) )
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Layout.Grid
-import XMonad.Layout.PerWorkspace (onWorkspace)
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.SimpleFloat
-import XMonad.Layout.Spacing
-import XMonad.Util.EZConfig
+import XMonad.Hooks.DynamicLog          -- output status info to external status programs
+import XMonad.Hooks.EwmhDesktops        -- make xmonad use EWMH hints
+import XMonad.Hooks.ManageDocks         -- provide tools ot manage dock type programs
+import XMonad.Hooks.ManageHelpers       -- helper functions to be used in manageHook
+import XMonad.Layout.Grid               -- grid layout
+import XMonad.Layout.PerWorkspace (onWorkspace)          -- configure layouts per workspace
+import XMonad.Layout.ResizableTile      -- resizable tile layout
+import XMonad.Layout.SimpleFloat        -- float layout
+import XMonad.Layout.Spacing            -- add space around windows
+import XMonad.Util.EZConfig             -- helper func for parsing keybindings
 import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Run(spawnPipe)       -- provides commands to run external programs
 
 -- xmonad variable declarations.
-xmonadBorderWidth        = 0
-xmonadFocusFollowsMouse  = False
-xmonadFocusedBorderColor = "#000000"
-xmonadModMask            = mod4Mask
-xmonadNormalBorderColor  = "#000000"
-xmonadTerminal           = "st"
-xmonadWorkspaces         = ["1","2"] ++ map show [3..9]
+xmonadBorderWidth        = 0            -- border width
+xmonadFocusFollowsMouse  = False        -- focus follows mouse
+xmonadFocusedBorderColor = "#000000"    -- focused border color
+xmonadModMask            = mod4Mask     -- set mod key to winkey
+xmonadNormalBorderColor  = "#000000"    -- normal border color
+xmonadTerminal           = "st"         -- default terminal
+xmonadWorkspaces         = ["1","2"] ++ map show [3..9]  -- workspaces available
 
 -- xmobar variable declarations.
-xmobarTitleColor     = "#22CCDD"
-xmobarTitleLength    = 40
-xmobarCurrentWSColor = "#00ff00"
-xmobarVisibleWSColor = "#c185a7"
-xmobarUrgentWSColor  = "#cc0000"
-xmobarCurrentWSLeft  = "["
+xmobarTitleColor     = "#22CCDD"        -- color of window title
+xmobarTitleLength    = 40               -- length of title name
+xmobarCurrentWSColor = "#00ff00"        -- active workspace color
+xmobarVisibleWSColor = "#c185a7"        -- inactive sorkspace color
+xmobarUrgentWSColor  = "#cc0000"        -- urgent workspace color
+xmobarCurrentWSLeft  = "["              -- active workspace id wrap
 xmobarCurrentWSRight = "]"
-xmobarVisibleWSLeft  = "("
+xmobarVisibleWSLeft  = "("              -- inactive workspace id wrap
 xmobarVisibleWSRight = ")"
-xmobarUrgentWSLeft   = "{"
+xmobarUrgentWSLeft   = "{"              -- urgent workspace id wrap
 xmobarUrgentWSRight  = "}"
 
 -- managehook settings
