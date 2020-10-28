@@ -40,14 +40,14 @@ xmobarUrgentWSRight      = "}"
 
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
-xmonadManageHook = composeAll
-    [ className =? "qutebrowser"     --> doShift "2"
-    , className =? "Vivaldi-stable"  --> doShift "3"
-    , className =? "Virt-manager"    --> doShift "4"
-    , className =? "mpv"             --> doFloat
-    , className =? "sxiv"            --> doFloat
-    , isFullscreen                   --> doFullFloat
-    , isDialog                       --> doCenterFloat
+xmonadManageHook    = composeAll
+    [ className     =? "qutebrowser"    --> doShift "2"
+    , className     =? "Vivaldi-stable" --> doShift "3"
+    , className     =? "Virt-manager"   --> doShift "4"
+    , className     =? "mpv"            --> doFloat
+    , className     =? "sxiv"           --> doFloat
+    , isFullscreen                      --> doFullFloat
+    , isDialog                          --> doCenterFloat
     ]
 
 -- Layouthook settings
