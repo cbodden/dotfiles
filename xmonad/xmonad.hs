@@ -23,7 +23,7 @@ xmonadFocusedBorderColor = "#000000"    -- focused border color
 xmonadModMask            = mod4Mask     -- set mod key to winkey
 xmonadNormalBorderColor  = "#000000"    -- normal border color
 xmonadTerminal           = "st"         -- default terminal
-xmonadWorkspaces         = ["1","2"] ++ map show [3..9]  -- workspaces available
+xmonadWorkspaces         = ["st","qb"] ++ map show [3..9]  -- workspaces available
 
 -- xmobar variable declarations.
 xmobarTitleColor         = "#22CCDD"    -- color of window title
@@ -41,7 +41,9 @@ xmobarUrgentWSRight      = "}"
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
 xmonadManageHook    = composeAll
-    [ className     =? "qutebrowser"    --> doShift "2"
+    [ className     =? "st-256color"    --> doShift "1"
+    , className     =? "qutebrowser"    --> doShift "2"
+    , className     =? "Firefox"        --> doShift "3"
     , className     =? "Vivaldi-stable" --> doShift "3"
     , className     =? "Virt-manager"   --> doShift "4"
     , className     =? "mpv"            --> doFloat
