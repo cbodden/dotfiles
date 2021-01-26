@@ -7,6 +7,7 @@ import XMonad.Hooks.ICCCMFocus          -- will not misbehavewhentaking and losi
 import XMonad.Hooks.ManageDocks         -- provide tools ot manage dock type programs
 import XMonad.Hooks.ManageHelpers       -- helper functions to be used in manageHook
 import XMonad.Hooks.UrgencyHook         -- configure action to occur when window needs attention
+import XMonad.Layout.Circle             -- circle layout
 import XMonad.Layout.Grid               -- grid layout
 import XMonad.Layout.PerWorkspace (onWorkspace)          -- configure layouts per workspace
 import XMonad.Layout.ResizableTile      -- resizable tile layout
@@ -23,7 +24,7 @@ xmonadFocusedBorderColor = "#000000"    -- focused border color
 xmonadModMask            = mod4Mask     -- set mod key to winkey
 xmonadNormalBorderColor  = "#000000"    -- normal border color
 xmonadTerminal           = "st"         -- default terminal
-xmonadWorkspaces         = ["st","qb"] ++ map show [3..9]  -- workspaces available
+xmonadWorkspaces         = ["1:st","2:qb"] ++ map show [3..9]  -- workspaces available
 
 -- xmobar variable declarations.
 xmobarTitleColor         = "#22CCDD"    -- color of window title
@@ -41,8 +42,8 @@ xmobarUrgentWSRight      = "}"
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
 xmonadManageHook    = composeAll
-    [ className     =? "st-256color"    --> doShift "1"
-    , className     =? "qutebrowser"    --> doShift "2"
+    [ className     =? "st-256color"    --> doShift "1:st"
+    , className     =? "qutebrowser"    --> doShift "2:qb"
     , className     =? "Firefox"        --> doShift "3"
     , className     =? "Vivaldi-stable" --> doShift "3"
     , className     =? "Virt-manager"   --> doShift "4"
@@ -55,10 +56,10 @@ xmonadManageHook    = composeAll
 -- Layouthook settings
 xmonadLayoutHook =
     avoidStrutsOn [U]                   -- avoid statusbar overlapping
-        -- $ onWorkspace "1" Full
+        $ onWorkspace "1:st" (avoidStruts $ (Full))
         $ standardLayouts
     where
-        standardLayouts      = Full ||| tiled ||| mtiled ||| Grid ||| floaT
+        standardLayouts      = Full ||| tiled ||| mtiled ||| Grid ||| floaT ||| Circle
         floaT                = simpleFloat
         tiled1               = Tall nmaster delta ratio
         mtiled               = Mirror tiled1
