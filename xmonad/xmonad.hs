@@ -55,9 +55,8 @@ xmonadManageHook    = composeAll
 
 -- Layouthook settings
 xmonadLayoutHook =
-    avoidStrutsOn [U]                   -- avoid statusbar overlapping
-        $ onWorkspace "1:st" (avoidStruts $ (Full))
-        $ standardLayouts
+        onWorkspace "1:st" (Full)       -- ws 1:st locked to full no xmobar
+        $ avoidStrutsOn [U] (standardLayouts)
     where
         standardLayouts      = Full ||| tiled ||| mtiled ||| Grid ||| floaT ||| Circle
         floaT                = simpleFloat
