@@ -93,6 +93,7 @@
     set showmatch                   " show matching brackets
     set sidescrolloff=10            " Keep 5 lines at the size
     set t_Co=256                    " enables 256 colors
+    " set termguicolors               " support for colorscheme in ST
     set title                       " change the terminals title
     "set statusline=%F%m%r%h%w\ [Lines:%L]\ [Type:%{&ff}]\ %y\ [%p%%]\ [%04l,%04v]\ [FoldLevel:%{foldlevel('.')}]
     ""              | | | | |          |          |        |    |       |    |                 |

@@ -104,14 +104,14 @@ setopt autocd                             # no more pesky cd to change dirs
 #### end misc options #### }}}
 
 #### prompt #### {{{
-if [[ "$EUID" -ne "0" ]]; then
-    # https://github.com/nojhan/liquidprompt
-    source ~/.zsh/liquidprompt/liquidprompt
-else
-    # https://github.com/olivierverdier/zsh-git-prompt
-    source ~/.zsh/git-prompt/zshrc.sh
-    PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
-fi
+##if [[ "$EUID" -ne "0" ]]; then
+##    # https://github.com/nojhan/liquidprompt
+##    source ~/.zsh/liquidprompt/liquidprompt
+##else
+##    ### https://github.com/olivierverdier/zsh-git-prompt
+##    ##source ~/.zsh/zsh-git-prompt/zshrc.sh
+##    ##PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
+##fi
 #### end prompt #### }}}
 
 #### zsh plugins #### {{{
@@ -121,6 +121,12 @@ promptinit; prompt gentoo
 zstyle ':completion::complete:*' use-cache 1
 plugins=(… zsh-completions vi-mode)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+## oh my zsh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=skaro
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
 ### end zsh options #### }}}
 
 #### aliases #### {{{
@@ -209,3 +215,9 @@ man() {
             man "$@"
 }
 #### end colored man pages }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'; fi
