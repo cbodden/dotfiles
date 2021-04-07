@@ -115,17 +115,17 @@ setopt autocd                             # no more pesky cd to change dirs
 #### end prompt #### }}}
 
 #### zsh plugins #### {{{
+plugins=(… zsh-completions vi-mode git)
 autoload -U compinit promptinit
 compinit
 promptinit; prompt gentoo
 zstyle ':completion::complete:*' use-cache 1
-plugins=(… zsh-completions vi-mode)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ## oh my zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=skaro
-plugins=(git)
+plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 ### end zsh options #### }}}
 
