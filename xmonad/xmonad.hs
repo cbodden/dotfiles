@@ -96,9 +96,9 @@ main = do
         }
 
         `additionalKeysP`
-            [ ("<XF86AudioLowerVolume>",  spawn "amixer set Master playback 1-")
-            , ("<XF86AudioMute>",         spawn "amixer set Master toggle")
-            , ("<XF86AudioRaiseVolume>",  spawn "amixer set Master playback 1+ unmute")
+            [ ("<XF86AudioLowerVolume>",  spawn "amixer sset Master playback 3%-")
+            , ("<XF86AudioMute>",         spawn "amixer sset Master toggle")
+            , ("<XF86AudioRaiseVolume>",  spawn "amixer sset Master playback 3%+ unmute")
             , ("<XF86MonBrightnessDown>", spawn "/usr/bin/xbacklight -dec 2")
             , ("<XF86MonBrightnessUp>",   spawn "/usr/bin/xbacklight -inc 2")
             , ("M-S-x",                   spawn "xscreensaver-command -lock")
