@@ -1,6 +1,7 @@
 import System.IO
 import XMonad
 import XMonad hiding ( (|||) )
+import XMonad.Actions.GridSelect        -- displays items in a 2D grid & select from it with cursor/hjkl or the mouse
 import XMonad.Hooks.DynamicLog          -- output status info to external status programs
 import XMonad.Hooks.EwmhDesktops        -- make xmonad use EWMH hints
 import XMonad.Hooks.ICCCMFocus          -- will not misbehavewhentaking and losing focus
@@ -13,10 +14,12 @@ import XMonad.Layout.PerWorkspace (onWorkspace)          -- configure layouts pe
 import XMonad.Layout.ResizableTile      -- resizable tile layout
 import XMonad.Layout.SimpleFloat        -- float layout
 import XMonad.Layout.Spacing            -- add space around windows
+import XMonad.Layout.Tabbed
+import XMonad.Layout.TwoPane            -- twopane only layout
 import XMonad.Util.EZConfig             -- helper func for parsing keybindings
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)       -- provides commands to run external programs
-import XMonad.Actions.GridSelect        -- displays items in a 2D grid & select from it with cursor/hjkl or the mouse
+
 
 
 -- xmonad variable declarations.
@@ -60,15 +63,15 @@ xmonadLayoutHook =
         onWorkspace "1:st" (Full)       -- ws 1:st locked to full no xmobar
         $ avoidStrutsOn [U] (standardLayouts)
     where
-        standardLayouts      = Full ||| tiled ||| mtiled ||| Grid ||| floaT ||| Circle
+        standardLayouts      = Full ||| tPane ||| tiled ||| mtiled ||| Grid ||| floaT ||| simpleTabbed ||| Circle
         floaT                = simpleFloat
         tiled1               = Tall nmaster delta ratio
         mtiled               = Mirror tiled1
+        tPane                = spacing 10 $ TwoPane (3/100) (75/100)
         tiled                = spacing 10 $ ResizableTall nmaster delta ratio []
         nmaster              = 1                         -- The default number of windows in the master pane
         delta                = 3/100                     -- Percent of screen to increment when resizing panes
         ratio                = 1/4                       -- Default amount of screen occupied by master pane
-        -- ratio                = 1/2                       -- Default amount of screen occupied by master pane
 
 -- eventhook settings
 xmonadEventHook = handleEventHook defaultConfig <+> docksEventHook
