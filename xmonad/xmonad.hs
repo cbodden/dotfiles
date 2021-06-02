@@ -5,6 +5,7 @@ import XMonad.Actions.GridSelect        -- displays items in a 2D grid & select 
 import XMonad.Hooks.DynamicLog          -- output status info to external status programs
 import XMonad.Hooks.EwmhDesktops        -- make xmonad use EWMH hints
 import XMonad.Hooks.ICCCMFocus          -- will not misbehavewhentaking and losing focus
+import XMonad.Hooks.InsertPosition      -- Configure where new windows should be added and which window should be focused
 import XMonad.Hooks.ManageDocks         -- provide tools ot manage dock type programs
 import XMonad.Hooks.ManageHelpers       -- helper functions to be used in manageHook
 import XMonad.Hooks.UrgencyHook         -- configure action to occur when window needs attention
@@ -21,7 +22,6 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)       -- provides commands to run external programs
 
 
-
 -- xmonad variable declarations.
 xmonadBorderWidth        = 0            -- border width
 xmonadFocusFollowsMouse  = False        -- focus follows mouse
@@ -30,6 +30,7 @@ xmonadModMask            = mod4Mask     -- set mod key to winkey
 xmonadNormalBorderColor  = "#000000"    -- normal border color
 xmonadTerminal           = "st"         -- default terminal
 xmonadWorkspaces         = ["1:st","2:qb"] ++ map show [3..9]  -- workspaces available
+
 
 -- xmobar variable declarations.
 xmobarTitleColor         = "#22CCDD"    -- color of window title
@@ -44,11 +45,13 @@ xmobarVisibleWSRight     = ")"
 xmobarUrgentWSLeft       = "{"          -- urgent workspace id wrap
 xmobarUrgentWSRight      = "}"
 
+
 -- managehook settings
 -- -- to find the property name > "xprop | grep WM_CLASS" then select window
 xmonadManageHook    = composeAll
     [ className     =? "st-256color"    --> doShift "1:st"
     , className     =? "qutebrowser"    --> doShift "2:qb"
+    , className     =? "Signal"         --> doShift "2:qb"
     , className     =? "Firefox"        --> doShift "3"
     , className     =? "Vivaldi-stable" --> doShift "3"
     , className     =? "Virt-manager"   --> doShift "4"
@@ -58,20 +61,29 @@ xmonadManageHook    = composeAll
     , isDialog                          --> doCenterFloat
     ]
 
+xmonadManageHookDetail = insertPosition Below Newer <+> xmonadManageHook <+> manageDocks
+
+
 -- Layouthook settings
-xmonadLayoutHook =
-        onWorkspace "1:st" (Full)       -- ws 1:st locked to full no xmobar
-        $ avoidStrutsOn [U] (standardLayouts)
+xmonadLayoutHook = onWorkspace "1:st" (defTerm) $ onWorkspace "2:qb" defLayout $ standardLayouts
     where
-        standardLayouts      = Full ||| tPane ||| tiled ||| mtiled ||| Grid ||| floaT ||| simpleTabbed ||| Circle
-        floaT                = simpleFloat
-        tiled1               = Tall nmaster delta ratio
-        mtiled               = Mirror tiled1
-        tPane                = spacing 10 $ TwoPane (3/100) (75/100)
-        tiled                = spacing 10 $ ResizableTall nmaster delta ratio []
-        nmaster              = 1                         -- The default number of windows in the master pane
-        delta                = 3/100                     -- Percent of screen to increment when resizing panes
-        ratio                = 1/4                       -- Default amount of screen occupied by master pane
+        standardLayouts = avoidStruts ( Full ||| tPane ||| tiled ||| mtiled ||| Grid ||| floaT ||| simpleTabbed ||| Circle )
+            where
+                floaT                = simpleFloat
+                tiled1               = Tall nmaster delta ratio
+                mtiled               = Mirror tiled1
+                tPane                = spacing 10 $ TwoPane (3/100) (75/100)
+                tiled                = spacing 10 $ ResizableTall nmaster delta ratio []
+                nmaster              = 1                         -- The default number of windows in the master pane
+                delta                = 3/100                     -- Percent of screen to increment when resizing panes
+                ratio                = 1/4                       -- Default amount of screen occupied by master pane
+        defTerm = Full
+            where
+                Full                 = Full
+        defLayout = avoidStruts $ tPane
+            where
+                tPane                = spacing 10 $ TwoPane (3/100) (75/100)
+
 
 -- eventhook settings
 xmonadEventHook = handleEventHook defaultConfig <+> docksEventHook
@@ -85,7 +97,7 @@ main = do
         , focusedBorderColor = xmonadFocusedBorderColor
         , handleEventHook    = xmonadEventHook
         , layoutHook         = xmonadLayoutHook
-        , manageHook         = xmonadManageHook
+        , manageHook         = xmonadManageHookDetail
         , modMask            = xmonadModMask
         , normalBorderColor  = xmonadNormalBorderColor
         , terminal           = xmonadTerminal
