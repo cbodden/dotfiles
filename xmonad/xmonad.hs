@@ -78,8 +78,6 @@ xmonadLayoutHook = onWorkspace "1:st" (defTerm) $ onWorkspace "2:qb" defLayout $
                 delta                = 3/100                     -- Percent of screen to increment when resizing panes
                 ratio                = 1/4                       -- Default amount of screen occupied by master pane
         defTerm = Full
-            where
-                Full                 = Full
         defLayout = avoidStruts $ tPane
             where
                 tPane                = spacing 10 $ TwoPane (3/100) (75/100)
