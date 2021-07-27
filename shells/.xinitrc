@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
 ## this sets alt + ctrl + del to breakout of wm
 if hash setxkbmap 2>/dev/null
 then
@@ -9,6 +11,18 @@ then
     else
         setxkbmap \
             -option terminate:ctrl_alt_bksp \
+            &
+    fi
+fi
+
+## this starts xmodmap for the user
+if hash xmodmap 2>/dev/null
+then
+    if pgrep -f xmodmap >/dev/null 2>&1
+    then
+        return 0
+    else
+        xmodmap ~/.Xmodmap \
             &
     fi
 fi
@@ -92,11 +106,13 @@ then
         # evilwm -term urxvt &
         xmonad \
             &
+        xbacklight -dec 85 &
         ## this blocks exiting unless forcefully exited
         exec sleep infinity
     fi
 else
     exit 1
 fi
+
 
 #### errata
