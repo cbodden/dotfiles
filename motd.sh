@@ -97,7 +97,7 @@ function proc() {
 
 function temperature() {
     local REGION=$(curl -s ipinfo.io \
-        | awk '/city/ {print $2}' \
+        | awk '/city/ {print $2, $3}' \
         | tr -d '[",]')
     eval ACCU="http://rss.accuweather.com/rss/liveweather_rss.asp"
     eval MET="\?metric\=\"\""
