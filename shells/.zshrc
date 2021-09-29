@@ -160,17 +160,19 @@ alias x='exit'
 #### end aliases #### }}}
 
 #### functions #### {{{{{
-function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
-function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
 function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
 function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
+function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
+function myip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
+function search_google; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
+function search_ip() { curl https://ipinfo.io/${1} -w "\n" }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
-function search; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
-function tor_route() { printf "%s\n" "authenticate \"\"" "signal newnym" "quit" | nc 127.0.0.1 9051 }
 function tor_address() { curl --socks5 127.0.0.1:9050 http://ifconfig.me/ -w "\n" }
-function whatismyip() { curl http://ifconfig.me/ -w "\n" }
+function tor_route() { printf "%s\n" "authenticate \"\"" "signal newnym" "quit" | nc 127.0.0.1 9051 }
+function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
+function whatismyip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
 #### functions #### }}}}}
 
 #### tmux shell init #### {{{
@@ -221,3 +223,5 @@ if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cbodden/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'; fi
+
+PATH="/home/cbodden/.google-drive-upload/bin:${PATH}"

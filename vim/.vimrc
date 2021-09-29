@@ -32,7 +32,7 @@
     set backup                      " make backup files
     set backupdir=~/.vim/backup     " where to put backup files
     set clipboard+=unnamed          " share windows clipboard
-    set directory=~/.vim/tmp        " directory to place swap files in
+    set directory=~/.vim/swp//      " directory to place swap files in
     set fenc=utf-8                  " UTF-8
     set fileformats=unix,dos,mac    " support all three, in this order
     set hidden                      " you can change buffers without saving
@@ -78,6 +78,7 @@
     set linespace=0                 " don't insert any extra pixel lines betweens rows
     set list                        " we do what to show tabs, to ensure we get them out of my files
     set listchars=tab:>-,trail:-    " show tabs and trailing
+    " set listchars+=tab:\ \          " show tabs and trailing
     set matchtime=5                 " how many tenths of a second to blink matching brackets for
     set cursorcolumn                " don't highlight the current column
     set nostartofline               " leave my cursor where it was
