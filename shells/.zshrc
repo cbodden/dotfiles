@@ -224,4 +224,4 @@ if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cbodden/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'; fi
 
-PATH="/home/cbodden/.google-drive-upload/bin:${PATH}"
+PATH="/home/cbodden/.google-drive-upload/bin:/home/cbodden/.cargo/bin:${PATH}"
