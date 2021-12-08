@@ -1,0 +1,31 @@
+# vim: filetype=muttrc
+unmailboxes *
+
+# password
+# to create gpg file : gpg -r <EMAIL ADDY> -e <FILE>
+set my_pass        = `gpg -q --no-verbose -d ~/.config/neomutt/accounts/.passwords.gpg | awk '/^poacom/ {print $2}'`
+
+# in/out mail servers
+set realname       = "Cesar B."
+set imap_pass      = $my_pass
+set smtp_url       = "smtp://cesar@pissedoffadmins.com@smtp.gmail.com:587"
+set smtp_pass      = $my_pass
+set folder         = "imaps://cesar@pissedoffadmins.com@imap.gmail.com:993"
+set spoolfile      = "+INBOX"
+
+set from           = "cesar@pissedoffadmins.com"
+set envelope_from
+set use_from       = "yes"
+set record         = "+Sent"
+set trash          = "+Trash"
+set postponed      = "+Drafts"
+set mail_check     = 6
+
+# Allow Mutt to open a new IMAP connection automatically.
+unset imap_passive
+
+# Keep the IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_pass=$my_pass"

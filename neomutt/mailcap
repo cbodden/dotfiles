@@ -1,0 +1,16 @@
+# MS Word documents
+application/msword; ~/.config/neomutt/scripts/view-attachment.sh %s "-" '/usr/bin/libreoffice'
+application/vnd.ms-excel; ~/.config/neomutt/scripts/view-attachment.sh %s "-" '/usr/bin/libreoffice'
+application/vnd.openxmlformats-officedocument.presentationml.presentation; ~/.config/neomutt/scripts//view-attachment.sh %s "-" '/usr/bin/libreoffice'
+application/vnd.oasis.opendocument.text; ~/.config/neomutt/scripts/view-attachment.sh %s "-" '/usr/bin/libreoffice'
+
+# HTML
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/plain; vim %s
+
+#PDFs
+application/pdf; /usr/bin/zathura %s pdf
+
+#Images
+image/png; /usr/bin/feh %s
+image/jpeg; /usr/bin/feh %s
