@@ -34,7 +34,7 @@ set crypt_use_gpgme =yes
 set crypt_autosign
 
 # named mailboxes sent / spam / trash fix
-mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
+mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash =Trash
 
 ## Hook -- IMPORTANT!
 account-hook $folder "set imap_pass=$my_pass"
