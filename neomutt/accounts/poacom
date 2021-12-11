@@ -27,5 +27,8 @@ unset imap_passive
 # Keep the IMAP connection alive by polling intermittently (time in seconds).
 set imap_keepalive = 300
 
+# named mailboxes sent / spam / trash fix
+mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
+
 ## Hook -- IMPORTANT!
 account-hook $folder "set imap_pass=$my_pass"
