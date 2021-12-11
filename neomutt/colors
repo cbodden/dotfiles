@@ -20,7 +20,7 @@ mono  error         bold
 
 # index
 color index         color160        color234        "~A"                        # all messages
-color index         color166        color234        "~E"                        # expired messages
+color index         color166        color234        "~E"                        # expired message
 color index         color33         color234        "~N"                        # new messages
 color index         color33         color234        "~O"                        # old messages
 color index         color61         color234        "~Q"                        # messages that have been replied to
@@ -42,6 +42,8 @@ color index         color235        color160        "~D"                        
 color index         color245        color234        "~v~(!~N)"                  # collapsed thread with no unread
 color index         color136        color234        "~v~(~N)"                   # collapsed thread with some unread
 color index         color64         color234        "~N~v~(~N)"                 # collapsed thread with unread parent
+
+
 # statusbg used to indicated flagged when foreground color shows other status
 # for collapsed thread
 color index         color160        color235        "~v~(~F)!~N"                # collapsed thread with flagged, no unread

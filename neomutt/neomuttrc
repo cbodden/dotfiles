@@ -3,6 +3,7 @@
 source ~/.config/neomutt/settings
 source ~/.config/neomutt/colors
 source ~/.config/neomutt/mappings
+source ~/.config/neomutt/sidebar
 
 # Accounts
 source ~/.config/neomutt/accounts/poacom

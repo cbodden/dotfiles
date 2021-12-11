@@ -30,15 +30,6 @@ bind pager,attach h exit
 bind pager,browser G bottom-page
 bind pager,browser gg top-page
 
-
-# sidebar mappings
-bind index,pager \Ck sidebar-prev
-bind index,pager \Cj sidebar-next
-bind index,pager \Co sidebar-open
-bind index,pager \Cp sidebar-prev-new
-bind index,pager \Cn sidebar-next-new
-bind index,pager B sidebar-toggle-visible
-
 # global index and pager shortcuts
 bind index,pager @ compose-to-sender
 bind index,pager D purge-message
