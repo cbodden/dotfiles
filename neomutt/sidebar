@@ -1,11 +1,9 @@
 # vim: filetype=muttrc
 
 ## Settings
-
 set sidebar_visible         = yes
 set sidebar_width           = 30
 set mail_check_stats
-##set sidebar_format          = "%B%* [%N/%S]"
 set sidebar_format = "%B %* [%?N?%N/?%S]"
 set sidebar_short_path
 set sidebar_delim_chars     ="/"
@@ -21,8 +19,6 @@ bind index,pager \Cn sidebar-next-new
 bind index,pager B sidebar-toggle-visible
 
 # colors
-# color sidebar_new         red  color234
-# color sidebar_ordinary    blue color234
 color sidebar_indicator     default     color17         # Dark blue background
 color sidebar_highlight     white       color238        # Grey background
 color sidebar_spoolfile     yellow      default         # Yellow
