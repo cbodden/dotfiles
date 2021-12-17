@@ -459,3 +459,6 @@ config.bind(',m', 'spawn mpv --force-window=immediate {url}')
 config.bind('<Ctrl+i>', 'hint images download')
 config.bind('<Ctrl+j>', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
 config.bind('xs', 'config-cycle --temp --print --pattern *://*.{url:host}/* content.javascript.enabled ;; reload')
+
+config.bind('<F10>', 'config-cycle -p content.cookies.store ;; config-cycle -p content.cookies.accept no-3rdparty never')
+config.bind('<F1>', 'config-cycle fonts.web.size.minimum 14 16 18 20 22 24 26 28 30 32 34 36 38 40 0')
