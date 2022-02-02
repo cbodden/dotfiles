@@ -15,7 +15,11 @@ function figlet() {
     if [[ -f $(which figlet 2>/dev/null) ]]
     then
         printf "%s" "${GRN}"
-        command figlet -c $(hostname)
+        command figlet \
+            -f "$(shuf -n 1 -e ~/git/mine/dotfiles/figlet-fonts/*)" \
+            -l \
+            -w $(tput cols) \
+            $(hostname)
     fi
 }
 
@@ -131,15 +135,14 @@ function fortune() {
         then
             printf "%s\n" "${RED}"
             command fortune \
-                | cowthink -f $(ls /usr/share/cowsay/cows \
-                | shuf -n1)
+                | cowthink -f "$(ls /usr/share/cowsay/cows | shuf -n1)"
         fi
     fi
 }
 
 ## functions below
 main
-perl ~/git/mine/dotfiles/256colors.pl
+# perl ~/git/mine/dotfiles/256colors.pl
 figlet
 last
 uptime

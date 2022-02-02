@@ -430,6 +430,18 @@ c.colors.completion.item.selected.border.bottom = '#00ee00'
 # Type: QssColor
 c.colors.completion.scrollbar.bg = '#333333'
 
+# Render all web contents using a dark theme. Example configurations
+# from Chromium's `chrome://flags`:  - "With simple HSL/CIELAB/RGB-based
+# inversion": Set   `colors.webpage.darkmode.algorithm` accordingly.  -
+# "With selective image inversion": Set
+# `colors.webpage.darkmode.policy.images` to `smart`.  - "With selective
+# inversion of non-image elements": Set
+# `colors.webpage.darkmode.threshold.text` to 150 and
+# `colors.webpage.darkmode.threshold.background` to 205.  - "With
+# selective inversion of everything": Combines the two variants   above.
+# Type: Bool
+c.colors.webpage.darkmode.enabled = False
+
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are
 # either a float value with a "pt" suffix, or an integer value with a
@@ -456,9 +468,10 @@ c.fonts.web.size.default_fixed = 13
 # Bindings for normal mode
 config.bind(',M', 'hint links spawn --detach mpv --force-window=immediate {hint-url}')
 config.bind(',m', 'spawn mpv --force-window=immediate {url}')
+config.bind('<Ctrl+Shift+j>', 'tab-move +')
+config.bind('<Ctrl+Shift+k>', 'tab-move -')
 config.bind('<Ctrl+i>', 'hint images download')
 config.bind('<Ctrl+j>', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
-config.bind('xs', 'config-cycle --temp --print --pattern *://*.{url:host}/* content.javascript.enabled ;; reload')
-
 config.bind('<F10>', 'config-cycle -p content.cookies.store ;; config-cycle -p content.cookies.accept no-3rdparty never')
 config.bind('<F1>', 'config-cycle fonts.web.size.minimum 14 16 18 20 22 24 26 28 30 32 34 36 38 40 0')
+config.bind('xs', 'config-cycle --temp --print --pattern *://*.{url:host}/* content.javascript.enabled ;; reload')

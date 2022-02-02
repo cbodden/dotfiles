@@ -106,7 +106,7 @@ then
         # evilwm -term urxvt &
         xmonad \
             &
-        xbacklight -dec 85 &
+        xbacklight -dec 45 &
         ## this blocks exiting unless forcefully exited
         exec sleep infinity
     fi
