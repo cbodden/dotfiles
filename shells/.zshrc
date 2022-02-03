@@ -124,7 +124,8 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ## oh my zsh
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME=skaro
+ZSH_THEME="agnoster"
+# ZSH_THEME=skaro
 plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 ### end zsh options #### }}}
