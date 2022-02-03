@@ -1,0 +1,23 @@
+configuration {
+    modi: "window,drun,ssh,combi,run";
+    font: "hack 12";
+    disable-history: false;
+}
+@theme "solarized"
+
+listview {
+	lines: 5;
+	columns: 4;
+}
+
+window {
+    anchor:   center;
+    /*transparency: "screenshot";*/
+    border-radius: 10px;
+    border-color: #00ff00;
+    /*background-color: @transparent;*/
+    spacing: 0;
+    children:  [mainbox];
+    orientation: horizontal;
+	width: 30%;
+}

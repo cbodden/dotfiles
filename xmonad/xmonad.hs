@@ -123,4 +123,5 @@ main = do
             , ("M-g",                     goToSelected defaultGSConfig)   -- Display window selection grid
             , ("M-b",                     sendMessage ToggleStruts)
             , ("M-q",                     spawn "xmonad --recompile && xmonad --restart")
+            , ("M-p",                     spawn "dmenu_run -i -l 4 -p 'sup ? : '")
             ]
