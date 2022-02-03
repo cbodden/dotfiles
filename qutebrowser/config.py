@@ -337,9 +337,24 @@ c.scrolling.smooth = True
 #   - vi-VN: Vietnamese (Viet Nam)
 c.spellcheck.languages = ['en-US']
 
+# When to show the statusbar.
+# Type: String
+# Valid values:
+#   - always: Always show the statusbar.
+#   - never: Always hide the statusbar.
+#   - in-mode: Show the statusbar when in modes other than normal mode.
+c.statusbar.show = 'in-mode'
+
 # Padding (in pixels) for the statusbar.
 # Type: Padding
 c.statusbar.padding = {'bottom': 1, 'left': 0, 'right': 0, 'top': 1}
+
+# Position of the status bar.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.statusbar.position = 'top'
 
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
