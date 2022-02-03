@@ -53,7 +53,6 @@ xmonadManageHook    = composeAll
     , className     =? "qutebrowser"    --> doShift "2:qb"
     , className     =? "Signal"         --> doShift "2:qb"
     , className     =? "Firefox"        --> doShift "3"
-    , className     =? "Vivaldi-stable" --> doShift "3"
     , className     =? "Virt-manager"   --> doShift "4"
     , className     =? "mpv"            --> doFloat
     , className     =? "sxiv"           --> doFloat
@@ -72,15 +71,18 @@ xmonadLayoutHook = onWorkspace "1:st" (defTerm) $ onWorkspace "2:qb" defLayout $
                 floaT                = simpleFloat
                 tiled1               = Tall nmaster delta ratio
                 mtiled               = Mirror tiled1
-                tPane                = spacing 10 $ TwoPane (3/100) (75/100)
-                tiled                = spacing 10 $ ResizableTall nmaster delta ratio []
+                -- tPane                = spacing 10 $ TwoPane (3/100) (75/100)
+                tPane                = spacingRaw False (Border 0 30 0 30) True (Border 30 0 30 0) True $ TwoPane (3/100) (75/100)
+                -- tiled                = spacing 10 $ ResizableTall nmaster delta ratio []
+                tiled                = spacingRaw False (Border 0 30 0 30) True (Border 30 0 30 0) True $ ResizableTall nmaster delta ratio []
                 nmaster              = 1                         -- The default number of windows in the master pane
                 delta                = 3/100                     -- Percent of screen to increment when resizing panes
                 ratio                = 1/4                       -- Default amount of screen occupied by master pane
         defTerm = Full
         defLayout = avoidStruts $ tPane
             where
-                tPane                = spacing 10 $ TwoPane (3/100) (75/100)
+                tPane                = spacingRaw False (Border 0 30 0 30) True (Border 30 0 30 0) True $ TwoPane (3/100) (75/100)
+                -- tPane                = spacing 10 $ TwoPane (3/100) (75/100)
 
 
 -- eventhook settings
