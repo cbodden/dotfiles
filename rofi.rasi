@@ -2,6 +2,7 @@ configuration {
     modi:               "window,drun,ssh,combi";
     font:               "hack 12";
     disable-history:    false;
+    terminal:           "/usr/bin/st";
 }
 @theme "solarized"
 
