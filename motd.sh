@@ -135,7 +135,11 @@ function fortune() {
         then
             printf "%s\n" "${RED}"
             command fortune \
-                | cowthink -f "$(ls /usr/share/cowsay/cows | shuf -n1)"
+                | cowthink \
+                -f "$(\
+                ls --ignore=\*.pm /usr/share/cowsay/cows \
+                | cut -d"." -f1 \
+                | shuf -n1)"
         fi
     fi
 }
