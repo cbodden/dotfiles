@@ -138,7 +138,9 @@ function fortune() {
                 | cowthink \
                 -f "$(\
                 ls --ignore=\*.pm /usr/share/cowsay/cows \
-                | cut -d"." -f1 \
+                | rev \
+                | cut -d"." -f2-4 \
+                | rev \
                 | shuf -n1)"
         fi
     fi
