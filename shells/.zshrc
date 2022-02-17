@@ -222,3 +222,9 @@ if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cbodden/g
 if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'; fi
 
 PATH="/home/cbodden/.google-drive-upload/bin:/home/cbodden/.cargo/bin:${PATH}"
+
+PATH="/home/cbodden/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/cbodden/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/cbodden/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/cbodden/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/cbodden/perl5"; export PERL_MM_OPT;
