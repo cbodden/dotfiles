@@ -1,0 +1,66 @@
+[0;35;40m          __                       __         ___   ___           __            __              
+[0;35;40m  .-----.|__|.-----.-----.-----.--|  |.-----.'  _|.'  _|.---.-.--|  |.--------.|__|.-----.-----.
+[0;35;40m  |  _  ||  ||__ --|__ --|  -__|  _  ||  _  |   _||   _||  _  |  _  ||        ||  ||     |__ --|
+[0;35;40m  |   __||__||_____|_____|_____|_____||_____|__|  |__|  |___._|_____||__|__|__||__||__|__|_____|
+[0;35;40m  |__|
+[0;37;40m
+[0;31;40m                                             ...----....
+[0;31;40m                                      ..-:"''         ''"-..
+[0;31;40m                                   .-'                      '-.
+[0;31;40m                                 .'              .     .       '.
+[0;31;40m                               .'   .          .    .      .    .''.
+[0;31;40m                             .'  .    .       .   .   .     .   . ..:.
+[0;31;40m                           .' .   . .  .       .   .   ..  .   . ....::.
+[0;31;40m                          ..   .   .      .  .    .     .  ..  . ....:IA.
+[0;31;40m                         .:  .   .    .    .  .  .    .. .  .. .. ....:IA.
+[0;31;40m                        .: .   .   ..   .    .     . . .. . ... ....:.:VHA.
+[0;31;40m                        '..  .  .. .   .       .  . .. . .. . .....:.::IHHB.
+[0;31;40m                       .:. .  . .  . .   .  .  . . . ...:.:... .......:HIHMM.
+[0;31;40m                      .:.... .   . ."::"'.. .   .  . .:.:.:II;,. .. ..:IHIMMA
+[0;31;40m                      ':.:..  ..::IHHHHHI::. . .  ...:.::::.,,,. . ....VIMMHM
+[0;31;40m                     .:::I. .AHHHHHHHHHHAI::. .:...,:IIHHHHHHMMMHHL:. . VMMMM
+[0;31;40m                    .:.:V.:IVHHHHHHHMHMHHH::..:" .:HIHHHHHHHHHHHHHMHHA. .VMMM.
+[0;31;40m                    :..V.:IVHHHHHMMHHHHHHHB... . .:VPHHMHHHMMHHHHHHHHHAI.:VMMI
+[0;31;40m                    ::V..:VIHHHHHHMMMHHHHHH. .   .I":IIMHHMMHHHHHHHHHHHAPI:WMM
+[0;31;40m                    ::". .:.HHHHHHHHMMHHHHHI.  . .:..I:MHMMHHHHHHHHHMHV:':H:WM
+[0;31;40m                    :: . :.::IIHHHHHHMMHHHHV  .ABA.:.:IMHMHMMMHMHHHHV:'. .IHWW
+[0;31;40m                    '.  ..:..:.:IHHHHHMMHV" .AVMHMA.:.'VHMMMMHHHHHV:' .  :IHWV
+[0;31;40m                     :.  .:...:".:.:TPP"   .AVMMHMMA.:. "VMMHHHP.:... .. :IVAI
+[0;31;40m                    .:.   '... .:"'   .   ..HMMMHMMMA::. ."VHHI:::....  .:IHW'
+[0;31;40m                    ...  .  . ..:IIPPIH: ..HMMMI.MMMV:I:.  .:ILLH:.. ...:I:IM
+[0;31;40m                  : .   .'"' .:.V". .. .  :HMMM:IMMMI::I. ..:HHIIPPHI::'.P:HM.
+[0;31;40m                  :.  .  .  .. ..:.. .    :AMMM IMMMM..:...:IV":T::I::.".:IHIMA
+[0;31;40m                  'V:.. .. . .. .  .  .   'VMMV..VMMV :....:V:.:..:....::IHHHMH
+[0;31;40m                    "IHH:.II:.. .:. .  . . . " :HB"" . . ..PI:.::.:::..:IHHMMV"
+[0;31;40m                     :IP""HHII:.  .  .    . . .'V:. . . ..:IH:.:.::IHIHHMMMMM"
+[0;31;40m                     :V:. VIMA:I..  .     .  . .. . .  .:.I:I:..:IHHHHMMHHMMM
+[0;31;40m                     :"VI:.VWMA::. .:      .   .. .:. ..:.I::.:IVHHHMMMHMMMMI
+[0;31;40m                     :."VIIHHMMA:.  .   .   .:  .:.. . .:.II:I:AMMMMMMHMMMMMI
+[0;31;40m                     :..VIHIHMMMI...::.,:.,:!"I:!"I!"I!"V:AI:VAMMMMMMHMMMMMM'
+[0;31;40m                     ':.:HIHIMHHA:"!!"I.:AXXXVVXXXXXXXA:."HPHIMMMMHHMHMMMMMV
+[0;31;40m                       V:H:I:MA:W'I :AXXXIXII:IIIISSSSSSXXA.I.VMMMHMHMMMMMM
+[0;31;40m                         'I::IVA ASSSSXSSSSBBSBMBSSSSSSBBMMMBS.VVMMHIMM'"'
+[0;31;40m                          I:: VPAIMSSSSSSSSSBSSSMMBSSSBBMMMMXXI:MMHIMMI
+[0;31;40m                         .I::. "H:XIIXBBMMMMMMMMMMMMMMMMMBXIXXMMPHIIMM'
+[0;31;40m                         :::I.  ':XSSXXIIIIXSSBMBSSXXXIIIXXSMMAMI:.IMM
+[0;31;40m                         :::I:.  .VSSSSSISISISSSBII:ISSSSBMMB:MI:..:MM
+[0;31;40m                         ::.I:.  ':"SSSSSSSISISSXIIXSSSSBMMB:AHI:..MMM.
+[0;31;40m                         ::.I:. . ..:"BBSSSSSSSSSSSSBBBMMMB:AHHI::.HMMI
+[0;31;40m                         :..::.  . ..::":BBBBBSSBBBMMMB:MMMMHHII::IHHMI
+[0;31;40m                         ':.I:... ....:IHHHHHMMMMMMMMMMMMMMMHHIIIIHMMV"
+[0;31;40m                           "V:. ..:...:.IHHHMMMMMMMMMMMMMMMMHHHMHHMHP'
+[0;31;40m                            ':. .:::.:.::III::IHHHHMMMMMHMHMMHHHHM"
+[0;31;40m                              "::....::.:::..:..::IIIIIHHHHMMMHHMV"
+[0;31;40m                                "::.::.. .. .  ...:::IIHHMMMMHMV"
+[0;31;40m                                  "V::... . .I::IHHMMV"'
+[0;31;40m                                    '"VHVHHHAHHHHMMV:"'
+[0;37;40m             
+
+                  ##############################################################
+                  #                   Authorized access only                   #
+                  #  Disconnect IMMEDIATELY if you are not an authorized user  #
+                  #         All actions Will be monitored and recorded         #
+                  #                     Expect ZERO privacy                    #
+                  ##############################################################
+    
+

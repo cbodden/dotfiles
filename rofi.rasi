@@ -3,6 +3,8 @@ configuration {
     font:               "hack 12";
     disable-history:    false;
     terminal:           "/usr/bin/st";
+    kb-row-tab:         "";
+    kb-row-select:      "Tab";
 }
 @theme "solarized"
 
