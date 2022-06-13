@@ -142,6 +142,22 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
+c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value. With QtWebEngine
+# between 5.12 and 5.14 (inclusive), changing the value exposed to
+# JavaScript requires a restart.
+# Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 
 # User agent to send.  The following placeholders are defined:  *
@@ -176,22 +192,6 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
-# Type: FormatString
-c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
-
 # Load images automatically in web pages.
 # Type: Bool
 config.set('content.images', True, 'chrome-devtools://*')
@@ -210,6 +210,10 @@ config.set('content.javascript.enabled', False, '*://*.theatlantic.com/*')
 
 # Enable JavaScript.
 # Type: Bool
+config.set('content.javascript.enabled', False, '*://*.www.nytimes.com/*')
+
+# Enable JavaScript.
+# Type: Bool
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
 
 # Enable JavaScript.
@@ -223,10 +227,6 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
-
-# Enable JavaScript.
-# Type: Bool
-config.set('content.javascript.enabled', False, '*://*.www.nytimes.com/*')
 
 # Allow websites to record audio.
 # Type: BoolAsk
@@ -499,6 +499,13 @@ c.fonts.web.family.standard = None
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
 c.fonts.web.size.default_fixed = 13
+
+### solarized dark stylesheets
+##c.content.user_stylesheets = [
+##    'solarized-dark.css',
+##    'custom_solarized.css'
+##    ]
+
 
 # Bindings for normal mode
 config.bind(',M', 'hint links spawn --detach mpv --force-window=immediate {hint-url}')
