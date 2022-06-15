@@ -52,7 +52,8 @@ xmonadManageHook    = composeAll
     [ className     =? "st-256color"    --> doShift "1:st"
     , className     =? "qutebrowser"    --> doShift "2:qb"
     , className     =? "Signal"         --> doShift "2:qb"
-    , className     =? "Firefox"        --> doShift "3"
+    , className     =? "firefox"        --> doShift "3"
+    , className     =? "Navigator"      --> doShift "3"
     , className     =? "Virt-manager"   --> doShift "4"
     , className     =? "mpv"            --> doFloat
     , className     =? "sxiv"           --> doFloat
@@ -123,6 +124,6 @@ main = do
             , ("M-g",                     goToSelected defaultGSConfig)   -- Display window selection grid
             , ("M-b",                     sendMessage ToggleStruts)
             , ("M-q",                     spawn "xmonad --recompile && xmonad --restart")
-            -- , ("M-p",                     spawn "dmenu_run -i -l 4 -p 'sup ? : '")
-            , ("M-p",                     spawn "rofi -config ~/git/mine/dotfiles/rofi.rasi -show combi")
+            , ("M-p",                     spawn "dmenu_run -i -l 4 -p 'sup ? : '")
+            --, ("M-p",                     spawn "rofi -config ~/git/mine/dotfiles/rofi.rasi -show combi")
             ]
