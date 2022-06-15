@@ -96,6 +96,23 @@ fi
 #    fi
 #fi
 
+## this is to fix the ewmh issues on the dell
+if hash picom 2>/dev/null
+then
+    if pgrep -f picom >/dev/null 2>&1
+    then
+        return 0
+    else
+        picom \
+            --use-ewmh-active-win \
+            --backend glx \
+            --mark-wmwin-focused \
+            --corner-radius 7 \
+            --daemon \
+            &
+    fi
+fi
+
 ## this starts the wm
 if hash xmonad 2>/dev/null
 then
@@ -113,6 +130,5 @@ then
 else
     exit 1
 fi
-
 
 #### errata
