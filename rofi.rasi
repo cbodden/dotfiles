@@ -1,5 +1,5 @@
 configuration {
-    modi:               "window,drun,ssh,combi";
+    modi:               "window,drun,combi";
     font:               "hack 12";
     disable-history:    false;
     terminal:           "/usr/bin/st";
