@@ -1,10 +1,9 @@
 import System.IO
 import XMonad
 import XMonad hiding ( (|||) )
-import XMonad.Actions.GridSelect        -- displays items in a 2D grid & select from it with cursor/hjkl or the mouse
 import XMonad.Hooks.DynamicLog          -- output status info to external status programs
 import XMonad.Hooks.EwmhDesktops        -- make xmonad use EWMH hints
-import XMonad.Hooks.ICCCMFocus          -- will not misbehavewhentaking and losing focus
+--import XMonad.Hooks.ICCCMFocus          -- will not misbehavewhentaking and losing focus
 import XMonad.Hooks.InsertPosition      -- Configure where new windows should be added and which window should be focused
 import XMonad.Hooks.ManageDocks         -- provide tools ot manage dock type programs
 import XMonad.Hooks.ManageHelpers       -- helper functions to be used in manageHook
@@ -87,31 +86,33 @@ xmonadLayoutHook = onWorkspace "1:st" (defTerm) $ onWorkspace "2:qb" defLayout $
 
 
 -- eventhook settings
-xmonadEventHook = handleEventHook defaultConfig <+> docksEventHook
+xmonadEventHook = handleEventHook def
+--xmonadEventHook = handleEventHook defaultConfig <+> docksEventHook
 
 main = do
-    xmproc <- spawnPipe "xmobar"
+    --xmproc <- spawnPipe "xmobar"
 
-    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
+    --xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh def
         { borderWidth        = xmonadBorderWidth
         , focusFollowsMouse  = xmonadFocusFollowsMouse
         , focusedBorderColor = xmonadFocusedBorderColor
-        , handleEventHook    = xmonadEventHook
+        --, handleEventHook    = xmonadEventHook
         , layoutHook         = xmonadLayoutHook
         , manageHook         = xmonadManageHookDetail
         , modMask            = xmonadModMask
         , normalBorderColor  = xmonadNormalBorderColor
         , terminal           = xmonadTerminal
         , workspaces         = xmonadWorkspaces
-        , logHook            = takeTopFocus <+> dynamicLogWithPP xmobarPP
-            { ppOutput          = hPutStrLn xmproc
-            , ppHiddenNoWindows = xmobarColor "grey"               ""
-            , ppTitle           = xmobarColor xmobarTitleColor     "" . shorten xmobarTitleLength
-            , ppCurrent         = xmobarColor xmobarCurrentWSColor "" . wrap xmobarCurrentWSLeft xmobarCurrentWSRight
-            , ppVisible         = xmobarColor xmobarVisibleWSColor "" . wrap xmobarVisibleWSLeft xmobarVisibleWSRight
-            , ppUrgent          = xmobarColor xmobarUrgentWSColor  "" . wrap xmobarUrgentWSLeft xmobarUrgentWSRight
-            , ppSep             = "   "
-            }
+        --, logHook            = takeTopFocus <+> dynamicLogWithPP xmobarPP
+        --    { ppOutput          = hPutStrLn xmproc
+        --    , ppHiddenNoWindows = xmobarColor "grey"               ""
+        --    , ppTitle           = xmobarColor xmobarTitleColor     "" . shorten xmobarTitleLength
+        --    , ppCurrent         = xmobarColor xmobarCurrentWSColor "" . wrap xmobarCurrentWSLeft xmobarCurrentWSRight
+        --    , ppVisible         = xmobarColor xmobarVisibleWSColor "" . wrap xmobarVisibleWSLeft xmobarVisibleWSRight
+        --    , ppUrgent          = xmobarColor xmobarUrgentWSColor  "" . wrap xmobarUrgentWSLeft xmobarUrgentWSRight
+        --    , ppSep             = "   "
+        --    }
         }
 
         `additionalKeysP`
@@ -121,9 +122,7 @@ main = do
             , ("<XF86MonBrightnessDown>", spawn "/usr/bin/xbacklight -dec 2")
             , ("<XF86MonBrightnessUp>",   spawn "/usr/bin/xbacklight -inc 2")
             , ("M-S-x",                   spawn "xscreensaver-command -lock")
-            , ("M-g",                     goToSelected defaultGSConfig)   -- Display window selection grid
             , ("M-b",                     sendMessage ToggleStruts)
             , ("M-q",                     spawn "xmonad --recompile && xmonad --restart")
-            --, ("M-p",                     spawn "dmenu_run -i -l 4 -p 'sup ? : '")
             , ("M-p",                     spawn "rofi -config ~/git/mine/dotfiles/rofi.rasi -show combi")
             ]
