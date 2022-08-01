@@ -113,6 +113,18 @@ then
     fi
 fi
 
+## polybar
+if hash polybar 2>/dev/null
+then
+    if pgrep -f polybar >/dev/null 2>&1
+    then
+        return 0
+    else
+        /home/cbodden/git/mine/dotfiles/polybar/polybar.sh \
+            &
+    fi
+fi
+
 ## this starts the wm
 if hash xmonad 2>/dev/null
 then
