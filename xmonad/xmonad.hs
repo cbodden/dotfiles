@@ -94,5 +94,5 @@ main = do
             , ("<XF86MonBrightnessUp>",   spawn "/usr/bin/xbacklight -inc 2")
             , ("M-S-x",                   spawn "xscreensaver-command -lock")
             , ("M-q",                     spawn "xmonad --recompile && xmonad --restart")
-            , ("M-p",                     spawn "rofi -config ~/git/mine/dotfiles/rofi.rasi -show combi")
+            , ("M-p",                     spawn "rofi -config /home/cbodden/git/mine/dotfiles/rofi.rasi -show combi")
             ]
