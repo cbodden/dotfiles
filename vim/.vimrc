@@ -80,7 +80,7 @@
     set listchars=tab:>-,trail:-    " show tabs and trailing
     " set listchars+=tab:\ \          " show tabs and trailing
     set matchtime=5                 " how many tenths of a second to blink matching brackets for
-    set cursorcolumn                " don't highlight the current column
+    " set cursorcolumn                " don't highlight the current column
     set nostartofline               " leave my cursor where it was
     set novisualbell                " don't blink
     set number                      " turn on line numbers

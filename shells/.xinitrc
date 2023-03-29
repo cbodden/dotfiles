@@ -97,33 +97,64 @@ fi
 #fi
 
 ## this is to fix the ewmh issues on the dell
-if hash picom 2>/dev/null
+##if hash picom 2>/dev/null
+##then
+##    if pgrep -f picom >/dev/null 2>&1
+##    then
+##        return 0
+##    else
+##        picom \
+##            --use-ewmh-active-win \
+##            --backend glx \
+##            --mark-wmwin-focused \
+##            --corner-radius 7 \
+##            --daemon \
+##            &
+##    fi
+##fi
+
+##if hash dwm 2>/dev/null
+##then
+##    if pgrep -f dwm >/dev/null 2>&1
+##    then
+##        return 0
+##    else
+##        while true
+##        do
+##            xsetroot -name "$(date +'%a %d-%b-%y %R')"
+##            sleep 1s
+##        done \
+##            &
+##    fi
+##else
+##    exit 1
+##fi
+
+if hash dwm 2>/dev/null
 then
-    if pgrep -f picom >/dev/null 2>&1
+    if pgrep -f dwm >/dev/null 2>&1
     then
         return 0
     else
-        picom \
-            --use-ewmh-active-win \
-            --backend glx \
-            --mark-wmwin-focused \
-            --corner-radius 7 \
-            --daemon \
+        /home/cbodden/dwm_bar.sh \
             &
     fi
+else
+    exit 1
 fi
 
 ## this starts the wm
-if hash xmonad 2>/dev/null
+if hash dwm 2>/dev/null
 then
-    if pgrep -f xmonad >/dev/null 2>&1
+    if pgrep -f dwm >/dev/null 2>&1
     then
         return 0
     else
         # evilwm -term urxvt &
-        xmonad \
+        ## xmonad \
+        exec dwm \
             &
-        xbacklight -dec 60 &
+        ## xbacklight -dec 15 &
         ## this blocks exiting unless forcefully exited
         exec sleep infinity
     fi
