@@ -113,7 +113,7 @@ config.set('content.cookies.accept', 'all', 'devtools://*')
 
 # Try to pre-fetch DNS entries to speed up browsing.
 # Type: Bool
-c.content.dns_prefetch = False
+c.content.dns_prefetch = True
 
 # Allow websites to request geolocations.
 # Type: BoolAsk
@@ -142,7 +142,23 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
+config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/6.4.2 Chrome/102.0.5005.177 Safari/537.36', 'staging.bsky.app')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value. With QtWebEngine
+# between 5.12 and 5.14 (inclusive), changing the value exposed to
+# JavaScript requires a restart.
+# Type: FormatString
+c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -214,6 +230,10 @@ config.set('content.javascript.enabled', False, '*://*.www.nytimes.com/*')
 
 # Enable JavaScript.
 # Type: Bool
+config.set('content.javascript.enabled', True, '*://*.staging.bsky.app/*')
+
+# Enable JavaScript.
+# Type: Bool
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
 
 # Enable JavaScript.
@@ -252,9 +272,11 @@ config.set('content.media.video_capture', True, 'https://us02web.zoom.us')
 #   - ask
 c.content.notifications.enabled = True
 
-# Allow pdf.js to view PDF files in the browser. Note that the files can
-# still be downloaded by clicking the download button in the pdf.js
-# viewer.
+# Display PDF files via PDF.js in the browser without showing a download
+# prompt. Note that the files can still be downloaded by clicking the
+# download button in the pdf.js viewer. With this set to `false`, the
+# `:prompt-open-download --pdfjs` command (bound to `<Ctrl-p>` by
+# default) can be used in the download prompt.
 # Type: Bool
 c.content.pdfjs = True
 
@@ -292,6 +314,31 @@ c.downloads.location.directory = '~/Downloads'
 # `downloads.location.directory` will be used.
 # Type: Bool
 c.downloads.location.prompt = False
+
+# Command (and arguments) to use for selecting a single file in forms.
+# The command should write the selected file path to the specified file
+# or stdout. The following placeholders are defined: * `{}`: Filename of
+# the file to be written to. If not contained in any argument, the
+# standard output of the command is read instead.
+# Type: ShellCommand
+c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
+
+# Command (and arguments) to use for selecting multiple files in forms.
+# The command should write the selected file paths to the specified file
+# or to stdout, separated by newlines. The following placeholders are
+# defined: * `{}`: Filename of the file to be written to. If not
+# contained in any argument, the   standard output of the command is
+# read instead.
+# Type: ShellCommand
+c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
+
+# Command (and arguments) to use for selecting a single folder in forms.
+# The command should write the selected folder path to the specified
+# file or stdout. The following placeholders are defined: * `{}`:
+# Filename of the file to be written to. If not contained in any
+# argument, the   standard output of the command is read instead.
+# Type: ShellCommand
+c.fileselect.folder.command = ['st', '-e', 'ranger', '--choosedir={}']
 
 # When/how to show the scrollbar.
 # Type: String
@@ -379,6 +426,16 @@ c.statusbar.position = 'top'
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
 c.tabs.background = True
+
+# When to show favicons in the tab bar. When switching this from never
+# to always/pinned, note that favicons might not be loaded yet, thus
+# tabs might require a reload to display them.
+# Type: String
+# Valid values:
+#   - always: Always show favicons.
+#   - never: Always hide favicons.
+#   - pinned: Show favicons only on pinned tabs.
+c.tabs.favicons.show = 'never'
 
 # When to show the tab bar.
 # Type: String
@@ -499,13 +556,6 @@ c.fonts.web.family.standard = None
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
 c.fonts.web.size.default_fixed = 13
-
-### solarized dark stylesheets
-##c.content.user_stylesheets = [
-##    'solarized-dark.css',
-##    'custom_solarized.css'
-##    ]
-
 
 # Bindings for normal mode
 config.bind(',M', 'hint links spawn --detach mpv --force-window=immediate {hint-url}')
