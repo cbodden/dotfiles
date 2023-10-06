@@ -145,86 +145,86 @@
 
 "Plugin Settings {
     "vim-plug {
-    call plug#begin('~/.vim/plugged')
-    Plug 'airblade/vim-gitgutter'
-    Plug 'dense-analysis/ale'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'frazrepo/vim-rainbow'
-    Plug 'itchyny/lightline.vim'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'preservim/tagbar'
-    Plug 'scrooloose/nerdtree'
-    Plug 'tpope/vim-fugitive'
-    call plug#end()
+        call plug#begin('~/.vim/plugged')
+        Plug 'airblade/vim-gitgutter'
+        Plug 'dense-analysis/ale'
+        Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+        Plug 'frazrepo/vim-rainbow'
+        Plug 'itchyny/lightline.vim'
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'preservim/tagbar'
+        Plug 'scrooloose/nerdtree'
+        Plug 'tpope/vim-fugitive'
+        call plug#end()
     "}
 
     "Rainbow Parenthesis {
-    let g:rainbow_active = 1
+        let g:rainbow_active = 1
     "}
 
     "tagbar {
-    nmap <F8> :TagbarToggle<CR>
+        nmap <F8> :TagbarToggle<CR>
     "}
 
     "vim-go fix {
-    silent !go env -w GO111MODULE=off
+        silent !go env -w GO111MODULE=off
     "}
 
     "NERDTree {
-    autocmd vimenter * NERDTreeToggle
-    autocmd vimenter * if !argc() | NERDTree | endif
-    autocmd VimEnter * wincmd p
-    autocmd BufEnter * NERDTreeMirror
-    let NERDTreeShowHidden = 1
-    let g:NERDTreeWinSize = 35
-    " auto quit nerdtree when buffers closed
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
-        \ && b:NERDTree.isTabTree()) | q | endif
-    " Store the bookmarks file
-    let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
-    " Show the bookmarks table on startup
-    " let NERDTreeShowBookmarks=1
-    " nerdtree statusline
-    let NERDTreeStatusline = "%{ getcwd() }"
+        autocmd vimenter * NERDTreeToggle
+        autocmd vimenter * if !argc() | NERDTree | endif
+        autocmd VimEnter * wincmd p
+        autocmd BufEnter * NERDTreeMirror
+        let NERDTreeShowHidden = 1
+        let g:NERDTreeWinSize = 35
+        " auto quit nerdtree when buffers closed
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+            \ && b:NERDTree.isTabTree()) | q | endif
+        " Store the bookmarks file
+        let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+        " Show the bookmarks table on startup
+        " let NERDTreeShowBookmarks=1
+        " nerdtree statusline
+        let NERDTreeStatusline = "%{ getcwd() }"
     "}
 
     "lightline {
-    let g:lightline = { 'colorscheme': 'solarized', }
+        let g:lightline = { 'colorscheme': 'solarized', }
     "}
 
     "Go syntax highlighting {
-    let g:go_highlight_fields = 1
-    let g:go_highlight_functions = 1
-    let g:go_highlight_function_calls = 1
-    let g:go_highlight_extra_types = 1
-    let g:go_highlight_operators = 1
+        let g:go_highlight_fields = 1
+        let g:go_highlight_functions = 1
+        let g:go_highlight_function_calls = 1
+        let g:go_highlight_extra_types = 1
+        let g:go_highlight_operators = 1
     "}
 
     "Auto formatting and importing {
-    let g:go_fmt_autosave = 1
-    let g:go_fmt_command = "goimports"
+        let g:go_fmt_autosave = 1
+        let g:go_fmt_command = "goimports"
     "}
 
     "Status line types/signatures {
-    let g:go_auto_type_info = 1
+        let g:go_auto_type_info = 1
     "}
 
     "Run :GoBuild or :GoTestCompile based on the go file {
-    function! s:build_go_files()
-      let l:file = expand('%')
-      if l:file =~# '^\f\+_test\.go$'
-        call go#test#Test(0, 1)
-      elseif l:file =~# '^\f\+\.go$'
-        call go#cmd#Build(0)
-      endif
-    endfunction
+        function! s:build_go_files()
+          let l:file = expand('%')
+          if l:file =~# '^\f\+_test\.go$'
+            call go#test#Test(0, 1)
+          elseif l:file =~# '^\f\+\.go$'
+            call go#cmd#Build(0)
+          endif
+        endfunction
     "}
 
     "Map keys for most used commands. {
-    "Ex: `\b` for building, `\r` for running and `\b` for running test.
-    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-    autocmd FileType go nmap <leader>r  <Plug>(go-run)
-    autocmd FileType go nmap <leader>t  <Plug>(go-test)
+        "Ex: `\b` for building, `\r` for running and `\b` for running test.
+        autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+        autocmd FileType go nmap <leader>r  <Plug>(go-run)
+        autocmd FileType go nmap <leader>t  <Plug>(go-test)
     "}
 
 "}
@@ -299,39 +299,6 @@
     map <C-H> :bp!<ENTER>
     map <C-L> :bn!<ENTER>
 
-"}
-
-"StatusLine {
-    "" http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
-    hi User1 guifg=#ffdad8 guibg=#880c0e ctermfg=15 ctermbg=88
-    hi User2 guifg=#000000 guibg=#F4905C ctermfg=0  ctermbg=208
-    hi User3 guifg=#292b00 guibg=#f4f597 ctermfg=0  ctermbg=227
-    hi User4 guifg=#112605 guibg=#aefe7B ctermfg=0  ctermbg=120
-    hi User5 guifg=#051d00 guibg=#7dcc7d ctermfg=0  ctermbg=66
-    hi User7 guifg=#ffffff guibg=#880c0e ctermfg=15 ctermbg=88   gui=bold
-    hi User8 guifg=#ffffff guibg=#5b7fbb ctermfg=15 ctermbg=69
-    hi User9 guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=90
-    hi User0 guifg=#ffffff guibg=#094afe ctermfg=15 ctermbg=0
-
-    set statusline=
-    set statusline+=%7*\[%n]                                  "buffernr
-    set statusline+=%1*\ %<%F\                                "File+path
-    set statusline+=%2*\ %y\                                  "FileType
-    set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-    set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-    set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
-    set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
-    set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-    set statusline+=%9*\ col:%03c\                            "Colnr
-    set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
-
-    function! HighlightSearch()
-        if &hls
-            return 'H'
-        else
-            return ''
-        endif
-    endfunction
 "}
 
 "Folder creations for mappings {
