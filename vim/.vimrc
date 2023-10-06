@@ -165,6 +165,7 @@
     Plug 'troydm/easybuffer.vim'
     Plug 'preservim/tagbar'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     call plug#end()
     "}
 
@@ -326,6 +327,7 @@
     map <C-H> :bp!<ENTER>
     map <C-L> :bn!<ENTER>
 
+    au filetype go inoremap <buffer> . .<C-x><C-o>
 "}
 
 "StatusLine {
