@@ -66,7 +66,6 @@
 
 "Vim UI {
     "colorscheme dracula
-    " colorscheme solarized
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
     set cursorline                  " highlight current line
@@ -78,7 +77,6 @@
     set linespace=0                 " don't insert any extra pixel lines betweens rows
     set list                        " we do what to show tabs, to ensure we get them out of my files
     set listchars=tab:>-,trail:-    " show tabs and trailing
-    " set listchars+=tab:\ \          " show tabs and trailing
     set matchtime=5                 " how many tenths of a second to blink matching brackets for
     " set cursorcolumn                " don't highlight the current column
     set nostartofline               " leave my cursor where it was
@@ -141,32 +139,27 @@
         return getline(v:foldstart).' '
     endfunction " }
     set foldtext=SimpleFoldText()   " Custom fold text function (cleaner than default)
-    au BufWinEnter * silent loadview
+    "au BufWinEnter * silent loadview
     au BufWinLeave * mkview
 "}
 
 "Plugin Settings {
-    "Rainbow Parenthesis {
-    let g:rainbow_active = 1
-    "}
-
     "vim-plug {
-    "from https://github.com/junegunn/vim-plug
     call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
-    Plug 'frazrepo/vim-rainbow'
-    Plug 'godlygeek/tabular'
-    Plug 'itchyny/lightline.vim'
-    Plug 'jlanzarotta/bufexplorer'
-    Plug 'plasticboy/vim-markdown'
-    Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/syntastic'
-    Plug 'tpope/vim-fugitive'
-    Plug 'troydm/easybuffer.vim'
-    Plug 'preservim/tagbar'
+    Plug 'dense-analysis/ale'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'itchyny/lightline.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'preservim/tagbar'
+    Plug 'scrooloose/nerdtree'
+    Plug 'tpope/vim-fugitive'
     call plug#end()
+    "}
+
+    "Rainbow Parenthesis {
+    let g:rainbow_active = 1
     "}
 
     "tagbar {
@@ -175,16 +168,6 @@
 
     "vim-go fix {
     silent !go env -w GO111MODULE=off
-    "}
-
-    "syntastic {
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
     "}
 
     "NERDTree {
@@ -207,13 +190,6 @@
 
     "lightline {
     let g:lightline = { 'colorscheme': 'solarized', }
-    "}
-
-    "vim-markdown {
-    let g:vim_markdown_folding_disabled=1
-    let g:vim_markdown_no_default_key_mappings=1
-    let g:vim_markdown_math=1
-    let g:vim_markdown_frontmatter=1
     "}
 
     "Go syntax highlighting {
@@ -250,7 +226,6 @@
     autocmd FileType go nmap <leader>r  <Plug>(go-run)
     autocmd FileType go nmap <leader>t  <Plug>(go-test)
     "}
-
 
 "}
 
@@ -308,9 +283,6 @@
     noremap <leader>9 9gt
     noremap <leader>0 :tablast<cr>
 
-    " Easybuffer
-    nmap <silent> <F7> :EasyBuffer<CR>
-
     " nerdtree
     map <C-n> :NERDTreeToggle<CR>
     map <C-m> :NERDTree<CR>
@@ -327,7 +299,6 @@
     map <C-H> :bp!<ENTER>
     map <C-L> :bn!<ENTER>
 
-    au filetype go inoremap <buffer> . .<C-x><C-o>
 "}
 
 "StatusLine {
