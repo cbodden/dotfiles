@@ -32,7 +32,7 @@
     set backup                      " make backup files
     set backupdir=~/.vim/backup     " where to put backup files
     set clipboard+=unnamed          " share windows clipboard
-    set directory=~/.vim/swp//      " directory to place swap files in
+    set directory=~/.vim/swap       " directory to place swap files in
     set fenc=utf-8                  " UTF-8
     set fileformats=unix,dos,mac    " support all three, in this order
     set hidden                      " you can change buffers without saving
@@ -43,6 +43,7 @@
     set noerrorbells                " don't make noise
     set pastetoggle=<F2>            " when insert mode, press f2 for paste mode
     " set spell                     " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
+    set swapfile                    " enable swaps
     set tags=~/.vim/tags/           " tag usage
     set timeoutlen=300 ttimeoutlen=0" mapping delays
     set undodir=~/.vim/undo         " persistent undo dir
@@ -303,7 +304,19 @@
 
 "Folder creations for mappings {
     silent !mkdir ~/.vim/backup > /dev/null 2>&1
+    silent !mkdir ~/.vim/swap > /dev/null 2>&1
+    silent !mkdir ~/.vim/tags > /dev/null 2>&1
     silent !mkdir ~/.vim/tmp > /dev/null 2>&1
     silent !mkdir ~/.vim/undo > /dev/null 2>&1
-    silent !mkdir ~/.vim/swap > /dev/null 2>&1
+
+    if !isdirectory(expand(&undodir))
+        call mkdir(expand(&undodir), "p")
+    endif
+    if !isdirectory(expand(&backupdir))
+        call mkdir(expand(&backupdir), "p")
+    endif
+    if !isdirectory(expand(&directory))
+        call mkdir(expand(&directory), "p")
+    endif
+
 "}
