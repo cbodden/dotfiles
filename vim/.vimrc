@@ -2,7 +2,23 @@
 "vim: set foldmarker={,} foldlevel=0 spell:
 "}
 
-"Basics {
+"[Configured Key Bindings] {
+" F2      paste toggle
+" F3      nerdtree
+" F8      tagbar toggle
+" F9      remove all trailing whitespace
+" F10     selective remove of trailing whitespace
+" ,       leader key
+" ,b :    build go files
+" ,r      go run
+" ,t      go test
+" ,m      remove ^M when encodings get messed up
+" ,1 - 0  go to tab by number
+" <C-n>   nerdtree toggle
+" <C-m>   nerdtree
+"}
+
+"[Basics] {
     set nocompatible                " explicitly get out of vi-compatible mode
     set noexrc                      " don't use local version of .(g)vimrc, .exrc
     set cpoptions=aABceFsmq
@@ -24,7 +40,7 @@
     syntax on                       " syntax highlighting on
 "}
 
-"General {
+"[General] {
     filetype plugin indent on       " load filetype plugins/indent settings
     set autochdir                   " always switch to the current file directory
     set autoread                    " auto read when a file is changed from the outside
@@ -65,7 +81,7 @@
     "             +-- <BS> Normal and Visual
 "}
 
-"Vim UI {
+"[Vim UI] {
     "colorscheme dracula
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
@@ -111,7 +127,7 @@
     ""              +-- full path to file in the buffer
 "}
 
-"Text Formatting/Layout {
+"[Text Formatting/Layout] {
     set completeopt=                " don't use a pop up menu for completions
     set expandtab                   " no real tabs please!
     set formatoptions=rq            " Automatically insert comment leader on return, and let gq format comments
@@ -125,12 +141,12 @@
     set tabstop=4                   " real tabs should be 8, and they will show with set list on
 "}
 
-"Tabs {
+"[Tabs] {
     set showtabline=2               " shows the tab bar at all times
     set tabpagemax=10               " maximum amount of tabs to open on startup
 "}
 
-"Folding {
+"[Folding] {
     set foldenable                  " Turn on folding
     set foldlevel=100               " Don't autofold anything (but I can still fold manually)
     set foldmarker={,}              " Fold C style code (only use this as default if you use a high foldlevel)
@@ -144,7 +160,7 @@
     au BufWinLeave * mkview
 "}
 
-"Plugin Settings {
+"[Plugin Settings] {
     "vim-plug {
         call plug#begin('~/.vim/plugged')
         Plug 'airblade/vim-gitgutter'
@@ -229,7 +245,7 @@
 
 "}
 
-"Formatting {
+"[Formatting] {
     " remove color columns in sh files
     autocmd BufRead,BufNewFile *.sh set colorcolumn=80
 
@@ -256,7 +272,7 @@
     au BufNewFile,BufRead *.shlib set filetype=sh
 "}
 
-"Key mappings / bindings {
+"[Key mappings / bindings] {
     let mapleader=","                       " mapping comma to leader key
 
     " autoreload vimrc
@@ -295,13 +311,9 @@
     "selective remove of trailing whitespace by pressing F10
     nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
-    " Buffer navigation
-    map <C-H> :bp!<ENTER>
-    map <C-L> :bn!<ENTER>
-
 "}
 
-"Folder creations for mappings {
+"[Folder creations for mappings] {
     silent !mkdir ~/.vim/backup > /dev/null 2>&1
     silent !mkdir ~/.vim/swap > /dev/null 2>&1
     silent !mkdir ~/.vim/tags > /dev/null 2>&1
