@@ -155,7 +155,6 @@
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'preservim/tagbar'
         Plug 'scrooloose/nerdtree'
-        Plug 'tpope/vim-fugitive'
         call plug#end()
     "}
 
