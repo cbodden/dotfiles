@@ -246,30 +246,34 @@
 "}
 
 "[Formatting] {
-    " remove color columns in sh files
-    autocmd BufRead,BufNewFile *.sh set colorcolumn=80
+    " [Bash / Shell Scripts] {
+        " remove color columns in sh files
+        autocmd BufRead,BufNewFile *.sh set colorcolumn=80
 
-    " Python Stuff
-    let python_highlight_all=1
-    highlight BadWhitespace ctermbg=red guibg=red
-    " Display tabs at the beginning of a line in Python mode as bad.
-    au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
-    " Make trailing whitespace be flagged as bad.
-    au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-    " remove colorcolumn
-    autocmd BufRead,BufNewFile *.py set colorcolumn=9999
-    " End Python stuffs
+        " uglify chars past the 80 col limit
+        au BufWinEnter *.sh let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
-    " uglify chars past the 80 col limit
-    au BufWinEnter *.sh let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+        " adding shlibs to sh syntax hilighting
+        au BufNewFile,BufRead *.shlib set filetype=sh
+    "}
 
-    " Remove the Windows ^M - when the encodings gets messed up
-    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+    " [Python] {
+        let python_highlight_all=1
+        highlight BadWhitespace ctermbg=red guibg=red
+        " Display tabs at the beginning of a line in Python mode as bad.
+        au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+        " Make trailing whitespace be flagged as bad.
+        au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+        " remove colorcolumn
+        autocmd BufRead,BufNewFile *.py set colorcolumn=9999
+    "}
 
-    let b:match_ignorecase = 1 " case is stupid
+    " [Misc] {
+        "Remove the Windows ^M - when the encodings gets messed up
+        noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-    " adding shlibs to sh syntax hilighting
-    au BufNewFile,BufRead *.shlib set filetype=sh
+        let b:match_ignorecase = 1 " case is stupid
+    "}
 "}
 
 "[Key mappings / bindings] {
