@@ -136,7 +136,8 @@ then
     then
         return 0
     else
-        /home/cbodden/dwm_bar.sh \
+        export QT_SCALE_FACTOR=1.5 ;\
+            /home/cbodden/dwm_bar.sh \
             &
     fi
 else
