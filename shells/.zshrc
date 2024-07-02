@@ -149,6 +149,7 @@ alias push='git push origin main && facts'
 alias ramme='xscreensaver-command -lock && sudo xset -display :0 dpms force off && sudo s2ram --vbe_save --vbe_mode'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
+alias tp='~/git/mine/scripts/touchpad.sh'
 alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 echo $DISPLAY > ~/.display.txt
 alias up_disp='export DISPLAY=`cat ~/.display.txt`'
