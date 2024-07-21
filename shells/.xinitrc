@@ -40,20 +40,6 @@ then
     fi
 fi
 
-## this runs redshift in the background
-#if hash redshift 2>/dev/null
-#then
-#    if pgrep -f redshift >/dev/null 2>&1
-#    then
-#        return 0
-#    else
-#        redshift \
-#            -l geoclue2 \
-#            -t 6500:3000 \
-#            &
-#    fi
-#fi
-
 ## this runs xflux in the background
 if hash xflux 2>/dev/null
 then
@@ -81,54 +67,6 @@ then
             &
     fi
 fi
-
-## this starts the X compositing manager (shnazzy)
-#if hash xcompmgr 2>/dev/null
-#then
-#    if pgrep -f xcompmgr >/dev/null 2>&1
-#    then
-#        return 0
-#    else
-#        xcompmgr \
-#            -c \
-#            -f \
-#            &
-#    fi
-#fi
-
-## this is to fix the ewmh issues on the dell
-##if hash picom 2>/dev/null
-##then
-##    if pgrep -f picom >/dev/null 2>&1
-##    then
-##        return 0
-##    else
-##        picom \
-##            --use-ewmh-active-win \
-##            --backend glx \
-##            --mark-wmwin-focused \
-##            --corner-radius 7 \
-##            --daemon \
-##            &
-##    fi
-##fi
-
-##if hash dwm 2>/dev/null
-##then
-##    if pgrep -f dwm >/dev/null 2>&1
-##    then
-##        return 0
-##    else
-##        while true
-##        do
-##            xsetroot -name "$(date +'%a %d-%b-%y %R')"
-##            sleep 1s
-##        done \
-##            &
-##    fi
-##else
-##    exit 1
-##fi
 
 if hash dwm 2>/dev/null
 then
@@ -161,5 +99,3 @@ then
 else
     exit 1
 fi
-
-#### errata
