@@ -14,8 +14,10 @@ fi
 #### end interactive check #### }}}
 
 #### startx automata #### {{{
-if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]] ; then
-    [[ -z `ps -ef | grep xmonad | grep -v xmonad` ]] && { startx 2> /dev/null }
+if [[ `tty` == *1* ]] && [[ "$EUID" -ne "0" ]]
+then
+    [[ -z `ps -ef | grep dwm | grep -v grep` ]] \
+        && { startx 2> /dev/null }
 fi
 #### end automata #### }}}
 
@@ -24,8 +26,6 @@ export XAUTHORITY=~/.Xauthority
 export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-#export TERM=tmux-256color
-# export TERM=xterm-256color
 export XDG_CONFIG_HOME="$HOME/.config"
 #### end exports #### }}}
 
@@ -38,7 +38,7 @@ export GPG_TTY=$(tty)
 #### end gpg #### }}}
 
 #### key bindings #### {{{
-bindkey -v                                # vi mode for vi style keybindings
+bindkey -v                                                # vi mode for vi style keybindings
 bindkey -M vicmd '?' history-incremental-search-backward  # Better searching in command mode
 bindkey -M vicmd '/' history-incremental-search-forward
 bindkey "^[OA" up-line-or-beginning-search                # Beginning search with arrow keys
@@ -47,7 +47,7 @@ bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
 bindkey -M vicmd v edit-command-line                      # Easier, more vim-like editor opening
 bindkey -M vicmd "^V" edit-command-line                   # `v` is already mapped to visual mode, so we need to use a different key to open Vim
-export KEYTIMEOUT=1                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1                                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 
 #  Mode indication
 autoload -U colors && colors
@@ -103,17 +103,6 @@ setopt NO_BEEP                            # no more beeps
 setopt autocd                             # no more pesky cd to change dirs
 #### end misc options #### }}}
 
-#### prompt #### {{{
-##if [[ "$EUID" -ne "0" ]]; then
-##    # https://github.com/nojhan/liquidprompt
-##    source ~/.zsh/liquidprompt/liquidprompt
-##else
-##    ### https://github.com/olivierverdier/zsh-git-prompt
-##    ##source ~/.zsh/zsh-git-prompt/zshrc.sh
-##    ##PS1='$(git_super_status) %(!.%B%F{red}%n %B%F{blue}[%d] %B%F{red}%{○%} %b%f%k.%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k)'
-##fi
-#### end prompt #### }}}
-
 #### zsh plugins #### {{{
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="gentoo"
@@ -145,14 +134,11 @@ alias p='pushd'
 alias ps='ps --forest'
 alias pull='git pull --rebase && facts'
 alias push='git push origin main && facts'
-# alias push='git push origin master && facts'
 alias ramme='xscreensaver-command -lock && sudo xset -display :0 dpms force off && sudo s2ram --vbe_save --vbe_mode'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias tp='~/git/mine/scripts/touchpad.sh'
 alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
-echo $DISPLAY > ~/.display.txt
-alias up_disp='export DISPLAY=`cat ~/.display.txt`'
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
 alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
@@ -177,11 +163,14 @@ function whatismyip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "
 #### tmux shell init #### {{{
 if [[ $USER != root ]]; then
     tmux_count=`tmux ls | wc -l`
-    if [[ "$tmux_count" == "0" ]]; then
+    if [[ "$tmux_count" == "0" ]]
+    then
         tmux -2
     else
-        if [[ -z "$TMUX" ]]; then
-            if [[ "$tmux_count" == "1" ]]; then
+        if [[ -z "$TMUX" ]]
+        then
+            if [[ "$tmux_count" == "1" ]]
+            then
                 session_id=1
             else
                 session_id=`echo $tmux_count`
@@ -218,18 +207,19 @@ man() {
 #### end colored man pages }
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]
+then
+    . '/home/cbodden/google-cloud-sdk/path.zsh.inc'
+fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]
+then
+    . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'
+fi
 
 PATH="/home/cbodden/.google-drive-upload/bin:/home/cbodden/.cargo/bin:${PATH}"
 
-PATH="/home/cbodden/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/cbodden/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/cbodden/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/cbodden/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/cbodden/perl5"; export PERL_MM_OPT;
 
 # QT font scaling
 export QT_SCALE_FACTOR=1.25
