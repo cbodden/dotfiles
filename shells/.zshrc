@@ -102,18 +102,21 @@ unsetopt caseglob
 #### misc options #### {{{
 setopt NO_BEEP                            # no more beeps
 setopt autocd                             # no more pesky cd to change dirs
+setopt correctall                         # auto-correction of the commands typed
 #### end misc options #### }}}
 
-#### zsh plugins #### {{{
+#### zsh plugin source #### {{{
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
+#### end zsh plugin source #### }}}
+
+#### zsh plugins #### {{{
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"  # suggestion highlight style
-plugins=(git vi-mode)
-autoload -U compinit promptinit         # enable tab-completion and advanced prompt
-compinit                                # enable tab-completion
-promptinit; prompt gentoo               # enable advanced prompt and activate gentoo prompt
-setopt correctall                       # auto-correction of the commands typed
+plugins+=(git vi-mode)                    # oh my zsh setting vi mode
+autoload -U compinit promptinit           # enable tab-completion and advanced prompt
+compinit                                  # enable tab-completion
+promptinit; prompt gentoo                 # enable advanced prompt and activate gentoo prompt
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion::complete:*' use-cache 1
