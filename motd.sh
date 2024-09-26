@@ -63,21 +63,21 @@ function load() {
 }
 
 function memory() {
-    eval $(free -m \
+    eval $(free --giga \
         | awk '/^Mem:/ {printf "MEM=%s; USED=%s; FREE=%s; \
         FREE_CACHE=%s;", $2,$3,$4,$6};')
-    eval $(free -m \
+    eval $(free --giga \
         | awk '/^Swap:/ {printf "SWAP_USE=%s;", $3};')
-    printf "%s%s%s%s%s\n" "${MGN}" "Memory MB..: " "${BLU}" \
-        "${MEM}mb, Used: ${USED}mb, Free: ${FREE}mb, " \
-        "Free Cached: ${FREE_CACHE}mb, Swap In Use: ${SWAP_USE}mb"
+    printf "%s%s%s%s%s\n" "${MGN}" "Memory GB..: " "${BLU}" \
+        "${MEM}GB, Used: ${USED}GB, Free: ${FREE}GB, " \
+        "Free Cached: ${FREE_CACHE}GB, Swap In Use: ${SWAP_USE}GB"
 }
 
 function diskusage() {
-    local DUH=$(du -ms $(echo $HOME) \
+    local DUH=$(du -hs $(echo $HOME) \
         | awk '{ print $1 }')
     printf "%s%s%s%s\n" "${MGN}" "Disk Usage.: " "${BLU}" \
-        "You are using ${DUH}mb in ${HOME}"
+        "You are using ${DUH} in ${HOME}"
 }
 
 function ssh() {
@@ -86,8 +86,16 @@ function ssh() {
         | sort \
         | uniq \
         | wc -l)
+    if [ ${USERS} -le 1 ]
+    then
+        local _AMT_A="is"
+        local _AMT_B="user"
+    else
+        local _AMT_A="are"
+        local _AMT_B="users"
+    fi
     printf "%s%s%s%s\n" "${MGN}" "SSH Logins.: " "${BLU}" \
-        "There are currently ${USERS} users logged in"
+        "There ${_AMT_A} currently ${USERS} ${_AMT_B} logged in"
 }
 
 function proc() {
@@ -100,20 +108,29 @@ function proc() {
 }
 
 function temperature() {
-    local REGION=$(curl -s ipinfo.io \
-        | awk '/city/ {print $2, $3}' \
-        | tr -d '[",]')
+    curl -s ipinfo.io > /tmp/motd.out
+
+    local _INFO="city region postal"
+
+    for ITER in ${_INFO}
+    do
+        local ${ITER^^}="$(cat /tmp/motd.out \
+            | sed -n -e 's/^.*'"${ITER,,}"'": //p' \
+            | tr -d '[",]')"
+    done
+
     eval ACCU="http://rss.accuweather.com/rss/liveweather_rss.asp"
-    eval MET="\?metric\=\"\""
-    eval L_CODE="\&locCode\=\"${REGION}\""
+    eval MET="\?metric\=\"2\""
+    eval L_CODE="\&locCode\=\"${POSTAL}\""
 
     if [[ -n ${REGION} ]]
     then
         local DEGTMP=$(curl -s ${ACCU}${MET}${L_CODE} \
             | sed -n \
-                '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \1/p')
+                '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \1/p' \
+            | tr -d '[",]')
         printf "%s%s%s%s\n" "${MGN}" "Temperature: " "${BLU}" \
-            "${REGION} ${DEGTMP}"
+            "${CITY}, ${REGION}: ${DEGTMP}"
     fi
 }
 
