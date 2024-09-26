@@ -27,6 +27,7 @@ export EDITOR=/usr/bin/vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export XDG_CONFIG_HOME="$HOME/.config"
+export ZSH="$HOME/.oh-my-zsh"
 #### end exports #### }}}
 
 #### eix #### {{{
@@ -107,8 +108,7 @@ setopt autocd                             # no more pesky cd to change dirs
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="gentoo"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"  # suggestion highlight style
 plugins=(git vi-mode)
 autoload -U compinit promptinit         # enable tab-completion and advanced prompt
 compinit                                # enable tab-completion
