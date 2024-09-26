@@ -104,15 +104,19 @@ setopt autocd                             # no more pesky cd to change dirs
 #### end misc options #### }}}
 
 #### zsh plugins #### {{{
+source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="gentoo"
 plugins=(git vi-mode)
-autoload -U compinit promptinit
-compinit
-promptinit; prompt gentoo
+autoload -U compinit promptinit         # enable tab-completion and advanced prompt
+compinit                                # enable tab-completion
+promptinit; prompt gentoo               # enable advanced prompt and activate gentoo prompt
+setopt correctall                       # auto-correction of the commands typed
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion::complete:*' use-cache 1
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSH/oh-my-zsh.sh
 ### end zsh options #### }}}
 
 #### aliases #### {{{
@@ -223,3 +227,4 @@ PATH="/home/cbodden/.google-drive-upload/bin:/home/cbodden/.cargo/bin:${PATH}"
 
 # QT font scaling
 export QT_SCALE_FACTOR=1.25
+
