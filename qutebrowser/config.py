@@ -530,24 +530,32 @@ c.colors.completion.item.selected.border.bottom = '#00ee00'
 # Type: QssColor
 c.colors.completion.scrollbar.bg = '#333333'
 
-# Render all web contents using a dark theme. Example configurations
-# from Chromium's `chrome://flags`: - "With simple HSL/CIELAB/RGB-based
-# inversion": Set   `colors.webpage.darkmode.algorithm` accordingly, and
-# set `colors.webpage.darkmode.policy.images` to `never`.  - "With
-# selective image inversion": qutebrowser default settings.
+# Render all web contents using a dark theme. On QtWebEngine < 6.7, this
+# setting requires a restart and does not support URL patterns, only the
+# global setting is applied. Example configurations from Chromium's
+# `chrome://flags`: - "With simple HSL/CIELAB/RGB-based inversion": Set
+# `colors.webpage.darkmode.algorithm` accordingly, and   set
+# `colors.webpage.darkmode.policy.images` to `never`.  - "With selective
+# image inversion": qutebrowser default settings.
 # Type: Bool
 c.colors.webpage.darkmode.enabled = False
+
+# Default font families to use. Whenever "default_family" is used in a
+# font setting, it's replaced with the fonts listed here. If set to an
+# empty value, a system-specific monospace default is used.
+# Type: List of Font, or Font
+c.fonts.default_family = []
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '12pt'
+c.fonts.default_size = '14pt'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 12pt monospace'
+c.fonts.hints = 'bold 14pt monospace'
 
 # Font used in the keyhint widget.
 # Type: Font

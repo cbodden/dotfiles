@@ -112,7 +112,7 @@ source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 #### end zsh plugin source #### }}}
 
 #### zsh plugins #### {{{
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"  # suggestion highlight style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00ff00,bg=#000000,bold,underline"  # suggestion highlight style
 plugins+=(git vi-mode)                    # oh my zsh setting vi mode
 autoload -U compinit promptinit           # enable tab-completion and advanced prompt
 compinit                                  # enable tab-completion

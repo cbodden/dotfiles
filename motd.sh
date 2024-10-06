@@ -165,7 +165,6 @@ function fortune() {
 
 ## functions below
 main
-# perl ~/git/mine/dotfiles/256colors.pl
 figlet
 last
 uptime
