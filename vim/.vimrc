@@ -184,7 +184,7 @@
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'preservim/tagbar'
         " code commenter
-        Plug 'preservim/nerdommenter'
+        Plug 'preservim/nerdcommenter'
         " NERDTree
         Plug 'scrooloose/nerdtree'
         " Git
