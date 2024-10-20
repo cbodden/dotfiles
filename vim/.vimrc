@@ -3,19 +3,25 @@
 "}
 
 "[Configured Key Bindings] {
-" F2      paste toggle
-" F3      nerdtree
-" F8      tagbar toggle
-" F9      remove all trailing whitespace
-" F10     selective remove of trailing whitespace
-" ,       leader key
-" ,b :    build go files
-" ,r      go run
-" ,t      go test
-" ,m      remove ^M when encodings get messed up
-" ,1 - 0  go to tab by number
-" <C-n>   nerdtree toggle
-" <C-m>   nerdtree
+    " F2      paste toggle
+    " F3      nerdtree toggle
+    " F8      tagbar toggle
+    " F9      remove all trailing whitespace
+    " F10     selective remove of trailing whitespace
+    " H       :%s//gc
+    " J       :m >+1
+    " K       :m <-2
+    " ,       leader key
+    " ,b :    build go files
+    " ,r      go run
+    " ,t      go test
+    " ,m      remove ^M when encodings get messed up
+    " ,gj     :diffget //3  ## fugitive
+    " ,gf     :diffget //2  ## fugitive
+    " ,gs     :G<CR>        ## fugitive
+    " ,1 - 0  go to tab by number
+    " <C-n>   nerdtree toggle
+    " <C-m>   nerdtree
 "}
 
 "[Basics] {
@@ -65,6 +71,7 @@
     set undodir=~/.vim/undo         " persistent undo dir
     set undofile                    " persistent undo regardless of buffer unload
     set undolevels=1000             " many levels of undo
+    set updatetime=50               " shorter update time
     set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png " ignore these list file extensions
     set wildmenu                    " turn on command line completion wild style
     set wildmode=list:longest       " turn on wild mode huge list
@@ -82,10 +89,12 @@
 "}
 
 "[Vim UI] {
-    "colorscheme dracula
     colorscheme gruvbox
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
+    highlight ColorColumn ctermbg=0 guibg=lightgrey
+    set cmdheight=2                 " space for displaying messages
+    set cursorcolumn                " don't highlight the current column
     set cursorline                  " highlight current line
     set encoding=utf8               " Set utf8 as encoding and en_US as the language
     set hlsearch                    " highlight searched for phrases
@@ -96,7 +105,6 @@
     set list                        " we do what to show tabs, to ensure we get them out of my files
     set listchars=tab:>-,trail:-    " show tabs and trailing
     set matchtime=5                 " how many tenths of a second to blink matching brackets for
-    " set cursorcolumn                " don't highlight the current column
     set nostartofline               " leave my cursor where it was
     set novisualbell                " don't blink
     set number                      " turn on line numbers
@@ -111,6 +119,7 @@
     set sidescrolloff=10            " Keep 5 lines at the size
     set t_Co=256                    " enables 256 colors
     " set termguicolors               " support for colorscheme in ST
+    set termguicolors               " support for colorscheme in ST
     set title                       " change the terminals title
     "set statusline=%F%m%r%h%w\ [Lines:%L]\ [Type:%{&ff}]\ %y\ [%p%%]\ [%04l,%04v]\ [FoldLevel:%{foldlevel('.')}]
     ""              | | | | |          |          |        |    |       |    |                 |
@@ -216,18 +225,19 @@
         let NERDTreeStatusline = "%{ getcwd() }"
 
         " Close NERDTree when closing the last buffer
-        autocmd bufenter * if (winnr("$") == 1 
+        autocmd bufenter * if (winnr("$") == 1
             \ && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     "}
 
     "lightline {
-        let g:lightline = { 'colorscheme': 'solarized', }
+        let g:lightline = { 'colorscheme': 'gruvbox', }
+        " let g:lightline = { 'colorscheme': 'solarized', }
     "}
 
     "fzf {
         command! -bang -nargs=* Rg
           \ call fzf#vim#grep(
-          \   'rg --column --line-number --no-heading --color=always 
+          \   'rg --column --line-number --no-heading --color=always
           \   --smart-case -- '.shellescape(<q-args>), 1,
           \   fzf#vim#with_preview(), <bang>0)
     "}
@@ -266,7 +276,6 @@
         "vim-go fix
             silent !go env -w GO111MODULE=off
     "}
-
 
     "CoC Settings {
         " Use tab for trigger completion with characters ahead and navigate.
@@ -329,6 +338,12 @@
         let g:ale_sign_error = '>>'
         let g:ale_sign_warning = '--'
         let g:ale_fix_on_save = 1
+    "}
+
+    " Sweet Sweet FuGITive {
+        nmap <leader>gj :diffget //3<CR>
+        nmap <leader>gf :diffget //2<CR>
+        nmap <leader>gs :G<CR>
     "}
 
 "}
@@ -401,6 +416,18 @@
     "selective remove of trailing whitespace by pressing F10
     nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
+    " map <C-P> :Files<CR>
+    map <C-f> :Rg<CR>
+    map <C-t> :e <cfile><cr>
+    map <S-Tab> :bn<CR>
+    map <F5> :setlocal spell! spelllang=en_US<CR>
+
+    " Search and replace hotkey
+    nnoremap H :%s//gc<left><left><left>
+
+    " Move highlighted text up and down
+    vnoremap J :m '>+1<CR>gv=gv
+    vnoremap K :m '<-2<CR>gv=gv
 "}
 
 "[Folder creations for mappings] {
@@ -419,5 +446,4 @@
     if !isdirectory(expand(&directory))
         call mkdir(expand(&directory), "p")
     endif
-
 "}
