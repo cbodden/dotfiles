@@ -214,10 +214,22 @@
         " let NERDTreeShowBookmarks=1
         " nerdtree statusline
         let NERDTreeStatusline = "%{ getcwd() }"
+
+        " Close NERDTree when closing the last buffer
+        autocmd bufenter * if (winnr("$") == 1 
+            \ && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     "}
 
     "lightline {
         let g:lightline = { 'colorscheme': 'solarized', }
+    "}
+
+    "fzf {
+        command! -bang -nargs=* Rg
+          \ call fzf#vim#grep(
+          \   'rg --column --line-number --no-heading --color=always 
+          \   --smart-case -- '.shellescape(<q-args>), 1,
+          \   fzf#vim#with_preview(), <bang>0)
     "}
 
     "vim-go {
@@ -298,7 +310,26 @@
         "let g:coc_snippet_next = '<tab>'
     "}
 
+    "ale settings {
+        " Fix files automatically on save
+        let g:ale_fixers = {}
+        let g:ale_javascript_eslint_use_global = 1
+        let g:ale_linters = {
+          \'javascript': ['eslint'],
+          \'vue': ['eslint', 'stylelint', 'tsserver'],
+        \}
 
+        let g:ale_fixers = {
+          \'javascript': ['prettier', 'eslint'],
+          \'vue': ['eslint', 'stylelint'],
+        \}
+
+        let g:ale_linters_explicit = 1
+        let g:ale_sign_column_always = 1
+        let g:ale_sign_error = '>>'
+        let g:ale_sign_warning = '--'
+        let g:ale_fix_on_save = 1
+    "}
 
 "}
 
