@@ -83,6 +83,7 @@
 
 "[Vim UI] {
     "colorscheme dracula
+    colorscheme gruvbox
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
     set cursorline                  " highlight current line
@@ -164,13 +165,28 @@
     "vim-plug {
         call plug#begin('~/.vim/plugged')
         Plug 'airblade/vim-gitgutter'
+        " syntax hilighting
         Plug 'dense-analysis/ale'
-        Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+        "" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
         Plug 'frazrepo/vim-rainbow'
+        " status bar
         Plug 'itchyny/lightline.vim'
+        " Code Completion
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'preservim/tagbar'
+        " code commenter
+        Plug 'preservim/nerdommenter'
+        " NERDTree
         Plug 'scrooloose/nerdtree'
+        " Git
+        Plug 'tpope/vim-fugitive'
+        " Finder
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+        " Theme
+        Plug 'morhetz/gruvbox'
+        " Tabs
+        Plug 'ap/vim-buftabline'
         call plug#end()
     "}
 
