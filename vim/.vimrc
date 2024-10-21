@@ -390,7 +390,7 @@
         autocmd BufWritePost $MYVIMRC source $MYVIMRC
     augroup END
 
-    " no more up left right down keys. hjkl motherfucker.
+    " no more up left right down keys. hjkl, motherfuckers.
     map <up> <nop>
     map <down> <nop>
     map <left> <nop>
