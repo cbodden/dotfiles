@@ -11,6 +11,7 @@
     " H       :%s//gc
     " J       :m >+1
     " K       :m <-2
+    " :W      :w with sudo
     " ,       leader key
     " ,b :    build go files
     " ,r      go run
@@ -47,7 +48,8 @@
 "}
 
 "[General] {
-    filetype plugin indent on       " load filetype plugins/indent settings
+    filetype plugin on              " load filetype plugins settings
+    " filetype plugin indent on       " load filetype plugins/indent settings
     set autochdir                   " always switch to the current file directory
     set autoread                    " auto read when a file is changed from the outside
     set backspace=indent,eol,start  " make backspace a more flexible
@@ -92,9 +94,9 @@
     colorscheme gruvbox
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
-    highlight ColorColumn ctermbg=0 guibg=lightgrey
+    " highlight ColorColumn ctermbg=0 guibg=grey
     set cmdheight=2                 " space for displaying messages
-    set cursorcolumn                " don't highlight the current column
+    set cursorcolumn                " highlight the current column
     set cursorline                  " highlight current line
     set encoding=utf8               " Set utf8 as encoding and en_US as the language
     set hlsearch                    " highlight searched for phrases
@@ -428,6 +430,9 @@
     " Move highlighted text up and down
     vnoremap J :m '>+1<CR>gv=gv
     vnoremap K :m '<-2<CR>gv=gv
+
+    " sudo save
+    command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 "}
 
 "[Folder creations for mappings] {
