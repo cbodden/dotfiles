@@ -198,6 +198,8 @@
         Plug 'morhetz/gruvbox'
         " Tabs
         Plug 'ap/vim-buftabline'
+        " Numbered Tabs
+        Plug 'mkitt/tabline.vim'
         call plug#end()
     "}
 
