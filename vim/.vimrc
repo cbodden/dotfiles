@@ -8,20 +8,21 @@
     " F8      tagbar toggle
     " F9      remove all trailing whitespace
     " F10     selective remove of trailing whitespace
-    " ,       leader key    ## LEADER KEY
+    " <C-n>   nerdtree toggle
+    " <C-m>   nerdtree
+    "
+    " #### non leader mappings
     " H       :%s//gc       ## find / replace
     " J       :m >+1
     " K       :m <-2
     " :W      :w with sudo
+    "
+    " #### leader mappings
+    " ,       leader key    ## LEADER KEY
     " ,m      remove ^M when encodings get messed up
-    " #### fugitive
     " ,gj     :diffget //3  ## fugitive
     " ,gf     :diffget //2  ## fugitive
     " ,gs     :G<CR>        ## fugitive
-    " #### nerdtree
-    " <C-n>   nerdtree toggle
-    " <C-m>   nerdtree
-    " #### buffers as tabs
     " ,T      open a new empty buffer
     " ,l      move to next buffer
     " ,h      move to previous buffer
