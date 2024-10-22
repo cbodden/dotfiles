@@ -8,21 +8,25 @@
     " F8      tagbar toggle
     " F9      remove all trailing whitespace
     " F10     selective remove of trailing whitespace
-    " H       :%s//gc
+    " ,       leader key    ## LEADER KEY
+    " H       :%s//gc       ## find / replace
     " J       :m >+1
     " K       :m <-2
     " :W      :w with sudo
-    " ,       leader key
-    " ,b :    build go files
-    " ,r      go run
-    " ,t      go test
     " ,m      remove ^M when encodings get messed up
+    " #### fugitive
     " ,gj     :diffget //3  ## fugitive
     " ,gf     :diffget //2  ## fugitive
     " ,gs     :G<CR>        ## fugitive
-    " ,1 - 0  go to tab by number
+    " #### nerdtree
     " <C-n>   nerdtree toggle
     " <C-m>   nerdtree
+    " #### buffers as tabs
+    " ,T      open a new empty buffer
+    " ,l      move to next buffer
+    " ,h      move to previous buffer
+    " ,bq     close current buffer and move to prev (close tab)
+    " ,bl     same as :ls
 "}
 
 "[Basics] {
@@ -178,7 +182,6 @@
         Plug 'airblade/vim-gitgutter'
         " syntax hilighting
         Plug 'dense-analysis/ale'
-        "" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
         Plug 'frazrepo/vim-rainbow'
         " status bar
         Plug 'itchyny/lightline.vim'
@@ -198,8 +201,8 @@
         Plug 'morhetz/gruvbox'
         " Tabs
         Plug 'ap/vim-buftabline'
-        " Numbered Tabs
-        Plug 'mkitt/tabline.vim'
+        " airline
+        Plug 'vim-airline/vim-airline'
         call plug#end()
     "}
 
@@ -244,41 +247,6 @@
           \   'rg --column --line-number --no-heading --color=always
           \   --smart-case -- '.shellescape(<q-args>), 1,
           \   fzf#vim#with_preview(), <bang>0)
-    "}
-
-    "vim-go {
-        "Go syntax highlighting
-            let g:go_highlight_fields = 1
-            let g:go_highlight_functions = 1
-            let g:go_highlight_function_calls = 1
-            let g:go_highlight_extra_types = 1
-            let g:go_highlight_operators = 1
-
-        "Auto formatting and importing
-            let g:go_fmt_autosave = 1
-            let g:go_fmt_command = "goimports"
-
-        "Status line types/signatures
-            let g:go_auto_type_info = 1
-
-        "Run :GoBuild or :GoTestCompile based on the go file
-            function! s:build_go_files()
-              let l:file = expand('%')
-              if l:file =~# '^\f\+_test\.go$'
-                call go#test#Test(0, 1)
-              elseif l:file =~# '^\f\+\.go$'
-                call go#cmd#Build(0)
-              endif
-            endfunction
-
-        "Map keys for most used commands.
-            "Ex: `\b` for building, `\r` for running and `\b` for running test.
-            autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-            autocmd FileType go nmap <leader>r  <Plug>(go-run)
-            autocmd FileType go nmap <leader>t  <Plug>(go-test)
-
-        "vim-go fix
-            silent !go env -w GO111MODULE=off
     "}
 
     "CoC Settings {
@@ -350,6 +318,13 @@
         nmap <leader>gs :G<CR>
     "}
 
+    "vim airline {
+        " Enable the list of buffers
+        let g:airline#extensions#tabline#enabled = 1
+
+        " Show just the filename
+        let g:airline#extensions#tabline#fnamemod = ':t'
+    "}
 "}
 
 "[Formatting] {
@@ -398,17 +373,39 @@
     map <left> <nop>
     map <right> <nop>
 
-    " Go to tab by number
-    noremap <leader>1 1gt
-    noremap <leader>2 2gt
-    noremap <leader>3 3gt
-    noremap <leader>4 4gt
-    noremap <leader>5 5gt
-    noremap <leader>6 6gt
-    noremap <leader>7 7gt
-    noremap <leader>8 8gt
-    noremap <leader>9 9gt
-    noremap <leader>0 :tablast<cr>
+    "" Go to tab by number
+    "noremap <leader>1 1gt
+    "noremap <leader>2 2gt
+    "noremap <leader>3 3gt
+    "noremap <leader>4 4gt
+    "noremap <leader>5 5gt
+    "noremap <leader>6 6gt
+    "noremap <leader>7 7gt
+    "noremap <leader>8 8gt
+    "noremap <leader>9 9gt
+    "noremap <leader>0 :tablast<cr>
+
+    " This allows buffers to be hidden if you've modified a buffer.
+    " This is almost a must if you wish to use buffers in this way.
+    set hidden
+
+    " To open a new empty buffer
+    " This replaces :tabnew which I used to bind to this mapping
+    nmap <leader>T :enew<cr>
+
+    " Move to the next buffer
+    nmap <leader>l :bnext<CR>
+
+    " Move to the previous buffer
+    nmap <leader>h :bprevious<CR>
+
+    " Close the current buffer and move to the previous one
+    " This replicates the idea of closing a tab
+    nmap <leader>bq :bp <BAR> bd #<CR>
+
+    " Show all open buffers and their status
+    nmap <leader>bl :ls<CR>
+
 
     " nerdtree
     map <C-n> :NERDTreeToggle<CR>
