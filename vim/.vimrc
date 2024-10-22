@@ -10,12 +10,12 @@
     " F10     selective remove of trailing whitespace
     " <C-n>   nerdtree toggle
     " <C-m>   nerdtree
+    " :W      :w with sudo
     "
     " #### non leader mappings
     " H       :%s//gc       ## find / replace
     " J       :m >+1
     " K       :m <-2
-    " :W      :w with sudo
     "
     " #### leader mappings
     " ,       leader key    ## LEADER KEY
@@ -28,6 +28,8 @@
     " ,h      move to previous buffer
     " ,bq     close current buffer and move to prev (close tab)
     " ,bl     same as :ls
+    " ,1-9    switch to tab 1-9g
+    " ,0      :tablast
 "}
 
 "[Basics] {
@@ -374,17 +376,17 @@
     map <left> <nop>
     map <right> <nop>
 
-    "" Go to tab by number
-    "noremap <leader>1 1gt
-    "noremap <leader>2 2gt
-    "noremap <leader>3 3gt
-    "noremap <leader>4 4gt
-    "noremap <leader>5 5gt
-    "noremap <leader>6 6gt
-    "noremap <leader>7 7gt
-    "noremap <leader>8 8gt
-    "noremap <leader>9 9gt
-    "noremap <leader>0 :tablast<cr>
+    " Go to tab by number
+    noremap <leader>1 1gt
+    noremap <leader>2 2gt
+    noremap <leader>3 3gt
+    noremap <leader>4 4gt
+    noremap <leader>5 5gt
+    noremap <leader>6 6gt
+    noremap <leader>7 7gt
+    noremap <leader>8 8gt
+    noremap <leader>9 9gt
+    noremap <leader>0 :tablast<cr>
 
     " This allows buffers to be hidden if you've modified a buffer.
     " This is almost a must if you wish to use buffers in this way.
