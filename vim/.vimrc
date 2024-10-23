@@ -13,23 +13,25 @@
     " :W      :w with sudo
     "
     " #### non leader mappings
-    " H       :%s//gc       ## find / replace
+    " H       :%s//gc               ## find / replace
     " J       :m >+1
     " K       :m <-2
     "
     " #### leader mappings
     " ,       leader key    ## LEADER KEY
     " ,m      remove ^M when encodings get messed up
-    " ,gj     :diffget //3  ## fugitive
-    " ,gf     :diffget //2  ## fugitive
-    " ,gs     :G<CR>        ## fugitive
+    " ,gj     :diffget //3          ## fugitive
+    " ,gf     :diffget //2          ## fugitive
+    " ,gs     :G<CR>                ## fugitive
     " ,T      open a new empty buffer
     " ,l      move to next buffer
     " ,h      move to previous buffer
-    " ,bq     close current buffer and move to prev (close tab)
+    " ,bq     close current buffer and move to prev
     " ,bl     same as :ls
     " ,1-9    switch to tab 1-9g
     " ,0      :tablast
+    " ,h      :split
+    " ,v      :vsplit
 "}
 
 "[Basics] {
@@ -409,6 +411,9 @@
     " Show all open buffers and their status
     nmap <leader>bl :ls<CR>
 
+    " map split v and h split to ,v and ,h respectively
+    nmap <leader>v :vsplit<CR>
+    nmap <leader>h :split<CR>
 
     " nerdtree
     map <C-n> :NERDTreeToggle<CR>
