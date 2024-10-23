@@ -76,7 +76,7 @@
     " set spell                     " spell checking : http://tips.webdesign10.com/vim/how-use-vims-spellchecker
     set swapfile                    " enable swaps
     set tags=~/.vim/tags/           " tag usage
-    set timeoutlen=300 ttimeoutlen=0" mapping delays
+    set timeoutlen=300 ttimeoutlen=0 " mapping delays
     set undodir=~/.vim/undo         " persistent undo dir
     set undofile                    " persistent undo regardless of buffer unload
     set undolevels=1000             " many levels of undo
