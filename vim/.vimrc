@@ -23,15 +23,16 @@
     " ,gj     :diffget //3          ## fugitive
     " ,gf     :diffget //2          ## fugitive
     " ,gs     :G<CR>                ## fugitive
-    " ,T      open a new empty buffer
-    " ,l      move to next buffer
-    " ,h      move to previous buffer
+    " ,T      :enew<cr>             ## new empty buffer
+    " ,t      :enew<cr>             ## new empty buffer
+    " ,l      :bnext<CR>            ## next buffer
+    " ,h      :bprevious<CR>        ## prev buffer
     " ,bq     close current buffer and move to prev
-    " ,bl     same as :ls
+    " ,bl     :ls<cr>               ## list buffers
     " ,1-9    switch to tab 1-9g
     " ,0      :tablast
-    " ,h      :split
-    " ,v      :vsplit
+    " ,h      :split                ## horiz split
+    " ,v      :vsplit               ## vert split
 "}
 
 "[Basics] {
@@ -329,6 +330,11 @@
 
         " Show just the filename
         let g:airline#extensions#tabline#fnamemod = ':t'
+
+        let g:airline_theme='gruvbox'
+        let g:airline#extensions#ycm#enabled = 1
+        let g:airline#extensions#tabline#buffer_idx_mode = 1
+        let g:airline#extensions#tabline#formatter = 'unique_tail'
     "}
 "}
 
@@ -397,6 +403,7 @@
     " To open a new empty buffer
     " This replaces :tabnew which I used to bind to this mapping
     nmap <leader>T :enew<cr>
+    nmap <leader>t :enew<cr>
 
     " Move to the next buffer
     nmap <leader>l :bnext<CR>
