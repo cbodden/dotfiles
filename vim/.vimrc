@@ -133,7 +133,6 @@
     set showmatch                   " show matching brackets
     set sidescrolloff=10            " Keep 5 lines at the size
     set t_Co=256                    " enables 256 colors
-    " set termguicolors               " support for colorscheme in ST
     set termguicolors               " support for colorscheme in ST
     set title                       " change the terminals title
     "set statusline=%F%m%r%h%w\ [Lines:%L]\ [Type:%{&ff}]\ %y\ [%p%%]\ [%04l,%04v]\ [FoldLevel:%{foldlevel('.')}]
@@ -404,12 +403,7 @@
     noremap <leader>9 9gt
     noremap <leader>0 :tablast<cr>
 
-    " This allows buffers to be hidden if you've modified a buffer.
-    " This is almost a must if you wish to use buffers in this way.
-    set hidden
-
     " To open a new empty buffer
-    " This replaces :tabnew which I used to bind to this mapping
     nmap <leader>T :enew<cr>
     nmap <leader>t :enew<cr>
 
@@ -420,7 +414,6 @@
     nmap <leader>h :bprevious<CR>
 
     " Close the current buffer and move to the previous one
-    " This replicates the idea of closing a tab
     nmap <leader>bq :bp <BAR> bd #<CR>
 
     " Show all open buffers and their status
