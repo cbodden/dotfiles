@@ -21,7 +21,7 @@
     " ghp     :GitGutterPreviewHunks
     "
     " #### leader mappings
-    " ,       leader key    ## LEADER KEY
+    " ,       leader key            ## LEADER KEY
     " ,m      remove ^M when encodings get messed up
     " ,gj     :diffget //3          ## fugitive
     " ,gf     :diffget //2          ## fugitive
