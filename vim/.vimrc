@@ -16,6 +16,9 @@
     " H       :%s//gc               ## find / replace
     " J       :m >+1
     " K       :m <-2
+    " ghs     :GitGutterStageHunk
+    " ghu     :GitGutterUndoHunk
+    " ghp     :GitGutterPreviewHunks
     "
     " #### leader mappings
     " ,       leader key    ## LEADER KEY
@@ -330,12 +333,17 @@
 
         " Show just the filename
         let g:airline#extensions#tabline#fnamemod = ':t'
-
-        let g:airline_theme='gruvbox'
-        let g:airline#extensions#ycm#enabled = 1
-        let g:airline#extensions#tabline#buffer_idx_mode = 1
-        let g:airline#extensions#tabline#formatter = 'unique_tail'
     "}
+
+    "vim GitGutter {
+        " gitgutter status line summary
+        function! GitStatus()
+          let [a,m,r] = GitGutterGetHunkSummary()
+          return printf('+%d ~%d -%d', a, m, r)
+        endfunction
+        set statusline+=%{GitStatus()}
+    "}
+
 "}
 
 "[Formatting] {
@@ -444,6 +452,11 @@
     " Move highlighted text up and down
     vnoremap J :m '>+1<CR>gv=gv
     vnoremap K :m '<-2<CR>gv=gv
+
+    " GitGutter
+    nmap ghs <Plug>(GitGutterStageHunk)
+    nmap ghu <Plug>(GitGutterUndoHunk)
+    nmap ghp <Plug>(GitGutterPreviewHunks
 
     " sudo save
     command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
