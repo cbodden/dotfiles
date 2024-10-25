@@ -196,9 +196,6 @@
         Plug 'preservim/tagbar'
         " NERDTree
         Plug 'scrooloose/nerdtree'
-        " Finder
-        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        Plug 'junegunn/fzf.vim'
         " Theme
         Plug 'morhetz/gruvbox'
         " Tabs
@@ -240,14 +237,6 @@
 
     "lightline {
         let g:lightline = { 'colorscheme': 'gruvbox', }
-    "}
-
-    "fzf {
-        command! -bang -nargs=* Rg
-          \ call fzf#vim#grep(
-          \   'rg --column --line-number --no-heading --color=always
-          \   --smart-case -- '.shellescape(<q-args>), 1,
-          \   fzf#vim#with_preview(), <bang>0)
     "}
 
     "CoC Settings {
