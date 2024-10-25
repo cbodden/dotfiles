@@ -23,9 +23,6 @@
     " #### leader mappings
     " ,       leader key            ## LEADER KEY
     " ,m      remove ^M when encodings get messed up
-    " ,gj     :diffget //3          ## fugitive
-    " ,gf     :diffget //2          ## fugitive
-    " ,gs     :G<CR>                ## fugitive
     " ,T      :enew<cr>             ## new empty buffer
     " ,t      :enew<cr>             ## new empty buffer
     " ,l      :bnext<CR>            ## next buffer
@@ -200,8 +197,6 @@
         Plug 'preservim/nerdcommenter'
         " NERDTree
         Plug 'scrooloose/nerdtree'
-        " Git
-        Plug 'tpope/vim-fugitive'
         " Finder
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
@@ -318,12 +313,6 @@
         let g:ale_sign_error = '>>'
         let g:ale_sign_warning = '--'
         let g:ale_fix_on_save = 1
-    "}
-
-    " Sweet Sweet FuGITive {
-        nmap <leader>gj :diffget //3<CR>
-        nmap <leader>gf :diffget //2<CR>
-        nmap <leader>gs :G<CR>
     "}
 
     "vim airline {
