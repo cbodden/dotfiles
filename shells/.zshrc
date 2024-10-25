@@ -105,15 +105,13 @@ setopt autocd                             # no more pesky cd to change dirs
 setopt correctall                         # auto-correction of the commands typed
 #### end misc options #### }}}
 
-#### zsh plugin source #### {{{
-source $ZSH/oh-my-zsh.sh
+#### zsh plugins #### {{{
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
-#### end zsh plugin source #### }}}
-
-#### zsh plugins #### {{{
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00ff00,bg=#000000,bold,underline"  # suggestion highlight style
 plugins+=(git vi-mode)                    # oh my zsh setting vi mode
+source $ZSH/oh-my-zsh.sh                  # need to source after pluins line
+INSERT_MODE_INDICATOR="%F{yellow}+%f"     # cursor mode indicator
 autoload -U compinit promptinit           # enable tab-completion and advanced prompt
 compinit                                  # enable tab-completion
 promptinit; prompt gentoo                 # enable advanced prompt and activate gentoo prompt
