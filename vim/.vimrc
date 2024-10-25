@@ -1,8 +1,8 @@
-"Modeline and Notes {
-"vim: set foldmarker={,} foldlevel=0 spell:
-"}
+"Modeline and Notes
+"vim: set foldmarker={{{,}}} foldlevel=0 spell:
+"
 
-"[Configured Key Bindings] {
+"[Configured Key Bindings]
     " F2      paste toggle
     " F3      nerdtree toggle
     " F8      tagbar toggle
@@ -33,9 +33,9 @@
     " ,0      :tablast
     " ,h      :split                ## horiz split
     " ,v      :vsplit               ## vert split
-"}
+"
 
-"[Basics] {
+"[Basics] {{{
     set nocompatible                " explicitly get out of vi-compatible mode
     set noexrc                      " don't use local version of .(g)vimrc, .exrc
     set cpoptions=aABceFsmq
@@ -55,9 +55,9 @@
     "             |+-- :write updates alternative file name
     "             +-- :read updates alternative file name
     syntax on                       " syntax highlighting on
-"}
+" }}}
 
-"[General] {
+"[General] {{{
     filetype plugin on              " load filetype plugins settings
     " filetype plugin indent on       " load filetype plugins/indent settings
     set autochdir                   " always switch to the current file directory
@@ -98,9 +98,9 @@
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
-"}
+" }}}
 
-"[Vim UI] {
+"[Vim UI] {{{
     colorscheme gruvbox
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
@@ -146,9 +146,9 @@
     ""              | | +-- readonly flag in square brackets
     ""              | +-- rodified flag in square brackets
     ""              +-- full path to file in the buffer
-"}
+" }}}
 
-"[Text Formatting/Layout] {
+"[Text Formatting/Layout] {{{
     set completeopt=                " don't use a pop up menu for completions
     set expandtab                   " no real tabs please!
     set formatoptions=rq            " Automatically insert comment leader on return, and let gq format comments
@@ -160,14 +160,14 @@
     set smartcase                   " if there are caps, go case-sensitive
     set softtabstop=4               " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
     set tabstop=4                   " real tabs should be 8, and they will show with set list on
-"}
+" }}}
 
-"[Tabs] {
+"[Tabs] {{{
     set showtabline=2               " shows the tab bar at all times
     set tabpagemax=10               " maximum amount of tabs to open on startup
-"}
+" }}}
 
-"[Folding] {
+"[Folding] {{{
     set foldenable                  " Turn on folding
     set foldlevel=100               " Don't autofold anything (but I can still fold manually)
     set foldmarker={,}              " Fold C style code (only use this as default if you use a high foldlevel)
@@ -179,9 +179,9 @@
     set foldtext=SimpleFoldText()   " Custom fold text function (cleaner than default)
     "au BufWinEnter * silent loadview
     au BufWinLeave * mkview
-"}
+" }}}
 
-"[Plugin Settings] {
+"[Plugin Settings] {{{
     "vim-plug {
         call plug#begin('~/.vim/plugged')
         Plug 'airblade/vim-gitgutter'
@@ -332,9 +332,9 @@
         set statusline+=%{GitStatus()}
     "}
 
-"}
+" }}}
 
-"[Formatting] {
+"[Formatting] {{{
     " [Bash / Shell Scripts] {
         " remove color columns in sh files
         autocmd BufRead,BufNewFile *.sh set colorcolumn=80
@@ -363,9 +363,9 @@
 
         let b:match_ignorecase = 1 " case is stupid
     "}
-"}
+" }}}
 
-"[Key mappings / bindings] {
+"[Key mappings / bindings] {{{
     let mapleader=","                       " mapping comma to leader key
 
     " autoreload vimrc
@@ -442,9 +442,9 @@
 
     " sudo save
     command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-"}
+" }}}
 
-"[Folder creations for mappings] {
+"[Folder creations for mappings] {{{
     silent !mkdir ~/.vim/backup > /dev/null 2>&1
     silent !mkdir ~/.vim/swap > /dev/null 2>&1
     silent !mkdir ~/.vim/tags > /dev/null 2>&1
@@ -460,4 +460,4 @@
     if !isdirectory(expand(&directory))
         call mkdir(expand(&directory), "p")
     endif
-"}
+" }}}
