@@ -396,9 +396,6 @@
     nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
     " map <C-P> :Files<CR>
-    map <C-f> :Rg<CR>
-    map <C-t> :e <cfile><cr>
-    map <S-Tab> :bn<CR>
     map <F5> :setlocal spell! spelllang=en_US<CR>
 
     " Search and replace hotkey
