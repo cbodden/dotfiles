@@ -187,14 +187,13 @@
         Plug 'airblade/vim-gitgutter'
         " syntax hilighting
         Plug 'dense-analysis/ale'
+        " rainbow Parenthesis
         Plug 'frazrepo/vim-rainbow'
         " status bar
         Plug 'itchyny/lightline.vim'
         " Code Completion
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'preservim/tagbar'
-        " code commenter
-        Plug 'preservim/nerdcommenter'
         " NERDTree
         Plug 'scrooloose/nerdtree'
         " Finder
@@ -241,7 +240,6 @@
 
     "lightline {
         let g:lightline = { 'colorscheme': 'gruvbox', }
-        " let g:lightline = { 'colorscheme': 'solarized', }
     "}
 
     "fzf {
@@ -278,20 +276,6 @@
 
         " If you want :UltiSnipsEdit to split your window.
         let g:UltiSnipsEditSplit="vertical"
-
-        "coc-snippets Settings
-        "inoremap <silent><expr> <TAB>
-        "      \ coc#pum#visible() ? coc#_select_confirm() :
-        "      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-        "      \ CheckBackspace() ? "\<TAB>" :
-        "      \ coc#refresh()
-        "
-        "function! CheckBackspace() abort
-        "  let col = col('.') - 1
-        "  return !col || getline('.')[col - 1]  =~# '\s'
-        "endfunction
-        "
-        "let g:coc_snippet_next = '<tab>'
     "}
 
     "ale settings {
