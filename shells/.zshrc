@@ -128,7 +128,7 @@ setopt prompt_subst
 add-zsh-hook precmd vcs_info
 # add ${vcs_info_msg_0} to the prompt
 # e.g. here we add the Git information in red  
-PROMPT='%F{green}${${(%):-%m}}%f %1~ %F{red}${vcs_info_msg_0_}%f %# '
+PROMPT='%F{green}${${(%):-%m}%.local}%f %1~ %F{red}${vcs_info_msg_0_}%f %# '
 ##PROMPT='%F{magenta}%n%f@%F{blue}${${(%):-%m}}%f %1~ %F{red}${vcs_info_msg_0_}%f %# '
 ##PROMPT='%1~ %F{red}${vcs_info_msg_0_}%f %# '
 
