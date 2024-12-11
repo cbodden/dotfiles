@@ -119,17 +119,20 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion::complete:*' use-cache 1
 
+autoload -Uz add-zsh-hook vcs_info        # Autoload zsh add-zsh-hook and vcs_info functions (-U autoload w/o substition, -z use zsh style)
+setopt prompt_subst                       # Enable substitution in the prompt.
+add-zsh-hook precmd vcs_info              # Run vcs_info just before a prompt is displayed (precmd)
 
-# Autoload zsh add-zsh-hook and vcs_info functions (-U autoload w/o substition, -z use zsh style)
-autoload -Uz add-zsh-hook vcs_info
-# Enable substitution in the prompt.
-setopt prompt_subst
-# Run vcs_info just before a prompt is displayed (precmd)
-add-zsh-hook precmd vcs_info
-# add ${vcs_info_msg_0} to the prompt, here we add the Git information in red  
-## PROMPT='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· %F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
+zstyle ':vcs_info:*' check-for-changes true          # Enable checking for (un)staged changes, enabling use of %u and %c
+zstyle ':vcs_info:*' unstagedstr ' *'     # Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats       '(%b%u%c)'    # Set the format of the Git information for vcs_info
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
+### end zsh options #### }}}
 
+#### prompt #### {{{
 if [[ -n $SSH_CONNECTION ]]; then
+    ## make prompt show "·« hostname »·" in red when in ssh
     _PRM_1='%F{046} ·« %F{009}${${(%):-%m}%.local}%F{046} »· '
 else
     _PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
@@ -137,18 +140,7 @@ fi
 
 _PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
 PROMPT=${_PRM_1}${_PRM_2}
-
-
-
-# Enable checking for (un)staged changes, enabling use of %u and %c
-zstyle ':vcs_info:*' check-for-changes true
-# Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr ' +'
-# Set the format of the Git information for vcs_info
-zstyle ':vcs_info:git:*' formats       '(%b%u%c)'
-zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
-### end zsh options #### }}}
+### end prompt #### }}}
 
 #### aliases #### {{{
 # alias speak_date='espeak “Today is `/bin/date \”+%A, %d %B 20%y\”`”‘
