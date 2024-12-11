@@ -126,11 +126,11 @@ autoload -Uz add-zsh-hook vcs_info
 setopt prompt_subst
 # Run vcs_info just before a prompt is displayed (precmd)
 add-zsh-hook precmd vcs_info
-# add ${vcs_info_msg_0} to the prompt
-# e.g. here we add the Git information in red  
-PROMPT='%F{046} ■ %F{190}${${(%):-%m}%.local}%F{046} ■ %F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
-##PROMPT='%F{magenta}%n%f@%F{blue}${${(%):-%m}}%f %1~ %F{red}${vcs_info_msg_0_}%f %# '
-##PROMPT='%1~ %F{red}${vcs_info_msg_0_}%f %# '
+# add ${vcs_info_msg_0} to the prompt, here we add the Git information in red  
+## PROMPT='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· %F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
+_PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
+_PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
+PROMPT=${_PRM_1}${_PRM_2}
 
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
