@@ -128,9 +128,17 @@ setopt prompt_subst
 add-zsh-hook precmd vcs_info
 # add ${vcs_info_msg_0} to the prompt, here we add the Git information in red  
 ## PROMPT='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· %F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
-_PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
+
+if [[ -n $SSH_CONNECTION ]]; then
+    _PRM_1='%F{046} ·■ %F{009}${${(%):-%m}%.local}%F{046} ■· '
+else
+    _PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
+fi
+
 _PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
 PROMPT=${_PRM_1}${_PRM_2}
+
+
 
 # Enable checking for (un)staged changes, enabling use of %u and %c
 zstyle ':vcs_info:*' check-for-changes true
