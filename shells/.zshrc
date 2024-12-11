@@ -135,7 +135,8 @@ if [[ -n $SSH_CONNECTION ]]; then
     ## make prompt show "·« hostname »·" in red when in ssh
     _PRM_1='%F{046} ·« %F{009}${${(%):-%m}%.local}%F{046} »· '
 else
-    _PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
+    ##_PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
+    _PRM_1=''
 fi
 
 _PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
