@@ -130,7 +130,7 @@ add-zsh-hook precmd vcs_info
 ## PROMPT='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· %F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
 
 if [[ -n $SSH_CONNECTION ]]; then
-    _PRM_1='%F{046} ·■ %F{009}${${(%):-%m}%.local}%F{046} ■· '
+    _PRM_1='%F{046} ·« %F{009}${${(%):-%m}%.local}%F{046} »· '
 else
     _PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
 fi
