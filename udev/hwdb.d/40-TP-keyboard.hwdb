@@ -1,0 +1,5 @@
+##evdev:input:b<bus_id>v<vendor_id>p<product_id>e<version_id>-<modalias>
+## evtest ; cat /sys/class/input/eventXX/device/modalias ; udevadm info -a -n /dev/input/event23
+## map : https://pkg.go.dev/github.com/holoplot/go-evdev
+evdev:input:b0011v0001p0001eAB83*
+ KEYBOARD_KEY_3a=key_leftctrl  ## caps --> leftctrl

@@ -16,16 +16,16 @@ then
 fi
 
 ## this starts xmodmap for the user
-if hash xmodmap 2>/dev/null
-then
-    if pgrep -f xmodmap >/dev/null 2>&1
-    then
-        return 0
-    else
-        xmodmap ~/.Xmodmap \
-            &
-    fi
-fi
+#if hash xmodmap 2>/dev/null
+#then
+#    if pgrep -f xmodmap >/dev/null 2>&1
+#    then
+#        return 0
+#    else
+#        xmodmap ~/.Xmodmap \
+#            &
+#    fi
+#fi
 
 ## this starts the xscreensaver daemon
 if hash xscreensaver 2>/dev/null

@@ -1,0 +1,17 @@
+## udevadm info -a -n /dev/input/event23
+
+KERNEL=="event*" \
+, SUBSYSTEM=="input" \
+, ATTRS{name}=="HHKB-Hybrid_1 Keyboard" \
+, RUN+="/bin/sh -c 'echo $(date) $(env) > /tmp/hhkb-kernel.log'"
+
+ACTION=="add|change" \
+, SUBSYSTEM=="input" \
+, ATTRS{name}=="HHKB-Hybrid_1 Keyboard" \
+, RUN+="/bin/sh -c 'echo $(date) $(env) > /tmp/hhkb-action.log'"
+
+KERNEL=="event*" \
+, SUBSYSTEM=="input" \
+, ATTRS{name}=="HHKB-Hybrid_1 Keyboard" \
+, RUN+="/bin/sh -c '/home/cbodden/git/mine/scripts/keeb.sh'"
+##, RUN+="su -l --shell=/bin/bash -c '/home/cbodden/git/mine/scripts/keeb.sh' cbodden"

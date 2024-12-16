@@ -1,0 +1,6 @@
+##evdev:input:b<bus_id>v<vendor_id>p<product_id>e<version_id>-<modalias>
+## evtest ; cat /sys/class/input/eventXX/device/modalias ; udevadm info -a -n /dev/input/event23
+## map : https://pkg.go.dev/github.com/holoplot/go-evdev
+evdev:input:b0005v04FEp0021e0001*
+ KEYBOARD_KEY_7008a=key_rightctrl ## Henkan
+ KEYBOARD_KEY_7008b=key_leftmeta  ## Muhenkan
