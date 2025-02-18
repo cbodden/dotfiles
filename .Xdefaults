@@ -1,6 +1,9 @@
 !!Source http://github.com/altercation/solarized
 
 Xft.dpi: 100
+## Xft.dpi: 139
+## xrdb -query | awk '/Xft.dpi/ {print $2}'
+## xrdb merge .Xresources
 
 
 *background:            #002b36
