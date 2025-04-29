@@ -1,0 +1,164 @@
+#### oh my zsh apecific stuff #### {{{
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+#### oh my zsh end #### }}}
+
+#### key bindings #### {{{
+bindkey -v                                                # vi mode for vi style keybindings
+bindkey -M vicmd '?' history-incremental-search-backward  # Better searching in command mode
+bindkey -M vicmd '/' history-incremental-search-forward
+bindkey "^[OA" up-line-or-beginning-search                # Beginning search with arrow keys
+bindkey "^[OB" down-line-or-beginning-search
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
+bindkey -M vicmd v edit-command-line                      # Easier, more vim-like editor opening
+bindkey -M vicmd "^V" edit-command-line                   # `v` is already mapped to visual mode, so we need to use a different key to open Vim
+export KEYTIMEOUT=1                                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+
+#  Mode indication
+autoload -U colors && colors
+function zle-line-init zle-keymap-select {
+    _I_PMPT="%{$fg[red]%} [% INSERT]%  %{$reset_color%}"
+    _N_PMPT="%{$fg[blue]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="%B${${KEYMAP/vicmd/${_N_PMPT}}/(main|viins)/${_I_PMPT}}$b"
+    #RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+setopt transient_rprompt
+#### end key bindings #### }}}
+
+#### history #### {{{
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt APPEND_HISTORY                     # append rather than overwrite history file.
+setopt EXTENDED_HISTORY                   # save timestamp and runtime information
+setopt HIST_EXPIRE_DUPS_FIRST             # allow dups, but expire old ones when I hit HISTSIZE
+setopt HIST_FIND_NO_DUPS                  # don't find duplicates in history
+setopt HIST_IGNORE_ALL_DUPS               # ignore duplicate commands regardless of commands in between
+setopt HIST_IGNORE_DUPS                   # ignore duplicate commands
+setopt HIST_REDUCE_BLANKS                 # leave blanks out
+setopt HIST_SAVE_NO_DUPS                  # don't save duplicates
+setopt INC_APPEND_HISTORY                 # write after each command
+setopt SHARE_HISTORY                      # share history between sessions
+#### end history #### }}}
+
+#### super globs #### {{{
+setopt NO_CASE_GLOB                       # case insensitive globbing
+setopt NUMERIC_GLOB_SORT                  # numeric glob sort
+setopt extended_glob
+setopt globdots                           # lets files beginning with a "." match explicitly without specifying
+unsetopt caseglob
+#### end super globs #### }}}
+
+#### misc options #### {{{
+setopt NO_BEEP                            # no more beeps
+setopt autocd                             # no more pesky cd to change dirs
+setopt correctall                         # auto-correction of the commands typed
+#### end misc options #### }}}
+
+#### zsh plugins #### {{{
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+##source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00ff00,bg=#000000,bold,underline"  # suggestion highlight style
+plugins+=(git vi-mode)                    # oh my zsh setting vi mode
+source $ZSH/oh-my-zsh.sh                  # need to source after pluins line
+INSERT_MODE_INDICATOR="%F{yellow}+%f"     # cursor mode indicator
+autoload -U compinit promptinit           # enable tab-completion and advanced prompt
+compinit                                  # enable tab-completion
+##promptinit; prompt gentoo                 # enable advanced prompt and activate gentoo prompt
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+zstyle ':completion::complete:*' use-cache 1
+
+autoload -Uz add-zsh-hook vcs_info        # Autoload zsh add-zsh-hook and vcs_info functions (-U autoload w/o substition, -z use zsh style)
+setopt prompt_subst                       # Enable substitution in the prompt.
+add-zsh-hook precmd vcs_info              # Run vcs_info just before a prompt is displayed (precmd)
+
+zstyle ':vcs_info:*' check-for-changes true          # Enable checking for (un)staged changes, enabling use of %u and %c
+zstyle ':vcs_info:*' unstagedstr ' *'     # Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats       '(%b%u%c)'    # Set the format of the Git information for vcs_info
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
+### end zsh options #### }}}
+
+#### prompt #### {{{
+if [[ -n $SSH_CONNECTION ]]; then
+    ## make prompt show "·« hostname »·" in red when in ssh
+    _PRM_1='%F{046} ·« %F{009}${${(%):-%m}%.local}%F{046} »· '
+else
+    ##_PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
+    _PRM_1=''
+fi
+
+_PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
+PROMPT=${_PRM_1}${_PRM_2}
+### end prompt #### }}}
+
+#### aliases #### {{{
+alias add='git add -p .'
+alias commit='git commit .'
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+alias d='dirs -v'
+alias did="vim +'normal Go' +'r!date' ~/did.txt"
+alias facts="elinks -dump randomfunfacts.com | awk '/┌──/{ f = 1 } f; /└──/{ f = 0 }'"
+alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
+alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias lockme='xscreensaver-command -lock && sudo xset -display :0 dpms force off && sudo s2disk -r /dev/nvme0n1p2'
+alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
+alias o='popd'
+alias p='pushd'
+alias ps='ps --forest'
+alias pull='git pull --rebase && facts'
+alias push='git push origin main && facts'
+alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
+alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
+alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
+alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
+alias wserver='python -m SimpleHTTPServer 8080'
+alias x='exit'
+#### end aliases #### }}}
+
+#### functions #### {{{{{
+function checksum() { printf "FILE: `echo ${1}`\n" ; printf "SIZE: `ls -al ${1} | awk '{ print $5 }'` bytes\n" ; printf "MD5 : `md5sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" ; printf "SHA1: `sha1sum ${1} | awk '{ print $1 }' | tr '[:lower:]' '[:upper:]'`\n" }
+function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${1} | xargs ; fi }
+function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
+function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
+function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
+function myip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
+function search_google; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
+function search_ip() { curl https://ipinfo.io/${1} -w "\n" }
+function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
+function tor_address() { curl --socks5 127.0.0.1:9050 http://ifconfig.me/ -w "\n" }
+function tor_route() { printf "%s\n" "authenticate \"\"" "signal newnym" "quit" | nc 127.0.0.1 9051 }
+function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
+function whatismyip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
+#### functions #### }}}}}
+
+#### tmux shell init #### {{{
+if [[ $USER != root ]]; then
+    tmux_count=`tmux ls | wc -l`
+    if [[ "$tmux_count" == "0" ]]
+    then
+        tmux -2
+    else
+        if [[ -z "$TMUX" ]]
+        then
+            if [[ "$tmux_count" == "1" ]]
+            then
+                session_id=1
+            else
+                session_id=`echo $tmux_count`
+            fi
+            tmux -2 new-session -d -s $session_id
+            tmux -2 attach-session -t $session_id
+        fi
+    fi
+else
+fi
+#### tmux init end #### }}}
