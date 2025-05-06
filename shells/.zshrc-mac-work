@@ -72,6 +72,8 @@ INSERT_MODE_INDICATOR="%F{yellow}+%f"     # cursor mode indicator
 autoload -U compinit promptinit           # enable tab-completion and advanced prompt
 compinit                                  # enable tab-completion
 ##promptinit; prompt gentoo                 # enable advanced prompt and activate gentoo prompt
+## if you need to show all prompts availabe at the cli :
+## autoload -Uz promptinit && promptinit ; prompt -p
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion::complete:*' use-cache 1
