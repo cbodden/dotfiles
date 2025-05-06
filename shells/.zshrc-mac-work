@@ -121,7 +121,6 @@ else
     ##_PRM_1='%F{046} ·■ %F{190}${${(%):-%m}%.local}%F{046} ■· '
     _PRM_1=''
 fi
-
 _PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
 PROMPT=${_PRM_1}${_PRM_2}
 ### end prompt #### }}}
@@ -153,7 +152,6 @@ function genpasswd() { if [ -z $1 ] ; then echo "need a character count" ; else 
 function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" ; else LC_ALL=C tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' < /dev/urandom | head -c ${1} | xargs; fi }
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
-function myip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
 function search_ip() { curl https://ipinfo.io/${1} -w "\n" }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function tor_address() { curl --socks5 127.0.0.1:9050 http://ifconfig.me/ -w "\n" }
