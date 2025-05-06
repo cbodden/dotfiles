@@ -87,6 +87,32 @@ zstyle ':vcs_info:git:*' formats       '(%b%u%c)'    # Set the format of the Git
 zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 ### end zsh options #### }}}
 
+### begin smallstep zsh completion {{{
+#compdef step
+
+_step() {
+
+  local -a opts
+  local cur
+  cur=${words[-1]}
+  if [[ "$cur" == "-"* ]]; then
+    opts=("${(@f)$(_CLI_ZSH_AUTOCOMPLETE_HACK=1 ${words[@]:0:#words[@]-1} ${cur} --generate-bash-completion)}")
+  else
+    opts=("${(@f)$(_CLI_ZSH_AUTOCOMPLETE_HACK=1 ${words[@]:0:#words[@]-1} --generate-bash-completion)}")
+  fi
+
+  if [[ "${opts[1]}" != "" ]]; then
+    _describe 'values' opts
+  else
+    _files
+  fi
+
+  return
+}
+
+compdef _step step
+### end smallstep zsh completion }}}
+
 #### prompt #### {{{
 if [[ -n $SSH_CONNECTION ]]; then
     ## make prompt show "·« hostname »·" in red when in ssh
@@ -109,8 +135,6 @@ alias did="vim +'normal Go' +'r!date' ~/did.txt"
 alias facts="elinks -dump randomfunfacts.com | awk '/┌──/{ f = 1 } f; /└──/{ f = 0 }'"
 alias l80='awk '\''length > 80 {print FILENAME " line " FNR "\n\t" $0}'\'' *'
 alias lg='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
-alias lockme='xscreensaver-command -lock && sudo xset -display :0 dpms force off && sudo s2disk -r /dev/nvme0n1p2'
-alias mail='if [[ $USER == root || `ps -ef | egrep tmux | egrep -v egrep | wc -l` -eq 0  ]] ; then mutt ; else tmux rename-window "emails" && mutt ; fi'
 alias o='popd'
 alias p='pushd'
 alias ps='ps --forest'
@@ -118,7 +142,6 @@ alias pull='git pull --rebase && facts'
 alias push='git push origin main && facts'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
-alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
 alias wserver='python -m SimpleHTTPServer 8080'
 alias x='exit'
@@ -131,7 +154,6 @@ function genpasswd_strong() { if [ -z $1 ] ; then echo "need a character count" 
 function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egrep "$@"; fi; }
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 function myip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
-function search_google; { xdg-open 'https://www.google.com/search?q='${(j:+:)*} }
 function search_ip() { curl https://ipinfo.io/${1} -w "\n" }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
 function tor_address() { curl --socks5 127.0.0.1:9050 http://ifconfig.me/ -w "\n" }
