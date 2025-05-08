@@ -1,79 +1,79 @@
-## Modeline and Notes {
+## Modeline and Notes {{{
 # vim: set foldmarker={,} foldlevel=0 spell:
-# }
+# }}}
 
-## Change prefix key to Ctrl+p {
+## Change prefix key to Ctrl+p {{{
 unbind C-b
 set -g prefix C-p
-# }
+# }}}
 
-## Last active window {
+## Last active window {{{
 unbind l
 bind C-a last-window
-# }
+# }}}
 
-## Copy mode {
+## Copy mode {{{
 unbind [
 bind Escape copy-mode
-# }
+# }}}
 
-## Use Vi mode {
+## Use Vi mode {{{
 setw -g mode-keys vi
-# }
+# }}}
 
-## key bindings for splitting {
+## key bindings for splitting {{{
 unbind %
 bind | split-window -h
 bind h split-window -h
 unbind '"'
 bind - split-window -v
 bind v split-window -v
-# }
+# }}}
 
-## key binding for nested tmux {
+## key binding for nested tmux {{{
 unbind q
 bind-key q send-prefix
-# }
+# }}}
 
-## History {
+## History {{{
 set -g history-limit 100000
-# }
+# }}}
 
-## Terminal emulator window title {
+## Terminal emulator window title {{{
 set -g set-titles on
 set -g set-titles-string '#S:#I.#P #W'
-# }
+# }}}
 
-## Status Bar Defaults {
+## Status Bar Defaults {{{
 ##set -g status off
 set -g status-bg black
 set -g status-fg white
 set -g status-interval 1
-# }
+# }}}
 
-## Status Bar Left {
+## Status Bar Left {{{
 _NSYNC="#[fg=blue,bold]#h:#{?pane_synchronized,#[fg=red]sync,#[fg=blue]sync}"
 _PANES="#[fg=green,bold](#S)"
 set -g status-left $_NSYNC' '$_PANES
 set -g status-left-length 75
-# }
+# }}}
 
-## Status Bar Right {
+## Status Bar Right {{{
 _WEATHER="#[fg=#00ff00,bold][ #(curl -s wttr.in/NYC\?format\="%%l:+%%t%%w&period=60") ]"
 _ACPI="#[fg=#fff600,bold][ #(pmset -g batt | awk 'END{print $3,$4}' | sed 's/;//g' ) ]"
 _LOAD="#[fg=#ff0000,bold][ #(sysctl -n vm.loadavg | awk '{print $2,$3,$4}') ]"
 _DATE="#[fg=#ff8d00,bold][ %d-%b-%y | #[fg=#7F9BFF,bold]%H:%M #[fg=#ff8d00,bold]| #[fg=#ff8d00,bold]#(TZ='UTC' date -u +%%H:%%M) UTC #[fg=#ff8d00,bold]]"
 set -g status-right $_ACPI' '$_LOAD' '$_DATE
 set -g status-right-length 175
-# }
+# }}}
 
-## Notifying if other windows has activities {
+## Notifying if other windows has activities {{{
 set -g visual-activity on
 setw -g monitor-activity on
 ##setw -g window-status-activity-attr bold,blink,underscore
-# }
+# }}}
 
-## Window status colors {
+## Window status colors {{{
 set -g status-fg blue
 ## setw -g window-status-attr dim
 ## setw -g window-status-bg black
@@ -82,71 +82,71 @@ set -g status-fg blue
 setw -g window-status-current-format " #[fg=red][#I]#[fg=blue] #W "
 setw -g window-status-format " #[fg=yellow][#I]#[fg=white] #W "
 setw -g window-status-separator " | "
-# }
+# }}}
 
-## Highlighting the active window by border {
+## Highlighting the active window by border {{{
 ## set -g pane-active-border-bg blue
 ## set -g pane-border-bg default
-# }
+# }}}
 
-## pane number display {
+## pane number display {{{
 set -g display-panes-active-colour blue #blue
 set -g display-panes-colour brightred #orange
-# }
+# }}}
 
-## Clock {
+## Clock {{{
 setw -g clock-mode-colour blue
-# }
+# }}}
 
-## term fixes {
+## term fixes {{{
 setw -g xterm-keys on
-# }
+# }}}
 
-## window options {
+## window options {{{
 setw -g automatic-rename
-# }
+# }}}
 
-## move current window to 0 {
+## move current window to 0 {{{
 bind-key T swap-window -t 0
-# }
+# }}}
 
-## move windows around {
+## move windows around {{{
 # Pressing Ctrl+Shift+Left will move the current window to the left
 # Similarly right.
 bind-key -n C-S-Left swap-window -t -1
 bind-key -n C-S-Right swap-window -t +1
-# }
+# }}}
 
-## mouse stuff {
+## mouse stuff {{{
 setw -g mouse on
 set -g mouse on
-# }
+# }}}
 
-## Sync tmux panes {
+## Sync tmux panes {{{
 # from http://stackoverflow.com/questions/9250884/send-command-to-all-window-in-tmux
 bind C-e command-prompt -p "session?,message?" "run-shell \"tmux list-windows -t %1 \| cut -d: -f1\|xargs -I\{\} tmux send-keys -t %1:\{\} %2\""
-# }
+# }}}
 
-## vi bindings for copy / paste using xclip {
+## vi bindings for copy / paste using xclip {{{
 # bind-key -t vi-copy v begin-selection
 # bind-key -t vi-copy y copy-pipe "xclip -sel clip -i"
-# }
+# }}}
 
-## from http://unix.stackexchange.com/questions/45715/is-it-possible-to-get-a-hardcopy-in-tmux {
+## from http://unix.stackexchange.com/questions/45715/is-it-possible-to-get-a-hardcopy-in-tmux {{{
 # C-H captures pane to /tmp/hardcopy
 # bind H capture-pane ; save-buffer -b 0 ~/tmux.hardcopy ; delete-buffer -b 0
-# }
+# }}}
 
-## run commands on idle {
+## run commands on idle {{{
 #set -g lock-after-time 900
 #set -g lock-command "/usr/bin/cmatrix -C blue"
-# }
+# }}}
 
-## bind key for synchronize pane {
+## bind key for synchronize pane {{{
 bind-key M-a set-window-option synchronize-panes
-#}
+#}}}
 
-## terminal overrides {
+## terminal overrides {{{
 # Use the xterm-256color terminal
 set -g default-terminal "tmux-256color"
 
@@ -156,4 +156,4 @@ set-option -ga terminal-overrides ',*:enacs@:smacs@:rmacs@:acsc@'
 #set-option -ga terminal-overrides ",tmux-256color:Tc"
 set-option -ga terminal-overrides ",tmux-256color:Tc"
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
-#}
+#}}}
