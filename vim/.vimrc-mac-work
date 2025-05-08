@@ -170,7 +170,7 @@
 "[Folding] {{{
     set foldenable                  " Turn on folding
     set foldlevel=100               " Don't autofold anything (but I can still fold manually)
-    set foldmarker={,}              " Fold C style code (only use this as default if you use a high foldlevel)
+    set foldmarker={{{,}}}          " Fold C style code (only use this as default if you use a high foldlevel)
     set foldmethod=marker           " Fold on the marker
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
     function! SimpleFoldText() " {

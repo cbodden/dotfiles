@@ -162,7 +162,7 @@ else
 fi
 _PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
 PROMPT=${_PRM_1}${_PRM_2}
-### end prompt ####
+### end prompt #### }}}
 
 #################
 #### aliases ####
