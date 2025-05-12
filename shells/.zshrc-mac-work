@@ -195,6 +195,7 @@ function h() { if [ -z "$*" ]; then history -d -i 1; else history -d -i 1 | egre
 function killtunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -S /tmp/file-${1} -O exit ${1} ; fi }
 function search_ip() { curl https://ipinfo.io/${1} -w "\n" }
 function smetric() { if [ -z $1 ] ; then echo "need a url" ; else curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n\n' -o /dev/null -s ${1} ; fi }
+function step_hosts() { step ssh hosts | awk 'FNR == 1 {next} {print $3}' | cut -d, -f1 | cut -d= -f2 | sort | uniq -c | sort -r -k 1 } 
 function tor_address() { curl --socks5 127.0.0.1:9050 http://ifconfig.me/ -w "\n" }
 function tor_route() { printf "%s\n" "authenticate \"\"" "signal newnym" "quit" | nc 127.0.0.1 9051 }
 function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M -S /tmp/file-${1} ${1} ; fi }
