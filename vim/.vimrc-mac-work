@@ -13,7 +13,7 @@
     " :W      :w with sudo
     "
     " #### non leader mappings
-    " H       :%s//gc               ## find / replace
+    " H       :%s//gc               " find / replace
     " J       :m >+1
     " K       :m <-2
     " ghs     :GitGutterStageHunk
@@ -21,19 +21,29 @@
     " ghp     :GitGutterPreviewHunks
     "
     " #### leader mappings
-    " ,       leader key            ## LEADER KEY
+    " ,       leader key            " LEADER KEY
     " ,m      remove ^M when encodings get messed up
-    " ,T      :enew<cr>             ## new empty buffer
-    " ,t      :enew<cr>             ## new empty buffer
-    " ,l      :bnext<CR>            ## next buffer
-    " ,h      :bprevious<CR>        ## prev buffer
+    " ,T      :enew<cr>             " new empty buffer
+    " ,t      :enew<cr>             " new empty buffer
+    " ,l      :bnext<CR>            " next buffer
+    " ,h      :bprevious<CR>        " prev buffer
     " ,bq     close current buffer and move to prev
-    " ,bl     :ls<cr>               ## list buffers
+    " ,bl     :ls<cr>               " list buffers
     " ,1-9    switch to tab 1-9g
     " ,0      :tablast
-    " ,h      :split                ## horiz split
-    " ,v      :vsplit               ## vert split
-"
+    " ,h      :split                " horiz split
+    " ,v      :vsplit               " vert split
+    "
+    " #### fold mappings
+    " zc                            " close the current fold
+    " zC                            " same as above but closes nested below
+    " zo                            " opens current fold
+    " zO                            " same as above but opens nested below
+    " zm                            " closes one or more folds in the buffer
+    " zM                            " closes all folds in buffer
+    " za                            " toggle current fold open || closed
+    " zA                            " same as above but toggle all folds below
+    " zi                            " toggle folds if already folded
 
 "[Basics] {{{
     set nocompatible                " explicitly get out of vi-compatible mode
@@ -59,7 +69,6 @@
 
 "[General] {{{
     filetype plugin on              " load filetype plugins settings
-    " filetype plugin indent on       " load filetype plugins/indent settings
     set autochdir                   " always switch to the current file directory
     set autoread                    " auto read when a file is changed from the outside
     set backspace=indent,eol,start  " make backspace a more flexible
@@ -182,7 +191,7 @@
 " }}}
 
 "[Plugin Settings] {{{
-    "vim-plug {
+    "vim-plug {{{
         call plug#begin('~/.vim/plugged')
         Plug 'airblade/vim-gitgutter'
         " syntax hilighting
@@ -203,21 +212,21 @@
         " airline
         Plug 'vim-airline/vim-airline'
         call plug#end()
-    "}
+    "}}}
 
-    "Gruvbox {
+    "Gruvbox {{{
         autocmd vimenter * ++nested colorscheme gruvbox
-    "}
+    "}}}
 
-    "Rainbow Parenthesis {
+    "Rainbow Parenthesis {{{
         let g:rainbow_active = 1
-    "}
+    "}}}
 
-    "tagbar {
+    "tagbar {{{
         nmap <F8> :TagbarToggle<CR>
-    "}
+    "}}}
 
-    "NERDTree {
+    "NERDTree {{{
         autocmd vimenter * NERDTreeToggle
         autocmd vimenter * if !argc() | NERDTree | endif
         autocmd VimEnter * wincmd p
@@ -237,13 +246,13 @@
         " Close NERDTree when closing the last buffer
         autocmd bufenter * if (winnr("$") == 1
             \ && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    "}
+    "}}}
 
-    "lightline {
+    "lightline {{{
         let g:lightline = { 'colorscheme': 'gruvbox', }
-    "}
+    "}}}
 
-    "CoC Settings {
+    "CoC Settings {{{
         " Use tab for trigger completion with characters ahead and navigate.
         " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
         " other plugin before putting this into your config.
@@ -269,9 +278,9 @@
 
         " If you want :UltiSnipsEdit to split your window.
         let g:UltiSnipsEditSplit="vertical"
-    "}
+    "}}}
 
-    "ale settings {
+    "ale settings {{{
         " Fix files automatically on save
         let g:ale_fixers = {}
         let g:ale_javascript_eslint_use_global = 1
@@ -290,29 +299,28 @@
         let g:ale_sign_error = '>>'
         let g:ale_sign_warning = '--'
         let g:ale_fix_on_save = 1
-    "}
+    "}}}
 
-    "vim airline {
+    "vim airline {{{
         " Enable the list of buffers
         let g:airline#extensions#tabline#enabled = 1
 
         " Show just the filename
         let g:airline#extensions#tabline#fnamemod = ':t'
-    "}
+    "}}}
 
-    "vim GitGutter {
+    "vim GitGutter {{{
         " gitgutter status line summary
         function! GitStatus()
           let [a,m,r] = GitGutterGetHunkSummary()
           return printf('+%d ~%d -%d', a, m, r)
         endfunction
         set statusline+=%{GitStatus()}
-    "}
-
+    "}}}
 " }}}
 
 "[Formatting] {{{
-    " [Bash / Shell Scripts] {
+    " [Bash / Shell Scripts] {{{
         " remove color columns in sh files
         autocmd BufRead,BufNewFile *.sh set colorcolumn=80
 
@@ -321,9 +329,9 @@
 
         " adding shlibs to sh syntax hilighting
         au BufNewFile,BufRead *.shlib set filetype=sh
-    "}
+    "}}}
 
-    " [Python] {
+    " [Python] {{{
         let python_highlight_all=1
         highlight BadWhitespace ctermbg=red guibg=red
         " Display tabs at the beginning of a line in Python mode as bad.
@@ -332,14 +340,14 @@
         au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
         " remove colorcolumn
         autocmd BufRead,BufNewFile *.py set colorcolumn=9999
-    "}
+    "}}}
 
-    " [Misc] {
+    " [Misc] {{{
         "Remove the Windows ^M - when the encodings gets messed up
         noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
         let b:match_ignorecase = 1 " case is stupid
-    "}
+    "}}}
 " }}}
 
 "[Key mappings / bindings] {{{

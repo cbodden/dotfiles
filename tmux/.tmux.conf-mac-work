@@ -1,6 +1,5 @@
-## Modeline and Notes {{{
+# Modeline and Notes
 # vim: set foldmarker={,} foldlevel=0 spell:
-# }}}
 
 ## Change prefix key to Ctrl+p {{{
 unbind C-b

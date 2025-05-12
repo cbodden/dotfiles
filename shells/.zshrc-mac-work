@@ -24,22 +24,7 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 bindkey -M vicmd v edit-command-line                      # Easier, more vim-like editor opening
 bindkey -M vicmd "^V" edit-command-line                   # `v` is already mapped to visual mode, so we need to use a different key to open Vim
 export KEYTIMEOUT=1                                       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-
-#  Mode indication
-autoload -U colors && colors
-function zle-line-init zle-keymap-select {
-    _I_PMPT="%{$fg[red]%} [% INSERT]%  %{$reset_color%}"
-    _N_PMPT="%{$fg[blue]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="%B${${KEYMAP/vicmd/${_N_PMPT}}/(main|viins)/${_I_PMPT}}$b"
-    #RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-setopt transient_rprompt
-#### end key bindings #### }}}
+### end key bindings #### }}}
 
 #################
 #### history ####
@@ -141,10 +126,7 @@ compdef _step step
 ### end smallstep zsh completion ###
 
 #### begin google cloud sdk completion ####
-# for zsh users
-# The next line updates PATH for the Google Cloud SDK.
 source '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'
-# The next line enables zsh completion for gcloud.
 source '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'
 #### end google cloud sdk completion ####
 #### end added completions }}}
@@ -162,6 +144,21 @@ else
 fi
 _PRM_2='%F{095}%2~ %F{red}${vcs_info_msg_0_}%f %# '
 PROMPT=${_PRM_1}${_PRM_2}
+
+## Mode indication
+autoload -U colors && colors
+function zle-line-init zle-keymap-select {
+    _I_PMPT="%{$fg[red]%} [% INSERT]%  %{$reset_color%}"
+    _N_PMPT="%{$fg[blue]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="%B${${KEYMAP/vicmd/${_N_PMPT}}/(main|viins)/${_I_PMPT}}$b"
+    #RPS1="%B${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}%b"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+setopt transient_rprompt
 ### end prompt #### }}}
 
 #################
