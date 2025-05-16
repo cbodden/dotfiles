@@ -5,6 +5,8 @@
 "[Configured Key Bindings]
     " F2      paste toggle
     " F3      nerdtree toggle
+    " F5      undotree toggle
+    " F6      fzf toggle
     " F8      tagbar toggle
     " F9      remove all trailing whitespace
     " F10     selective remove of trailing whitespace
@@ -33,6 +35,7 @@
     " ,0      :tablast
     " ,h      :split                " horiz split
     " ,v      :vsplit               " vert split
+    " ,f      :Buffers              " fzf list open buffers
     "
     " #### fold mappings
     " zc                            " close the current fold
@@ -214,6 +217,9 @@
         Plug 'ap/vim-buftabline'
         " airline
         Plug 'vim-airline/vim-airline'
+        " fzf
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
         call plug#end()
     "}}}
 
@@ -338,6 +344,59 @@
         if !exists('g:undotree_ShortIndicators')
             let g:undotree_ShortIndicators = 0
         endif
+
+        " undotree window width
+        if !exists('g:undotree_SplitWidth')
+            if g:undotree_ShortIndicators == 1
+                let g:undotree_SplitWidth = 30
+            else
+                let g:undotree_SplitWidth = 35
+            endif
+        endif
+
+        " tree node shape.
+        if !exists('g:undotree_TreeNodeShape')
+            let g:undotree_TreeNodeShape = '*'
+        endif
+
+        " tree vertical shape.
+        if !exists('g:undotree_TreeVertShape')
+            let g:undotree_TreeVertShape = '|'
+        endif
+
+        " tree split shape.
+        if !exists('g:undotree_TreeSplitShape')
+            let g:undotree_TreeSplitShape = '/'
+        endif
+
+        " tree return shape.
+        if !exists('g:undotree_TreeReturnShape')
+            let g:undotree_TreeReturnShape = '\'
+        endif
+
+        " Highlight changed text
+        if !exists('g:undotree_HighlightChangedText')
+            let g:undotree_HighlightChangedText = 1
+        endif
+
+        " Highlight changed text using signs in the gutter
+        if !exists('g:undotree_HighlightChangedWithSign')
+            let g:undotree_HighlightChangedWithSign = 1
+        endif
+
+        " Show cursorline
+        if !exists('g:undotree_CursorLine')
+            let g:undotree_CursorLine = 1
+        endif
+    "}}}
+
+    "fzf {{{
+        " Initialize configuration dictionary
+        let g:fzf_vim = {}
+
+        " preview window
+        " let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+
     "}}}
 
 " }}}
@@ -450,6 +509,12 @@
 
     " toggle undotree
     nnoremap <F5> :UndotreeToggle<CR>
+
+    " toggle fzf
+    nnoremap <F6> :Files<CR>
+
+    " fzf list open buffers
+    nnoremap <silent><leader>f :Buffers<CR>
 " }}}
 
 "[Folder creations for mappings] {{{

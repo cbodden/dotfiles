@@ -203,15 +203,6 @@ function tunnel() { if [ -z $1 ] ; then echo "need hostname" ; else ssh -f -N -M
 function whatismyip() { curl https://ipinfo.io/$(curl https://ipinfo.io/ip) -w "\n" }
 #### functions #### }}}
 
-######################
-#### fzf terminal ####
-###################### {{{
-
-## to use : ctrl t
-source <(fzf --zsh)
-#### end fzf #### }}}
-
-
 #########################
 #### tmux shell init ####
 ######################### {{{
