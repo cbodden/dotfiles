@@ -5,6 +5,8 @@
 "[Configured Key Bindings]
     " F2      paste toggle
     " F3      nerdtree toggle
+    " F5      undotree toggle
+    " F6      fzf toggle
     " F8      tagbar toggle
     " F9      remove all trailing whitespace
     " F10     selective remove of trailing whitespace
@@ -13,7 +15,7 @@
     " :W      :w with sudo
     "
     " #### non leader mappings
-    " H       :%s//gc               ## find / replace
+    " H       :%s//gc               " find / replace
     " J       :m >+1
     " K       :m <-2
     " ghs     :GitGutterStageHunk
@@ -21,19 +23,34 @@
     " ghp     :GitGutterPreviewHunks
     "
     " #### leader mappings
-    " ,       leader key            ## LEADER KEY
+    " ,       leader key            " LEADER KEY
     " ,m      remove ^M when encodings get messed up
-    " ,T      :enew<cr>             ## new empty buffer
-    " ,t      :enew<cr>             ## new empty buffer
-    " ,l      :bnext<CR>            ## next buffer
-    " ,h      :bprevious<CR>        ## prev buffer
+    " ,T      :enew<cr>             " new empty buffer
+    " ,t      :enew<cr>             " new empty buffer
+    " ,l      :bnext<CR>            " next buffer
+    " ,h      :bprevious<CR>        " prev buffer
     " ,bq     close current buffer and move to prev
-    " ,bl     :ls<cr>               ## list buffers
+    " ,bl     :ls<cr>               " list buffers
     " ,1-9    switch to tab 1-9g
     " ,0      :tablast
-    " ,h      :split                ## horiz split
-    " ,v      :vsplit               ## vert split
-"
+    " ,h      :split                " horiz split
+    " ,v      :vsplit               " vert split
+    " ,f      :Buffers              " fzf list open buffers
+    " ,ft     :FloatermNew          " new floaterm window
+    " ,fn     :FloatermNext         " next floaterm window
+    " ,fp     :FloatermPrev         " prev floaterm window
+    " ,ff     :FloatermToggle       " toggle floaterm window
+    "
+    " #### fold mappings
+    " zc                            " close the current fold
+    " zC                            " same as above but closes nested below
+    " zo                            " opens current fold
+    " zO                            " same as above but opens nested below
+    " zm                            " closes one or more folds in the buffer
+    " zM                            " closes all folds in buffer
+    " za                            " toggle current fold open || closed
+    " zA                            " same as above but toggle all folds below
+    " zi                            " toggle folds if already folded
 
 "[Basics] {{{
     set nocompatible                " explicitly get out of vi-compatible mode
@@ -59,7 +76,6 @@
 
 "[General] {{{
     filetype plugin on              " load filetype plugins settings
-    " filetype plugin indent on       " load filetype plugins/indent settings
     set autochdir                   " always switch to the current file directory
     set autoread                    " auto read when a file is changed from the outside
     set backspace=indent,eol,start  " make backspace a more flexible
@@ -170,20 +186,22 @@
 "[Folding] {{{
     set foldenable                  " Turn on folding
     set foldlevel=100               " Don't autofold anything (but I can still fold manually)
-    set foldmarker={,}              " Fold C style code (only use this as default if you use a high foldlevel)
+    set foldmarker={{{,}}}              " Fold C style code (only use this as default if you use a high foldlevel)
     set foldmethod=marker           " Fold on the marker
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
-    function! SimpleFoldText() " {
+    function! SimpleFoldText() " {{{
         return getline(v:foldstart).' '
     endfunction " }
     set foldtext=SimpleFoldText()   " Custom fold text function (cleaner than default)
-    "au BufWinEnter * silent loadview
     au BufWinLeave * mkview
 " }}}
 
 "[Plugin Settings] {{{
-    "vim-plug {
-        call plug#begin('~/.vim/plugged')
+    "vim-plug {{{
+        call plug#begin()
+        " undotree
+        Plug 'mbbill/undotree'
+        " gitgutter
         Plug 'airblade/vim-gitgutter'
         " syntax hilighting
         Plug 'dense-analysis/ale'
@@ -202,21 +220,33 @@
         Plug 'ap/vim-buftabline'
         " airline
         Plug 'vim-airline/vim-airline'
+        " fzf
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+        " floaterm
+        Plug 'voldikss/vim-floaterm'
         call plug#end()
-    "}
+    "}}}
 
-    "Rainbow Parenthesis {
+    "vim-plug {{{
+        autocmd VimEnter *
+          \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+          \|   PlugInstall --sync | q
+          \| endif
+    "}}}
+
+    "Gruvbox {{{
+        autocmd vimenter * ++nested colorscheme gruvbox
+    "}}}
+
+    "Rainbow Parenthesis {{{
         let g:rainbow_active = 1
-    "}
+    "}}}
 
-    "tagbar {
-        nmap <F8> :TagbarToggle<CR>
-    "}
-
-    "NERDTree {
-        autocmd vimenter * NERDTreeToggle
-        autocmd vimenter * if !argc() | NERDTree | endif
-        autocmd VimEnter * wincmd p
+    "NERDTree {{{
+        " autocmd vimenter * NERDTreeToggle
+        " autocmd vimenter * if !argc() | NERDTree | endif
+        " autocmd VimEnter * wincmd p
         autocmd BufEnter * NERDTreeMirror
         let NERDTreeShowHidden = 1
         let g:NERDTreeWinSize = 35
@@ -225,21 +255,19 @@
             \ && b:NERDTree.isTabTree()) | q | endif
         " Store the bookmarks file
         let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
-        " Show the bookmarks table on startup
-        " let NERDTreeShowBookmarks=1
         " nerdtree statusline
         let NERDTreeStatusline = "%{ getcwd() }"
 
         " Close NERDTree when closing the last buffer
         autocmd bufenter * if (winnr("$") == 1
             \ && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    "}
+    "}}}
 
-    "lightline {
+    "lightline {{{
         let g:lightline = { 'colorscheme': 'gruvbox', }
-    "}
+    "}}}
 
-    "CoC Settings {
+    "CoC Settings {{{
         " Use tab for trigger completion with characters ahead and navigate.
         " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
         " other plugin before putting this into your config.
@@ -258,25 +286,18 @@
         " <C-g>u breaks current undo, please make your own choice.
         inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-        "Ultisnips Settings
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<c-b>"
-        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    "}}}
 
-        " If you want :UltiSnipsEdit to split your window.
-        let g:UltiSnipsEditSplit="vertical"
-    "}
-
-    "ale settings {
+    "ale settings {{{
         " Fix files automatically on save
         let g:ale_fixers = {}
         let g:ale_javascript_eslint_use_global = 1
-        let g:ale_linters = {
+        let g:ale_linters = {{{
           \'javascript': ['eslint'],
           \'vue': ['eslint', 'stylelint', 'tsserver'],
         \}
 
-        let g:ale_fixers = {
+        let g:ale_fixers = {{{
           \'javascript': ['prettier', 'eslint'],
           \'vue': ['eslint', 'stylelint'],
         \}
@@ -286,29 +307,112 @@
         let g:ale_sign_error = '>>'
         let g:ale_sign_warning = '--'
         let g:ale_fix_on_save = 1
-    "}
+    "}}}
 
-    "vim airline {
+    "vim airline {{{
         " Enable the list of buffers
         let g:airline#extensions#tabline#enabled = 1
 
         " Show just the filename
         let g:airline#extensions#tabline#fnamemod = ':t'
-    "}
+    "}}}
 
-    "vim GitGutter {
+    "vim GitGutter {{{
         " gitgutter status line summary
         function! GitStatus()
           let [a,m,r] = GitGutterGetHunkSummary()
           return printf('+%d ~%d -%d', a, m, r)
         endfunction
         set statusline+=%{GitStatus()}
-    "}
+    "}}}
 
+    "undotree {{{
+        " windowlayout
+        if !exists('g:undotree_WindowLayout')
+            let g:undotree_WindowLayout = 1
+        endif
+
+        " e.g. using 'd' instead of 'days' to save some space.
+        if !exists('g:undotree_ShortIndicators')
+            let g:undotree_ShortIndicators = 0
+        endif
+
+        " undotree window width
+        if !exists('g:undotree_SplitWidth')
+            if g:undotree_ShortIndicators == 1
+                let g:undotree_SplitWidth = 30
+            else
+                let g:undotree_SplitWidth = 35
+            endif
+        endif
+
+        " tree node shape.
+        if !exists('g:undotree_TreeNodeShape')
+            let g:undotree_TreeNodeShape = '*'
+        endif
+
+        " tree vertical shape.
+        if !exists('g:undotree_TreeVertShape')
+            let g:undotree_TreeVertShape = '|'
+        endif
+
+        " tree split shape.
+        if !exists('g:undotree_TreeSplitShape')
+            let g:undotree_TreeSplitShape = '/'
+        endif
+
+        " tree return shape.
+        if !exists('g:undotree_TreeReturnShape')
+            let g:undotree_TreeReturnShape = '\'
+        endif
+
+        " Highlight changed text
+        if !exists('g:undotree_HighlightChangedText')
+            let g:undotree_HighlightChangedText = 1
+        endif
+
+        " Highlight changed text using signs in the gutter
+        if !exists('g:undotree_HighlightChangedWithSign')
+            let g:undotree_HighlightChangedWithSign = 1
+        endif
+
+        " Show cursorline
+        if !exists('g:undotree_CursorLine')
+            let g:undotree_CursorLine = 1
+        endif
+
+        " Highlight linked syntax type.
+        " You may chose your favorite through ":hi" command
+        if !exists('g:undotree_HighlightSyntaxAdd')
+            let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+        endif
+        if !exists('g:undotree_HighlightSyntaxChange')
+            let g:undotree_HighlightSyntaxChange = "DiffChange"
+        endif
+        if !exists('g:undotree_HighlightSyntaxDel')
+            let g:undotree_HighlightSyntaxDel = "DiffDelete"
+        endif
+    "}}}
+
+    "fzf {{{
+        " Initialize configuration dictionary
+        let g:fzf_vim = {}
+
+        " preview window in fzf
+        let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+    "}}}
+
+    "floaterm {{{
+        " Set floaterm window's background to black
+        hi Floaterm guibg=black
+        " Set floating window border line color to cyan
+        " background to black
+        hi FloatermBorder guibg=black guifg=cyan
+    "}}}
 " }}}
 
 "[Formatting] {{{
-    " [Bash / Shell Scripts] {
+    " [Bash / Shell Scripts] {{{
         " remove color columns in sh files
         autocmd BufRead,BufNewFile *.sh set colorcolumn=80
 
@@ -317,9 +421,9 @@
 
         " adding shlibs to sh syntax hilighting
         au BufNewFile,BufRead *.shlib set filetype=sh
-    "}
+    "}}}
 
-    " [Python] {
+    " [Python] {{{
         let python_highlight_all=1
         highlight BadWhitespace ctermbg=red guibg=red
         " Display tabs at the beginning of a line in Python mode as bad.
@@ -328,18 +432,12 @@
         au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
         " remove colorcolumn
         autocmd BufRead,BufNewFile *.py set colorcolumn=9999
-    "}
-
-    " [Misc] {
-        "Remove the Windows ^M - when the encodings gets messed up
-        noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-        let b:match_ignorecase = 1 " case is stupid
-    "}
+    "}}}
 " }}}
 
 "[Key mappings / bindings] {{{
-    let mapleader=","                       " mapping comma to leader key
+    " mapping comma to leader key
+    let mapleader=","
 
     " autoreload vimrc
     augroup reload_vimrc
@@ -383,7 +481,7 @@
 
     " map split v and h split to ,v and ,h respectively
     nmap <leader>v :vsplit<CR>
-    nmap <leader>h :split<CR>
+    "nmap <leader>h :split<CR>
 
     " nerdtree
     map <C-n> :NERDTreeToggle<CR>
@@ -395,8 +493,8 @@
     "selective remove of trailing whitespace by pressing F10
     nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
-    " map <C-P> :Files<CR>
-    map <F5> :setlocal spell! spelllang=en_US<CR>
+    "" map <C-P> :Files<CR>
+    "map <F5> :setlocal spell! spelllang=en_US<CR>
 
     " Search and replace hotkey
     nnoremap H :%s//gc<left><left><left>
@@ -412,6 +510,27 @@
 
     " sudo save
     command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+    " toggle undotree
+    nnoremap <F5> :UndotreeToggle<CR>
+
+    " toggle fzf
+    nnoremap <F6> :Files<CR>
+
+    " fzf list open buffers
+    nnoremap <silent><leader>f :Buffers<CR>
+
+    " floaterm
+    nnoremap <silent><leader>ft :FloatermNew<CR>
+    nnoremap <silent><leader>fn :FloatermNext<CR>
+    nnoremap <silent><leader>fp :FloatermPrev<CR>
+    nnoremap <silent><leader>ff :FloatermToggle<CR>
+
+    " tagbar
+    nmap <F8> :TagbarToggle<CR>
+
+    "Remove the Windows ^M - when the encodings gets messed up
+    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " }}}
 
 "[Folder creations for mappings] {{{
