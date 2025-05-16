@@ -1,6 +1,5 @@
 "Modeline and Notes
 "vim: set foldmarker={{{,}}} foldlevel=0 spell:
-"
 
 "[Configured Key Bindings]
     " F2      paste toggle
