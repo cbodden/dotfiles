@@ -224,7 +224,7 @@
         " fzf
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
-        " vim float term
+        " floaterm
         Plug 'voldikss/vim-floaterm'
         call plug#end()
     "}}}
@@ -244,10 +244,6 @@
         let g:rainbow_active = 1
     "}}}
 
-    "tagbar {{{
-        nmap <F8> :TagbarToggle<CR>
-    "}}}
-
     "NERDTree {{{
         " autocmd vimenter * NERDTreeToggle
         " autocmd vimenter * if !argc() | NERDTree | endif
@@ -260,8 +256,6 @@
             \ && b:NERDTree.isTabTree()) | q | endif
         " Store the bookmarks file
         let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
-        " Show the bookmarks table on startup
-        " let NERDTreeShowBookmarks=1
         " nerdtree statusline
         let NERDTreeStatusline = "%{ getcwd() }"
 
@@ -440,17 +434,11 @@
         " remove colorcolumn
         autocmd BufRead,BufNewFile *.py set colorcolumn=9999
     "}}}
-
-    " [Misc] {{{
-        "Remove the Windows ^M - when the encodings gets messed up
-        noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-        let b:match_ignorecase = 1 " case is stupid
-    "}}}
 " }}}
 
 "[Key mappings / bindings] {{{
-    let mapleader=","                       " mapping comma to leader key
+    " mapping comma to leader key
+    let mapleader=","
 
     " autoreload vimrc
     augroup reload_vimrc
@@ -538,6 +526,12 @@
     nnoremap <silent><leader>fn :FloatermNext<CR>
     nnoremap <silent><leader>fp :FloatermPrev<CR>
     nnoremap <silent><leader>ff :FloatermToggle<CR>
+
+    " tagbar
+    nmap <F8> :TagbarToggle<CR>
+
+    "Remove the Windows ^M - when the encodings gets messed up
+    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " }}}
 
 "[Folder creations for mappings] {{{
