@@ -192,7 +192,10 @@
 
 "[Plugin Settings] {{{
     "vim-plug {{{
-        call plug#begin('~/.vim/plugged')
+        call plug#begin()
+        " undotree
+        Plug 'mbbill/undotree'
+        " gitgutter
         Plug 'airblade/vim-gitgutter'
         " syntax hilighting
         Plug 'dense-analysis/ale'
@@ -212,6 +215,13 @@
         " airline
         Plug 'vim-airline/vim-airline'
         call plug#end()
+    "}}}
+
+    "vim-plug {{{
+        autocmd VimEnter *
+          \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+          \|   PlugInstall --sync | q
+          \| endif
     "}}}
 
     "Gruvbox {{{
@@ -317,6 +327,19 @@
         endfunction
         set statusline+=%{GitStatus()}
     "}}}
+
+    "undotree {{{
+        " windowlayout
+        if !exists('g:undotree_WindowLayout')
+            let g:undotree_WindowLayout = 1
+        endif
+
+        " e.g. using 'd' instead of 'days' to save some space.
+        if !exists('g:undotree_ShortIndicators')
+            let g:undotree_ShortIndicators = 0
+        endif
+    "}}}
+
 " }}}
 
 "[Formatting] {{{
@@ -407,8 +430,8 @@
     "selective remove of trailing whitespace by pressing F10
     nnoremap <F10> :let _s=@/<Bar>:%s/;\s\+$/;/e<Bar>:let @/=_s<Bar><CR>
 
-    " map <C-P> :Files<CR>
-    map <F5> :setlocal spell! spelllang=en_US<CR>
+    "" map <C-P> :Files<CR>
+    "map <F5> :setlocal spell! spelllang=en_US<CR>
 
     " Search and replace hotkey
     nnoremap H :%s//gc<left><left><left>
@@ -424,6 +447,9 @@
 
     " sudo save
     command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+    " toggle undotree
+    nnoremap <F5> :UndotreeToggle<CR>
 " }}}
 
 "[Folder creations for mappings] {{{
