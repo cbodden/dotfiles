@@ -36,6 +36,10 @@
     " ,h      :split                " horiz split
     " ,v      :vsplit               " vert split
     " ,f      :Buffers              " fzf list open buffers
+    " ,ft     :FloatermNew          " new floaterm window
+    " ,fn     :FloatermNext         " next floaterm window
+    " ,fp     :FloatermPrev         " prev floaterm window
+    " ,ff     :FloatermToggle       " toggle floaterm window
     "
     " #### fold mappings
     " zc                            " close the current fold
@@ -220,6 +224,8 @@
         " fzf
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
+        " vim float term
+        Plug 'voldikss/vim-floaterm'
         call plug#end()
     "}}}
 
@@ -243,9 +249,9 @@
     "}}}
 
     "NERDTree {{{
-        autocmd vimenter * NERDTreeToggle
-        autocmd vimenter * if !argc() | NERDTree | endif
-        autocmd VimEnter * wincmd p
+        " autocmd vimenter * NERDTreeToggle
+        " autocmd vimenter * if !argc() | NERDTree | endif
+        " autocmd VimEnter * wincmd p
         autocmd BufEnter * NERDTreeMirror
         let NERDTreeShowHidden = 1
         let g:NERDTreeWinSize = 35
@@ -287,13 +293,6 @@
         " <C-g>u breaks current undo, please make your own choice.
         inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-        "Ultisnips Settings
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<c-b>"
-        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-        " If you want :UltiSnipsEdit to split your window.
-        let g:UltiSnipsEditSplit="vertical"
     "}}}
 
     "ale settings {{{
@@ -388,17 +387,35 @@
         if !exists('g:undotree_CursorLine')
             let g:undotree_CursorLine = 1
         endif
+
+        " Highlight linked syntax type.
+        " You may chose your favorite through ":hi" command
+        if !exists('g:undotree_HighlightSyntaxAdd')
+            let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+        endif
+        if !exists('g:undotree_HighlightSyntaxChange')
+            let g:undotree_HighlightSyntaxChange = "DiffChange"
+        endif
+        if !exists('g:undotree_HighlightSyntaxDel')
+            let g:undotree_HighlightSyntaxDel = "DiffDelete"
+        endif
     "}}}
 
     "fzf {{{
         " Initialize configuration dictionary
         let g:fzf_vim = {}
 
-        " preview window
-        " let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
-
+        " preview window in fzf
+        let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
     "}}}
 
+    "floaterm {{{
+        " Set floaterm window's background to black
+        hi Floaterm guibg=black
+        " Set floating window border line color to cyan
+        " background to black
+        hi FloatermBorder guibg=black guifg=cyan
+    "}}}
 " }}}
 
 "[Formatting] {{{
@@ -515,6 +532,12 @@
 
     " fzf list open buffers
     nnoremap <silent><leader>f :Buffers<CR>
+
+    " floaterm
+    nnoremap <silent><leader>ft :FloatermNew<CR>
+    nnoremap <silent><leader>fn :FloatermNext<CR>
+    nnoremap <silent><leader>fp :FloatermPrev<CR>
+    nnoremap <silent><leader>ff :FloatermToggle<CR>
 " }}}
 
 "[Folder creations for mappings] {{{
