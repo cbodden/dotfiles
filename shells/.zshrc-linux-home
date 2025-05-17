@@ -168,7 +168,7 @@ alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\''
 alias tp='~/git/mine/scripts/touchpad.sh'
 alias tstamp="gawk '{ print strftime(\"[%Y-%m-%d %H:%M:%S]\"), \$0 }'"
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
-alias wserver='python -m SimpleHTTPServer 8080'
+alias wserver='python -m http.server 8080'
 alias x='exit'
 #### end aliases #### }}}
 
