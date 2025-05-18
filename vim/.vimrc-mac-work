@@ -35,10 +35,18 @@
     " ,h      :split                " horiz split
     " ,v      :vsplit               " vert split
     " ,f      :Buffers              " fzf list open buffers
+    "
+    " #### floaterm
     " ,ft     :FloatermNew          " new floaterm window
     " ,fn     :FloatermNext         " next floaterm window
     " ,fp     :FloatermPrev         " prev floaterm window
     " ,ff     :FloatermToggle       " toggle floaterm window
+    "
+    " #### vim-fugitive
+    " ,ga     :Git add .            " git add .
+    " ,gc     :Git commit           " git commit
+    " ,gp     :Git push             " git push
+    " ,gl     :Git pull             " git pull
     "
     " #### fold mappings
     " zc                            " close the current fold
@@ -202,6 +210,8 @@
         Plug 'mbbill/undotree'
         " gitgutter
         Plug 'airblade/vim-gitgutter'
+        " vim fugitive
+        Plug 'tpope/vim-fugitive'
         " syntax hilighting
         Plug 'dense-analysis/ale'
         " rainbow Parenthesis
@@ -530,6 +540,16 @@
 
     "Remove the Windows ^M - when the encodings gets messed up
     noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+    " vim-fugutive
+    "" git add .
+    nmap <leader>ga :Git add .<CR>
+    "" git commit
+    nmap <leader>gc :Git commit<CR>
+    "" git push
+    nmap <leader>gp :Git push<CR>
+    "" git pull
+    nmap <leader>gl :Git pull<CR>
 " }}}
 
 "[Folder creations for mappings] {{{
