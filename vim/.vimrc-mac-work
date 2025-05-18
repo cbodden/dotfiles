@@ -347,6 +347,7 @@
         endif
 
         " undotree window width
+        let g:undotree_SplitWidth = 40
         if !exists('g:undotree_SplitWidth')
             if g:undotree_ShortIndicators == 1
                 let g:undotree_SplitWidth = 30
