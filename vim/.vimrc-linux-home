@@ -202,6 +202,8 @@
         Plug 'mbbill/undotree'
         " gitgutter
         Plug 'airblade/vim-gitgutter'
+        " vim fugitive
+        Plug 'tpope/vim-fugitive'
         " syntax hilighting
         Plug 'dense-analysis/ale'
         " rainbow Parenthesis
