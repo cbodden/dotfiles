@@ -35,10 +35,18 @@
     " ,h      :split                " horiz split
     " ,v      :vsplit               " vert split
     " ,f      :Buffers              " fzf list open buffers
+    "
+    " #### floaterm
     " ,ft     :FloatermNew          " new floaterm window
     " ,fn     :FloatermNext         " next floaterm window
     " ,fp     :FloatermPrev         " prev floaterm window
     " ,ff     :FloatermToggle       " toggle floaterm window
+    "
+    " #### vim-fugitive
+    " ,ga     :Git add .            " git add .
+    " ,gc     :Git commit           " git commit
+    " ,gp     :Git push             " git push
+    " ,gl     :Git pull             " git pull
     "
     " #### fold mappings
     " zc                            " close the current fold
@@ -540,7 +548,9 @@
     "" git commit
     nmap <leader>gc :Git commit<CR>
     "" git push
-    nmap <leader>gc :Git push<CR>
+    nmap <leader>gp :Git push<CR>
+    "" git pull
+    nmap <leader>gl :Git pull<CR>
 " }}}
 
 "[Folder creations for mappings] {{{
