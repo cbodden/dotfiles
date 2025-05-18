@@ -5,7 +5,8 @@
     " F2      paste toggle
     " F3      nerdtree toggle
     " F5      undotree toggle
-    " F6      fzf toggle
+    " F6      fzf ':Files' toggle
+    " F7      fzf ':GFiles' toggle
     " F8      tagbar toggle
     " F9      remove all trailing whitespace
     " F10     selective remove of trailing whitespace
@@ -526,6 +527,7 @@
 
     " toggle fzf
     nnoremap <F6> :Files<CR>
+    nnoremap <F7> :GFiles<CR>
 
     " fzf list open buffers
     nnoremap <silent><leader>f :Buffers<CR>
