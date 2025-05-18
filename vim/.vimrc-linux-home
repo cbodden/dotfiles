@@ -533,6 +533,14 @@
 
     "Remove the Windows ^M - when the encodings gets messed up
     noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+    " vim-fugutive
+    "" git add .
+    nmap <leader>ga :Git add .<CR>
+    "" git commit
+    nmap <leader>gc :Git commit<CR>
+    "" git push
+    nmap <leader>gc :Git push<CR>
 " }}}
 
 "[Folder creations for mappings] {{{
