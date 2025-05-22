@@ -252,11 +252,14 @@
         autocmd BufEnter * NERDTreeMirror
         let NERDTreeShowHidden = 1
         let g:NERDTreeWinSize = 35
+
         " auto quit nerdtree when buffers closed
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
             \ && b:NERDTree.isTabTree()) | q | endif
+
         " Store the bookmarks file
         let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+
         " nerdtree statusline
         let NERDTreeStatusline = "%{ getcwd() }"
 
@@ -419,8 +422,8 @@
     "floaterm {{{
         " Set floaterm window's background to black
         hi Floaterm guibg=black
-        " Set floating window border line color to cyan
-        " background to black
+
+        " Set floating window border line color to cyan & background to black
         hi FloatermBorder guibg=black guifg=cyan
     "}}}
 " }}}
@@ -440,10 +443,13 @@
     " [Python] {{{
         let python_highlight_all=1
         highlight BadWhitespace ctermbg=red guibg=red
+
         " Display tabs at the beginning of a line in Python mode as bad.
         au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+
         " Make trailing whitespace be flagged as bad.
         au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
         " remove colorcolumn
         autocmd BufRead,BufNewFile *.py set colorcolumn=9999
     "}}}
