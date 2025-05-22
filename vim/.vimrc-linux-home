@@ -186,11 +186,6 @@
     set tabstop=4                   " real tabs should be 8, and they will show with set list on
 " }}}
 
-"[Tabs] {{{
-    set showtabline=2               " shows the tab bar at all times
-    set tabpagemax=10               " maximum amount of tabs to open on startup
-" }}}
-
 "[Folding] {{{
     set foldenable                  " Turn on folding
     set foldlevel=100               " Don't autofold anything (but I can still fold manually)
@@ -217,7 +212,7 @@
         Plug 'dense-analysis/ale'
         " rainbow Parenthesis
         Plug 'frazrepo/vim-rainbow'
-        " status bar
+        " status / buffer (tab) bar
         Plug 'vim-airline/vim-airline'
         " conquer of completion
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -227,8 +222,6 @@
         Plug 'scrooloose/nerdtree'
         " Theme
         Plug 'morhetz/gruvbox'
-        " Tabs
-        Plug 'ap/vim-buftabline'
         " fzf
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
@@ -259,11 +252,14 @@
         autocmd BufEnter * NERDTreeMirror
         let NERDTreeShowHidden = 1
         let g:NERDTreeWinSize = 35
+
         " auto quit nerdtree when buffers closed
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
             \ && b:NERDTree.isTabTree()) | q | endif
+
         " Store the bookmarks file
         let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+
         " nerdtree statusline
         let NERDTreeStatusline = "%{ getcwd() }"
 
@@ -315,11 +311,26 @@
     "}}}
 
     "vim airline {{{
-        " Enable the list of buffers
-        let g:airline#extensions#tabline#enabled = 1
+        " Enable tabline, buffers, and tabs
+        let g:airline#extensions#tabline#enabled = 1            " enable airline tabline
+        let g:airline#extensions#tabline#show_buffers = 1       " show buffers in the tabline
+        let g:airline#extensions#tabline#show_tabs = 1          " show tabs in the tabline
 
-        " Show just the filename
-        let g:airline#extensions#tabline#fnamemod = ':t'
+        " labels
+        let g:airline#extensions#tabline#buffers_label = 'BUFS' " BUFS to denote buffers
+        let g:airline#extensions#tabline#tabs_label = 'TABS'    " TABS to denote tabs
+
+        " tab / buffer numbering
+        let g:airline#extensions#tabline#buffer_nr_show = 1     " buffer number next to the tab name.
+        let g:airline#extensions#tabline#show_tab_nr = 1        " tab number itself on the tabline.
+
+        " formatting
+        let g:airline#extensions#tabline#formatter = 'default'  " specifies how the tabline is formatted
+        let g:airline#extensions#tabline#show_close_button = 1  " show 'X' at the end of the tabline
+        let g:airline#extensions#tabline#show_splits = 1        " enables the buffer name that displays on the right of the tabline
+        let g:airline#extensions#tabline#show_tab_count = 1     " show tab numbers on the right
+        let g:airline#extensions#tabline#show_tab_type = 1      " enables the orange arrow on the tabline
+        let g:airline#extensions#tabline#tab_min_count = 2      " minimum of 2 tab needed to display the tabline
     "}}}
 
     "vim GitGutter {{{
@@ -411,8 +422,8 @@
     "floaterm {{{
         " Set floaterm window's background to black
         hi Floaterm guibg=black
-        " Set floating window border line color to cyan
-        " background to black
+
+        " Set floating window border line color to cyan & background to black
         hi FloatermBorder guibg=black guifg=cyan
     "}}}
 " }}}
@@ -432,10 +443,13 @@
     " [Python] {{{
         let python_highlight_all=1
         highlight BadWhitespace ctermbg=red guibg=red
+
         " Display tabs at the beginning of a line in Python mode as bad.
         au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+
         " Make trailing whitespace be flagged as bad.
         au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
         " remove colorcolumn
         autocmd BufRead,BufNewFile *.py set colorcolumn=9999
     "}}}
