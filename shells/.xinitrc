@@ -74,7 +74,7 @@ then
     then
         return 0
     else
-        /home/cbodden/git/mine/dotfiles/dwm_bar.sh \
+        /home/cbodden/git/mine/dotfiles/dmenu/dwm_bar.sh \
             &
     fi
 else
