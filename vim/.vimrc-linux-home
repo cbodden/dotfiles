@@ -110,7 +110,8 @@
     set updatetime=50               " shorter update time
     set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png " ignore these list file extensions
     set wildmenu                    " turn on command line completion wild style
-    set wildmode=list:longest       " turn on wild mode huge list
+    set wildmode=list:full          " turn on wildmode list full
+    " set wildmode=list:longest       " turn on wild mode huge list
     set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -129,7 +130,7 @@
     set background=dark             " always keep background dark regardless of color theme
     set colorcolumn=80,120          " highlight maximum line length
     " highlight ColorColumn ctermbg=0 guibg=grey
-    set cmdheight=2                 " space for displaying messages
+    set cmdheight=4                 " space for displaying messages
     set cursorcolumn                " highlight the current column
     set cursorline                  " highlight current line
     set encoding=utf8               " Set utf8 as encoding and en_US as the language
