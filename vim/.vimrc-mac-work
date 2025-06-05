@@ -110,7 +110,8 @@
     set updatetime=50               " shorter update time
     set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png " ignore these list file extensions
     set wildmenu                    " turn on command line completion wild style
-    set wildmode=list:longest       " turn on wild mode huge list
+    set wildmode=list:full          " turn on wildmode list full
+    " set wildmode=list:longest       " turn on wild mode huge list
     set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
