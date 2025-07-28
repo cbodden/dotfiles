@@ -70,16 +70,16 @@ setopt transient_rprompt
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt APPEND_HISTORY                     # append rather than overwrite history file.
-setopt EXTENDED_HISTORY                   # save timestamp and runtime information
-setopt HIST_EXPIRE_DUPS_FIRST             # allow dups, but expire old ones when I hit HISTSIZE
-setopt HIST_FIND_NO_DUPS                  # don't find duplicates in history
-setopt HIST_IGNORE_ALL_DUPS               # ignore duplicate commands regardless of commands in between
-setopt HIST_IGNORE_DUPS                   # ignore duplicate commands
-setopt HIST_REDUCE_BLANKS                 # leave blanks out
-setopt HIST_SAVE_NO_DUPS                  # don't save duplicates
-setopt INC_APPEND_HISTORY                 # write after each command
-setopt SHARE_HISTORY                      # share history between sessions
+setopt append_history                     # append rather than overwrite history file.
+setopt extended_history                   # save timestamp and runtime information
+setopt hist_expire_dups_first             # allow dups, but expire old ones when I hit HISTSIZE
+setopt hist_find_no_dups                  # don't find duplicates in history
+setopt hist_ignore_all_dups               # ignore duplicate commands regardless of commands in between
+setopt hist_ignore_dups                   # ignore duplicate commands
+setopt hist_reduce_blanks                 # leave blanks out
+setopt hist_save_no_dups                  # don't save duplicates
+setopt inc_append_history                 # write after each command
+setopt share_history                      # share history between sessions
 #### end history #### }}}
 
 #### ls colors #### {{{
