@@ -135,12 +135,13 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/6.4.2 Chrome/102.0.5005.177 Safari/537.36', 'staging.bsky.app')
 
@@ -151,12 +152,13 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleW
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 
@@ -167,12 +169,13 @@ c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
@@ -183,12 +186,13 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/53
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 
@@ -199,14 +203,15 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:136.0) Gecko/20100101 Firefox/139.0', 'https://accounts.google.com/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -551,11 +556,15 @@ c.fonts.default_family = []
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '14pt'
+c.fonts.default_size = '12pt'
+
+# Font used for the downloadbar.
+# Type: Font
+c.fonts.downloads = 'default_size default_family'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 14pt monospace'
+c.fonts.hints = 'bold 12pt monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
@@ -564,6 +573,10 @@ c.fonts.keyhint = 'default_size default_family'
 # Font family for standard fonts.
 # Type: FontFamily
 c.fonts.web.family.standard = None
+
+# Default font size (in pixels) for regular text.
+# Type: Int
+c.fonts.web.size.default = 16
 
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
