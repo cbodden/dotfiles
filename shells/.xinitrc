@@ -68,32 +68,15 @@ then
     fi
 fi
 
-if hash dwm 2>/dev/null
-then
-    if pgrep -f dwm >/dev/null 2>&1
-    then
-        return 0
-    else
-        /home/cbodden/git/mine/dotfiles/dmenu/dwm_bar.sh \
-            &
-    fi
-else
-    exit 1
-fi
-
 ## this starts the wm
-if hash dwm 2>/dev/null
+if hash i3 2>/dev/null
 then
-    if pgrep -f dwm >/dev/null 2>&1
+    if pgrep -f i3 >/dev/null 2>&1
     then
         return 0
     else
-        # evilwm -term urxvt &
-        ## xmonad \
-        exec dwm \
+        exec dbus-launch --exit-with-session i3 \
             &
-        ## xbacklight -dec 15 &
-        ## this blocks exiting unless forcefully exited
         exec sleep infinity
     fi
 else
