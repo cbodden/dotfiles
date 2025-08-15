@@ -7,11 +7,17 @@
 !### xterm stuff ####
 !####################
 
+!Xterm font
 xterm*faceSize:              14
 xterm*eightBitInput:         false
 XTerm*faceName:              Hack
 !XTerm*faceName:              Terminus
 
+!xterm copy / paste
+XTerm*selectToClipboard:true
+XTerm*vt100.translations: #override \
+    Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+    Shift Ctrl <Key> V: insert-selection(CLIPBOARD)
 
 !Turning off scrollbar
 XTerm*scrollBar:             off
