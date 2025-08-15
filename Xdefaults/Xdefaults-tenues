@@ -1,0 +1,115 @@
+!!Source http://github.com/altercation/solarized
+
+## xrdb -query | awk '/Xft.dpi/ {print $2}'
+## xrdb merge .Xresources
+
+!####################
+!### xterm stuff ####
+!####################
+
+!xterm font
+xterm*faceSize:              10
+xterm*eightBitInput:         false
+XTerm*faceName:              Hack
+!XTerm*faceName:              Terminus
+
+!xterm copy / paste
+XTerm*selectToClipboard:true
+XTerm*vt100.translations: #override \
+    Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+    Shift Ctrl <Key> V: insert-selection(CLIPBOARD)
+
+!Turning off scrollbar
+XTerm*scrollBar:             off
+ 
+!Starting up with a geometry
+XTerm*vt100*geometry:        88x24
+
+! xolarized
+
+!Background & foreground
+XTerm*background:            #002B36
+XTerm*foreground:            #D2D2D2
+!XTerm*borderColor:          #343434
+
+XTerm*fading:                40
+XTerm*fadeColor:             #1c1c1c
+XTerm*cursorColor:           #8a8a8a
+XTerm*pointerColorBackground:#585858
+XTerm*pointerColorForeground:#8a8a8a
+
+!! black dark/light
+XTerm*color0:                #073642
+XTerm*color8:                #002b36
+
+!! red dark/light
+XTerm*color1:                #dc322f
+XTerm*color9:                #cb4b16
+
+!! green dark/light
+XTerm*color2:                #859900
+XTerm*color10:               #586e75
+
+!! yellow dark/light
+XTerm*color3:                #b58900
+XTerm*color11:               #657b83
+
+!! blue dark/light
+XTerm*color4:                #268bd2
+XTerm*color12:               #839496
+
+!! magenta dark/light
+XTerm*color5:                #d33682
+XTerm*color13:               #6c71c4
+
+!! cyan dark/light
+XTerm*color6:                #2aa198
+XTerm*color14:               #93a1a1
+
+!! white dark/light
+XTerm*color7:                #eee8d5
+XTerm*color15:               #fdf6e3
+
+
+!#######################################
+!### xscreensaver-auth.default.stuff ###
+!#######################################
+xscreensaver-auth.default.splash:    false
+
+!font settings
+xscreensaver-auth.default.Dialog.bodyFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver-auth.default.Dialog.buttonFont:         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver-auth.default.Dialog.dateFont:           -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver-auth.default.Dialog.headingFont:        -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver-auth.default.Dialog.labelFont:          -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver-auth.default.Dialog.unameFont:          -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver-auth.default.passwd.passwdFont:         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*
+
+!general dialog box (affects main hostname, username, password text)
+xscreensaver-auth.default.Dialog.foreground:         #00efef
+xscreensaver-auth.default.Dialog.background:         #111111
+xscreensaver-auth.default.Dialog.topShadowColor:     #111111
+xscreensaver-auth.default.Dialog.bottomShadowColor:  #111111
+xscreensaver-auth.default.Dialog.Button.foreground:  #111111
+xscreensaver-auth.default.Dialog.Button.background:  #2040e0
+
+!username/password input box and date text colour
+xscreensaver-auth.default.Dialog.text.foreground:    #2040e0
+xscreensaver-auth.default.Dialog.text.background:    #efefef
+xscreensaver-auth.default.Dialog.internalBorderWidth:36
+xscreensaver-auth.default.Dialog.borderWidth:        0
+xscreensaver-auth.default.Dialog.shadowThickness:    2
+
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver-auth.default.passwd.thermometer.foreground:     #2040e0
+xscreensaver-auth.default.passwd.thermometer.background:     #111111
+xscreensaver-auth.default.passwd.thermometer.width:          8
+
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver-auth.default.dateFormat:        %I:%M%p - %a %b %d, %Y
+
+
+
+
+
+
