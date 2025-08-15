@@ -1,160 +1,72 @@
 !!Source http://github.com/altercation/solarized
 
-Xft.dpi: 100
-## Xft.dpi: 139
 ## xrdb -query | awk '/Xft.dpi/ {print $2}'
 ## xrdb merge .Xresources
-
-
-*background:            #002b36
-*foreground:            #657b83
-*fadeColor:             #002b36
-*cursorColor:           #93a1a1
-*pointerColorBackground:#586e75
-*pointerColorForeground:#93a1a1
-
-!! black dark/light
-*color0:                #073642
-*color8:                #002b36
-!! red dark/light
-*color1:                #dc322f
-*color9:                #cb4b16
-!! green dark/light
-*color2:                #859900
-*color10:               #586e75
-!! yellow dark/light
-*color3:                #b58900
-*color11:               #657b83
-!! blue dark/light
-*color4:                #268bd2
-*color12:               #839496
-!! magenta dark/light
-*color5:                #d33682
-*color13:               #6c71c4
-!! cyan dark/light
-*color6:                #2aa198
-*color14:               #93a1a1
-!! white dark/light
-*color7:                #eee8d5
-*color15:               #fdf6e3
-
-
 
 !####################
 !### xterm stuff ####
 !####################
-xterm*faceSize: 16
-xterm*eightBitInput: false
-XTerm*faceName: Terminus
-!Background & foreground
-XTerm*background: #002B36
-XTerm*foreground: #D2D2D2
-XTerm*borderColor: #343434
+
+xterm*faceSize:              16
+xterm*eightBitInput:         false
+XTerm*faceName:              Terminus
+
 
 !Turning off scrollbar
-XTerm*scrollBar:  off
-
+XTerm*scrollBar:             off
+ 
 !Starting up with a geometry
-XTerm*vt100*geometry:   88x24
+XTerm*vt100*geometry:        88x24
 
-!Colors
-!-------------------------
-!black
-XTerm*color0: #222222
-XTerm*color8: #454545
+! xolarized
 
-!red
-XTerm*color1: #9E5641
-XTerm*color9: #CC896D
+!Background & foreground
+XTerm*background:            #002B36
+XTerm*foreground:            #D2D2D2
+!XTerm*borderColor:          #343434
 
-!green
-XTerm*color2: #6C7E55
-XTerm*color10: #C4DF90
+XTerm*fading:                40
+XTerm*fadeColor:             #1c1c1c
+XTerm*cursorColor:           #8a8a8a
+XTerm*pointerColorBackground:#585858
+XTerm*pointerColorForeground:#8a8a8a
 
-!yellow
-XTerm*color3: #CAAF2B
-XTerm*color11: #FFE080
+!! black dark/light
+XTerm*color0:                #073642
+XTerm*color8:                #002b36
 
-!blue
-XTerm*color4: #7FB8D8
-XTerm*color12: #B8DDEA
+!! red dark/light
+XTerm*color1:                #dc322f
+XTerm*color9:                #cb4b16
 
-!magenta
-XTerm*color5: #956D9D
-XTerm*color13: #C18FCB
+!! green dark/light
+XTerm*color2:                #859900
+XTerm*color10:               #586e75
 
-!cyan
-XTerm*color6: #4c8ea1
-XTerm*color14: #6bc1d0
+!! yellow dark/light
+XTerm*color3:                #b58900
+XTerm*color11:               #657b83
 
-!white
-XTerm*color7: #808080
-XTerm*color15: #cdcdcd
+!! blue dark/light
+XTerm*color4:                #268bd2
+XTerm*color12:               #839496
 
+!! magenta dark/light
+XTerm*color5:                #d33682
+XTerm*color13:               #6c71c4
 
+!! cyan dark/light
+XTerm*color6:                #2aa198
+XTerm*color14:               #93a1a1
 
-
-!####################
-!### urxvt stuff ####
-!####################
-URxvt*intensityStyles:  false
-URxvt*termName:         rxvt-256color
-URxvt*loginShell:       true
-
-!# borderless and no scrollbar
-URxvt*scrollBar_right:  false
-URxvt*scrollBar:        false
-URxvt*borderLess:       false
-
-!# fonts stuffs
-#define font1           xos4 Terminus
-#define font2           Inconsolata LGC
-#define font3           Inconsolata
-
-!URxvt*font: xft:xos4 Terminus:Regular:pixelsize=16
-!URxvt*boldfont: xft:xos4 Terminus:Bold:pixelsize=16
-URxvt*letterSpace:      0
-
-URxvt*font:             xft:font1:Regular:pixelsize=16,    xft:font2:Regular:pixelsize=14, xft:font3:Regular:pixelsize=14
-URxvt*boldfont:         xft:font1:Bold:pixelsize=16,       xft:font2:Bold:pixelsize=14,    xft:font3:Bold:pixelsize=14
-URxvt*italicfont:       xft:font2:Italic:pixelsize=16,     xft:font3:pixelsize=14
-URxvt*bolditalicfont:   xft:font2:BoldItalic:pixelsize=16, xft:font3:pixelsize=14
-
-!!# teh transparency stuff
-!URxvt*transparent:      true
-!URxvt*tintColor:        #002b36
-!URxvt*depth:            32
-!URxvt*shading:          90
-!!URxvt*background:       [25]#002b36
-!!urxvt.background:       rgba:0000/002b/0036/4444
-
-UXxvt*metaSendsEscape:  true
-
-URxvt*perl-lib:         /usr/lib/urxvt/perl/
-URxvt*perl-ext-common:  default,matcher,searchable-scrollback,font-size
-URxvt*url-launcher:     /usr/bin/xdg-open
-URxvt*matcher.button:   1
-URxvt*matcher.pattern.1:\\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt*maticher.rend.0:  Uline Bold fg5
-
-!from https://wiki.archlinux.org/index.php/rxvt-unicode
-URxvt*perl-ext:         default,url-select
-URxvt*keysym.M-u:       perl:url-select:select_next
-URxvt*url-select.launcher:      /usr/bin/xdg-open
-URxvt*url-select.underline:     true
-
-URxvt*keysym.C-Down:    font-size:decrease
-URxvt*keysym.C-S-Down:  font-size:decglobal
-URxvt*keysym.C-S-Up:    font-size:incglobal
-URxvt*keysym.C-Up:      font-size:increase
-URxvt*keysym.C-equal:   font-size:reset
-URxvt*keysym.C-slash:   font-size:show
+!! white dark/light
+XTerm*color7:                #eee8d5
+XTerm*color15:               #fdf6e3
 
 
-
-!###########################
-!### xscreensaver-auth.default.stuff ####
-!###########################
+!#######################################
+!### xscreensaver-auth.default.stuff ###
+!#######################################
 xscreensaver-auth.default.splash:    false
 
 !font settings
