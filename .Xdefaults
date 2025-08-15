@@ -43,21 +43,54 @@ Xft.dpi: 100
 !####################
 !### xterm stuff ####
 !####################
-XTerm*faceName:         Bitstream Vera Serif Mono
-XTerm*termName:         xterm-256color
-XTerm*ttyModes:         erase ^?
-XTerm*vt100.backarrowKey:       false
-XTerm*vt100.locale:     true
-XTerm*vt100.metaSendsEscape:    true
-XTerm*vt100.saveLines:  4096
-XTerm*vt100.scrollBar:  false
-xterm*charClass:        33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-xterm*eightBitInput:    false
-xterm*faceSize:         16
-xterm*loginShell:       true
-xterm*saveLines:        16384
-xterm*termName:         xterm-color
-xterm*vt100*geometry:   80x60
+xterm*faceSize: 16
+xterm*eightBitInput: false
+XTerm*faceName: Terminus
+!Background & foreground
+XTerm*background: #002B36
+XTerm*foreground: #D2D2D2
+XTerm*borderColor: #343434
+
+!Turning off scrollbar
+XTerm*scrollBar:  off
+
+!Starting up with a geometry
+XTerm*vt100*geometry:   88x24
+
+!Colors
+!-------------------------
+!black
+XTerm*color0: #222222
+XTerm*color8: #454545
+
+!red
+XTerm*color1: #9E5641
+XTerm*color9: #CC896D
+
+!green
+XTerm*color2: #6C7E55
+XTerm*color10: #C4DF90
+
+!yellow
+XTerm*color3: #CAAF2B
+XTerm*color11: #FFE080
+
+!blue
+XTerm*color4: #7FB8D8
+XTerm*color12: #B8DDEA
+
+!magenta
+XTerm*color5: #956D9D
+XTerm*color13: #C18FCB
+
+!cyan
+XTerm*color6: #4c8ea1
+XTerm*color14: #6bc1d0
+
+!white
+XTerm*color7: #808080
+XTerm*color15: #cdcdcd
+
 
 
 
