@@ -7,9 +7,10 @@
 !### xterm stuff ####
 !####################
 
-xterm*faceSize:              16
+xterm*faceSize:              14
 xterm*eightBitInput:         false
-XTerm*faceName:              Terminus
+XTerm*faceName:              Hack
+!XTerm*faceName:              Terminus
 
 
 !Turning off scrollbar
