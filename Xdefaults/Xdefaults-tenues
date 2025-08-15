@@ -7,7 +7,7 @@
 !### xterm stuff ####
 !####################
 
-!xterm font
+!Xterm font
 xterm*faceSize:              10
 xterm*eightBitInput:         false
 XTerm*faceName:              Hack
@@ -107,9 +107,3 @@ xscreensaver-auth.default.passwd.thermometer.width:          8
 
 !datestamp format--see the strftime(3) manual page for details
 xscreensaver-auth.default.dateFormat:        %I:%M%p - %a %b %d, %Y
-
-
-
-
-
-
