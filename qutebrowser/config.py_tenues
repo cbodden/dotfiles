@@ -113,7 +113,7 @@ config.set('content.cookies.accept', 'all', 'devtools://*')
 
 # Try to pre-fetch DNS entries to speed up browsing.
 # Type: Bool
-c.content.dns_prefetch = True
+c.content.dns_prefetch = False
 
 # Allow websites to request geolocations.
 # Type: BoolAsk
@@ -143,24 +143,7 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # increased compatibility.  Note that the value read from JavaScript is
 # always the global value.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/6.4.2 Chrome/102.0.5005.177 Safari/537.36', 'staging.bsky.app')
-
-# User agent to send.  The following placeholders are defined:  *
-# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
-# The underlying WebKit version (set to a fixed value   with
-# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
-# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
-# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
-# QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{upstream_browser_version_short}`: The
-# corresponding Safari/Chrome   version, but only with its major
-# version. * `{qutebrowser_version}`: The currently running qutebrowser
-# version.  The default value is equal to the default user agent of
-# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
-# increased compatibility.  Note that the value read from JavaScript is
-# always the global value.
-# Type: FormatString
-c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -232,10 +215,6 @@ config.set('content.javascript.enabled', False, '*://*.theatlantic.com/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', False, '*://*.www.nytimes.com/*')
-
-# Enable JavaScript.
-# Type: Bool
-config.set('content.javascript.enabled', True, '*://*.staging.bsky.app/*')
 
 # Enable JavaScript.
 # Type: Bool
@@ -440,16 +419,6 @@ c.statusbar.position = 'top'
 # Type: Bool
 c.tabs.background = True
 
-# When to show favicons in the tab bar. When switching this from never
-# to always/pinned, note that favicons might not be loaded yet, thus
-# tabs might require a reload to display them.
-# Type: String
-# Valid values:
-#   - always: Always show favicons.
-#   - never: Always hide favicons.
-#   - pinned: Show favicons only on pinned tabs.
-c.tabs.favicons.show = 'never'
-
 # When to show the tab bar.
 # Type: String
 # Valid values:
@@ -496,7 +465,11 @@ c.url.start_pages = 'about:blank'
 
 # Default zoom level.
 # Type: Perc
-c.zoom.default = '110%'
+c.zoom.default = '100%'
+
+# Available zoom levels.
+# Type: List of Perc
+c.zoom.levels = ['25%', '33%', '50%', '67%', '75%', '85%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
@@ -556,7 +529,7 @@ c.fonts.default_family = []
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '12pt'
+c.fonts.default_size = '14px'
 
 # Font used for the downloadbar.
 # Type: Font
@@ -564,7 +537,7 @@ c.fonts.downloads = 'default_size default_family'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 12pt monospace'
+c.fonts.hints = 'bold 12px monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
@@ -576,11 +549,20 @@ c.fonts.web.family.standard = None
 
 # Default font size (in pixels) for regular text.
 # Type: Int
-c.fonts.web.size.default = 16
+c.fonts.web.size.default = 14
 
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
-c.fonts.web.size.default_fixed = 13
+c.fonts.web.size.default_fixed = 14
+
+# Hard minimum font size (in pixels).
+# Type: Int
+c.fonts.web.size.minimum = 12
+
+# Minimum logical font size (in pixels) that is applied when zooming
+# out.
+# Type: Int
+c.fonts.web.size.minimum_logical = 12
 
 # Bindings for normal mode
 config.bind(',M', 'hint links spawn --detach mpv --force-window=immediate {hint-url}')
