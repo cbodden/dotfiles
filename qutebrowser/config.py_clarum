@@ -50,6 +50,14 @@ c.new_instance_open_target_window = 'last-opened'
 # Type: Bool
 c.session.lazy_restore = False
 
+# Turn on Qt HighDPI scaling. This is equivalent to setting
+# QT_ENABLE_HIGHDPI_SCALING=1 (Qt >= 5.14) in the environment. It's off
+# by default as it can cause issues with some bitmap fonts. As an
+# alternative to this, it's possible to set font sizes and the
+# `zoom.default` setting.
+# Type: Bool
+c.qt.highdpi = True
+
 # Always restore open sites when qutebrowser is reopened. Without this
 # option set, `:wq` (`:quit --save`) needs to be used to save open tabs
 # (and restore them), while quitting qutebrowser in any other way will
@@ -62,6 +70,30 @@ c.auto_save.session = True
 # Automatically start playing `<video>` elements.
 # Type: Bool
 c.content.autoplay = False
+
+# Which cookies to accept. With QtWebEngine, this setting also controls
+# other features with tracking capabilities similar to those of cookies;
+# including IndexedDB, DOM storage, filesystem API, service workers, and
+# AppCache. Note that with QtWebKit, only `all` and `never` are
+# supported as per-domain values. Setting `no-3rdparty` or `no-
+# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
+# `all`. If this setting is used with URL patterns, the pattern gets
+# applied to the origin/first party URL of the page making the request,
+# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
+# from URLs, so URL patterns using paths will not match. With
+# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
+# you will typically need to set this setting for `example.com` when the
+# cookie is set on `somesubdomain.example.com` for it to work properly.
+# To debug issues with this setting, start qutebrowser with `--debug
+# --logfilter network --debug-flag log-cookies` which will show all
+# cookies being set.
+# Type: String
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+c.content.cookies.accept = 'no-3rdparty'
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -353,6 +385,11 @@ c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
 # Type: ShellCommand
 c.fileselect.folder.command = ['st', '-e', 'ranger', '--choosedir={}']
 
+# Duration (in milliseconds) to ignore normal-mode key bindings after a
+# successful auto-follow.
+# Type: Int
+c.hints.auto_follow_timeout = 0
+
 # When/how to show the scrollbar.
 # Type: String
 # Valid values:
@@ -440,6 +477,14 @@ c.statusbar.position = 'top'
 # Type: Bool
 c.tabs.background = True
 
+# Mouse button with which to close tabs.
+# Type: String
+# Valid values:
+#   - right: Close tabs on right-click.
+#   - middle: Close tabs on middle-click.
+#   - none: Don't close tabs using the mouse.
+c.tabs.close_mouse_button = 'middle'
+
 # When to show favicons in the tab bar. When switching this from never
 # to always/pinned, note that favicons might not be loaded yet, thus
 # tabs might require a reload to display them.
@@ -458,6 +503,19 @@ c.tabs.favicons.show = 'never'
 #   - multiple: Hide the tab bar if only one tab is open.
 #   - switching: Show the tab bar when switching tabs.
 c.tabs.show = 'never'
+
+# Alignment of the text inside of tabs.
+# Type: TextAlignment
+# Valid values:
+#   - left
+#   - right
+#   - center
+c.tabs.title.alignment = 'center'
+
+# Show tooltips on tabs. Note this setting only affects windows opened
+# after it has been set.
+# Type: Bool
+c.tabs.tooltips = False
 
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
@@ -493,6 +551,11 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?t=h_&q={}'}
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'about:blank'
+
+# Hide the window decoration.  This setting requires a restart on
+# Wayland.
+# Type: Bool
+c.window.hide_decoration = False
 
 # Default zoom level.
 # Type: Perc
@@ -535,6 +598,18 @@ c.colors.completion.item.selected.border.bottom = '#00ee00'
 # Type: QssColor
 c.colors.completion.scrollbar.bg = '#333333'
 
+# Value to use for `prefers-color-scheme:` for websites. The "light"
+# value is only available with QtWebEngine 5.15.2+. On older versions,
+# it is the same as "auto". The "auto" value is broken on QtWebEngine
+# 5.15.2 due to a Qt bug. There, it will fall back to "light"
+# unconditionally.
+# Type: String
+# Valid values:
+#   - auto: Use the system-wide color scheme setting.
+#   - light: Force a light theme.
+#   - dark: Force a dark theme.
+c.colors.webpage.preferred_color_scheme = 'dark'
+
 # Render all web contents using a dark theme. On QtWebEngine < 6.7, this
 # setting requires a restart and does not support URL patterns, only the
 # global setting is applied. Example configurations from Chromium's
@@ -543,7 +618,7 @@ c.colors.completion.scrollbar.bg = '#333333'
 # `colors.webpage.darkmode.policy.images` to `never`.  - "With selective
 # image inversion": qutebrowser default settings.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 
 # Default font families to use. Whenever "default_family" is used in a
 # font setting, it's replaced with the fonts listed here. If set to an
@@ -556,7 +631,7 @@ c.fonts.default_family = []
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '12pt'
+c.fonts.default_size = '16pt'
 
 # Font used for the downloadbar.
 # Type: Font
@@ -564,7 +639,7 @@ c.fonts.downloads = 'default_size default_family'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 12pt monospace'
+c.fonts.hints = 'bold 16pt monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
@@ -580,7 +655,16 @@ c.fonts.web.size.default = 16
 
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
-c.fonts.web.size.default_fixed = 13
+c.fonts.web.size.default_fixed = 16
+
+# Hard minimum font size (in pixels).
+# Type: Int
+c.fonts.web.size.minimum = 18
+
+# Minimum logical font size (in pixels) that is applied when zooming
+# out.
+# Type: Int
+c.fonts.web.size.minimum_logical = 12
 
 # Bindings for normal mode
 config.bind(',M', 'hint links spawn --detach mpv --force-window=immediate {hint-url}')
@@ -591,4 +675,6 @@ config.bind('<Ctrl+i>', 'hint images download')
 config.bind('<Ctrl+j>', 'config-cycle -p -u *://*.{url:host}/* content.javascript.enabled ;; reload')
 config.bind('<F10>', 'config-cycle -p content.cookies.store ;; config-cycle -p content.cookies.accept no-3rdparty never')
 config.bind('<F1>', 'config-cycle fonts.web.size.minimum 14 16 18 20 22 24 26 28 30 32 34 36 38 40 0')
-config.bind('xs', 'config-cycle --temp --print --pattern *://*.{url:host}/* content.javascript.enabled ;; reload')
+config.bind('xs', 'config-cycle statusbar.show always never')
+config.bind('xt', 'config-cycle tabs.show always never')
+config.bind('xx', 'config-cycle tabs.show always never;; config-cycle statusbar.show always never')
