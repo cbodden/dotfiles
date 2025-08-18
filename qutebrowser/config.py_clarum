@@ -618,7 +618,7 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 # `colors.webpage.darkmode.policy.images` to `never`.  - "With selective
 # image inversion": qutebrowser default settings.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 
 # Default font families to use. Whenever "default_family" is used in a
 # font setting, it's replaced with the fonts listed here. If set to an
@@ -631,7 +631,7 @@ c.fonts.default_family = []
 # either a float value with a "pt" suffix, or an integer value with a
 # "px" suffix.
 # Type: String
-c.fonts.default_size = '16pt'
+c.fonts.default_size = '14pt'
 
 # Font used for the downloadbar.
 # Type: Font
@@ -639,7 +639,7 @@ c.fonts.downloads = 'default_size default_family'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 16pt monospace'
+c.fonts.hints = 'bold 14pt monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
@@ -651,15 +651,15 @@ c.fonts.web.family.standard = None
 
 # Default font size (in pixels) for regular text.
 # Type: Int
-c.fonts.web.size.default = 16
+c.fonts.web.size.default = 14
 
 # Default font size (in pixels) for fixed-pitch text.
 # Type: Int
-c.fonts.web.size.default_fixed = 16
+c.fonts.web.size.default_fixed = 14
 
 # Hard minimum font size (in pixels).
 # Type: Int
-c.fonts.web.size.minimum = 18
+c.fonts.web.size.minimum = 12
 
 # Minimum logical font size (in pixels) that is applied when zooming
 # out.
