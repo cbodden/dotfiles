@@ -1,3 +1,4 @@
+!!clarum
 !!Source http://github.com/altercation/solarized
 
 ## xrdb -query | awk '/Xft.dpi/ {print $2}'
