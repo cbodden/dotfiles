@@ -42,8 +42,19 @@
 *.color15:      #fdf6e3
 
 
+!####################
+!### URxvt stuff ####
+!####################
 
-
+! URxvt*saveLines: 50000
+! !URxvt*font: xft:terminus:pixelsize=22
+! !URxvt*boldFont: xft:terminus:bold:pixelsize=22
+! 
+! URxvt*font: xft:Hack:pixelsize=20
+! URxvt*boldFont: xft:Hack:bold:pixelsize=20
+! URxvt*scrollBar: false
+! URxvt*scrollBar_right: false
+! URxvt*scrollstyle: rxvt
 
 
 !####################
@@ -51,8 +62,8 @@
 !####################
 
 !Xterm font
-xterm*faceSize:              14
-xterm*eightBitInput:         false
+Xterm*faceSize:              14
+Xterm*eightBitInput:         false
 XTerm*faceName:              Hack
 !XTerm*faceName:              Terminus
 
@@ -67,6 +78,10 @@ XTerm*scrollBar:             off
  
 !Starting up with a geometry
 XTerm*vt100*geometry:        88x24
+
+!set UTF8
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
 
 ! xolarized
 
