@@ -238,19 +238,7 @@ man() {
 }
 #### end colored man pages }
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/cbodden/google-cloud-sdk/path.zsh.inc' ]
-then
-    . '/home/cbodden/google-cloud-sdk/path.zsh.inc'
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/cbodden/google-cloud-sdk/completion.zsh.inc' ]
-then
-    . '/home/cbodden/google-cloud-sdk/completion.zsh.inc'
-fi
-
-PATH="/home/cbodden/.google-drive-upload/bin:/home/cbodden/.cargo/bin:${PATH}"
+PATH="${PATH}"
 
 
 # QT font scaling
