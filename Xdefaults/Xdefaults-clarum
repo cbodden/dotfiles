@@ -63,10 +63,11 @@
 !####################
 
 !Xterm font
-Xterm*faceSize:              14
-Xterm*eightBitInput:         false
-XTerm*faceName:              Hack
-!XTerm*faceName:              Terminus
+xterm*faceSize: 14
+xterm*eightBitInput:    false
+!xterm*faceName: Monospace
+xterm*faceName: Hack
+!xterm*faceName:Terminus
 
 !xterm copy / paste
 XTerm*selectToClipboard:true
