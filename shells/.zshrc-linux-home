@@ -149,7 +149,8 @@ PROMPT=${_PRM_1}${_PRM_2}
 alias add='git add -p .'
 alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias ca="printf '\033]11;black\007' ; $HOME/.local/bin/cursor-agent"
+alias ca="printf '\033]10;green\007\033]11;black\007' ; $HOME/.local/bin/cursor-agent"
+##alias ca="printf '\033]11;black\007' ; $HOME/.local/bin/cursor-agent"
 alias d='dirs -v'
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
 alias facts="elinks -dump randomfunfacts.com | awk '/┌──/{ f = 1 } f; /└──/{ f = 0 }'"
