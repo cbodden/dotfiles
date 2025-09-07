@@ -238,7 +238,7 @@ man() {
 }
 #### end colored man pages }
 
-PATH="${PATH}"
+PATH="${HOME}/.local/bin:${PATH}"
 
 
 # QT font scaling
