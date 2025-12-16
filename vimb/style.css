@@ -1,0 +1,27 @@
+/* Hint mode color styling
+ * Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
+ *
+ * The precedence of the user style is lower than that of the website so you
+ * have to mark your style definition to have higher priority.
+    font: bold 12pt monospace !important;
+ */
+span[vimbhint^='label'] {
+    background-color: #f2f0ec !important;
+    border: 1px solid #2d2d2d !important;
+    color: #2d2d2d !important;
+    font: bold 12pt monospace !important;
+    opacity: 1 !important;
+    padding: .1em .4em !important;
+    text-transform: uppercase !important;
+}
+span[vimbhint='label focus'] {
+    font: bold 12pt monospace !important;
+}
+*[vimbhint^='hint'] {
+    background-color: #ffcc66 !important;
+    color: #2d2d2d !important;
+}
+*[vimbhint='hint focus'] {
+    background-color: #6699cc !important;
+    color: #2d2d2d !important;
+}

@@ -1,0 +1,388 @@
+# Shortcuts allow the opening of an URI built up from a named template
+# with additional parameters.
+
+shortcut-add duck=https://duckduckgo.com/?q=$0
+shortcut-add g=https://encrypted.google.com/search?q=$0
+shortcut-add y=http://www.youtube.com/results?search_query=$0
+
+# Set the shortcut as the default, that is the shortcut to be used if no
+# shortcut is given and the string to open is not an URI.
+shortcut-default duck
+
+# Map page zoom in normal mode to keys commonly used across applications
+# + (zoom in), - (zoom out), = (zoom reset)
+nmap + zI
+nmap - zO
+nmap = zz
+
+## Tab movement (copying qutebrowser)
+nmap J gt
+nmap K gT
+
+## Page back / forward (copying qutebrowser)
+nmap H <C-o>
+nmap L <C-i>
+
+
+##########################
+#### options from man ####
+##########################
+
+## Enable or disable accelerated 2D canvas. When accelerated 2D canvas is
+## enabled, WebKit may render some 2D canvas content using hardware
+## accelerated drawing operations.
+# set accelerated-2d-canvas=true
+
+## Indicates whether file access is allowed from file URLs. By default, when 
+## something is loaded using a file URI, cross origin requests to other file 
+## resources are not allowed.
+set allow-file-access-from-file-urls=false
+
+## Indicates whether or not JavaScript running in the context of a file scheme
+## URL should be allowed to access content from any origin. By default, when
+## something is loaded in a using a file scheme URL, access to the local file
+## system and arbitrary local storage is not allowed.
+set allow-universal-access-from-file-urls=false
+
+## Whether to enable accessibility enhanced keyboard navigation.
+set caret=true
+
+## Cookie accept policy {‘always’, ‘never’, ‘origin’ (accept all
+## non-third-party cookies)}.
+set cookie-accept=origin
+
+## Maximum number of stored last closed URLs. If closed-max-items is set to 0,
+## closed URLs will not be stored.
+set closed-max-items=100
+
+## CSS style applied to the inputbox completion list items.
+# set completion-css (string)
+
+## CSS style applied to the inputbox completion list item that is currently
+## hovered by the mouse.
+# set completion-hover-css (string)
+
+## CSS style applied to the inputbox completion list item that is currently
+## selected.
+# set completion-selected-css (string)
+
+##The font family used as the default for content using cursive font.
+# set cursiv-font (string)
+
+## Whether to enable dark mode. Websites can use the `prefers-color-scheme’
+## media query to adjust styles according to this option.
+set dark-mode=on
+
+## The default text charset used when interpreting content with an 
+## unspecified charset.
+set default-charset=UTF-8
+
+## The font family to use as the default for content that does not specify a
+## font.
+set default-font=monospace 16
+
+## Default Full-Content zoom level in percent. Default is 100.
+set default-zoom=100
+
+## Indicates if Vimb prefetches domain names.
+# set dns-prefetching=true
+
+## A command with placeholder %s that will be invoked to download a URI in
+## case download-use-external is enabled.
+## The following additional environment variable are available:
+## 
+## $VIMB_URI The URI of the current opened page, normally the page where the
+## download was started from, also known as referer.
+## $VIMB_DOWNLOAD_PATH Setting value of download-path which would be used
+## normally for downloads.
+## Example:
+## :set download-command=/bin/sh -c "cd '$VIMB_DOWNLOAD_PATH' \
+## && curl -sLJOC - -e '$VIMB_URI' %s"
+# set download-command (string)
+
+## Path to the default download directory. If no download directory is set,
+## download will be written into current directory. The following pattern will
+## be expanded if the download is started ~/, ~user, $VAR and ${VAR}.
+## download-use-external (bool)k
+set download-path=${CHOME}/Downloads
+
+## Indicates if the external download tool set as download-command should be
+## used to handle downloads. If this is disabled Vimb will handle the download.
+# set download-use-external (bool)
+
+## Command with placeholder %s called if form field is opened with $EDITOR to
+## spawn the editor-like x-terminal-emulator -e vim %s. To use gvim as the
+## editor, it’s necessary to call it with -f to run it in the foreground.
+set editor-command=xterm -e "vim %s"
+
+## The default font size used to display text.
+set font-size=16
+
+## Whether to enable the Frame Flattening. With this setting each subframe is
+## expanded to its contents, which will flatten all the frames to become one
+## scrollable page.
+# set frame-flattening (bool)
+
+## Show the current window full-screen.
+set fullscreen=false
+
+## This setting decides how to enable and disable hardware acceleration.
+## ‘ondemand’ enables the hardware acceleration when the web contents request
+## it, disabling it again when no longer needed.
+## ‘always’ enforce hardware acceleration to be enabled.
+## ‘never’ disables it completely. Note that disabling hardware acceleration
+## might cause some websites to not render correctly or consume more CPU.
+set hardware-acceleration-policy=ondemand
+
+## Comma separated list of headers that replaces default header sent by WebKit
+## or new headers. The format for the header list elements is name[=[value]].
+## Note that these headers will replace already existing headers. If there is
+## no = after the header name, then the complete header will be removed from
+## the request, if the = is present means that the header value is set to
+## empty value.
+##
+## To use = within a header value the value must be quoted like shown in
+## Example for the Cookie header.
+##
+## Example: :set header=DNT=1,User-Agent,Cookie='name=value' Send the 
+## ‘Do Not Track’ header with each request and remove the User-Agent Header
+## completely from request.
+# set header (list)
+
+## If on, vimb automatically follows the last remaining hint on the page. If
+## off hints are fired only if enter is pressed.
+# set hint-follow-last (bool)
+
+## If on, all hint numbers will have the same length, so no hints will be
+## ambiguous.
+set hint-keys-same-length=true
+
+## Timeout before automatically following a non-unique numerical hint. To
+## disable auto fire of hints, set this value to 0.
+set hint-timeout=0
+
+## The keys used to label and select hints. With its default value, each hint
+## has a unique number which can be typed to select it, while all other
+## characters are used to filter hints based on their text. With a value such
+## as asdfg;lkjh, each hint is ‘numbered’ based on the characters of the home
+## row. Note that the hint matching by label built of hint-keys is case 
+## sen‐ sitive. In this vimb differs from some other browsers that show hint
+## labels in upper case, but match them lowercase. To have upper case hint
+## labels, it’s possible to add following css to the ‘style.css’ file in 
+## vimb’s configuration directory.
+## ._hintLabel {text-transform: uppercase !important;}
+set hint-keys=asdfghjkl
+
+## If this is set to ‘true’ typed chars that are not part of the set
+## ‘hint-keys’ are used to filter hinted DOM elements by their text value.
+## If ‘hint-keys’ are set to chars instead of numbers it might be useful to
+## disable matching of the elements by ‘hint-match-element=false’.
+set hint-match-element=true
+
+## Maximum number of unique items stored in search-, command or URI history.
+## If history-max-items is set to 0, the history file will not be changed.
+## This setting has no effect if option --incognito is set.
+set history-max-items=250
+
+## Homepage that vimb opens if started without a URI.
+set home-page=https://duckduckgo.com
+
+## Whether to enable HTML5 client-side SQL database support. Client-side SQL
+## database allows web pages to store structured data and be able to use SQL
+## to manipulate that data asynchronous.
+set html5-database=true
+
+## Whether to enable HTML5 localStorage support. LocalStorage provides simple
+## synchronous storage access.
+set html5-local-storage=true
+
+## Enable or disable support for <a ping>.
+# set hyperlink-auditing (bool)
+
+## Determines whether images should be automatically loaded or not.
+set images=true
+
+## While typing a search command, show where the pattern typed so far matches.
+set incsearch=true
+
+## If enabled the inputbox will be hidden whenever it contains no text.
+set input-autohide=true
+
+## CSS style applied to the inputbox in normal state.
+# set input-css (string)
+
+## CSS style applied to the inputbox in case of displayed error.
+# set input-error-css (string)
+
+## Whether JavaScript can access the clipboard.
+set javascript-can-access-clipboard=false
+
+## Whether JavaScript can open popup windows automatically without user
+## interaction.
+set javascript-can-open-windows-automatically=true
+
+## Controls website access to the geolocation API
+## (‘always’, ‘never’, ‘ask’ - display a prompt each time)
+set geolocation=never
+
+## Whether media playback is full-screen only or inline playback is allowed.
+## Setting it to false allows specifying that media playback should be always
+## fullscreen.
+set media-playback-allows-inline=true
+
+## Whether a user gesture (such as clicking the play button) would be required
+## to start media playback or load media. Setting it on requires a gesture 
+## by the user to start playback, or to load the media.
+set media-playback-requires-user-gesture=on
+
+## Enable or disable support for MediaSource on pages. MediaSource is an
+## experimental proposal which extends HTMLMediaElement to allow JavaScript to
+## generate media streams for playback.
+set media-stream=true
+
+## Enable or disable support for MediaSource on pages. MediaSource is an
+## experimental proposal which extends HTMLMediaElement to allow JavaScript to
+## generate media streams for playback.
+set mediasource=true
+
+## The minimum font size used to display text.
+set minimum-font-size=14
+
+## The font family used as the default for content using monospace font.
+set monospace-font=pango:Hack 14
+
+## Default font size for the monospace font.
+set monospace-font-size=16
+
+## Controls website access to the notification API, that sends notifications
+## via dbus. (‘always’, ‘never’, ‘ask’ - display a prompt each time)
+set notification=ask
+
+## Whether to enable HTML5 offline web application cache support. Offline web
+## application cache allows web applications to run even when the user is not
+## connected to the network.
+# set offline-cache=true
+
+## Whether background images should be drawn during printing.
+# set print-backgrounds (bool)
+
+## Whether to enable private browsing mode. This suppresses printing of
+## messages into JavaScript Console. At the time this is the only way to force
+## WebKit to not allow a page to store data in the windows sessionStorage.
+# set private-browsing (bool)
+
+## Determines whether or not plugins on the page are enabled.
+# set plugins=true
+
+## Whether to open links, that would normally open in a new window, in the
+## current window. This option does not affect links fired by hinting.
+set prevent-newwindow=true
+
+## The font family used as the default for content using sans-serif font.
+# set sans-serif-font (string)
+
+## Determines whether or not JavaScript executes within a page.
+set scripts=true
+
+## Number of pixel vimb scrolls if ‘j’ or ‘k’ is used.
+# set scroll-step (int)
+
+## Multiplier to increase the scroll distance if window is scrolled by
+## mouse wheel.
+# set scroll-multiplier (int)
+
+## The font family used as the default for content using serif font.
+# set serif-font (string)
+
+## Determines whether the titlebar is shown (on systems that provide window
+## decoration). Defaults to true.
+set show-titlebar=true
+
+## Enables the site-specific compatibility workarounds.
+set site-specific-quirks=on
+
+## Enable or disable support for smooth scrolling.
+set smooth-scrolling=true
+
+## Whether to enable the Spatial Navigation. This feature consists in the
+## ability to navigate between focusable elements in a Web page, such as
+## hyperlinks and form controls, by using Left, Right, Up and Down arrow keys.
+## For example, if a user presses the Right key, heuristics determine whether
+## there is an element they might be trying to reach towards the right, and if
+## there are multiple elements, which element they probably want.
+# set spacial-navigation (bool)
+
+## Enable or disable the spell checking feature.
+set spell-checking=true
+
+## Set comma separated list of spell checking languages to be used for spell
+## checking. The locale string typically is in the form lang_COUNTRY, where
+## lang is an ISO-639 language code, and COUNTRY is an ISO-3166 country code.
+## For instance, sv_FI for Swedish as written in Finland or pt_BR for
+## Portuguese as written in Brazil.
+set spell-checking-languages=en
+
+## Indicates if the status bar should be shown.
+set status-bar=true
+
+## Whether to show settings on the status bar. This shows on the right hand of
+## the status bar whether some flags about current active setting..
+set status-bar-show-settings=true
+
+## CSS style applied to the status bar on none https pages.
+# set status-css (string)
+
+## CSS style applied to the status bar on https pages with trusted certificate.
+# set status-ssl-css (string)
+
+## CSS style applied to the status bar on https pages with untrusted
+## certificate.
+# set status-ssl-invalid-css (string)
+
+## If ‘on’, vimb will not load a untrusted https site.
+set strict-ssl=off
+
+## If ‘on’ the user defined styles-sheet is used.
+set stylesheet=true
+
+## Whether the Tab key cycles through elements on the page.
+## If true, pressing the Tab key will focus the next element in the web view.
+## Otherwise, the web view will interpret Tab key presses as normal key
+## presses. If the selected element is editable, the Tab key will cause the
+## insertion of a Tab character.
+set tabs-to-links=true
+
+## The time in milliseconds that is waited for a key code or mapped key
+## sequence to complete.
+set timeoutlen=20
+
+## The user-agent string used by WebKit.
+# set user-agent (string)
+
+## Indicates if user style sheet file $XDG_CONFIG_HOME/vimb/style.css is
+## sourced.
+set user-scripts=true
+
+## Enable or disable support for WebAudio on pages. WebAudio is an 
+## experimental proposal for allowing web pages to generate Audio WAVE data
+## from JavaScript.
+set webaudio=true
+
+## Enable or disable support for WebGL on pages.
+set webgl=true
+
+## Determines whether or not developer tools, such as the Web Inspector, are
+## enabled.
+set webinspector=true
+
+## Command used if hint mode ;x is fired. The command can be any vimb command
+## string. Note that the command is run through the mapping mechanism of vimb
+## so it might change the behaviour by adding or changing mappings.
+## :set x-hint-command=:sh! curl -e <C-R>% <C-R>;
+## This fills the inputbox with the prefilled download command and replaces
+## <C-R>%' with the current URI and ;' with the URI of the hinted element.
+set x-hint-command=:sh! mpv <C-R>; <CR>
+
+## Whether to enable the XSS auditor. This feature filters some kinds of
+## reflective XSS attacks on vulnerable web sites.
+# set xss-auditor=true
