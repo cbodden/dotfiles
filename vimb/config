@@ -1,27 +1,31 @@
-# Shortcuts allow the opening of an URI built up from a named template
-# with additional parameters.
-
+## Shortcuts allow the opening of an URI built up from a named template
+## with additional parameters.
 shortcut-add duck=https://duckduckgo.com/?q=$0
-shortcut-add g=https://encrypted.google.com/search?q=$0
 shortcut-add y=http://www.youtube.com/results?search_query=$0
 
-# Set the shortcut as the default, that is the shortcut to be used if no
-# shortcut is given and the string to open is not an URI.
+## Set the shortcut as the default, that is the shortcut to be used if no
+## shortcut is given and the string to open is not an URI.
 shortcut-default duck
 
-# Map page zoom in normal mode to keys commonly used across applications
-# + (zoom in), - (zoom out), = (zoom reset)
+## Key maps mostly copied from Qutebrowser
+## zoom in
 nmap + zI
+## zoom out
 nmap - zO
+## zoom reset
 nmap = zz
-
-## Tab movement (copying qutebrowser)
+## next tab
 nmap J gt
+## previous tab
 nmap K gT
-
-## Page back / forward (copying qutebrowser)
+## page back
 nmap H <C-o>
+## page forward
 nmap L <C-i>
+## web inspector
+nmap wi gF
+## close tab
+nmap d <C-q>
 
 
 ##########################
@@ -45,7 +49,7 @@ set allow-file-access-from-file-urls=false
 set allow-universal-access-from-file-urls=false
 
 ## Whether to enable accessibility enhanced keyboard navigation.
-set caret=true
+set caret=false
 
 ## Cookie accept policy {‘always’, ‘never’, ‘origin’ (accept all
 ## non-third-party cookies)}.
@@ -53,7 +57,8 @@ set cookie-accept=origin
 
 ## Maximum number of stored last closed URLs. If closed-max-items is set to 0,
 ## closed URLs will not be stored.
-set closed-max-items=100
+## Stored @ ~/.local/share/vimb/
+set closed-max-items=250
 
 ## CSS style applied to the inputbox completion list items.
 # set completion-css (string)
@@ -96,19 +101,17 @@ set default-zoom=100
 ## $VIMB_DOWNLOAD_PATH Setting value of download-path which would be used
 ## normally for downloads.
 ## Example:
-## :set download-command=/bin/sh -c "cd '$VIMB_DOWNLOAD_PATH' \
-## && curl -sLJOC - -e '$VIMB_URI' %s"
-# set download-command (string)
+# set download-command=/bin/sh -c "cd '$VIMB_DOWNLOAD_PATH' \
+# && curl -sLJOC - -e '$VIMB_URI' %s"
 
 ## Path to the default download directory. If no download directory is set,
 ## download will be written into current directory. The following pattern will
 ## be expanded if the download is started ~/, ~user, $VAR and ${VAR}.
-## download-use-external (bool)k
-set download-path=${CHOME}/Downloads
+set download-path=~/Downloads
 
 ## Indicates if the external download tool set as download-command should be
 ## used to handle downloads. If this is disabled Vimb will handle the download.
-# set download-use-external (bool)
+set download-use-external=false
 
 ## Command with placeholder %s called if form field is opened with $EDITOR to
 ## spawn the editor-like x-terminal-emulator -e vim %s. To use gvim as the
@@ -147,7 +150,7 @@ set hardware-acceleration-policy=ondemand
 ## Example: :set header=DNT=1,User-Agent,Cookie='name=value' Send the 
 ## ‘Do Not Track’ header with each request and remove the User-Agent Header
 ## completely from request.
-# set header (list)
+set header=DNT=1
 
 ## If on, vimb automatically follows the last remaining hint on the page. If
 ## off hints are fired only if enter is pressed.
@@ -177,11 +180,12 @@ set hint-keys=asdfghjkl
 ## ‘hint-keys’ are used to filter hinted DOM elements by their text value.
 ## If ‘hint-keys’ are set to chars instead of numbers it might be useful to
 ## disable matching of the elements by ‘hint-match-element=false’.
-set hint-match-element=true
+set hint-match-element=false
 
 ## Maximum number of unique items stored in search-, command or URI history.
 ## If history-max-items is set to 0, the history file will not be changed.
 ## This setting has no effect if option --incognito is set.
+## Stored @ ~/.local/share/vimb/
 set history-max-items=250
 
 ## Homepage that vimb opens if started without a URI.
@@ -190,10 +194,12 @@ set home-page=https://duckduckgo.com
 ## Whether to enable HTML5 client-side SQL database support. Client-side SQL
 ## database allows web pages to store structured data and be able to use SQL
 ## to manipulate that data asynchronous.
+## Stored @ ~/.local/share/vimb/
 set html5-database=true
 
 ## Whether to enable HTML5 localStorage support. LocalStorage provides simple
 ## synchronous storage access.
+## Stored @ ~/.local/share/vimb/
 set html5-local-storage=true
 
 ## Enable or disable support for <a ping>.
@@ -223,7 +229,7 @@ set javascript-can-open-windows-automatically=true
 
 ## Controls website access to the geolocation API
 ## (‘always’, ‘never’, ‘ask’ - display a prompt each time)
-set geolocation=never
+set geolocation=ask
 
 ## Whether media playback is full-screen only or inline playback is allowed.
 ## Setting it to false allows specifying that media playback should be always
