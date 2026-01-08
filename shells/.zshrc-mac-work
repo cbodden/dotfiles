@@ -69,7 +69,7 @@ setopt correctall                         # auto-correction of the commands type
 #### zsh plugins ####
 ##################### {{{
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00ff00,bg=#000000,bold,underline"  # suggestion highlight style
 plugins+=(git vi-mode)                    # oh my zsh setting vi mode
@@ -93,6 +93,10 @@ zstyle ':vcs_info:*' unstagedstr ' *'     # Set custom strings for an unstaged v
 zstyle ':vcs_info:*' stagedstr ' +'
 zstyle ':vcs_info:git:*' formats       '(%b%u%c)'    # Set the format of the Git information for vcs_info
 zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
+
+## testing aws completions
+autoload bashcompinit && bashcompinit
+complete -C aws_completer aws
 ### end zsh options #### }}}
 
 ###########################
@@ -102,32 +106,32 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
 ### begin smallstep zsh completion ###
 #compdef step
 
-_step() {
-
-  local -a opts
-  local cur
-  cur=${words[-1]}
-  if [[ "$cur" == "-"* ]]; then
-    opts=("${(@f)$(_CLI_ZSH_AUTOCOMPLETE_HACK=1 ${words[@]:0:#words[@]-1} ${cur} --generate-bash-completion)}")
-  else
-    opts=("${(@f)$(_CLI_ZSH_AUTOCOMPLETE_HACK=1 ${words[@]:0:#words[@]-1} --generate-bash-completion)}")
-  fi
-
-  if [[ "${opts[1]}" != "" ]]; then
-    _describe 'values' opts
-  else
-    _files
-  fi
-
-  return
-}
-
-compdef _step step
+##_step() {
+##
+##  local -a opts
+##  local cur
+##  cur=${words[-1]}
+##  if [[ "$cur" == "-"* ]]; then
+##    opts=("${(@f)$(_CLI_ZSH_AUTOCOMPLETE_HACK=1 ${words[@]:0:#words[@]-1} ${cur} --generate-bash-completion)}")
+##  else
+##    opts=("${(@f)$(_CLI_ZSH_AUTOCOMPLETE_HACK=1 ${words[@]:0:#words[@]-1} --generate-bash-completion)}")
+##  fi
+##
+##  if [[ "${opts[1]}" != "" ]]; then
+##    _describe 'values' opts
+##  else
+##    _files
+##  fi
+##
+##  return
+##}
+##
+##compdef _step step
 ### end smallstep zsh completion ###
 
 #### begin google cloud sdk completion ####
-source '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'
-source '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'
+##source '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'
+##source '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'
 #### end google cloud sdk completion ####
 #### end added completions }}}
 
