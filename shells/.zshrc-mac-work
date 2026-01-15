@@ -184,6 +184,7 @@ alias push='git push origin main && facts'
 alias same="find . -type f -print0 | xargs -0 -n1 md5sum | sort -k 1,32 | uniq -w 32 -d --all-repeated=separate | sed -e 's/^[0-9a-f]*\ *//;'"
 alias testunicode='perl -Mcharnames=:full -CS -wle '\''print "\N{EURO SIGN}"'\'''
 alias watchdd='sudo kill -USR1 $(pgrep "^dd") && watch -n5 -x sudo kill -USR1 $(pgrep "^dd")'
+alias wk="printf '\033]10;green\007\033]11;black\007'"
 alias wserver='python3 -m http.server 8080'
 alias x='exit'
 #### end aliases #### }}}
