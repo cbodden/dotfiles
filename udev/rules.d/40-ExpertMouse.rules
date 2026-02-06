@@ -1,16 +1,16 @@
-## udevadm info -a -n /dev/input/event24
+## udevadm monitor --environment --udev
 
 KERNEL=="event*" \
 , SUBSYSTEM=="input" \
-, ATTRS{name}=="ExpertBT5.0*" \
+, ATTRS{name}=="ExpertBT5.0 Consumer Control" \
 , RUN+="/bin/sh -c 'echo $(date) $(env) > /tmp/trackball-kernel.log'"
 
 ACTION=="add|change" \
 , SUBSYSTEM=="input" \
-, ATTRS{name}=="ExpertBT5.0*" \
+, ATTRS{name}=="ExpertBT5.0 Consumer Control" \
 , RUN+="/bin/sh -c 'echo $(date) $(env) > /tmp/trackball-action.log'"
 
 KERNEL=="event*" \
 , SUBSYSTEM=="input" \
-, ATTRS{name}=="ExpertBT5.0*" \
+, ATTRS{name}=="ExpertBT5.0 Consumer Control" \
 , RUN+="/bin/sh -c '/home/cbodden/git/mine/scripts/expertmouse.sh'"
