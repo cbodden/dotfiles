@@ -111,6 +111,30 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
 
+# Which cookies to accept. With QtWebEngine, this setting also controls
+# other features with tracking capabilities similar to those of cookies;
+# including IndexedDB, DOM storage, filesystem API, service workers, and
+# AppCache. Note that with QtWebKit, only `all` and `never` are
+# supported as per-domain values. Setting `no-3rdparty` or `no-
+# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
+# `all`. If this setting is used with URL patterns, the pattern gets
+# applied to the origin/first party URL of the page making the request,
+# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
+# from URLs, so URL patterns using paths will not match. With
+# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
+# you will typically need to set this setting for `example.com` when the
+# cookie is set on `somesubdomain.example.com` for it to work properly.
+# To debug issues with this setting, start qutebrowser with `--debug
+# --logfilter network --debug-flag log-cookies` which will show all
+# cookies being set.
+# Type: String
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+c.content.cookies.accept = 'no-unknown-3rdparty'
+
 # Try to pre-fetch DNS entries to speed up browsing.
 # Type: Bool
 c.content.dns_prefetch = True
@@ -135,12 +159,13 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/6.4.2 Chrome/102.0.5005.177 Safari/537.36', 'staging.bsky.app')
 
@@ -151,12 +176,13 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleW
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 
@@ -167,12 +193,13 @@ c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
@@ -183,12 +210,13 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/53
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 
@@ -199,14 +227,32 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # QtWebEngine. * `{qt_version}`: The underlying Qt version. *
 # `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
 # QtWebEngine. * `{upstream_browser_version}`: The corresponding
-# Safari/Chrome version. * `{qutebrowser_version}`: The currently
-# running qutebrowser version.  The default value is equal to the
-# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
-# read from JavaScript is always the global value. With QtWebEngine
-# between 5.12 and 5.14 (inclusive), changing the value exposed to
-# JavaScript requires a restart.
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:145.0) Gecko/20100101 Firefox/145.0', 'https://accounts.google.com/*')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version_short} Safari/{webkit_version}', 'https://gitlab.gnome.org/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -323,6 +369,13 @@ c.downloads.location.directory = '~/Downloads'
 # Type: Bool
 c.downloads.location.prompt = False
 
+# Where to show the downloaded files.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.downloads.position = 'bottom'
+
 # Command (and arguments) to use for selecting a single file in forms.
 # The command should write the selected file path to the specified file
 # or stdout. The following placeholders are defined: * `{}`: Filename of
@@ -429,7 +482,7 @@ c.statusbar.padding = {'bottom': 1, 'left': 0, 'right': 0, 'top': 1}
 # Valid values:
 #   - top
 #   - bottom
-c.statusbar.position = 'top'
+c.statusbar.position = 'bottom'
 
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
@@ -444,6 +497,15 @@ c.tabs.background = True
 #   - never: Always hide favicons.
 #   - pinned: Show favicons only on pinned tabs.
 c.tabs.favicons.show = 'never'
+
+# Position of the tab bar.
+# Type: Position
+# Valid values:
+#   - top
+#   - bottom
+#   - left
+#   - right
+c.tabs.position = 'bottom'
 
 # When to show the tab bar.
 # Type: String
