@@ -243,7 +243,7 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # increased compatibility.  Note that the value read from JavaScript is
 # always the global value.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:144.0) Gecko/20100101 Firefox/144.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:145.0) Gecko/20100101 Firefox/145.0', 'https://accounts.google.com/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -301,6 +301,10 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', False, '*://*.www.wired.com/*')
 
 # Allow locally loaded documents to access remote URLs.
 # Type: Bool
@@ -376,6 +380,13 @@ c.downloads.location.directory = '~/Downloads'
 # `downloads.location.directory` will be used.
 # Type: Bool
 c.downloads.location.prompt = False
+
+# Where to show the downloaded files.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.downloads.position = 'bottom'
 
 # Command (and arguments) to use for selecting a single file in forms.
 # The command should write the selected file path to the specified file
@@ -488,7 +499,7 @@ c.statusbar.padding = {'bottom': 1, 'left': 0, 'right': 0, 'top': 1}
 # Valid values:
 #   - top
 #   - bottom
-c.statusbar.position = 'top'
+c.statusbar.position = 'bottom'
 
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
@@ -511,6 +522,15 @@ c.tabs.close_mouse_button = 'middle'
 #   - never: Always hide favicons.
 #   - pinned: Show favicons only on pinned tabs.
 c.tabs.favicons.show = 'never'
+
+# Position of the tab bar.
+# Type: Position
+# Valid values:
+#   - top
+#   - bottom
+#   - left
+#   - right
+c.tabs.position = 'bottom'
 
 # When to show the tab bar.
 # Type: String
