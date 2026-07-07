@@ -170,7 +170,7 @@ setopt transient_rprompt
 ################# {{{
 
 alias add='git add -p .'
-alias commit='git commit -m .'
+alias commit='git commit .'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias d='dirs -v'
 alias facts="elinks -dump randomfunfacts.com | awk '/┌──/{ f = 1 } f; /└──/{ f = 0 }'"
