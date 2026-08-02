@@ -1,18 +1,21 @@
 configuration {
+    display-combi       :                                  "Combi";
     disable-history     :                                    false;
     display-drun        :                                   "Apps";
     display-filebrowser :                                  "Files";
+    display-keys        :                                   "Keys";
+    display-run         :                                    "Run";
+    display-ssh         :                                    "SSH";
     display-window      :                                 "Window";
     drun-display-format :                                 "{name}";
     font                :                                "hack 15";
     max-history-size    :                                       25;
-    modes               : "window,drun,run,ssh,filebrowser,combi" ;
+    modes           : "combi,drun,filebrowser,keys,run,ssh,window";
     show-icons          :                                     true;
     sidebar-mode        :                                     true;
     window-format       :                           " {w}   {c}";
     filebrowser {
-        /* 
-        ###########################################################
+        /*#########################################################
         ###           Directory the file browser starts in.     ###
         #########################################################*/
         directory       :                            "/home/$USER";
