@@ -3,7 +3,8 @@
 
 ## xrdb -query | awk '/Xft.dpi/ {print $2}'
 ## xrdb merge .Xresources
-
+## Xft.dpi: 200
+## https://www.sven.de/dpi/
 
 ! special
 *.foreground:   #93a1a1
