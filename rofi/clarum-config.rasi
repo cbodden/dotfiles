@@ -62,27 +62,14 @@ configuration {
     xserver-i300-workaround:                                 false;
     yoffset             :                                        0;
     filebrowser {
-        /*#########################################################
-        ###           Directory the file browser starts in.     ###
-        #########################################################*/
-        directory       :                            "/home/$USER";
-
-        /*#################### SORTING METHOD #####################
-        ### Sorting method used here is based on name. Other    ###
-        ### possiible values are:                               ###
-        ###   - "name"                                          ### 
-        ###   - "mtime" - Based on modification time.           ###
-        ###   - "atime" - Based on access time.                 ###
-        ###   - "ctime" - Based on change time.                 ###
-        #########################################################*/
-        sorting-method  :                                   "name";
-
-        /*#################### ITEM GROUPING ######################
-        ###              Group directories before files         ###
-        #########################################################*/
-        directories-first:                                    true;
-        show-hidden     :                                     true;
-        /** return 1 on cancel. */
         cancel-returns-1:                                     true;
-        }
+        directories-first:                                    true;
+        directory       :                            "/home/$USER";
+        show-hidden     :                                     true;
+        sorting-method  :                                   "name";
+    }
+    timeout {
+        action          :                              "kb-cancel";
+        delay           :                                        0;
+    }
 }
