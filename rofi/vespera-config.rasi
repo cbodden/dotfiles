@@ -26,7 +26,7 @@ configuration {
     drun-use-desktop-cache  :          false;
     eh                  :                  1;
     fixed-num-lines     :               true;
-    font                :          "hack 15";
+    font                :          "hack 10";
     global-kb           :              false;
     hover-select        :              false;
     imdkit              :               true;
