@@ -68,6 +68,10 @@ then
     fi
 fi
 
+## load X resources (Xft.dpi etc.) and match the server DPI
+[ -f "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
+xrandr --dpi 96
+
 ## this starts the wm
 if hash i3 2>/dev/null
 then
